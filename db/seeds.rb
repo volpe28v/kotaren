@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+["Kotaro Oshio"].each do |alb|
+  Album.find_or_create_by_title(alb)
+end
+
 =begin
-# Kotaro Oshio
 光のつばさ  CGDGCD
 彩音  CGDGCD
 第三の男  DGDGBE

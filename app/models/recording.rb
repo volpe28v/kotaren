@@ -1,3 +1,4 @@
 class Recording < ActiveRecord::Base
-  belongs_to :tune, :album
+  belongs_to :tune
+  belongs_to :album
 end

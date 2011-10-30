@@ -1,4 +1,8 @@
 Kotaren::Application.routes.draw do
+  get "tunes/index"
+
+  get "tunes/show"
+
   devise_for :users
 
   root :to => "tunes#index"

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :comments, :progresses
+  has_many :comments
+  has_many :progresses
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

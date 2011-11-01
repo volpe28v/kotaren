@@ -1,6 +1,6 @@
 .bundle
 db/*.sqlite3
-db/*.swp
 log/*.log
 tmp/
 .sass-cache/
+*.swp

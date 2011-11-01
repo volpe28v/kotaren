@@ -1,2 +1,9 @@
-<h1>Tunes#index</h1>
-<p>Find me in app/views/tunes/index.html.erb</p>
+<% @albums.each do |alb| %>
+  <h2><%= alb.title %></h2>
+  <table>
+    <% alb.recordings.each do |rec| %>
+      <tr><td><%= rec.tune.title %></td><td><%= rec.tune.tuning.name %></td></tr>
+    <% end %>
+  </table>
+<% end %>
+

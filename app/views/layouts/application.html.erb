@@ -7,10 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="wrapper">
-   <p class="notice"><%= notice %></p>
-   <p class="alert"><%= alert %></p>
-    <%= yield %>
+<div id="wrapper">
+  <div class="logo">
+    <h1><%= link_to 'こたれん', root_path %></h1>
   </div>
+
+  <div class="login">
+  <% if current_user %>
+    <%= "<" + current_user.email + ">" %>
+    <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
+  <% else %>
+    <%= link_to 'ログイン', new_user_session_path %>
+    |
+    <%= link_to '新規登録', new_user_registration_path %>
+  <% end %>
+  </div>
+
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  </header>
+  <div class="clear">
+ 
+    <%= yield %>
+</div>
 </body>
 </html>

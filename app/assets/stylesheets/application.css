@@ -15,10 +15,27 @@ body {
   width: 800px;
 }
 
+.logo {
+  float: left;
+}
+
+.login {
+  float: right;
+}
+
+.clear {
+  clear:both;　/*floatの解除*/
+}
+
 #menu {
   float: left;
   width: 300px;
 }
+
+#menu ul {
+  list-style-type:none;
+}
+
 
 #main {
   float: right;

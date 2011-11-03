@@ -8,4 +8,12 @@ class Tune < ActiveRecord::Base
     return self.all if tuning == "-"
     self.includes(:tuning).where("tunings.name = ?", tuning ) 
   end
+
+  def progress_val(user)
+    return 0 if !user
+
+    progress = self.progresses.find_by_user_id(user.id)
+
+    return progress ? progress.percent : 0
+  end
 end

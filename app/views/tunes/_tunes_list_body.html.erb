@@ -1,6 +1,10 @@
 <table>
   <% @tunes.each do |t| %>
-    <tr><td><%= t.title %></td><td><span class="progress">50</span></td></tr>
+    <% if current_user %>
+      <tr><td><%= t.title %></td><td><span class="progress"><%= t.progress_val(current_user) %></span></td></tr>
+    <% else %>
+      <tr><td><%= t.title %></td></tr>
+    <% end %>
   <% end %>
 </table>
 

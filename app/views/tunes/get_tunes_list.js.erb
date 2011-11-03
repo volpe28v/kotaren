@@ -4,4 +4,20 @@ $('#tune_list').html(
     "<%= escape_javascript(render :partial => 'tunes_list_body') %>"
     );
 $('#tune_list').fadeIn();
+$(".progress").progressBar({
+    steps           : 20,
+    stepDuration    : 20,
+    max            : 100,
+    showText        : true,
+    textFormat      : 'percentage',
+    width           : 120,
+    height          : 12,
+    callback        : null,
+    boxImage        : 'assets/progressbar.gif',
+    barImage        : {
+        0:  'assets/progressbg_red.gif',
+        30: 'assets/progressbg_orange.gif',
+        70: 'assets/progressbg_green.gif'
+    },
+});
 

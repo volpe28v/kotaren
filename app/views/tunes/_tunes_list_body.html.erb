@@ -1,6 +1,6 @@
-<ul>
+<table>
   <% @tunes.each do |t| %>
-    <li><%= t.title %>
+    <tr><td><%= t.title %></td><td><span class="progress">50</span></td></tr>
   <% end %>
-</ul>
+</table>
 

@@ -6,6 +6,11 @@
  *= require_tree . 
 */
 
+body {
+  color: #444;
+  font: 12px/1.55em arial, helvetica, sans-serif;
+}
+
 #wrapper {
   width: 800px;
 }

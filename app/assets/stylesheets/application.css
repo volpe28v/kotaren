@@ -5,3 +5,17 @@
  *= require_self
  *= require_tree . 
 */
+
+#wrapper {
+  width: 800px;
+}
+
+#menu {
+  float: left;
+  width: 300px;
+}
+
+#main {
+  float: right;
+  width: 500px;
+}

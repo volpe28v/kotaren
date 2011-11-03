@@ -13,11 +13,14 @@ body {
 
 #wrapper {
   width: 800px;
+  margin: auto;
 }
 
-.logo {
-  float: left;
-}
+.logo h1{
+  margin-top: 0px;
+  margin-bottom: 10px;
+  float :left;
+}   
 
 .login {
   float: right;
@@ -44,5 +47,13 @@ body {
 
 #main {
   float: right;
-  width: 500px;
+  width: 480px;
 }
+
+.holded a { color: blue; }
+.holded a:hover { color: #EA1F00; }
+
+a { color:#262626; text-decoration:none; }
+a:hover { color:#EA1F00; }
+
+

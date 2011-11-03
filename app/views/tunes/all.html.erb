@@ -1,0 +1,9 @@
+<% @albums.each do |alb| %>
+  <h2><%= alb.title %></h2>
+  <table>
+    <% alb.recordings.each do |rec| %>
+      <tr><td><%= rec.tune.title %></td><td><%= rec.tune.tuning.name %></td></tr>
+    <% end %>
+  </table>
+<% end %>
+

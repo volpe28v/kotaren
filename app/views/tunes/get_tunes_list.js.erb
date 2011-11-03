@@ -1,0 +1,7 @@
+$('#tune_list').hide();
+$('#tune_list').empty();
+$('#tune_list').html(
+    "<%= escape_javascript(render :partial => 'tunes_list_body') %>"
+    );
+$('#tune_list').fadeIn();
+

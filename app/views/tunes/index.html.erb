@@ -1,9 +1,13 @@
-<% @albums.each do |alb| %>
-  <h2><%= alb.title %></h2>
-  <table>
-    <% alb.recordings.each do |rec| %>
-      <tr><td><%= rec.tune.title %></td><td><%= rec.tune.tuning.name %></td></tr>
-    <% end %>
-  </table>
-<% end %>
+<div id="menu">
+  <ul>
+  <%= form_tag( url_for(:action => 'get_tunes_list'), :remote => true ) do %>
+    <li><%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) ) %>
+    <li><%= select_tag('tuning_name', options_for_select(["-"] + Tuning.all.map(&:name).uniq.sort) ) %>
+    <li><%= submit_tag('Update') %>
+  <% end %>
+  </ul>
 
+</div>
+
+
+<div id="tune_list"></div>

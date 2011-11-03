@@ -13,6 +13,8 @@ Kotaren::Application.routes.draw do
   resources :tunes do
     resources :comments
     resources :progresse
+    get :all , :on => :collection
+    post :get_tunes_list , :on => :collection
   end
 
   resources :tunings, :albums, :users, :recordings

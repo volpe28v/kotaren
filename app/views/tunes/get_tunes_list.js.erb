@@ -1,5 +1,9 @@
 $('#tune_list').hide();
 $('#tune_list').empty();
+
+$('#tune_num').hide();
+$('#tune_num').empty();
+
 $('#tune_list').html(
     "<%= escape_javascript(render :partial => 'tunes_list_body') %>"
     );
@@ -20,4 +24,7 @@ $(".progress").progressBar({
         70: 'assets/progressbg_green.gif'
     },
 });
+
+$('#tune_num').html("<%= @tunes.count %>")
+$('#tune_num').fadeIn();
 

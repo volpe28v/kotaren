@@ -36,6 +36,11 @@ body {
   list-style-type:none;
 }
 
+#tune_num {
+  font-size: 26px;
+  color: blue;
+}
+
 
 #main {
   float: right;

@@ -1,9 +1,15 @@
+<script>
+  $(document).ready(function(){
+    $('#update_tunes').click();
+  });
+</script>
+
 <div id="menu">
 <%= form_tag( url_for(:action => 'get_tunes_list'), :remote => true ) do %>
-  <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) ) %></br>
-    <%= select_tag('tuning_name', options_for_select(["-"] + Tuning.all.map(&:name).uniq.sort) ) %>
-    <%= submit_tag('Update') %>
-  <% end %>
+  <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) , :onchange => "$('#update_tunes').click();") %></br>
+  <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort) , :onchange => "$('#update_tunes').click();") %>
+  <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
+<% end %>
 
   <br><br>
   <div><center><span id="tune_num">0</span> tunes.</center></div>

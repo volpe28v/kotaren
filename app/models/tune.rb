@@ -5,7 +5,7 @@ class Tune < ActiveRecord::Base
   has_many :progresses
 
   def self.all_or_filter_by_tuning(tuning)
-    return self.all if tuning == "-"
+    return self.all if Tuning.find_by_name(tuning) == nil
     self.includes(:tuning).where("tunings.name = ?", tuning ) 
   end
 

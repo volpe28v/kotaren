@@ -21,5 +21,10 @@ class TunesController < ApplicationController
     end
   end
 
+  def update_progress
+    tune = Tune.find(params[:tune_id])
+    tune.update_progress(current_user,params[:progress_val])
+    render :text => "update_progress .. OK!"
+  end
 end
 

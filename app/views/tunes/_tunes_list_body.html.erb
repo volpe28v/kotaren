@@ -4,7 +4,10 @@
       <tr>
         <td><%= t.title %></td>
         <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(current_user) %></span></td>
-        <td><button onclick="progress_up('progress_<%= t.id %>')">+</button></td>
+        <td>
+          <button onclick="progress_down('<%= t.id %>')">-</button>
+          <button onclick="progress_up('<%= t.id %>')">+</button>
+        </td>
       </tr>
     <% else %>
       <tr><td><%= t.title %></td></tr>
@@ -15,13 +18,37 @@
 <script>
 function progress_up(id) {
   var step = 10;
-  var current_val = Number($('#' + id + '_pbText').html().replace("%",""))
+  var current_val = Number($('#progress_' + id + '_pbText').html().replace("%",""))
   var next_val = current_val + step;
   if (next_val > 100){
     next_val = 100;
   }
-  $('#' + id ).progressBar( next_val );
+  $('#progress_' + id ).progressBar( next_val );
+
+  update_progress_remote(id,next_val);
 }
+
+function progress_down(id) {
+  var step = 10;
+  var current_val = Number($('#progress_' + id + '_pbText').html().replace("%",""))
+  var next_val = current_val - step;
+  if (next_val < 0){
+    next_val = 0;
+  }
+  $('#progress_' + id ).progressBar( next_val );
+
+  update_progress_remote(id,next_val);
+}
+
+function update_progress_remote(id, val){
+  $.ajax({
+     type: "GET",
+     cache: false,
+     url: "tunes/update_progress",
+     data: "tune_id=" + id + "&progress_val=" + val
+  });
+}
+
 </script>
 
 

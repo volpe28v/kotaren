@@ -8,7 +8,9 @@ $('#tune_list').html(
     "<%= escape_javascript(render :partial => 'tunes_list_body') %>"
     );
 $('#tune_list').fadeIn();
-$(".progress").progressBar({
+
+$(".progress").each(function(i){
+  $(this).progressBar({
     steps           : 20,
     stepDuration    : 20,
     max            : 100,
@@ -23,8 +25,10 @@ $(".progress").progressBar({
         30: 'assets/progressbg_orange.gif',
         60: 'assets/progressbg_yellow.gif',
         100: 'assets/progressbg_green.gif'
-    },
+    }
+  });
 });
+
 
 $('#tune_num').html("<%= @tunes.count %>")
 $('#tune_num').fadeIn();

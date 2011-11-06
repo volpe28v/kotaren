@@ -1,10 +1,28 @@
 <table>
   <% @tunes.each do |t| %>
     <% if current_user %>
-      <tr><td><%= t.title %></td><td><span class="progress"><%= t.progress_val(current_user) %></span></td></tr>
+      <tr>
+        <td><%= t.title %></td>
+        <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(current_user) %></span></td>
+        <td><button onclick="progress_up('progress_<%= t.id %>')">+</button></td>
+      </tr>
     <% else %>
       <tr><td><%= t.title %></td></tr>
     <% end %>
   <% end %>
 </table>
+
+<script>
+function progress_up(id) {
+  var step = 10;
+  var current_val = Number($('#' + id + '_pbText').html().replace("%",""))
+  var next_val = current_val + step;
+  if (next_val > 100){
+    next_val = 100;
+  }
+  $('#' + id ).progressBar( next_val );
+}
+</script>
+
+
 

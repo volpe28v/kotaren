@@ -19,6 +19,7 @@ class TunesController < ApplicationController
     else
       @tunes = Tune.all_or_filter_by_tuning(tuning)
     end
-
   end
+
 end
+

@@ -47,7 +47,7 @@ regist_album [
   ["宵待月",  "Standard", 5],
   ["ニューシネマパラダイス",  "Standard"],
   ["遥かなる大地",  "EEBEF#B"],
-  ["HARD RAIN",  "DGDGGD"],
+  ["HARD RAIN",  "GGDGGD"],
   ["リベルタンゴ",  "Standard"],
   ["いつか王子様が",  "Standard"],
   ["ずっと… ",  "Standard"],

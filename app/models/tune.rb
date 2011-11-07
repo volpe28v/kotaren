@@ -9,6 +9,27 @@ class Tune < ActiveRecord::Base
     self.includes(:tuning).where("tunings.name = ?", tuning ) 
   end
 
+  scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100")
+  scope :done , includes(:progresses).where("progresses.percent = 100")
+  scope :touched , includes(:progresses).where("progresses.percent > 0")
+
+  scope :progress_by_user , lambda {|user|
+    includes(:progresses).where("progresses.user_id = ?", user.id)
+  }
+
+  scope :by_status_and_user, lambda {|status,user|
+    case status
+    when "Doing"
+      doing.progress_by_user(user)
+    when "Done"
+      done.progress_by_user(user)
+    when "Touched"
+      touched.progress_by_user(user)
+    else
+
+    end
+  }
+
   def progress_val(user)
     return 0 if !user
 

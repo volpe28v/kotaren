@@ -13,12 +13,10 @@ class TunesController < ApplicationController
   def get_tunes_list
     album = Album.find_by_title(params[:album_title])
     tuning = params[:tuning_name]
+    status = params[:tune_status]
 
-    if album 
-      @tunes = album.tunes.all_or_filter_by_tuning(tuning)
-    else
-      @tunes = Tune.all_or_filter_by_tuning(tuning)
-    end
+    @tunes = album ? album.tunes : Tune
+    @tunes = @tunes.by_status_and_user(status,current_user).all_or_filter_by_tuning(tuning)
   end
 
   def update_progress

@@ -3,7 +3,7 @@
   <% @tunes.each do |t| %>
     <% if current_user %>
       <tr>
-        <td class="tune-title"><%= t.title %></td>
+        <td class="tune-title"><%= link_to t.title, t %></td>
         <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(current_user) %></span></td>
         <td>
           <button onclick="progress_controller.down('<%= t.id %>')">-</button>
@@ -16,44 +16,4 @@
   <% end %>
 </table>
 </div>
-
-<script>
-var progress_controller = {
-  step : 10,
-  option : { steps : 20, stepDuration : 20 },
-  up : function (id){
-    this.move_bar(id, function (current_val, step){
-      return current_val + step;
-    });
-  },
-  down : function (id){
-    this.move_bar(id, function (current_val, step){
-      return current_val - step;
-    });
-  },
-  move_bar : function ( id, move_callback ){
-    var current_val = Number($('#progress_' + id + '_pbText').html().replace("%",""))
-    var next_val = move_callback(current_val, this.step);
-    if (next_val > 100){ 
-      next_val = 100; 
-    }else if (next_val < 0){ 
-      next_val = 0; 
-    }
-    $('#progress_' + id ).progressBar( next_val , this.option );
-
-    this.update_remote(id,next_val);
-  },
-  update_remote : function(id, val){
-    $.ajax({
-      type: "GET",
-      cache: false,
-      url: "tunes/update_progress",
-      data: "tune_id=" + id + "&progress_val=" + val
-    });
-  }
-}
-
-</script>
-
-
 

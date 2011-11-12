@@ -7,3 +7,57 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+var progress_default_option = {
+    steps           : 0,
+    stepDuration    : 0,
+    max             : 100,
+    showText        : true,
+    textFormat      : 'percentage',
+    width           : 120,
+    height          : 12, 
+    callback        : null,
+    boxImage        : '/assets/progressbar.gif',
+    barImage        : { 
+        0:   '/assets/progressbg_red.gif',
+        30:  '/assets/progressbg_orange.gif',
+        60:  '/assets/progressbg_yellow.gif',
+        100: '/assets/progressbg_green.gif'
+    } 
+}
+
+var progress_controller = {
+  step : 10,
+  option : { steps : 20, stepDuration : 20 },
+  up : function (id){
+    this.move_bar(id, function (current_val, step){
+      return current_val + step;
+    });
+  },
+  down : function (id){
+    this.move_bar(id, function (current_val, step){
+      return current_val - step;
+    });
+  },
+  move_bar : function ( id, move_callback ){
+    var current_val = Number($('#progress_' + id + '_pbText').html().replace("%",""))
+    var next_val = move_callback(current_val, this.step);
+    if (next_val > 100){ 
+      next_val = 100; 
+    }else if (next_val < 0){ 
+      next_val = 0; 
+    }
+    $('#progress_' + id ).progressBar( next_val , this.option );
+
+    this.update_remote(id,next_val);
+  },
+  update_remote : function(id, val){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "tunes/update_progress",
+      data: "tune_id=" + id + "&progress_val=" + val
+    });
+  }
+}
+

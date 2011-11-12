@@ -1,2 +1,21 @@
-<h1>Tunes#show</h1>
-<p>Find me in app/views/tunes/show.html.erb</p>
+<script>                                                                          
+$(document).ready(function(){                                                     
+  $(".progress").each(function(elem){                                             
+    $(this).progressBar(progress_default_option);                                 
+  });                                                                             
+});
+</script>     
+
+<table>
+  <tr>
+    <td class="tune-big-title"><%= @tune.title %></td>
+    <td><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span></td>
+    <td>
+      <button onclick="progress_controller.down('<%= @tune.id %>')">-</button>
+      <button onclick="progress_controller.up('<%= @tune.id %>')">+</button>
+    </td>
+  </tr>
+</table>
+
+
+

@@ -55,7 +55,7 @@ var progress_controller = {
     $.ajax({
       type: "GET",
       cache: false,
-      url: "tunes/update_progress",
+      url: "/tunes/update_progress",
       data: "tune_id=" + id + "&progress_val=" + val
     });
   }

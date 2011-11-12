@@ -3,6 +3,32 @@ $(document).ready(function(){
   $(".progress").each(function(elem){                                             
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
+
+  $.ajax({
+    dataType: "jsonp",
+    data: {
+      "vq": "押尾コータロー <%= @tune.title %>",
+      "orderby": "relevance",
+      "start-index": 1,
+      "max-results": 5,
+      "alt":"json-in-script"
+    },
+    cache: false,
+    url: "http://gdata.youtube.com/feeds/api/videos",
+    success: function (data) {
+      $("#debug").html(parseInt(data.feed.openSearch$totalResults.$t,10));
+
+      $.each(data.feed.entry, function(i,item){
+        var group = item.media$group;
+
+        $("<div/>").addClass("thumbnail")
+                   .append($("<img/>").attr("src", group.media$thumbnail[0].url)).append("<br/>")
+                   .append(item.title.$t).append("<br/>")
+                   .click(function(){window.open(group.media$player[0].url, null)})
+                   .appendTo("#videos");
+      });
+    }
+  });
 });
 </script>     
 
@@ -17,5 +43,7 @@ $(document).ready(function(){
   </tr>
 </table>
 
+<div id="debug"></div>
+<div id="videos"></div>
 
 

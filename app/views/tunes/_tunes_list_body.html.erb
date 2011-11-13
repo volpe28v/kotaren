@@ -11,7 +11,7 @@
         </td>
       </tr>
     <% else %>
-      <tr><td><%= t.title %></td></tr>
+      <tr><td><%= link_to t.title, t %></td></tr>
     <% end %>
   <% end %>
 </table>

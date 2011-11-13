@@ -65,13 +65,13 @@ a:hover { color:#EA1F00; }
   text-align: center;
   float: left;
   width: 160px;
-  height: 180px;
+  height: 200px;
   cursor: pointer;
   color: blue;
   font-size: 0.8em;
   margin: 5px 5px 0 0;
-  border: solid 1px transparent;
   padding: 3px;
+  border: 1px solid #c0cfff;
 }
 
 .thumbnail:hover, li:hover {

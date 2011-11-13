@@ -61,6 +61,10 @@ a:hover { color:#EA1F00; }
   width: 350px;
 }
 
+.tune-big-title{
+  font-size: large;
+}
+
 .thumbnail {
   text-align: center;
   float: left;

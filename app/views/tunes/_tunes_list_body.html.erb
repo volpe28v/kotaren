@@ -6,8 +6,8 @@
         <td class="tune-title"><%= link_to t.title, t %></td>
         <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(current_user) %></span></td>
         <td>
-          <button onclick="progress_controller.down('<%= t.id %>')">-</button>
-          <button onclick="progress_controller.up('<%= t.id %>')">+</button>
+          <button onclick="progress_controller.down('<%= t.id %>')"><%= "<" %></button>
+          <button onclick="progress_controller.up('<%= t.id %>')"><%= ">" %></button>
         </td>
       </tr>
     <% else %>

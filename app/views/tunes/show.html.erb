@@ -10,7 +10,7 @@ $(document).ready(function(){
       "vq": "押尾コータロー <%= @tune.title %>",
       "orderby": "relevance",
       "start-index": 1,
-      "max-results": 15,
+      "max-results": 12,
       "alt":"json-in-script"
     },
     cache: false,
@@ -32,16 +32,19 @@ $(document).ready(function(){
 });
 </script>     
 
-<table>
-  <tr>
-    <td class="tune-big-title"><%= @tune.title %></td>
-    <td><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span></td>
-    <td>
-      <button onclick="progress_controller.down('<%= @tune.id %>')">-</button>
-      <button onclick="progress_controller.up('<%= @tune.id %>')">+</button>
-    </td>
-  </tr>
-</table>
+<div id="detail">
+    <p><span class="tune-big-title"><%= @tune.title %></span></p>
+    <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span>
+      <button onclick="progress_controller.down('<%= @tune.id %>')"><%= "<" %></button>
+      <button onclick="progress_controller.up('<%= @tune.id %>')"><%= ">" %></button>
+    </p>
+    <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
+    <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
+      <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
+    <% end %>
+</div>
 
-<div id="videos"></div>
+<div id="video-list">
+  <div id="videos"></div>
+</div>
 

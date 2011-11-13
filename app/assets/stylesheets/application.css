@@ -50,6 +50,25 @@ body {
   width: 600px;
 }
 
+#detail {
+  float: left;
+  width: 250px;
+}
+
+#detail ul {
+  list-style-type:none;
+}
+
+#video-list {
+  float: right;
+  width: 650px;
+}
+
+.tuning {
+  font-size: 26px;
+  color: blue;
+}
+
 .holded a { color: blue; }
 .holded a:hover { color: #EA1F00; }
 
@@ -68,7 +87,7 @@ a:hover { color:#EA1F00; }
 .thumbnail {
   text-align: center;
   float: left;
-  width: 160px;
+  width: 145px;
   height: 200px;
   cursor: pointer;
   color: blue;
@@ -84,6 +103,6 @@ a:hover { color:#EA1F00; }
 }
 
 .thumbnail img {
-  width: 160px;
+  width: 145px;
 }
 

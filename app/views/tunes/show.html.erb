@@ -34,10 +34,19 @@ $(document).ready(function(){
 
 <div id="detail">
     <p><span class="tune-big-title"><%= @tune.title %></span></p>
+    <p>
+      <span class="tune-title">
+      <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
+      </span>
+    </p>
+      
+    <% if current_user %>
     <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span>
       <button onclick="progress_controller.down('<%= @tune.id %>')"><%= "<" %></button>
       <button onclick="progress_controller.up('<%= @tune.id %>')"><%= ">" %></button>
     </p>
+    <% end %>
+
     <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
     <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
       <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>

@@ -106,3 +106,17 @@ a:hover { color:#EA1F00; }
   width: 145px;
 }
 
+#tune-list table {
+  border-collapse:collapse;
+}
+
+#tune-list td {
+  margin: 5px 5px 5px 5px;
+  padding: 0;
+  border-bottom: 1px dashed #c0cfff;
+}
+
+#tune-list tr:hover {
+  background-color: #f0f8ff;
+}
+

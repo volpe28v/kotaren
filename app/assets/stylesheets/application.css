@@ -147,17 +147,17 @@ ul.tab li a {
     background: #fff;
 }
 
-ul.tab li a.blue {
+ul.tab li a.blue0 {
     border-top: 5px #2384dc solid;
 }
-ul.tab li a.green {
-    border-top: 5px #4cbb47 solid;
+ul.tab li a.blue1 {
+    border-top: 5px #43a4fc solid;
 }
-ul.tab li a.red {
-    border-top: 5px #dd1d25 solid;
+ul.tab li a.blue2 {
+    border-top: 5px #63c4ff solid;
 }
-ul.tab li a.yellow {    
-    border-top: 5px #ffd242 solid;
+ul.tab li a.blue3 {    
+    border-top: 5px #83e4ff solid;
 }
 
 ul.tab li a:hover {

@@ -29,8 +29,8 @@
 
 <div id="main">
   <ul class="tab clear">
-    <% @statuses.each do |s| %>
-      <li><a id="<%= s[1] %>" href="#" class="blue"><%= s[0] %></a></li>
+    <% @statuses.each_with_index do |s,i| %>
+      <li><a id="<%= s[1] %>" href="#" class="blue<%= i %>"><%= s[0] %></a></li>
     <% end %>
   </ul>
 

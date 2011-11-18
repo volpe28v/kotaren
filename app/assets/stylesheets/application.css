@@ -120,3 +120,60 @@ a:hover { color:#EA1F00; }
   background-color: #f0f8ff;
 }
 
+ul.tab {
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px #ddd solid;
+}
+ul.tab li {
+    float: left;
+    margin: 0 0 0 5px;
+    position: relative;
+    bottom: -2px;
+    list-style-type: none;
+    border: 1px #ddd solid;
+    border-top: none;
+    border-bottom: 2px #ddd solid;
+}
+ul.tab li.none {
+    border-bottom: 2px #fff solid;
+    font-weight: bold;
+}
+ul.tab li a {
+    color: #000;
+    display: block;
+    padding: 3px 10px 5px;
+    text-decoration: none;
+    background: #fff;
+}
+
+ul.tab li a.blue {
+    border-top: 5px #2384dc solid;
+}
+ul.tab li a.green {
+    border-top: 5px #4cbb47 solid;
+}
+ul.tab li a.red {
+    border-top: 5px #dd1d25 solid;
+}
+ul.tab li a.yellow {    
+    border-top: 5px #ffd242 solid;
+}
+
+ul.tab li a:hover {
+  background-color: #f0f8ff;
+}
+
+/* clerfix */
+.clear:after {
+    content:"";
+    display:block;
+    overflow:hidden;
+}
+.clear:after {
+    clear:both;
+}
+.clear {
+    zoom:1;
+}
+

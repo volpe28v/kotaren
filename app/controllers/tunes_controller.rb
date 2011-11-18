@@ -1,6 +1,16 @@
 class TunesController < ApplicationController
+
+   @@statuses_def = [
+      ['All Status', 'all_status'],
+      ['Touched'   , 'touched'],
+      ['Doing'     , 'doing'],
+      ['Done'      , 'done'],
+    ]
+
   def index
     @albums = Album.all
+    @statuses = @@statuses_def
+    @current_status = session[:current_status] ? session[:current_status] : @statuses[0]
   end
 
   def show
@@ -15,6 +25,8 @@ class TunesController < ApplicationController
     album = Album.find_by_title(params[:album_title])
     tuning = params[:tuning_name]
     status = params[:tune_status]
+
+    session[:current_status] = @@statuses_def.detect{|sd| sd[0] == status }
 
     @tunes = album ? album.tunes : Tune
     @tunes = @tunes.by_status_and_user(status,current_user).all_or_filter_by_tuning(tuning)

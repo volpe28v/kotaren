@@ -1,6 +1,5 @@
 <script>
   $(document).ready(function(){
-    $('#update_tunes').click();
     $('ul.tab li a').click(
       function(){
         var status = $(this).html();
@@ -10,6 +9,7 @@
         $(this).closest('li').addClass("none");
       }
     )
+    $("#<%= @current_status[1] %>").click();
   });
 
 </script>
@@ -18,7 +18,7 @@
 <%= form_tag( url_for(:action => 'get_tunes_list'), :remote => true ) do %>
   <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) , :onchange => "$('#update_tunes').click();") %></br>
   <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort) , :onchange => "$('#update_tunes').click();") %></br>
-  <%= select_tag('tune_status', options_for_select(["All Status", "Touched", "Doing", "Done"], current_user ? "Doing" : "All Sttus" ) , :onchange => "$('#update_tunes').click();", :style => "display: none") %>
+  <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "$('#update_tunes').click();", :style => "display: none") %>
   <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
 <% end %>
 
@@ -29,10 +29,9 @@
 
 <div id="main">
   <ul class="tab clear">
-    <li><a href="#" class="blue">All Status</a></li>
-    <li><a href="#" class="red">Touched</a></li>
-    <li><a href="#" class="green">Doing</a></li>
-    <li><a href="#" class="yellow">Done</a></li>
+    <% @statuses.each do |s| %>
+      <li><a id="<%= s[1] %>" href="#" class="blue"><%= s[0] %></a></li>
+    <% end %>
   </ul>
 
   <div id="tune_list"></div>

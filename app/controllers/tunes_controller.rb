@@ -1,11 +1,12 @@
 class TunesController < ApplicationController
+  before_filter :authenticate_user! 
 
-   @@statuses_def = [
+  @@statuses_def = [
       ['All Status', 'all_status'],
       ['Touched'   , 'touched'],
       ['Doing'     , 'doing'],
       ['Done'      , 'done'],
-    ]
+  ]
 
   def index
     @albums = Album.all

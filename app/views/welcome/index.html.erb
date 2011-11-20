@@ -1,0 +1,7 @@
+<%#サンプルログインフォーム%>
+<%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
+  <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
+  <%= hidden_field_tag "user[password]", "sample" %>
+  <%= submit_tag "サンプルページへログイン" %>
+<% end -%>
+

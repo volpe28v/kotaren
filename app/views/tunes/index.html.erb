@@ -15,6 +15,7 @@
 </script>
 
 <div id="menu">
+  <h2>曲リスト</h2>
 <%= form_tag( url_for(:action => 'get_tunes_list'), :remote => true ) do %>
   <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) , :onchange => "$('#update_tunes').click();") %></br>
   <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort) , :onchange => "$('#update_tunes').click();") %></br>

@@ -32,7 +32,15 @@ body {
 
 #menu {
   float: left;
-  width: 300px;
+  width: 260px;
+  background-color: #f6f6f6;
+  padding: 10px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 5px 5px 5px 1px #999;
+  -moz-box-shadow: 5px 5px 5px 1px #999;
+  -webkit-box-shadow: 5px 5px 5px 1px #999;
 }
 
 #menu ul {
@@ -47,7 +55,15 @@ body {
 
 #main {
   float: right;
-  width: 600px;
+  width: 580px;
+  background-color: #f6f6f6;
+  padding: 10px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 5px 5px 5px 1px #999;
+  -moz-box-shadow: 5px 5px 5px 1px #999;
+  -webkit-box-shadow: 5px 5px 5px 1px #999;
 }
 
 #detail {
@@ -128,20 +144,22 @@ a:hover { color:#EA1F00; }
 ul.tab {
     margin: 0;
     padding: 0;
-    border-bottom: 2px #ddd solid;
+    border-bottom: 2px #aaa solid;
 }
+
 ul.tab li {
     float: left;
     margin: 0 0 0 5px;
     position: relative;
     bottom: -2px;
     list-style-type: none;
-    border: 1px #ddd solid;
+    border: 1px #aaa solid;
     border-top: none;
-    border-bottom: 2px #ddd solid;
+    border-bottom: 2px #aaa solid;
 }
+
 ul.tab li.none {
-    border-bottom: 2px #fff solid;
+    border-bottom: 2px #f6f6f6 solid;
     font-weight: bold;
 }
 ul.tab li a {
@@ -149,7 +167,7 @@ ul.tab li a {
     display: block;
     padding: 3px 10px 5px;
     text-decoration: none;
-    background: #fff;
+    background: #f6f6f6;
 }
 
 ul.tab li a.blue0 {

@@ -1,7 +1,49 @@
+<div id="content">
+  <center>
+  <%= image_tag ("guiter.jpg") %>
+</center>
+<p>
+押尾コータローさんの音楽って素晴らしいですね。コタれんは押尾コータローさんの曲をコピーしたい人のための練習帳アプリです。
+  <h1>コタれんって</h1>
+  <ul>
+    <li>練習曲の進捗を保存できます。</li>
+    <li>チューニングで曲の検索を行えます。</li>
+    <li>練習の参考になる YouTube の関連動画を自動検索できます。</li>
+  </ul>
+
+  <h1>例えばこんな使い方</h1>
+  <ul>
+    <li>日々の練習の進捗を記録！</li>
+    <li>同一チューニングの練習曲で検索して一気に練習！</li>
+    <li>好きなチューニングの曲を探して練習開始！</li>
+    <li>練習中に YouTube の関連動画に簡単アクセス！</li>
+  </ul>
+
+  <h1>これからできるようにしたいこと</h1>
+
+</div>
+
+<div id="sidebar">
+<h2>ログイン</h2>
+<%= form_tag('/users/sign_in') do -%>
+  <p>
+  メールアドレス</br>
+  <%= text_field_tag "user[email]",'', :size => 35 %>
+  </p>
+  <p>
+  パスワード</br>
+  <%= password_field_tag "user[password]",'', :size => 35 %>
+  </p>
+  <%= submit_tag "ログイン" %>
+<% end -%>
+
+<hr>
+<h2>サンプルアカウント</h2>
 <%#サンプルログインフォーム%>
 <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
   <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
   <%= hidden_field_tag "user[password]", "sample" %>
-  <%= submit_tag "サンプルページへログイン" %>
+  <%= submit_tag "サンプルアカウントでログイン" %>
 <% end -%>
 
+</div>

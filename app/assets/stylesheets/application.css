@@ -77,11 +77,16 @@ a:hover { color:#EA1F00; }
 
 
 .tune-title{
-  width: 350px;
+  width: 200px;
 }
 
 .tune-big-title{
   font-size: large;
+}
+
+.tuning-name{
+  width: 150px;
+  color: #666;
 }
 
 .thumbnail {
@@ -97,7 +102,7 @@ a:hover { color:#EA1F00; }
   border: 1px solid #c0cfff;
 }
 
-.thumbnail:hover, li:hover {
+.thumbnail:hover {
   background-color: #f0f8ff;
   border: 1px solid #c0cfff;
 }
@@ -175,5 +180,37 @@ ul.tab li a:hover {
 }
 .clear {
     zoom:1;
+}
+
+#content{
+  width: 500px;
+  margin-bottom: 20px;
+  padding: 20px;
+  float: left;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 5px 5px 5px 1px #999;
+  -moz-box-shadow: 5px 5px 5px 1px #999;
+  -webkit-box-shadow: 5px 5px 5px 1px #999;
+}
+
+#sidebar {
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  float: right;
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 3px 3px 3px 1px #999;
+  -moz-box-shadow: 3px 3px 3px 1px #999;
+  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  font-size: 0.9em;
 }
 

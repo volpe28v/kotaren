@@ -51,10 +51,13 @@ $(document).ready(function(){
     <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
       <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
     <% end %>
+
+    <p><%= link_to '押尾コータロー楽曲リストに戻る', tunes_path %></p>
+
 </div>
 
 <div id="video-list">
-  <p><%= link_to '曲リストに戻る', tunes_path %></p>
+  <h2>関連動画(YouTube)</h2>
   <div id="videos"></div>
 </div>
 

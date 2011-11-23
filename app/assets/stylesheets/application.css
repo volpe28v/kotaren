@@ -72,7 +72,15 @@ body {
 
 #detail {
   float: left;
-  width: 250px;
+  width: 220px;
+  background-color: #f6f6f6;
+  padding: 10px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 3px 3px 3px 1px #999;
+  -moz-box-shadow: 3px 3px 3px 1px #999;
+  -webkit-box-shadow: 3px 3px 3px 1px #999;
 }
 
 #detail ul {

@@ -12,6 +12,10 @@ class TunesController < ApplicationController
     @albums = Album.all
     @statuses = @@statuses_def
     @current_status = session[:current_status] ? session[:current_status] : @statuses[0]
+
+    @touched_count = Tune.by_status_and_user(@@statuses_def[1][0],current_user).count
+    @doing_count   = Tune.by_status_and_user(@@statuses_def[2][0],current_user).count
+    @done_count    = Tune.by_status_and_user(@@statuses_def[3][0],current_user).count
   end
 
   def show
@@ -27,16 +31,32 @@ class TunesController < ApplicationController
     tuning = params[:tuning_name]
     status = params[:tune_status]
 
+    session[:current_album_id] = album ? album.id : nil
+    session[:current_tuning_id] = Tuning.find_by_name(tuning) ? Tuning.find_by_name(tuning).id : nil
     session[:current_status] = @@statuses_def.detect{|sd| sd[0] == status }
 
-    @tunes = album ? album.tunes : Tune
-    @tunes = @tunes.by_status_and_user(status,current_user).all_or_filter_by_tuning(tuning)
+    base_tunes = album ? album.tunes : Tune
+    @tunes = base_tunes.by_status_and_user(status,current_user).all_or_filter_by_tuning(tuning)
+
+    set_tune_counts
   end
 
   def update_progress
     tune = Tune.find(params[:tune_id])
     tune.update_progress(current_user,params[:progress_val])
-    render :text => "update_progress .. OK!"
+
+    set_tune_counts
   end
+
+  private
+  def set_tune_counts
+    @base_tunes = session[:current_album_id] ? Album.find(session[:current_album_id]).tunes : Tune
+    tuning = session[:current_tuning_id] ? Tuning.find(session[:current_tuning_id]).name : "" 
+
+    @touched_count = @base_tunes.by_status_and_user(@@statuses_def[1][0],current_user).all_or_filter_by_tuning(tuning).count
+    @doing_count   = @base_tunes.by_status_and_user(@@statuses_def[2][0],current_user).all_or_filter_by_tuning(tuning).count
+    @done_count    = @base_tunes.by_status_and_user(@@statuses_def[3][0],current_user).all_or_filter_by_tuning(tuning).count
+  end
+
 end
 

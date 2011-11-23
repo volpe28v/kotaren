@@ -38,20 +38,24 @@ body {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 5px 5px 5px 1px #999;
-  -moz-box-shadow: 5px 5px 5px 1px #999;
-  -webkit-box-shadow: 5px 5px 5px 1px #999;
+  box-shadow: 3px 3px 3px 1px #999;
+  -moz-box-shadow: 3px 3px 3px 1px #999;
+  -webkit-box-shadow: 3px 3px 3px 1px #999;
 }
 
 #menu ul {
   list-style-type:none;
 }
 
-#tune_num {
-  font-size: 26px;
+.tune_num {
+  font-size: 30px;
   color: blue;
 }
 
+.tune_s_num {
+  font-size: 18px;
+  color: blue;
+}
 
 #main {
   float: right;
@@ -61,9 +65,9 @@ body {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 5px 5px 5px 1px #999;
-  -moz-box-shadow: 5px 5px 5px 1px #999;
-  -webkit-box-shadow: 5px 5px 5px 1px #999;
+  box-shadow: 3px 3px 3px 1px #999;
+  -moz-box-shadow: 3px 3px 3px 1px #999;
+  -webkit-box-shadow: 3px 3px 3px 1px #999;
 }
 
 #detail {
@@ -209,9 +213,9 @@ ul.tab li a:hover {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 5px 5px 5px 1px #999;
-  -moz-box-shadow: 5px 5px 5px 1px #999;
-  -webkit-box-shadow: 5px 5px 5px 1px #999;
+  box-shadow: 3px 3px 3px 1px #999;
+  -moz-box-shadow: 3px 3px 3px 1px #999;
+  -webkit-box-shadow: 3px 3px 3px 1px #999;
 }
 
 #sidebar {
@@ -229,6 +233,5 @@ ul.tab li a:hover {
   box-shadow: 3px 3px 3px 1px #999;
   -moz-box-shadow: 3px 3px 3px 1px #999;
   -webkit-box-shadow: 3px 3px 3px 1px #999;
-  font-size: 0.9em;
 }
 

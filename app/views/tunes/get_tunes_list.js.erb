@@ -1,18 +1,12 @@
-$('#tune_list').hide();
-$('#tune_list').empty();
-
-$('#tune_num').hide();
-$('#tune_num').empty();
-
-$('#tune_list').html(
-    "<%= escape_javascript(render :partial => 'tunes_list_body') %>"
-    );
-$('#tune_list').fadeIn();
+updateElem('#tune_list', 
+           "<%= escape_javascript(render :partial => 'tunes_list_body') %>")
 
 $(".progress").each(function(elem){
   $(this).progressBar(progress_default_option);
 });
 
-$('#tune_num').html("<%= @tunes.count %>")
-$('#tune_num').fadeIn();
+updateElem('#display_num', <%= @tunes.count %>)
 
+updateElem('#touched_num',<%= @touched_count %>)
+updateElem('#doing_num',<%= @doing_count %>)
+updateElem('#done_num',<%= @done_count %>)

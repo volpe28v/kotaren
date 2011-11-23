@@ -12,6 +12,15 @@
     $("#<%= @current_status[1] %>").click();
   });
 
+  function updateElem(id, html){
+    if ( $(id).html() == html ){return}
+
+    $(id).hide();
+    $(id).empty();
+    $(id).html(html);
+    $(id).fadeIn();
+  }
+
 </script>
 
 <div id="menu">
@@ -24,7 +33,15 @@
 <% end %>
 
   <br><br>
-  <div><center><span id="tune_num">0</span> tunes.</center></div>
+  <div><center>Displayed: <span id="display_num" class="tune_num" >0</span> tunes.</center></div>
+  <hr>
+  <center>
+  <table>
+    <tr><td>Touched: </td><td><span id="touched_num" class="tune_s_num" ><%= @touched_count %></span></td><td> tunes.</td></tr>
+    <tr><td>Doing: </td><td><span id="doing_num" class="tune_s_num" ><%= @doing_count %></span></td><td> tunes.</td></tr>
+    <tr><td>Done: </td><td><span id="done_num" class="tune_s_num" ><%= @done_count %></span></td><td> tunes.</td></tr>
+  </table>
+  </center>
 
 </div>
 

@@ -41,7 +41,7 @@ $(document).ready(function(){
     </p>
       
     <% if current_user %>
-    <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span>
+      <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(current_user) %></span></br>
       <button onclick="progress_controller.down('<%= @tune.id %>')"><%= "<" %></button>
       <button onclick="progress_controller.up('<%= @tune.id %>')"><%= ">" %></button>
     </p>
@@ -52,6 +52,7 @@ $(document).ready(function(){
       <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
     <% end %>
 
+    <br>
     <p><%= link_to '押尾コータロー楽曲リストに戻る', tunes_path %></p>
 
 </div>

@@ -11,6 +11,8 @@ class TunesController < ApplicationController
   def index
     @albums = Album.all
     @statuses = @@statuses_def
+    @current_album  = session[:current_album_id] ? Album.find(session[:current_album_id]).title : "All Albums"
+    @current_tuning = session[:current_tuning_id] ? Tuning.find(session[:current_tuning_id]).name : "All Tunings"
     @current_status = session[:current_status] ? session[:current_status] : @statuses[0]
 
     @touched_count = Tune.by_status_and_user(@@statuses_def[1][0],current_user).count

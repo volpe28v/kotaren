@@ -32,8 +32,8 @@
 <div id="menu">
   <h2>押尾コータロー楽曲リスト</h2>
 <%= form_tag( url_for(:action => 'get_tunes_list'), :remote => true ) do %>
-  <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title)) , :onchange => "loadTunes();") %></br>
-  <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort) , :onchange => "loadTunes();") %></br>
+  <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();") %></br>
+  <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();") %></br>
   <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
   <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
 <% end %>

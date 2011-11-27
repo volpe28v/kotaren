@@ -1,21 +1,28 @@
 Kotaren::Application.routes.draw do
+  get "users/index"
+
+  get "users/show"
+
   root :to => "welcome#index"
   get "welcome/index"
 
   devise_for :users
 
-  get 'tunes', :to => 'tunes#index', :as => :user_root
+  get 'users', :to => 'users#index', :as => :user_root
+#  get 'tunes', :to => 'tunes#index', :as => :user_root
 
-  resources :tunes do
-    resources :comments
-    resources :progresse
-    get :all , :on => :collection
-    post :get_tunes_list , :on => :collection
-    get :update_progress , :on => :collection
+  resources :users do
+    resources :tunes do
+      resources :comments
+      resources :progresse
+      get :all , :on => :collection
+      post :get_tunes_list , :on => :collection
+      get :update_progress , :on => :collection
+    end
   end
 
-  resources :tunings, :albums, :users, :recordings
- 
+  resources :tunings, :albums, :recordings
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

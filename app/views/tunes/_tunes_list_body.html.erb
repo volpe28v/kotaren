@@ -1,19 +1,17 @@
 <div id="tune-list">
 <table>
   <% @tunes.each do |t| %>
-    <% if current_user %>
-      <tr>
-        <td class="tune-title"><%= link_to t.title, t %></td>
-        <td class="tuning-name"><%= t.tuning.name %></td>
-        <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(current_user) %></span></td>
-        <td>
-          <button onclick="progress_controller.down('<%= t.id %>')"><%= "<" %></button>
-          <button onclick="progress_controller.up('<%= t.id %>')"><%= ">" %></button>
-        </td>
-      </tr>
-    <% else %>
-      <tr><td class="tune-title"><%= link_to t.title, t %></td></tr>
+    <tr>
+      <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
+      <td class="tuning-name"><%= t.tuning.name %></td>
+      <td><span id="progress_<%= t.id %>" class="progress"><%= t.progress_val(@user) %></span></td>
+    <% if current_user == @user %>
+      <td>
+        <button onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><%= "<" %></button>
+        <button onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
+      </td>
     <% end %>
+    </tr>
   <% end %>
 </table>
 </div>

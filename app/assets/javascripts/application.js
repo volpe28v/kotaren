@@ -29,34 +29,34 @@ var progress_default_option = {
 var progress_controller = {
   step : 10,
   option : { steps : 20, stepDuration : 20 },
-  up : function (id){
-    this.move_bar(id, function (current_val, step){
+  up : function (user_id, tune_id){
+    this.move_bar(user_id, tune_id, function (current_val, step){
       return current_val + step;
     });
   },
-  down : function (id){
-    this.move_bar(id, function (current_val, step){
+  down : function (user_id, tune_id){
+    this.move_bar(user_id, tune_id, function (current_val, step){
       return current_val - step;
     });
   },
-  move_bar : function ( id, move_callback ){
-    var current_val = Number($('#progress_' + id + '_pbText').html().replace("%",""))
+  move_bar : function ( user_id, tune_id, move_callback ){
+    var current_val = Number($('#progress_' + tune_id + '_pbText').html().replace("%",""))
     var next_val = move_callback(current_val, this.step);
     if (next_val > 100){ 
       next_val = 100; 
     }else if (next_val < 0){ 
       next_val = 0; 
     }
-    $('#progress_' + id ).progressBar( next_val , this.option );
+    $('#progress_' + tune_id ).progressBar( next_val , this.option );
 
-    this.update_remote(id,next_val);
+    this.update_remote(user_id, tune_id,next_val);
   },
-  update_remote : function(id, val){
+  update_remote : function(user_id, tune_id, val){
     $.ajax({
       type: "GET",
       cache: false,
-      url: "/tunes/update_progress",
-      data: "tune_id=" + id + "&progress_val=" + val
+      url: "/users/" + user_id + "/tunes/update_progress",
+      data: "tune_id=" + tune_id + "&progress_val=" + val
     });
   }
 }

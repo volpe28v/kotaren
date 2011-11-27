@@ -11,7 +11,9 @@
 .ItemTitle a{ 
  text-decoration:none
 }
-.ItemTitle a:hover{ text-decoration:none }
+.ItemTitle a:hover{ 
+ text-decoration: none;
+}
 
 .ItemContent{
  padding:1px 3px 3px 3px;

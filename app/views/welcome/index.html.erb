@@ -75,10 +75,15 @@
 
 <hr>
 <h2>更新履歴</h2>
-<dl>
-  <dt>2011/11/23</dt>
-  <dd>ver0.1として公開</dd>
-</dl>
-
-
+<div id="divRss"></div>
 </div>
+
+<script>
+ $('#divRss').FeedEk({
+   FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
+   MaxCount : 5,
+   ShowDesc : false,
+   ShowPubDate:true
+  });
+</script>
+

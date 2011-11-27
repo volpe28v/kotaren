@@ -1,0 +1,25 @@
+
+#divRss {
+    padding: 0px 3px 3px 5px;
+	margin-top:3px;
+}
+
+.ItemTitle{
+ margin:0px 0px 0px 0px;
+ padding-top:3px;
+}
+.ItemTitle a{ 
+ text-decoration:none
+}
+.ItemTitle a:hover{ text-decoration:none }
+
+.ItemContent{
+ padding:1px 3px 3px 3px;
+ border-bottom:1px solid #D3CAD7;
+ color:#3E3E3E;
+}
+.ItemDate{
+ margin:5px 0px 0px 0px;
+ font-size:11px;
+ color:#888;
+}

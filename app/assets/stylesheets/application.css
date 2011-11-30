@@ -72,7 +72,7 @@ body {
 
 #detail {
   float: left;
-  width: 220px;
+  width: 380px;
   background-color: #f6f6f6;
   padding: 10px;
   border-radius: 10px;
@@ -83,13 +83,22 @@ body {
   -webkit-box-shadow: 3px 3px 3px 1px #999;
 }
 
+#detail-menu {
+  float: left;
+  width: 380px;
+}
+
 #detail ul {
   list-style-type:none;
 }
 
 #video-list {
   float: right;
-  width: 650px;
+  width: 480px;
+}
+
+#video-list h2{
+  margin-top: 0px;
 }
 
 .tuning {
@@ -103,7 +112,6 @@ body {
 a { color:#262626; text-decoration:none; }
 a:hover { color:#EA1F00; }
 
-
 .tune-title{
   width: 200px;
 }
@@ -112,6 +120,10 @@ a:hover { color:#EA1F00; }
   font-size: large;
 }
 
+.album-title{
+  margin-left: 10px;
+
+}
 .tuning-name{
   width: 150px;
   color: #666;
@@ -241,5 +253,29 @@ ul.tab li a:hover {
   box-shadow: 3px 3px 3px 1px #999;
   -moz-box-shadow: 3px 3px 3px 1px #999;
   -webkit-box-shadow: 3px 3px 3px 1px #999;
+}
+
+#comments textarea{
+  width: 374px;
+  height: 34px;
+}
+
+#comments dl{
+  background-color: #fbfbfb;
+}
+
+#comments dt{
+  color: #555;
+}
+
+#comments dd{
+  margin-left: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #44f;
+}
+
+#comments p{
+  margin: 0px;
 }
 

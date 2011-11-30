@@ -32,15 +32,18 @@ $(document).ready(function(){
 });
 </script>     
 
+<div id="detail-menu">
+<%= link_to '押尾コータロー楽曲リストに戻る', user_tunes_path(@user) %></p>
+
 <div id="detail">
   <p><span class="tune-big-title"><%= @tune.title %></span></p>
   <p>
-    <span class="tune-title">
+    <span class="album-title">
     <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
     </span>
   </p>
       
-    <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(@user) %></span></br>
+    <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(@user) %></span>
   <% if current_user == @user %>
     <button onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><%= "<" %></button>
     <button onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><%= ">" %></button>
@@ -52,13 +55,24 @@ $(document).ready(function(){
     <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
   <% end %>
 
-  <br>
-  <p><%= link_to '押尾コータロー楽曲リストに戻る', user_tunes_path(@user) %></p>
-
   <hr>
-  <h3>練習メモ</h3>
+  <h3>練習記録</h3>
+  <div id="comments">
+    <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
+      <%= f.text_area :text %>
+      <%= f.submit "登録" %>
+    <% end %>
 
+      <% Comment.includes(:tune).includes(:user).where("tunes.id = ? and users.id = ?",@tune.id,@user.id).reverse.each do |c| %>
+    <dl>
+      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
+      <dd><%= simple_format(c.text) %></dd>
+    </dl>
+    <% end %>
+  </div>
 </div>
+</div>
+
 
 <div id="video-list">
   <h2>関連動画(YouTube)</h2>

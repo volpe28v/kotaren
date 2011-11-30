@@ -37,11 +37,10 @@ $(document).ready(function(){
 
 <div id="detail">
   <p><span class="tune-big-title"><%= @tune.title %></span></p>
-  <p>
-    <span class="album-title">
+  
+  <div class="album-title">
     <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-    </span>
-  </p>
+  </div>
       
     <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(@user) %></span>
   <% if current_user == @user %>

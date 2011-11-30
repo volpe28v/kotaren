@@ -25,6 +25,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     @tune = Tune.find(params[:id])
     @comment = Comment.new
+    @comments = Comment.my_memo(@user,@tune).reverse
   end
 
   def all

@@ -57,12 +57,13 @@ $(document).ready(function(){
   <hr>
   <h3>練習記録</h3>
   <div id="comments">
-    <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
-      <%= f.text_area :text %>
-      <%= f.submit "登録" %>
+    <% if current_user == @user %>
+      <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
+        <%= f.text_area :text %>
+        <%= f.submit "登録" %>
+      <% end %>
     <% end %>
-
-      <% Comment.includes(:tune).includes(:user).where("tunes.id = ? and users.id = ?",@tune.id,@user.id).reverse.each do |c| %>
+    <% @comments.each do |c| %>
     <dl>
       <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
       <dd><%= simple_format(c.text) %></dd>

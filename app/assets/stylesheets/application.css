@@ -268,10 +268,11 @@ ul.tab li a:hover {
 
 #comments dt{
   color: #555;
+  margin-left: 3px;
 }
 
 #comments dd{
-  margin-left: 5px;
+  margin-left: 8px;
   margin-top: 0px;
   color: #44f;
 }

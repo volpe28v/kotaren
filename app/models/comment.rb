@@ -2,7 +2,9 @@ class Comment < ActiveRecord::Base
   belongs_to :tune
   belongs_to :user
 
-  scope:my_memo, lambda {|user,tune|
-    includes(:tune).includes(:user).where("tunes.id = ? and users.id = ?",tune.id,user.id)
+  scope :by_tune, lambda {|tune|
+    where(:tune_id => tune.id).order("updated_at DESC")
   }
+
+  scope :latest, order("updated_at DESC").limit(10)
 end

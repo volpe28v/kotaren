@@ -49,6 +49,18 @@
   </table>
   </center>
 
+  <hr>
+  <div id="comments">
+  <h3>最近の練習記録</h3>
+  <% @latest_comments.each do |c| %>
+    <dl>
+      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+      <dd><%= auto_link( simple_format(c.text)) %></dd>
+    </dl>
+  <% end %>
+  </div>
+
+
 </div>
 
 <div id="main">

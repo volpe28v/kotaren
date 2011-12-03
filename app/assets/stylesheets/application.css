@@ -262,6 +262,8 @@ ul.tab li a:hover {
 
 #comments dl{
   background-color: #fbfbfb;
+  margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 #comments dt{
@@ -271,11 +273,19 @@ ul.tab li a:hover {
 #comments dd{
   margin-left: 5px;
   margin-top: 0px;
-  margin-bottom: 0px;
+  color: #44f;
+}
+
+#comments a{
   color: #44f;
 }
 
 #comments p{
   margin: 0px;
+}
+
+#comments span a{
+  color: mediumvioletred; 
+  font-style: bold;
 }
 

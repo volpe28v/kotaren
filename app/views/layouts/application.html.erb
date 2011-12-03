@@ -16,7 +16,7 @@
   </div>
 
   <div class="login">
-    <%= link_to 'トップページ', root_path %>
+    <%= link_to 'トップページ', destroy_user_session_path , :method => :delete %>
     |
   <% if current_user %>
     <%= "<" + current_user.email + ">" %>

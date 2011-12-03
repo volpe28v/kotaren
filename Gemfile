@@ -19,6 +19,7 @@ end
 gem 'jquery-rails'
 gem 'will_paginate'
 gem 'devise'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'rspec'

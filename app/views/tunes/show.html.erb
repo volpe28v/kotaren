@@ -66,7 +66,7 @@ $(document).ready(function(){
     <% @comments.each do |c| %>
     <dl>
       <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
-      <dd><%= simple_format(c.text) %></dd>
+      <dd><%= auto_link( simple_format(c.text)) %></dd>
     </dl>
     <% end %>
   </div>

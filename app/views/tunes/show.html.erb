@@ -64,10 +64,18 @@ $(document).ready(function(){
       <% end %>
     <% end %>
     <% @comments.each do |c| %>
+    <div id="comment_<%= c.id %>">
     <dl>
-      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
-      <dd><%= auto_link( simple_format(c.text)) %></dd>
+      <dt>
+        <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+        <div class="comment-destroy">
+          <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
+        </div>
+      </dt>
+      <br>
+      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
     </dl>
+    </div>
     <% end %>
   </div>
 </div>

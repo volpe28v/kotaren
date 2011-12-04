@@ -10,4 +10,9 @@ class CommentsController < ApplicationController
     redirect_to user_tune_path(user,tune)
   end
 
+  def destroy
+    @comment_id = params[:id] # destroy.js.erb で使う
+    Comment.find(@comment_id).destroy
+  end
+
 end

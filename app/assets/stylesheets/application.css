@@ -269,15 +269,12 @@ ul.tab li a:hover {
 #comments dt{
   color: #555;
   margin-left: 3px;
+  margin-right: 5px;
 }
 
 #comments dd{
   margin-left: 8px;
   margin-top: 0px;
-  color: #44f;
-}
-
-#comments a{
   color: #44f;
 }
 
@@ -288,5 +285,19 @@ ul.tab li a:hover {
 #comments span a{
   color: mediumvioletred; 
   font-style: bold;
+}
+
+.comment-date{
+    float: left;
+}
+
+.comment-destroy{
+    float: right;
+}
+.comment-destroy a{ color: #ccc; }
+.comment-destroy a:hover{ color: #EA1F00; }
+
+.comment-text a{
+  color: #44f;
 }
 

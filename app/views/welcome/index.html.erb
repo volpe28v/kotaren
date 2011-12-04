@@ -69,19 +69,20 @@
 <h2>作っている人</h2>
 <ul>
   <li>Twitter: <%= link_to '@volpe_hd28v', "http://twitter.com/#!/volpe_hd28v" %>
-  <li>Github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
+  <li>github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
+  <li>Blog: <%= link_to 'アコギのある風景',"http://d.hatena.ne.jp/volpe0104/" %>
 </ul>
 ご意見ご要望などあれば twitter でお願いします。
 
 <hr>
-<h2>更新履歴</h2>
+<h2>更新履歴(github)</h2>
 <div id="divRss"></div>
 </div>
 
 <script>
  $('#divRss').FeedEk({
    FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
-   MaxCount : 5,
+   MaxCount : 8,
    ShowDesc : false,
    ShowPubDate:true
   });

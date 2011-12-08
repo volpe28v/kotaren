@@ -8,8 +8,23 @@
         $(this).closest('li').addClass("none");
         loadTunes();
       }
-    )
+    );
+
+    $('ul.comment_tab li a').click(
+      function(){
+        var comments_id = $(this).attr("id") + "s";
+
+        $("#my_comments").hide();
+        $("#other_comments").hide();
+        $("#" + comments_id).fadeIn();
+
+        $('ul.comment_tab li').removeClass("none");
+        $(this).closest('li').addClass("none");
+      }
+    );
+
     $("#<%= @current_status[1] %>").click();
+    $("#my_comment").click();
   });
 
   function updateElem(id, html){
@@ -52,6 +67,12 @@
   <hr>
   <div id="comments">
   <h3>最近の練習記録</h3>
+  <ul class="comment_tab clear">
+    <li><a id="my_comment" href="#" class="blue0">Owner</a></li>
+    <li><a id="other_comment" href="#" class="blue1">Other</a></li>
+  </ul>
+
+  <div id="my_comments">
   <% @latest_comments.each do |c| %>
     <dl>
       <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
@@ -60,7 +81,15 @@
   <% end %>
   </div>
 
-
+  <div id="other_comments" style="display: none">
+  <% @other_comments.each do |c| %>
+    <dl>
+      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
+    </dl>
+  <% end %>
+  </div>
+  </div>
 </div>
 
 <div id="main">

@@ -211,6 +211,48 @@ ul.tab li a:hover {
   background-color: #f0f8ff;
 }
 
+ul.comment_tab {
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px #aaa solid;
+}
+
+ul.comment_tab li {
+    float: left;
+    margin: 0 0 0 5px;
+    position: relative;
+    bottom: -2px;
+    list-style-type: none;
+    border: 1px #aaa solid;
+    border-top: none;
+    border-bottom: 2px #aaa solid;
+}
+
+ul.comment_tab li.none {
+    border-bottom: 2px #f6f6f6 solid;
+    font-weight: bold;
+}
+ul.comment_tab li a {
+    color: #000;
+    display: block;
+    padding: 3px 10px 5px;
+    text-decoration: none;
+    background: #f6f6f6;
+}
+
+ul.comment_tab li a.blue0 {
+    border-top: 5px #2384dc solid;
+}
+
+ul.comment_tab li a.blue1 {
+    border-top: 5px #43a4fc solid;
+}
+
+ul.comment_tab li a:hover {
+  background-color: #f0f8ff;
+}
+
+
 /* clerfix */
 .clear:after {
     content:"";
@@ -262,8 +304,8 @@ ul.tab li a:hover {
 
 #comments dl{
   background-color: #fbfbfb;
-  margin-top: 0px;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 #comments dt{
@@ -299,5 +341,15 @@ ul.tab li a:hover {
 
 .comment-text a{
   color: #44f;
+}
+
+#my_comments{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+#other_comments{
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 

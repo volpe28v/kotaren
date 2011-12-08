@@ -7,4 +7,8 @@ class Comment < ActiveRecord::Base
   }
 
   scope :latest, order("updated_at DESC").limit(10)
+
+  scope :other_by, lambda {|user|
+    where("user_id != ?", user.id).order("updated_at DESC").limit(10)
+  }
 end

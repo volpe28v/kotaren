@@ -22,6 +22,7 @@ class TunesController < ApplicationController
     @done_count    = Tune.by_status_and_user(@@statuses_def[3][0],@user).count
 
     @latest_comments = @user.comments.latest
+    @other_comments = Comment.other_by(@user)
   end
 
   def show
@@ -29,6 +30,7 @@ class TunesController < ApplicationController
     @tune = Tune.find(params[:id])
     @comment = Comment.new
     @comments = @user.comments.by_tune(@tune)
+    @other_comments = Comment.other_by(@user).by_tune(@tune)
   end
 
   def all

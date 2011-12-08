@@ -4,6 +4,21 @@ $(document).ready(function(){
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
 
+  $('ul.comment_tab li a').click(
+    function(){
+      var comments_id = $(this).attr("id") + "s";
+
+      $("#my_comments").hide();
+      $("#other_comments").hide();
+      $("#" + comments_id).fadeIn();
+
+      $('ul.comment_tab li').removeClass("none");
+      $(this).closest('li').addClass("none");
+    }
+  );
+
+  $("#my_comment").click();
+
   $.ajax({
     dataType: "jsonp",
     data: {
@@ -33,7 +48,7 @@ $(document).ready(function(){
 </script>     
 
 <div id="detail-menu">
-<%= link_to '押尾コータロー楽曲リストに戻る', user_tunes_path(@user) %></p>
+<%= link_to '楽曲リストに戻る', user_tunes_path(@user) %></p>
 
 <div id="detail">
   <p><span class="tune-big-title"><%= @tune.title %></span></p>
@@ -55,28 +70,53 @@ $(document).ready(function(){
   <% end %>
 
   <hr>
-  <h3>練習記録</h3>
   <div id="comments">
-    <% if current_user == @user %>
+  <h3>練習記録</h3>
+  <ul class="comment_tab clear">
+    <li><a id="my_comment" href="#" class="blue0">Owner</a></li>
+    <li><a id="other_comment" href="#" class="blue1">Other (<%= @other_comments.count %>)</a></li>
+  </ul>
+
+  <div id="my_comments">
+    <% if @user == current_user %>
       <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
         <%= f.text_area :text %>
         <%= f.submit "登録" %>
       <% end %>
     <% end %>
+
     <% @comments.each do |c| %>
     <div id="comment_<%= c.id %>">
     <dl>
       <dt>
         <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+        <% if @user == current_user %>
         <div class="comment-destroy">
           <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
         </div>
+        <% end %>
       </dt>
       <br>
       <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
     </dl>
     </div>
     <% end %>
+  </div>
+
+  <div id="other_comments">
+    <% @other_comments.each do |c| %>
+    <div id="comment_<%= c.id %>">
+    <dl>
+      <dt>
+        <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+      </dt>
+      <br>
+      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
+    </dl>
+    </div>
+    <% end %>
+  </div>
+ 
   </div>
 </div>
 </div>

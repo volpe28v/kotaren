@@ -16,7 +16,7 @@
   </div>
 
   <div class="login">
-    <%= link_to 'トップページ', destroy_user_session_path , :method => :delete %>
+    <%= link_to '自分の楽曲リスト', user_tunes_path(current_user) if current_user %>
     |
   <% if current_user %>
     <%= "<" + current_user.email + ">" %>

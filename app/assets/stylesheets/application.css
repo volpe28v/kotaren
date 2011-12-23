@@ -353,3 +353,8 @@ ul.comment_tab li a:hover {
   margin-bottom: 0px;
 }
 
+.fixed{
+  list-style-type:none;
+  color: #F00;
+}
+

@@ -32,7 +32,7 @@ class TunesController < ApplicationController
     @comment = Comment.new
     @comments = @user.comments.by_tune(@tune)
     @other_comments = Comment.other_by(@user).by_tune(@tune)
-    @other_member_count = Progress.includes(:tune).where("tunes.id = ? and percent > 0", 85).count - ( @progress_val > 0 ? 1 : 0 )
+    @other_member_count = Progress.includes(:tune).where("tunes.id = ? and percent > 0", @tune.id).count - ( @progress_val > 0 ? 1 : 0 )
   end
 
   def all

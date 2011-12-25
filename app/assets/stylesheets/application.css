@@ -38,9 +38,9 @@ body {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 3px 3px 3px 1px #999;
-  -moz-box-shadow: 3px 3px 3px 1px #999;
-  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #menu ul {
@@ -65,9 +65,9 @@ body {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 3px 3px 3px 1px #999;
-  -moz-box-shadow: 3px 3px 3px 1px #999;
-  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #detail {
@@ -78,9 +78,9 @@ body {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 3px 3px 3px 1px #999;
-  -moz-box-shadow: 3px 3px 3px 1px #999;
-  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #detail-menu {
@@ -275,9 +275,9 @@ ul.comment_tab li a:hover {
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 3px 3px 3px 1px #999;
-  -moz-box-shadow: 3px 3px 3px 1px #999;
-  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #sidebar {
@@ -292,9 +292,9 @@ ul.comment_tab li a:hover {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  box-shadow: 3px 3px 3px 1px #999;
-  -moz-box-shadow: 3px 3px 3px 1px #999;
-  -webkit-box-shadow: 3px 3px 3px 1px #999;
+  box-shadow: 2px 2px 2px 2px #999;
+  -moz-box-shadow: 2px 2px 2px 2px #999;
+  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #comments textarea{

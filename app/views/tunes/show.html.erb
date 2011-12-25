@@ -56,18 +56,28 @@ $(document).ready(function(){
   <div class="album-title">
     <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
   </div>
-      
-    <p><span id="progress_<%= @tune.id %>" class="progress"><%= @tune.progress_val(@user) %></span>
-  <% if current_user == @user %>
-    <button onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><%= "<" %></button>
-    <button onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><%= ">" %></button>
-  <% end %>
-  </p>
 
   <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
   <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
     <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
   <% end %>
+
+  <hr>
+     
+  <p><span id="progress_<%= @tune.id %>" class="progress"><%= @progress_val %></span>
+  <% if current_user == @user %>
+    <button onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><%= "<" %></button>
+    <button onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><%= ">" %></button>
+  <% end %>
+  </p>
+  <!--
+  <% if current_user == @user %>
+    <button >弾いたよ</button>
+  <% end %>
+  Last played at 
+  -->
+
+  <p>他に <span class="tune_s_num"><%= @other_member_count %></span> 人のユーザがこの曲を弾いています</p>
 
   <hr>
   <div id="comments">

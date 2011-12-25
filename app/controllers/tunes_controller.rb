@@ -28,9 +28,11 @@ class TunesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @tune = Tune.find(params[:id])
+    @progress_val = @tune.progress_val(@user)
     @comment = Comment.new
     @comments = @user.comments.by_tune(@tune)
     @other_comments = Comment.other_by(@user).by_tune(@tune)
+    @other_member_count = Progress.includes(:tune).where("tunes.id = ? and percent > 0", 85).count - ( @progress_val > 0 ? 1 : 0 )
   end
 
   def all

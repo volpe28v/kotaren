@@ -1,7 +1,4 @@
 Kotaren::Application.routes.draw do
-  get "users/index"
-
-  get "users/show"
 
   root :to => "welcome#index"
   get "welcome/index"

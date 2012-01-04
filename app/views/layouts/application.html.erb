@@ -16,13 +16,16 @@
   </div>
 
   <div class="login">
-    <%= link_to '自分の楽曲リスト', user_tunes_path(current_user) if current_user %>
-    |
   <% if current_user %>
     <%= "<" + current_user.email + ">" %>
+    |
+    <%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
+    |
     <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
+    |
+    <%= link_to '個人情報編集', edit_user_path(current_user) %>
   <% else %>
-    <%= link_to 'ログイン', new_user_session_path %>
+    <%= link_to 'ログイン', new_user_session_path  %>
     |
     <%= link_to '新規登録', new_user_registration_path %>
   <% end %>

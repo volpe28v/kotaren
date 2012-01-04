@@ -1,4 +1,17 @@
-<%= form_for(current_user, :html => { :method => :put }) do |f| %>
+<%= form_for(@user, :html => { :method => :put }) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count,"error") %></h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
@@ -8,6 +21,12 @@
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :youtube_name %><br />
+  <%= f.text_field :youtube_name %></div>
+
+  <div><%= f.label :twitter_name %><br />
+  <%= f.text_field :twitter_name %></div>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

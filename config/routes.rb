@@ -9,6 +9,7 @@ Kotaren::Application.routes.draw do
 #  get 'tunes', :to => 'tunes#index', :as => :user_root
 
   resources :users do
+    get :list , :on => :collection
     resources :tunes do
       resources :comments
       resources :progresses

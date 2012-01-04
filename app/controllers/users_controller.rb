@@ -9,9 +9,20 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user;
+    @user.name ||= "noname_#{@user.id}"
+
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+
+    else
+      render :action => "edit"
+
+    end
+
   end
 
 end

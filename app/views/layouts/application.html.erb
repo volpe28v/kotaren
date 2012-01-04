@@ -17,13 +17,15 @@
 
   <div class="login">
   <% if current_user %>
-    <%= "<" + current_user.email + ">" %>
-    |
     <%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
+    |
+    <%= link_to 'ユーザ一覧', list_users_path %>
     |
     <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
     |
-    <%= link_to '個人情報編集', edit_user_path(current_user) %>
+    <%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
+    |
+    <%= "<" + current_user.email + ">" %>
   <% else %>
     <%= link_to 'ログイン', new_user_session_path  %>
     |

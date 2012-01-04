@@ -24,8 +24,7 @@ class UsersController < ApplicationController
   end
 
   def list
-    @users = User.all
-
+    @users = User.order("created_at DESC")
   end
 
 end

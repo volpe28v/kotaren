@@ -21,9 +21,9 @@
     |
     <%= link_to 'ユーザ一覧', list_users_path %>
     |
-    <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
-    |
     <%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
+    |
+     <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
     |
     <%= "<" + current_user.email + ">" %>
   <% else %>

@@ -17,9 +17,9 @@ class TunesController < ApplicationController
     @current_tuning = selected_tuning_name
     @current_status = selected_status
 
-    @touched_count = Tune.by_status_and_user(@@statuses_def[1][0],@user).count
-    @doing_count   = Tune.by_status_and_user(@@statuses_def[2][0],@user).count
-    @done_count    = Tune.by_status_and_user(@@statuses_def[3][0],@user).count
+    @touched_count = @user.tunes_count(@@statuses_def[1][0])
+    @doing_count   = @user.tunes_count(@@statuses_def[2][0])
+    @done_count    = @user.tunes_count(@@statuses_def[3][0])
 
     @latest_comments = @user.comments.latest
     @other_comments = Comment.other_by(@user)

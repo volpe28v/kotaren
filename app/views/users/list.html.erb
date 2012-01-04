@@ -1,0 +1,41 @@
+<div id="user-list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Youtube</th>
+    <th>twitter</th>
+    <th>Touched</th>
+    <th>Doing</th>
+    <th>Done</th>
+    <th>LatestComment</th>
+  </tr>
+
+  <% @users.each do |u| %>
+    <tr>
+      <td>
+        <%= link_to u.default_name, user_tunes_path(u) %>
+        <%= raw('<br><span class="you">This is You!</span>') if u == current_user %>
+      </td>
+      <td><%= u.youtube_name ? link_to(u.youtube_name, u.youtube_url) : "-" %></td>
+      <td><%= u.twitter_name ? link_to(u.twitter_name, u.twitter_url) : "-" %></td>
+      <td class="tune-count"><%= u.tunes_count('Touched') %></td>
+      <td class="tune-count"><%= u.tunes_count('Doing') %></td>
+      <td class="tune-count"><%= u.tunes_count('Done') %></td>
+      <td>
+      <% c = u.comments.last %>
+      <% if c != nil %>
+        <div class="comment">
+        <dl>
+        <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+        <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd> 
+        </dl> 
+        </div>
+      <% end %>
+    </td>
+  </div>
+
+
+    </tr>
+  <% end %>
+</table>
+</div>

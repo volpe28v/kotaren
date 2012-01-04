@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user;
-    @user.name ||= "noname_#{@user.id}"
+    @user.name ||= @user.default_name
 
   end
 
@@ -20,8 +20,11 @@ class UsersController < ApplicationController
 
     else
       render :action => "edit"
-
     end
+  end
+
+  def list
+    @users = User.all
 
   end
 

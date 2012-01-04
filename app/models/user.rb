@@ -10,4 +10,29 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :youtube_name, :twitter_name
+
+  def default_name
+    self.name == nil ? "noname_#{self.id}" : self.name
+  end
+
+  def youtube_url
+    if self.youtube_name
+      'http://www.youtube.com/user/' + self.youtube_name + '/videos'
+    else
+      '#'
+    end
+  end
+
+  def twitter_url
+    if self.twitter_name
+      'https://twitter.com/#!/' + self.twitter_name
+    else
+      '#'
+    end
+  end
+
+
+  def tunes_count(status,base_tunes = Tune)
+    base_tunes.by_status_and_user(status,self).count
+  end
 end

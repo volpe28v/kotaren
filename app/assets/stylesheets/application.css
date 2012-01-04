@@ -344,6 +344,11 @@ ul.comment_tab li a:hover {
   color: #44f;
 }
 
+.comment-name {
+  text-align: right;
+  color: black;
+}
+
 #my_comments{
   margin-top: 5px;
   margin-bottom: 0px;
@@ -359,3 +364,41 @@ ul.comment_tab li a:hover {
   color: #F00;
 }
 
+.user-name {
+  margin-bottom: 0;
+  font-size: 30px;
+  height: 30px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-shadow: 1px 1px 0 white;
+  color: #495961;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+dd .field_with_errors {
+  padding: 1px;
+  background-color: red;
+  display: table;
+}

@@ -87,7 +87,10 @@
   <% @other_comments.each do |c| %>
     <dl>
       <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
-      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
+      <dd>
+        <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+        <div class="comment-name">by <%= link_to c.user.name, user_tunes_path(c.user) %></div>
+      </dd>
     </dl>
   <% end %>
   </div>

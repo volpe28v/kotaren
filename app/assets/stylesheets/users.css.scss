@@ -60,3 +60,33 @@
   font-style: italic;
   font-size: 12px;
 }
+
+#user-info {
+  float: left;
+}
+
+#user-info dt , #user-option dt{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#user-info dd , #user-option dd{
+  margin: 0px;
+}
+
+#user-info input , #user-option input{
+  font-size: 14px;
+  padding: 5px;
+  font-family: helvetica, arial, freesans, sans-serif;
+  color: #666;
+}
+
+#user-option {
+  float: left;
+  padding-left: 10px;
+}
+
+.float-clear {
+  clear: both;
+}
+

@@ -57,8 +57,7 @@ $(document).ready(function(){
   
   <div class="album-title">
     <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-  </div>
-
+  </div> 
   <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
   <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
     <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
@@ -123,7 +122,9 @@ $(document).ready(function(){
         <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
       </dt>
       <br>
-      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div></dd>
+      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+        <div class="comment-name">by <%= link_to c.user.name, user_tune_path(c.user,c.tune) %></div>
+      </dd>
     </dl>
     </div>
     <% end %>

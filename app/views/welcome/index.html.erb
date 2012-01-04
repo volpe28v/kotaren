@@ -37,14 +37,16 @@
 <div id="sidebar">
 <h2>ログイン</h2>
 <%= form_tag('/users/sign_in') do -%>
-  <p>
-  メールアドレス</br>
-  <%= text_field_tag "user[email]",'', :size => 35 %>
-  </p>
-  <p>
-  パスワード</br>
-  <%= password_field_tag "user[password]",'', :size => 35 %>
-  </p>
+  <div id="user-info">
+  <dl>
+    <dt>Email</dt>
+    <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
+  </dl>
+
+  <dl>
+    <dt>Password</dt>
+    <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
+  </dl>
   <button onclick="submit();">ログイン</button>
    〜 登録ユーザ <%= @user_count %> 人 〜
 <% end -%>

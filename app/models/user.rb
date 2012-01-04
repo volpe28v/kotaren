@@ -11,8 +11,16 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :youtube_name, :twitter_name
 
+  validates :name,
+    :presence => true,
+    :uniqueness => true
+
   def default_name
-    self.name == nil ? "noname_#{self.id}" : self.name
+    if self.name == nil or self.name == ""
+      "NoName_#{self.id}"
+    else
+      self.name
+    end
   end
 
   def youtube_url

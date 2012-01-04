@@ -10,23 +10,41 @@
     </div>
   <% end %>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+  <div id="user-info">
+    <dl>
+      <dt><%= f.label :name %> (公開、必須)</dt>
+      <dd><%= f.text_field :name %></dd>
+    </dl>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <dl>
+      <dt><%= f.label :email %> (非公開、必須)</dt>
+      <dd><%= f.email_field :email %></dd>
+    </dl>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <dl>
+      <dt><%= f.label :password %> (非公開、必須)</dt>
+      <dd><%= f.password_field :password %></dd>
+    </dl>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <dl>
+      <dt><%= f.label :password_confirmation %> (非公開、必須)</dt>
+      <dd><%= f.password_field :password_confirmation %></dd>
+    </dl>
+  </div>
 
-  <div><%= f.label :youtube_name %><br />
-  <%= f.text_field :youtube_name %></div>
+  <div id="user-option">
+    <dl>
+      <dt><%= f.label :youtube_name %> (公開、任意)</dt>
+      <dd><%= f.text_field :youtube_name %></dd>
+    </dl>
 
-  <div><%= f.label :twitter_name %><br />
-  <%= f.text_field :twitter_name %></div>
+    <dl>
+      <dt><%= f.label :twitter_name %> (公開、任意)</dt>
+      <dd><%= f.text_field :twitter_name %></dd>
+    </dl>
+  </div>
+
+  <div class="float-clear"></div>
 
   <div><%= f.submit "Update" %></div>
 <% end %>

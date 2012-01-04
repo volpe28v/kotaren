@@ -18,9 +18,9 @@
       </td>
       <td><%= u.youtube_name ? link_to(u.youtube_name, u.youtube_url) : "-" %></td>
       <td><%= u.twitter_name ? link_to(u.twitter_name, u.twitter_url) : "-" %></td>
-      <td class="tune-count"><%= u.tunes_count('Touched') %></td>
-      <td class="tune-count"><%= u.tunes_count('Doing') %></td>
-      <td class="tune-count"><%= u.tunes_count('Done') %></td>
+      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('Touched') %></span></td>
+      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('Doing') %></span></td>
+      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('Done') %></span></td>
       <td>
       <% c = u.comments.last %>
       <% if c != nil %>

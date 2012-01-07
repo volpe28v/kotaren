@@ -1,5 +1,15 @@
 <div id="title">
-<div class="user-name"><%= @user.default_name %>  <%= raw('<span class="you">This is You!</span>') if @user == current_user %></div>
+<div class="user-name"><%= @user.default_name %></div>
+<div class="this-is-you">
+  <% if @user == current_user %>
+    <%= raw('<span class="you">This is You!</span>') %>
+    <a href="#" class="minibutton btn-editprofile">
+      <span>Edit Your Profile</span>
+    </a>
+  <% end %>
+</div>
+
+
 <div class="user-option">
   <dl>
     <dt>youtube</dt>

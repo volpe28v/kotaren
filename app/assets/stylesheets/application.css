@@ -423,13 +423,14 @@ ul.comment_tab li a:hover {
 .user-option dl dt{
   margin: 0;
   float: left;
-  width: 60px;
+  width: 55px;
   color: #999;
 }
 
 .user-option dl dd{
   float: left;
   margin: 0;
+  width: 100px;
 }
 
 

@@ -3,9 +3,7 @@
 <div class="this-is-you">
   <% if @user == current_user %>
     <%= raw('<span class="you">This is You!</span>') %>
-    <a href="#" class="minibutton btn-editprofile">
-      <span>Edit Your Profile</span>
-    </a>
+    <%= link_to raw('<span>Edit Your Profile</span>'), edit_user_path(current_user) , :class => "minibutton btn-editprofile" %>
   <% end %>
 </div>
 

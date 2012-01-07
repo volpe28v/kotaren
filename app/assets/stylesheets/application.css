@@ -373,13 +373,13 @@ ul.comment_tab li a:hover {
   text-shadow: 1px 1px 0 white;
   color: #495961;
   float: left;
-  width: 500px;
+  width: 510px;
   
 }
 
 .this-is-you {
-  margin: 10px;
-  width: 200px;
+  margin: 5px;
+  width: 190px;
   float: left;
 }
 

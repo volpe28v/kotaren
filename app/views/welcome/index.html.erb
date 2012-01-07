@@ -47,7 +47,8 @@
     <dt>Password</dt>
     <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
   </dl>
-  <button onclick="submit();">ログイン</button>
+  <button id="login" style="display: none" onclick="submit();"></button>
+  <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "minibutton", :onclick => "$('#login').click();" %></p>
    〜 登録ユーザ <%= @user_count %> 人 〜
 <% end -%>
 
@@ -58,14 +59,15 @@
 <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
   <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
   <%= hidden_field_tag "user[password]", "sample" %>
-  <p><button onclick="submit();">サンプルアカウントでログイン</button></p>
+  <button id="sample-login" style="display: none" onclick="submit();"></button>
+  <p><%= link_to raw('<span>サンプルアカウントでログイン</span>'), "#", :class => "minibutton", :onclick => "$('#sample-login').click();" %></p>
 <% end -%>
 
 <hr>
 <h2>使ってみる</h2>
 メアドとパスワードで簡単登録できます。
 
-<p>⇒<%= link_to '新規登録して使ってみる', new_user_registration_path %></p>
+<p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "minibutton" %></p>
 
 <hr>
 

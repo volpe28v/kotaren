@@ -372,7 +372,31 @@ ul.comment_tab li a:hover {
   letter-spacing: -1px;
   text-shadow: 1px 1px 0 white;
   color: #495961;
+  float: left;
+  width: 700px;
+  
 }
+
+.user-option {
+  float: left;
+}
+
+.user-option dl{
+  margin: 0;
+}
+
+.user-option dl dt{
+  margin: 0;
+  float: left;
+  width: 60px;
+  color: #999;
+}
+
+.user-option dl dd{
+  float: left;
+  margin: 0;
+}
+
 
 #error_explanation {
   width: 450px;
@@ -398,7 +422,12 @@ ul.comment_tab li a:hover {
 }
 
 dd .field_with_errors {
-  padding: 1px;
+  padding: 2px;
   background-color: red;
   display: table;
 }
+
+.clear {
+  clear:both;
+}
+

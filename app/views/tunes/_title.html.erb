@@ -1,5 +1,16 @@
 <div id="title">
-<h1 class="user-name"><%= @user.default_name %>  <%= raw('<span class="you">This is You!</span>') if @user == current_user %></h1>
+<div class="user-name"><%= @user.default_name %>  <%= raw('<span class="you">This is You!</span>') if @user == current_user %></div>
+<div class="user-option">
+  <dl>
+    <dt>youtube</dt>
+    <dd><%= @user.youtube_name.blank? ? "-" : link_to(@user.youtube_name, @user.youtube_url) %></dd>
+  </dl>
+  <dl>
+    <dt>twitter</dt>
+    <dd><%= @user.twitter_name.blank? ? "-" : link_to(@user.twitter_name, @user.twitter_url) %></dd>
+  </dl>
+</div>
+<div class="clear"></div>
 <hr>
 </div>
 

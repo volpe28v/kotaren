@@ -43,7 +43,7 @@ body {
 
 #menu {
   float: left;
-  width: 290px;
+  width: 270px;
 }
 
 #menu ul {
@@ -69,7 +69,7 @@ body {
 
 #main {
   float: right;
-  width: 600px;
+  width: 620px;
 }
 
 #tune-list {

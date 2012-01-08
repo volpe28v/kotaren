@@ -32,13 +32,13 @@ $(document).ready(function(){
       $.each(data.feed.entry, function(i,item){
         var group = item.media$group;
 
-        $("<div/>").addClass("thumbnail")
-                   .append($("<img/>").attr("src", group.media$thumbnail[0].url)).append("<br/>")
-                   .append(item.title.$t).append("<br/>") 
-                   .append(item.author[0].name.$t).append("<br/>") 
-                   .append($("<span/>").addClass("info").text("再生回数：" + ((item.yt$statistics == null) ? "0" : item.yt$statistics.viewCount)))
-                   .click(function(){window.open(group.media$player[0].url, null)})
-                   .appendTo("#videos");
+        $("<div/>").addClass("thumbnail ui-widget-content ui-corner-all")
+          .append($("<a/>").attr("href",group.media$player[0].url).attr("title","").addClass("prettyPhoto").html($("<img/>").attr("src", group.media$thumbnail[0].url)).prettyPhoto()).append("<br/")
+          .append(item.title.$t).append("<br/>") 
+          .append(item.author[0].name.$t).append("<br/>") 
+          .append($("<span/>").addClass("info").text("再生回数：" + ((item.yt$statistics == null) ? "0" : item.yt$statistics.viewCount)))
+          .appendTo("#videos");
+        
       });
     }
   });

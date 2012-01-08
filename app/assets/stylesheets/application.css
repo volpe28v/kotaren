@@ -133,11 +133,15 @@ a:hover { color:#EA1F00; }
   width: 145px;
   height: 200px;
   cursor: pointer;
-  color: blue;
   font-size: 0.8em;
   margin: 5px 5px 0 0;
   padding: 3px;
-  border: 1px solid #c0cfff;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 4px 4px 6px 0px #999;
+  -moz-box-shadow: 4px 4px 6px 0px #999;
+  -webkit-box-shadow: 4px 4px 6px 0px #999;
 }
 
 .thumbnail:hover {

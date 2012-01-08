@@ -30,10 +30,10 @@ body {
   clear:both;　/*floatの解除*/
 }
 
-#menu, #main , #detail{
+#menu, #main , #detail, #content, #sidebar{
   background-color: #f6f6f6;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
   -webkit-border-radius: 10px;
   box-shadow: 4px 4px 6px 0px #999;
   -moz-box-shadow: 4px 4px 6px 0px #999;
@@ -65,16 +65,6 @@ body {
 
 .tune_s_num {
   font-size: 18px;
-}
-
-#main , #detail{
-  background-color: #f6f6f6;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  box-shadow: 4px 4px 6px 0px #999;
-  -moz-box-shadow: 4px 4px 6px 0px #999;
-  -webkit-box-shadow: 4px 4px 6px 0px #999;
 }
 
 #main {
@@ -179,13 +169,6 @@ a:hover { color:#EA1F00; }
   margin-bottom: 20px;
   padding: 20px;
   float: left;
-  background-color: #f6f6f6;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  box-shadow: 2px 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px 2px #999;
-  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #sidebar {
@@ -197,12 +180,6 @@ a:hover { color:#EA1F00; }
   margin-bottom: 20px;
   padding: 15px 10px;
   background-color: #f6f6f6;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  box-shadow: 2px 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px 2px #999;
-  -webkit-box-shadow: 2px 2px 2px 2px #999;
 }
 
 #comments textarea{

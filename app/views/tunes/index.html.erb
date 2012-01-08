@@ -1,16 +1,18 @@
 <script>
   $(document).ready(function(){
-    $('ul.tab li a').click(
+    $('#tune-tabs').tabs();
+    $('#tune-tabs ul li a').click(
       function(){
         var status = $(this).html();
         $('#tune_status').val(status)
-        $('ul.tab li').removeClass("none");
+        $('ul.tune-tab li').removeClass("none");
         $(this).closest('li').addClass("none");
         loadTunes();
       }
     );
 
-    $('ul.comment_tab li a').click(
+    $('#menu-tabs').tabs();
+    $('#menu-tabs ul li a').click(
       function(){
         var comments_id = $(this).attr("id") + "s";
 
@@ -18,7 +20,7 @@
         $("#other_comments").hide();
         $("#" + comments_id).fadeIn();
 
-        $('ul.comment_tab li').removeClass("none");
+        $('ul li').removeClass("none");
         $(this).closest('li').addClass("none");
       }
     );
@@ -38,7 +40,7 @@
 
   function loadTunes(){
     $('#update_tunes').click();
-    $('#tune_list').hide();
+    $('#tune-list').hide();
     $('#loading').show();
   }
 
@@ -47,6 +49,8 @@
 <%= render "title" %>
 
 <div id="menu">
+  <div id="menu-tabs">
+    <div class="out-of-tabs">
   <h2>押尾コータロー楽曲リスト</h2>
 <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true ) do %>
   <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();") %></br>
@@ -65,13 +69,16 @@
     <tr><td>Done: </td><td><span id="done_num" class="tune_s_num" ><%= @done_count %></span></td><td> tunes.</td></tr>
   </table>
   </center>
-
   <hr>
+</div>
+
   <div id="comments">
-  <h3>最近の練習記録</h3>
-  <ul class="comment_tab clear">
-    <li><a id="my_comment" href="#" class="blue0">Owner</a></li>
-    <li><a id="other_comment" href="#" class="blue1">Other</a></li>
+  <div class="out-of-tabs">
+    <h3>最近の練習記録</h3>
+  </div>
+  <ul>
+    <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
+    <li><a id="other_comment" href="#other_comments" class="blue1">Other</a></li>
   </ul>
 
   <div id="my_comments">
@@ -83,7 +90,7 @@
   <% end %>
   </div>
 
-  <div id="other_comments" style="display: none">
+  <div id="other_comments">
   <% @other_comments.each do |c| %>
     <dl>
       <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
@@ -96,16 +103,19 @@
   </div>
   </div>
 </div>
+</div>
 
 <div id="main">
-  <ul class="tab clear">
+  <div id="tune-tabs">
+  <ul>
     <% @statuses.each_with_index do |s,i| %>
-      <li><a id="<%= s[1] %>" href="#" class="blue<%= i %>"><%= s[0] %></a></li>
+      <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
     <% end %>
   </ul>
 
-  <div id="tune_list"></div>
+  <div id="tune-list"></div>
   <center>
     <img id="loading" src="<%= image_path 'ajax-loader.gif' %> ">
   </center>
+</div>
 </div>

@@ -32,42 +32,52 @@ body {
 
 #menu {
   float: left;
-  width: 260px;
+  width: 290px;
   background-color: #f6f6f6;
-  padding: 10px;
+  padding: 0px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 2px 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px 2px #999;
-  -webkit-box-shadow: 2px 2px 2px 2px #999;
+  box-shadow: 4px 4px 6px 0px #999;
+  -moz-box-shadow: 4px 4px 6px 0px #999;
+  -webkit-box-shadow: 4px 4px 6px 0px #999;
 }
 
 #menu ul {
   list-style-type:none;
 }
 
+.out-of-tabs{
+  margin: 4px;
+
+}
+
+.tune_num,.tune_s_num{
+  color: blue;
+}
+
 .tune_num {
   font-size: 30px;
-  color: blue;
 }
 
 .tune_s_num {
   font-size: 18px;
-  color: blue;
 }
 
 #main {
   float: right;
-  width: 580px;
+  width: 600px;
   background-color: #f6f6f6;
-  padding: 10px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  box-shadow: 2px 2px 2px 2px #999;
-  -moz-box-shadow: 2px 2px 2px 2px #999;
-  -webkit-box-shadow: 2px 2px 2px 2px #999;
+  box-shadow: 4px 4px 6px 0px #999;
+  -moz-box-shadow: 4px 4px 6px 0px #999;
+  -webkit-box-shadow: 4px 4px 6px 0px #999;
+}
+
+#tune-list {
+  padding: 4pt;
 }
 
 #detail {
@@ -158,7 +168,7 @@ a:hover { color:#EA1F00; }
 #tune-list td {
   margin: 5px 5px 5px 5px;
   padding: 0;
-  border-bottom: 1px dashed #c0cfff;
+  border-bottom: 1px dashed #bbb;
 }
 
 #tune-list tr:hover {
@@ -180,6 +190,12 @@ ul.tab li {
     border: 1px #aaa solid;
     border-top: none;
     border-bottom: 2px #aaa solid;
+    -moz-border-radius-topleft: 4px/*{cornerRadius}*/;
+    -webkit-border-top-left-radius: 4px/*{cornerRadius}*/;
+    border-top-left-radius: 4px/*{cornerRadius}*/;
+    -moz-border-radius-topright: 4px/*{cornerRadius}*/;
+    -webkit-border-top-right-radius: 4px/*{cornerRadius}*/;
+    border-top-right-radius: 4px/*{cornerRadius}*/;
 }
 
 ul.tab li.none {
@@ -318,7 +334,7 @@ ul.comment_tab li a:hover {
   margin-left: 8px;
   margin-right: 3px;
   margin-top: 0px;
-  color: #44f;
+  color: #666;
 }
 
 #comments p{
@@ -349,14 +365,16 @@ ul.comment_tab li a:hover {
   color: black;
 }
 
-#my_comments{
+#my_comments, #other_comments{
   margin-top: 5px;
   margin-bottom: 0px;
+  padding: 5px;
 }
-
-#other_comments{
-  margin-top: 5px;
-  margin-bottom: 0px;
+ 
+#my_comments dl, #other_comments dl{
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 
 .fixed{
@@ -457,7 +475,7 @@ ul.comment_tab li a:hover {
   list-style: square;
 }
 
-dd .field_with_errors {
+dd .field_w5th_errors {
   padding: 2px;
   background-color: red;
   display: table;

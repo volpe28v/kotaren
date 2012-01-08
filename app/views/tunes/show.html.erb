@@ -1,19 +1,17 @@
 <script>                                                                          
 $(document).ready(function(){                                                     
+  $('#detail-tabs').tabs();
   $(".progress").each(function(elem){                                             
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
 
-  $('ul.comment_tab li a').click(
+  $('#detail-tabs ul li a').click(
     function(){
       var comments_id = $(this).attr("id") + "s";
 
       $("#my_comments").hide();
       $("#other_comments").hide();
       $("#" + comments_id).fadeIn();
-
-      $('ul.comment_tab li').removeClass("none");
-      $(this).closest('li').addClass("none");
     }
   );
 
@@ -53,6 +51,8 @@ $(document).ready(function(){
 <%= link_to '楽曲リストに戻る', user_tunes_path(@user) %></p>
 
 <div id="detail">
+  <div id="detail-tabs">
+    <div class="out-of-tabs">
   <p><span class="tune-big-title"><%= @tune.title %></span></p>
   
   <div class="album-title">
@@ -81,11 +81,14 @@ $(document).ready(function(){
   <p>他に <span class="tune_s_num"><%= @other_member_count %></span> 人のユーザがこの曲を弾いています</p>
 
   <hr>
+  </div>
   <div id="comments">
-  <h3>練習記録</h3>
-  <ul class="comment_tab clear">
-    <li><a id="my_comment" href="#" class="blue0">Owner</a></li>
-    <li><a id="other_comment" href="#" class="blue1">Other (<%= @other_comments.count %>)</a></li>
+    <div class="out-of-tabs">
+      <h3>練習記録</h3>
+    </div>
+  <ul>
+    <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
+    <li><a id="other_comment" href="#other_comments" class="blue1">Other (<%= @other_comments.count %>)</a></li>
   </ul>
 
   <div id="my_comments">
@@ -131,6 +134,7 @@ $(document).ready(function(){
   </div>
  
   </div>
+</div>
 </div>
 </div>
 

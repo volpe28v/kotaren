@@ -5,8 +5,6 @@
       function(){
         var status = $(this).html();
         $('#tune_status').val(status)
-        $('ul.tune-tab li').removeClass("none");
-        $(this).closest('li').addClass("none");
         loadTunes();
       }
     );
@@ -19,9 +17,6 @@
         $("#my_comments").hide();
         $("#other_comments").hide();
         $("#" + comments_id).fadeIn();
-
-        $('ul li').removeClass("none");
-        $(this).closest('li').addClass("none");
       }
     );
 

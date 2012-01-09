@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     comment = user.comments.build(params[:comment])
     comment.tune = tune
     comment.save!
-    
+
     redirect_to user_tune_path(user,tune)
   end
 

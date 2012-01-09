@@ -30,6 +30,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rcov'
   gem 'ci_reporter'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
 
 group :production do

@@ -45,8 +45,8 @@ class TunesController < ApplicationController
     tuning = params[:tuning_name]
     status = params[:tune_status]
 
-    session[:current_album_id] = album ? album.id : nil
-    session[:current_tuning_id] = Tuning.find_by_name(tuning) ? Tuning.find_by_name(tuning).id : nil
+    session[:current_album_id] = album.try(:id)
+    session[:current_tuning_id] = Tuning.find_by_name(tuning).try(:id)
     session[:current_status] = @@statuses_def.detect{|sd| sd[0] == status }
 
     base_tunes = album ? album.tunes : Tune

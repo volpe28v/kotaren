@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
 
     else
-      render :action => "edit"
+      render "edit"
     end
   end
 

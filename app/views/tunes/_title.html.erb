@@ -18,6 +18,18 @@
     <dd><%= @user.twitter_name.blank? ? "-" : link_to(@user.twitter_name, @user.twitter_url) %></dd>
   </dl>
 </div>
+
+<div class="user-option">
+  <dl>
+    <dt>guitar</dt>
+    <dd><%= @user.guitar.blank? ? "-" : @user.guitar %></dd>
+  </dl>
+  <dl>
+    <dt>tuning</dt>
+    <dd><%= @user.tuning.blank? ? "-" : @user.tuning %></dd>
+  </dl>
+</div>
+
 <div class="clear"></div>
 <hr>
 </div>

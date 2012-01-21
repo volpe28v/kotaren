@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     :uniqueness => true
 
   def default_name
-    if self.name == nil or self.name == ""
+    if self.name.blank?
       "NoName_#{self.id}"
     else
       self.name

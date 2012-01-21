@@ -41,11 +41,8 @@ class Tune < ActiveRecord::Base
   def update_progress(user,val)
     return 0 if !user
 
-    progress = self.progresses.find_by_user_id(user.id)
-    unless progress
-      progress = self.progresses.build
-      user.progresses << progress
-    end
+    progress = self.progresses.find_by_user_id(user.id) || self.progresses.build(:user => user) 
+    
     progress.percent = val
     progress.save
   end

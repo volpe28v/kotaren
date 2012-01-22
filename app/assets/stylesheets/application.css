@@ -30,6 +30,22 @@ body {
   clear:both;　/*floatの解除*/
 }
 
+footer {
+  background: #fff;
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px 0;
+  text-align: right;
+  border-top: 1px solid #DDD;
+}
+
+footer span {
+  display: block;
+  margin-right: 30px;
+  color: #888;
+  font-size: 12px;
+}
+
 #menu, #main , #detail, #content, #sidebar{
   background-color: #f6f6f6;
   border-radius: 5px;

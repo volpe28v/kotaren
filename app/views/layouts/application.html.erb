@@ -14,6 +14,7 @@
 </head>
 <body>
 <div id="wrapper">
+  <header>
   <div class="logo">
     <%= image_tag "title.png" %>
   </div>
@@ -38,10 +39,20 @@
 
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <div class="clear"></div>
   </header>
-  <div class="clear">
  
     <%= yield %>
+
+  <div class="clear"></div>
+
+  <footer>
+    <span>
+    © 2012 Naoki KODAMA. All rights reserved.
+    </span>
+  </footer>
+
 </div>
+
 </body>
 </html>

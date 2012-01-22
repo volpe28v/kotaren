@@ -35,9 +35,9 @@
 </div>
 
 <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
+<div id="user-info">
 <h2>ログイン</h2>
-<%= form_tag('/users/sign_in') do -%>
-  <div id="user-info">
+<%= form_tag('/users/sign_in') do %>
   <dl>
     <dt>Email</dt>
     <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
@@ -50,7 +50,7 @@
   <button id="login" style="display: none" onclick="submit();"></button>
   <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "minibutton", :onclick => "$('#login').click();" %></p>
    〜 登録ユーザ <%= @user_count %> 人 〜
-<% end -%>
+<% end %>
 
 <hr>
 <h2>お試し利用</h2>
@@ -82,6 +82,7 @@
 <hr>
 <h2>更新履歴(github)</h2>
 <div id="divRss"></div>
+</div>
 </div>
 
 <script>

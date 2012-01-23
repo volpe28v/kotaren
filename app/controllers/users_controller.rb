@@ -16,10 +16,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+      @user.name = params[:user][:name]
+      @user.email = params[:user][:email]
+      @user.youtube_name = params[:user][:youtube_name]
+      @user.twitter_name = params[:user][:twitter_name]
+      @user.guitar = params[:user][:guitar]
+      @user.tuning = params[:user][:tuning]
 
+      if @user.save
+        redirect_to user_tunes_path(current_user)
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      if @user.update_attributes(params[:user]) != true
+        render "edit"
+      end
     end
   end
 

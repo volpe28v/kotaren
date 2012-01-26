@@ -7,8 +7,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-def regist_album(tune_info)
-  al = Album.find_or_create_by_title(tune_info.shift)
+User.find_or_create_by_email(:name => "サンプルアカウント",
+                             :email => "sample@sample.kotaren",
+                             :password => "sample",
+                             :password_confirmation => "sample",
+                             :guiter => "Martin D-28",
+                             :tuning => "GGDGGD")
+puts "registered sample account"
+def register_album(tune_info)
+  album_title = tune_info.shift
+  al = Album.find_or_create_by_title(album_title)
   tune_info.each do |t|
     tune   = Tune.find_or_create_by_title(t[0])
     tuning = Tuning.find_or_create_by_name_and_capo( t[1], t[2] != nil ? t[2] : 0 )
@@ -17,9 +25,10 @@ def regist_album(tune_info)
     recording = Recording.find_or_create_by_tune_id_and_album_id( tune.id, al.id )
     tune.save
   end
+  puts "registered album: #{album_title}"
 end
 
-regist_album [
+register_album [
   "Kotaro Oshio",
   ["光のつばさ", "CGDGCD"],
   ["彩音",  "CGDGCD"],
@@ -36,7 +45,7 @@ regist_album [
   ["ちいさな輝き",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "LOVE STRINGS",
   ["Blue Sky",  "CGDGBD"],
   ["In the morning",  "Standard"],
@@ -53,7 +62,7 @@ regist_album [
   ["ずっと… ",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "STARTING POINT",
   ["Fantasy!",  "CGDGBD"],
   ["Destiny",  "Standard"],
@@ -69,7 +78,7 @@ regist_album [
   ["HARD RAIN (type:D)",  "GGDGGD"],
 ]
 
-regist_album [
+register_album [
   "DRAMATIC",
   ["SPLASH",  "DADGAD"],
   ["太陽のダンス",  "AEEF#BE"],
@@ -84,7 +93,7 @@ regist_album [
   ["again...",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "Be HAPPY",
   ["翼 ～you are the HERO～",  "DADGAD"],
   ["ミスティ・ナイト",  "EADGBD"],
@@ -99,7 +108,7 @@ regist_album [
   ["坂の上の公園",  "Standard"],
 ]
   
-regist_album [
+register_album [
   "BOLERO! Be HAPPY LIVE",
   ["ボレロ",  "CGCGBE"],
   ["ブルー・ホール",  "CGDGBD"],
@@ -117,7 +126,7 @@ regist_album [
   ["ちいさな輝き",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "Panorama",
   ["Departure",  "CGDGBD"],
   ["オアシス",  "AEEF#BE"],
@@ -133,7 +142,7 @@ regist_album [
   ["夢のつづき",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "Blue sky ～Kotaro Oshio Best Album～",
   ["Blue sky (exciting version)",  "CGDGBD"],
   ["HARD RAIN (type:D)",  "GGDGGD"],
@@ -153,7 +162,7 @@ regist_album [
   ["Friend (CM version)",  "Standard" , 3],
 ]
 
-regist_album [
+register_album [
   "COLOR of LIFE",
   ["Big Blue Ocean",  "DADGAD"],
   ["YELLOW SUNSHINE",  "GGDGGD"],
@@ -169,7 +178,7 @@ regist_album [
   ["あの夏の白い雲",  "DADGAD"],
 ]
 
-regist_album [
+register_album [
   "Nature Spirit",
   ["Deep Silence",  "AAEGAE"],
   ["Rushin'",  "AAEGAE"],
@@ -187,7 +196,7 @@ regist_album [
   ["Christmas Rose",  "CGDGBD", 4],
 ]
 
-regist_album [
+register_album [
   "You & Me",
   ["Rushin'",  "AAEGAE"],
   ["Here We Go!",  "Standard"],
@@ -201,7 +210,7 @@ regist_album [
   ["With You",  "DADGAD"],
 ]
 
-regist_album [
+register_album [
   "Tussie mussie",
   ["LOVIN' YOU",  "Standard"],
   ["CLOSE TO YOU",  "C#G#D#G#B#D#"],
@@ -215,7 +224,7 @@ regist_album [
   ["LOVE",  "Standard"],
 ]
 
-regist_album [
+register_album [
   "Eternal Chain",
   ["Prelude ～sunrise～",  "CGDGBD", 3],
   ["Landscape",  "CGDGBD", 3],
@@ -235,7 +244,7 @@ regist_album [
   ["Coda ～sunset～",  "CGDGBD", 3],
 ]
 
-regist_album [
+register_album [
   "Hand to Hand",
   ["Brand New Wings",  "C#G#EF#BE"],
   ["HEART BEAT!",  "Standard"],

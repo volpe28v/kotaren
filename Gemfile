@@ -16,8 +16,6 @@ gem 'rails_autolink'
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'guard'
-  gem 'growl'
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'rcov'

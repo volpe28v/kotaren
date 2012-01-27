@@ -66,4 +66,18 @@ end
   page.should have_content("押尾コータロー楽曲リスト")
 end
 
+前提 /^ユーザ "([^"]*)" が登録されている$/ do |user_name|
+  user = User.create(:name => user_name,
+              :email => "#{user_name}@kotaren.com",
+              :password => "#{user_name}#{user_name}",
+              :password_confirmation => "#{user_name}#{user_name}")
+  user.should_not be_nil
+end
+
+もし /^　  ユーザ "([^"]*)" のアカウント情報を入力する$/ do |user_name|
+  fill_in("user_email", :with => "#{user_name}@kotaren.com")
+  fill_in("user_password", :with => "#{user_name}#{user_name}")
+
+  find("#login").click
+end
 

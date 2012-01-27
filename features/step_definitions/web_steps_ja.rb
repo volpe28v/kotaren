@@ -8,8 +8,17 @@ end
   page.should have_content("コタれんって")
 end
 
-前提 /^　　トップページを表示している$/ do
-  visit('/')
+前提 /^　　"([^"]*)" を表示している$/ do |page_name|
+  case page_name
+  when "トップページ"
+    visit('/')
+  when "新規登録画面"
+    visit('/')
+    click_on("新規登録して使ってみる")
+  when "ログイン画面"
+    visit('/')
+    find(".login-menu").click_on("ログイン")
+  end
 end
 
 前提 /^　　サンプルアカウントが存在する$/ do
@@ -47,11 +56,6 @@ end
   page.should have_content("ログイン後にも変更可能です。")
 end
 
-前提 /^　　新規登録画面を表示している$/ do
-  visit('/')
-  click_on("新規登録して使ってみる")
-end
-
 もし /^　  ユーザ "([^"]*)" を登録する$/ do |user_name|
   fill_in("user_name", :with => user_name) 
   fill_in("user_email", :with => "#{user_name}@kotaren.com")
@@ -77,7 +81,26 @@ end
 もし /^　  ユーザ "([^"]*)" のアカウント情報を入力する$/ do |user_name|
   fill_in("user_email", :with => "#{user_name}@kotaren.com")
   fill_in("user_password", :with => "#{user_name}#{user_name}")
+end
 
-  find("#login").click
+もし /^　  「ログイン」リンクをクリックする$/ do
+  find(".login-menu").click_on("ログイン")
+end
+
+ならば /^　ログイン画面を表示すること$/ do
+  find('h2').should have_content("ログイン")
+  page.should have_css('#user_email')
+  page.should have_css('#user_password')
+end
+
+もし /^　  "([^"]*)" のログインをクリックする$/ do |page_name|
+  case page_name
+  when "トップページ"
+    find("#login").click
+  when "ログイン画面"
+    click_button("ログイン")
+  else
+    fail
+  end
 end
 

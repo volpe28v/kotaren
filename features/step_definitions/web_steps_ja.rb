@@ -18,6 +18,8 @@ end
   when "ログイン画面"
     visit('/')
     find(".login-menu").click_on("ログイン")
+  else
+    fail
   end
 end
 
@@ -51,9 +53,18 @@ end
   click_on("新規登録して使ってみる")
 end
 
-ならば /^　新規登録画面を表示すること$/ do
-  page.should have_content("新規登録")
-  page.should have_content("ログイン後にも変更可能です。")
+ならば /^　"([^"]*)" を表示すること$/ do |page_name|
+  case page_name
+  when "新規登録画面"
+    page.should have_content("新規登録")
+    page.should have_content("ログイン後にも変更可能です。")
+  when "ログイン画面"
+    find('h2').should have_content("ログイン")
+    page.should have_css('#user_email')
+    page.should have_css('#user_password')
+  else
+    fail
+  end
 end
 
 もし /^　  ユーザ "([^"]*)" を登録する$/ do |user_name|
@@ -83,14 +94,8 @@ end
   fill_in("user_password", :with => "#{user_name}#{user_name}")
 end
 
-もし /^　  「ログイン」リンクをクリックする$/ do
-  find(".login-menu").click_on("ログイン")
-end
-
-ならば /^　ログイン画面を表示すること$/ do
-  find('h2').should have_content("ログイン")
-  page.should have_css('#user_email')
-  page.should have_css('#user_password')
+もし /^　  "([^"]*)" リンクをクリックする$/ do |link_name|
+  find(".login-menu").click_on(link_name)
 end
 
 もし /^　  "([^"]*)" のログインをクリックする$/ do |page_name|

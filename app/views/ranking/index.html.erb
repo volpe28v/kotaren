@@ -1,0 +1,25 @@
+<div id="user-list">
+<table>
+  <tr>
+    <th>着手人数</th>
+    <th>曲名</th>
+    <th>チューニング</th>
+    <th>あなたの進捗</th>
+  </tr>
+
+<% @tune_ranking.each do |tr| %>
+  <tr>
+    <td class="tune-count"><span class="tune_s_num"><%= tr[1] %></span></td>
+    <td class="tune-title"><%= link_to tr[0].title, user_tune_path(current_user,tr[0]) %></td>
+    <td><%= tr[0].tuning.name %></td>
+    <td><span id="progress_<%= tr[0].id %>" class="progress"><%= tr[0].progress_val(current_user) %></span></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<script>
+$(".progress").each(function(elem){
+  $(this).progressBar(progress_default_option);
+});
+</script>

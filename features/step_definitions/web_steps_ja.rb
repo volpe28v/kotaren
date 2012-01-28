@@ -62,6 +62,8 @@ end
     find('h2').should have_content("ログイン")
     page.should have_css('#user_email')
     page.should have_css('#user_password')
+  when "ランキング画面"
+    page.should have_content("着手人数")
   else
     fail
   end
@@ -108,4 +110,12 @@ end
     fail
   end
 end
+
+前提 /^ユーザ "([^"]*)" の楽曲リストを表示している$/ do |user_name|
+  visit('/')
+  fill_in("user_email", :with => "#{user_name}@kotaren.com")
+  fill_in("user_password", :with => "#{user_name}#{user_name}")
+  find("#login").click
+end
+
 

@@ -1,5 +1,7 @@
 Kotaren::Application.routes.draw do
 
+  get "ranking/index"
+
   root :to => "welcome#index"
 
   devise_for :users

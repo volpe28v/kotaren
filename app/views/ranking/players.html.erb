@@ -119,7 +119,7 @@ $(document).ready(function(){
       <th class="ranking-title">ユーザ名</th>
       <th class="ranking-title">進捗率</th>
     </tr>
-    <% @tune.progresses.sort{|a,b| b.percent <=> a.percent }.each do |pr| %>
+    <% @tune.progresses.where("percent > 0").sort{|a,b| b.percent <=> a.percent }.each do |pr| %>
       <tr>
         <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
         <td><span class="progress"><%= pr.percent %></span></td>

@@ -378,3 +378,9 @@ dd .field_w5th_errors {
   text-align: left;
 }
 
+#players-list {
+  float: right;
+  width: 480px;
+}
+
+

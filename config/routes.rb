@@ -1,6 +1,7 @@
 Kotaren::Application.routes.draw do
 
   get "ranking/index"
+  match 'ranking/:tune_id' => 'ranking#players'
 
   root :to => "welcome#index"
 

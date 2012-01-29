@@ -40,8 +40,11 @@ class User < ActiveRecord::Base
     end
   end
 
-
   def tunes_count(status,base_tunes = Tune)
     base_tunes.by_status_and_user(status,self).count
+  end
+
+  def is_sample?
+    self.email == "sample@sample.kotaren"
   end
 end

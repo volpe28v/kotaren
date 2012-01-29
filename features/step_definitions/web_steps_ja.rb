@@ -63,7 +63,7 @@ end
     page.should have_css('#user_email')
     page.should have_css('#user_password')
   when "ランキング画面"
-    page.should have_content("着手人数")
+    page.should have_content("弾いている人数")
   else
     fail
   end

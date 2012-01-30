@@ -1,7 +1,6 @@
 <script>                                                                          
 $(document).ready(function(){                                                     
   $('#detail-tabs').tabs();
-  $('#sub-contents').tabs();
   $(".progress").each(function(elem){                                             
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
@@ -45,6 +44,21 @@ $(document).ready(function(){
       });
     }
   });
+
+  $('#sub-contents').tabs();
+  $('#sub-contents ul li a').click(
+    function(){
+      var comments_id = $(this).attr("id") + "s";
+
+      $("#ref-videos").hide();
+      $("#play-users").hide();
+      $("#" + comments_id).fadeIn();
+    }
+  );
+
+  $("#ref-video").click();
+//  $("#play-user").click();
+
 });
 </script>     
 

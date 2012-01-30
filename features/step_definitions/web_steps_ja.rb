@@ -64,6 +64,10 @@ end
     page.should have_css('#user_password')
   when "ランキング画面"
     page.should have_content("弾いている人数")
+  when "ユーザ一覧画面"
+    page.should have_content("Name")
+    page.should have_content("Youtube")
+    page.should have_content("LatestComment")
   else
     fail
   end

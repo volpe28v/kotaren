@@ -1,4 +1,6 @@
 class RankingController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @tune_ranking = Tune.get_tune_ranking
   end

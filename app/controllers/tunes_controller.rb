@@ -1,5 +1,5 @@
 class TunesController < ApplicationController
-  before_filter :authenticate_user! 
+  before_filter :authenticate_user!
 
   @@statuses_def = [
       ['All Status', 'all_status'],

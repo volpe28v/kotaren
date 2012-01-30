@@ -106,13 +106,34 @@ footer span {
   list-style-type:none;
 }
 
-#video-list {
+#sub-contents {
   float: right;
   width: 480px;
 }
 
-#video-list h2{
-  margin-top: 0px;
+#ref-videos{
+  margin: 3px;
+  padding: 0px;
+}
+
+#play-users{
+  margin: 10px;
+  padding: 0px;
+}
+
+#play-users table {
+  border-collapse:collapse;
+  width: 100%;
+}
+
+#play-users td {
+  margin: 0px;
+  padding: 5px;
+  border-bottom: 1px dashed #bbb;
+}
+
+#play-users tr:hover {
+  background-color: #f0f8ff;
 }
 
 .tuning {
@@ -182,6 +203,7 @@ a:hover { color:#EA1F00; }
 #tune-list tr:hover {
   background-color: #f0f8ff;
 }
+
 
 /* for welcome */
 #content{

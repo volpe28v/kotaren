@@ -1,5 +1,5 @@
 <div id="title">
-<div class="user-name"><%= @user.default_name %></div>
+<div class="user-name"><%= link_to @user.default_name, user_tunes_path(@user) %></div>
 <div class="this-is-you">
   <% if @user == current_user %>
     <%= raw('<span class="you">This is You!</span>') %>

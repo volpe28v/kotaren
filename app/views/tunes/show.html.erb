@@ -1,6 +1,7 @@
 <script>                                                                          
 $(document).ready(function(){                                                     
   $('#detail-tabs').tabs();
+  $('#sub-contents').tabs();
   $(".progress").each(function(elem){                                             
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
@@ -39,7 +40,7 @@ $(document).ready(function(){
            .append(item.author[0].name.$t).append("<br/>") 
            .append($("<span/>").addClass("info").text("再生回数：" + ((item.yt$statistics == null) ? "0" : item.yt$statistics.viewCount)));
          
-         youtube_link_a.append(thumb_div).appendTo("#videos");
+         youtube_link_a.append(thumb_div).appendTo("#ref-videos");
         
       });
     }
@@ -50,7 +51,6 @@ $(document).ready(function(){
 <%= render "title" %>
 
 <div id="detail-menu">
-<%= link_to '楽曲リストに戻る', user_tunes_path(@user) %></p>
 
 <div id="detail">
   <div id="detail-tabs">
@@ -79,8 +79,6 @@ $(document).ready(function(){
   <% end %>
   Last played at 
   -->
-
-  <p>他に <span class="tune_s_num"><%= @other_member_count %></span> 人のユーザがこの曲を弾いています</p>
 
   <hr>
   </div>
@@ -141,8 +139,25 @@ $(document).ready(function(){
 </div>
 
 
-<div id="video-list">
-  <h2>関連動画(YouTube)</h2>
-  <div id="videos"></div>
+<div id="sub-contents">
+  <ul>
+    <li><a id="ref-video" href="#ref-videos" class="blue0">関連動画(Youtube)</a></li>
+    <li><a id="play-user" href="#play-users" class="blue1">この曲を弾いているユーザ(<%= @tune.touched_progresses.count %>人)</a></li>
+  </ul>
+  <div id="ref-videos"></div>
+
+  <div id="play-users">
+    <table>
+      <tr>
+      </tr>
+      <% @tune.touched_progresses.each do |pr| %>
+        <tr>
+          <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
+          <td><span class="progress"><%= pr.percent %></span></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+ 
 </div>
 

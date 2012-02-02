@@ -405,4 +405,18 @@ dd .field_w5th_errors {
   width: 480px;
 }
 
+.progress-button {
+  width: 40px;
+  height: 30px;
+}
+
+.progress-buttton font {
+  font-size: 30pt;
+}
+
+.played-now {
+  width: 100px;
+  height: 30px;
+}
+
 

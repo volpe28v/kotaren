@@ -11,6 +11,18 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" %>
   <%= csrf_meta_tags %>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30509611-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -52,7 +64,7 @@
 
   <footer>
     <span>
-    © 2011 Naoki KODAMA. All rights reserved.
+    © 2011-2012 Naoki KODAMA. All rights reserved.
     </span>
   </footer>
 

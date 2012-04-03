@@ -396,6 +396,16 @@ dd .field_w5th_errors {
   clear:both;
 }
 
+.tune-title{
+  text-align: left;
+  width: 150px;
+}
+
+.tuning-title{
+  text-align: left;
+  width: 90px;
+}
+
 .ranking-title{
   text-align: left;
 }

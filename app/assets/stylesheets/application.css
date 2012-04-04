@@ -396,7 +396,7 @@ dd .field_w5th_errors {
   clear:both;
 }
 
-.tune-title{
+.tune-ranking-title{
   text-align: left;
   width: 150px;
 }
@@ -427,6 +427,21 @@ dd .field_w5th_errors {
 .played-now {
   width: 100px;
   height: 30px;
+}
+
+.welcome-number-title {
+  text-align: left;
+  width: 120px;
+}
+
+.welcome-tune-title{
+  text-align: left;
+  width: 150px;
+}
+
+.welcome-tuning-title{
+  text-align: left;
+  width: 100px;
 }
 
 

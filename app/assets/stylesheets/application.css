@@ -207,17 +207,13 @@ a:hover { color:#EA1F00; }
 
 /* for welcome */
 #content{
-  width: 500px;
   margin-bottom: 20px;
   padding: 20px;
-  float: left;
 }
 
 #sidebar {
-  width: 320px;
   margin: 0;
   padding: 0;
-  float: right;
   list-style: none;
   margin-bottom: 20px;
   padding: 15px 10px;

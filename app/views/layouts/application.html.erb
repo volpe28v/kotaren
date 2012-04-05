@@ -23,40 +23,41 @@
   })();
 </script>
 </head>
-<body>
-<div id="wrapper">
+<body style="
+ background-color: white;
+ background-attachment: fixed;
+ background-position: center top;
+ background-repeat:  repeat;
+ padding-top: 60px;
+">
+
   <header>
-  <div class="logo">
-    <%= image_tag "title.png" %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="/">コタれん</a>
+          <div class="nav-collapse">
+            <ul class="nav pull-left">
+            <% if current_user %>
+              <li><%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
+              <li><%= link_to 'ランキング', ranking_index_path %>
+              <li><%= link_to 'ユーザ一覧', list_users_path %>
+              <% unless current_user.is_sample? %>
+                <li><%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
+              <% end %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
+              <%= "<" + current_user.email + ">" %>
+            <% else %>
+              <li><%= link_to 'ログイン', new_user_session_path  %>
+              <li><%= link_to '新規登録', new_user_registration_path %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="login-menu">
-  <% if current_user %>
-    <%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
-    |
-    <%= link_to 'ランキング', ranking_index_path %>
-    |
-    <%= link_to 'ユーザ一覧', list_users_path %>
-    |
-    <% unless current_user.is_sample? %>
-      <%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
-      |
-    <% end %>
-     <%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
-    |
-    <%= "<" + current_user.email + ">" %>
-  <% else %>
-    <%= link_to 'ログイン', new_user_session_path  %>
-    |
-    <%= link_to '新規登録', new_user_registration_path %>
-  <% end %>
-  </div>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <div class="clear"></div>
-  </header>
- 
     <%= yield %>
 
   <div class="clear"></div>

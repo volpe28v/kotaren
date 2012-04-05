@@ -8,7 +8,6 @@
   <%= stylesheet_link_tag    "application" %>
   <%= stylesheet_link_tag    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/pepper-grinder/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" %>
   <%= csrf_meta_tags %>
 
 <script type="text/javascript">
@@ -23,14 +22,8 @@
   })();
 </script>
 </head>
-<body style="
- background-color: white;
- background-attachment: fixed;
- background-position: center top;
- background-repeat:  repeat;
- padding-top: 60px;
-">
 
+<body style="padding-top: 60px;">
   <header>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -51,24 +44,19 @@
               <li><%= link_to 'ログイン', new_user_session_path  %>
               <li><%= link_to '新規登録', new_user_registration_path %>
             <% end %>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
     <%= yield %>
-
-  <div class="clear"></div>
 
   <footer>
     <span>
     © 2011-2012 Naoki KODAMA. All rights reserved.
     </span>
   </footer>
-
-</div>
-
 </body>
 </html>

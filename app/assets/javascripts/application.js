@@ -6,7 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require FeedEk
 
 var progress_default_option = {
     steps           : 0,

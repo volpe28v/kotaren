@@ -57,11 +57,6 @@ footer span {
 }
 
 
-#menu {
-  float: left;
-  width: 270px;
-}
-
 #menu ul {
   list-style-type:none;
 }
@@ -81,11 +76,6 @@ footer span {
 
 .tune_s_num {
   font-size: 18px;
-}
-
-#main {
-  float: right;
-  width: 620px;
 }
 
 #tune-list {

@@ -41,12 +41,17 @@
 
 </script>
 
+<div class="container">
+
 <%= render "title" %>
+
+<div class="row">
+  <div class="span4">
 
 <div id="menu">
   <div id="menu-tabs">
     <div class="out-of-tabs">
-  <h2>押尾コータロー楽曲リスト</h2>
+  <h2>楽曲リスト</h2>
 <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true ) do %>
   <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();") %></br>
   <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();") %></br>
@@ -99,7 +104,9 @@
   </div>
 </div>
 </div>
+</div>
 
+<div class="span8">
 <div id="main">
   <div id="tune-tabs">
   <ul>
@@ -114,5 +121,9 @@
       <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">
     </div>
   </center>
+</div>
+</div>
+</div>
+
 </div>
 </div>

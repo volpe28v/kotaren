@@ -8,6 +8,7 @@
   <%= stylesheet_link_tag    "application" %>
   <%= stylesheet_link_tag    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/pepper-grinder/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js" %>
   <%= csrf_meta_tags %>
 
 <script type="text/javascript">
@@ -39,7 +40,6 @@
                 <li><%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
               <% end %>
               <li><%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
-              <%= "<" + current_user.email + ">" %>
             <% else %>
               <li><%= link_to 'ログイン', new_user_session_path  %>
               <li><%= link_to '新規登録', new_user_registration_path %>

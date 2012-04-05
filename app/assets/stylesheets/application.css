@@ -444,4 +444,7 @@ dd .field_w5th_errors {
   width: 100px;
 }
 
-
+#loading {
+  height: 400px;
+  padding: 50px;
+}

@@ -6,15 +6,15 @@ class Tune < ActiveRecord::Base
 
   def self.all_or_filter_by_tuning(tuning)
     return self.all if Tuning.find_by_name(tuning) == nil
-    self.includes(:tuning).where("tunings.name = ?", tuning ).order("id ASC") 
+    self.includes(:tuning).where("tunings.name = ?", tuning ).order("tunes.id ASC")
   end
 
-  scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100")
-  scope :done , includes(:progresses).where("progresses.percent = 100")
-  scope :touched , includes(:progresses).where("progresses.percent > 0")
+  scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
+  scope :done , includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
+  scope :touched , includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
 
   scope :progress_by_user , lambda {|user|
-    includes(:progresses).where("progresses.user_id = ?", user.id)
+    includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
   }
 
   scope :by_status_and_user, lambda {|status,user|

@@ -6,7 +6,7 @@ class Tune < ActiveRecord::Base
 
   def self.all_or_filter_by_tuning(tuning)
     return self.all if Tuning.find_by_name(tuning) == nil
-    self.includes(:tuning).where("tunings.name = ?", tuning ) 
+    self.includes(:tuning).where("tunings.name = ?", tuning ).order("id ASC") 
   end
 
   scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100")

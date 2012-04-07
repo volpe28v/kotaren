@@ -410,3 +410,13 @@ dd .field_w5th_errors {
   height: 400px;
   padding: 50px;
 }
+
+.progress-button{
+  width: 70px;
+  text-align: center;
+}
+
+.progress-bar-area{
+  width: 160px;
+}
+

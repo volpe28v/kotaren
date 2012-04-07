@@ -63,7 +63,6 @@ footer span {
 
 .out-of-tabs{
   margin: 4px;
-
 }
 
 .tune_num,.tune_s_num{
@@ -82,28 +81,14 @@ footer span {
   padding: 4pt;
 }
 
-#detail {
-  float: left;
-  width: 400px;
-}
-
-#detail-menu {
-  float: left;
-  width: 400px;
-}
-
 #detail ul {
   list-style-type:none;
-}
-
-#sub-contents {
-  float: right;
-  width: 480px;
 }
 
 #ref-videos{
   margin: 3px;
   padding: 0px;
+  height: 860px;
 }
 
 #play-users{
@@ -154,7 +139,7 @@ a:hover { color:#EA1F00; }
   color: #666;
 }
 
-.thumbnail {
+.thumbnail-video {
   text-align: center;
   float: left;
   width: 145px;
@@ -211,7 +196,7 @@ a:hover { color:#EA1F00; }
 }
 
 #comments textarea{
-  width: 374px;
+  width: 98%; 
   height: 34px;
 }
 
@@ -399,15 +384,6 @@ dd .field_w5th_errors {
 #players-list {
   float: right;
   width: 480px;
-}
-
-.progress-button {
-  width: 40px;
-  height: 30px;
-}
-
-.progress-buttton font {
-  font-size: 30pt;
 }
 
 .played-now {

@@ -34,20 +34,24 @@
         <div class="container-fluid">
           <a class="brand" href="/">コタれん</a>
           <div class="nav-collapse">
-            <ul class="nav pull-left">
             <% if current_user %>
-              <li><%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
-              <li><%= link_to 'ランキング', ranking_index_path %>
-              <li><%= link_to 'ユーザ一覧', list_users_path %>
-              <% unless current_user.is_sample? %>
-                <li><%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
-              <% end %>
-              <li><%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
+              <ul class="nav pull-left">
+                <li><%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
+                <li><%= link_to 'ランキング', ranking_index_path %>
+                <li><%= link_to 'ユーザ一覧', list_users_path %>
+              </ul>
+              <ul class="nav pull-right">
+                <% unless current_user.is_sample? %>
+                  <li><%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
+                <% end %>
+                <li><%= link_to 'ログアウト', destroy_user_session_path , :method => :delete %>
+              </ul>
             <% else %>
-              <li><%= link_to 'ログイン', new_user_session_path  %>
-              <li><%= link_to '新規登録', new_user_registration_path %>
+              <ul class="nav pull-right">
+                <li><%= link_to 'ログイン', new_user_session_path  %>
+                <li><%= link_to '新規登録', new_user_registration_path %>
+              </ul>
             <% end %>
-            </ul>
           </div>
         </div>
       </div>

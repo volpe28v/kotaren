@@ -1,7 +1,7 @@
 <script>                                                                          
 $(document).ready(function(){                                                     
   $('#detail-tabs').tabs();
-  $(".progress").each(function(elem){                                             
+  $(".progress-bar").each(function(elem){                                             
     $(this).progressBar(progress_default_option);                                 
   });                                                                             
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
         var group = item.media$group;
 
          var youtube_link_a = $("<a/>").attr("href",group.media$player[0].url).attr("title","").addClass("prettyPhoto").prettyPhoto();
-         var thumb_div = $("<div/>").addClass("thumbnail ui-widget-content ui-corner-all")
+         var thumb_div = $("<div/>").addClass("thumbnail-video ui-widget-content ui-corner-all")
            .append($("<img/>").attr("src", group.media$thumbnail[0].url)).append("<br/")
            .append(item.title.$t).append("<br/>") 
            .append(item.author[0].name.$t).append("<br/>") 
@@ -57,124 +57,121 @@ $(document).ready(function(){
   );
 
   $("#ref-video").click();
-//  $("#play-user").click();
-
 });
 </script>     
 
-<%= render "title" %>
+<div class="container">
+  <%= render "title" %>
 
-<div id="detail-menu">
+  <div class="row">
+    <div class="span5">
+      <div id="detail">
+        <div id="detail-tabs">
+          <div class="out-of-tabs">
+            <center>
+              <p><h2><%= @tune.title %></h2></p>
+              <div class="album-title">
+                <p>
+                  <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
+                </p>
+              </div> 
+              <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
+              <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
+                <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
+              <% end %>
+              <hr>
+              <p><span id="progress_<%= @tune.id %>" class="progress-bar"><%= @progress_val %></span>
+                <% if current_user == @user %>
+                  <button class="btn" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
+                  <button class="btn" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
+                <% end %>
+              </p>
+              <hr>
+            </center>
+          </div>
+          <div id="comments">
+            <center>
+              <div class="out-of-tabs">
+                <h3>練習記録</h3>
+              </div>
+            </center>
+            <ul>
+              <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
+              <li><a id="other_comment" href="#other_comments" class="blue1">Other (<%= @other_comments.count %>)</a></li>
+            </ul>
 
-<div id="detail">
-  <div id="detail-tabs">
-    <div class="out-of-tabs">
-  <p><span class="tune-big-title"><%= @tune.title %></span></p>
-  
-  <div class="album-title">
-    <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-  </div> 
-  <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
-  <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
-    <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
-  <% end %>
+            <div id="my_comments">
+              <% if @user == current_user %>
+                <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
+                  <%= f.text_area :text %>
+                  <%= f.submit "登録", :class => "btn" %>
+                <% end %>
+              <% end %>
 
-  <hr>
-     
-  <p><span id="progress_<%= @tune.id %>" class="progress"><%= @progress_val %></span>
-  <% if current_user == @user %>
-    <button class="progress-button" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
-    <button class="progress-button" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
-  <% end %>
-  <!--
-  <% if current_user == @user %>
-    <button class="played-now"><font style="font-size: 13pt;">弾いたよ</font></button>
-  <% end %>
-  -->
-  </p>
+              <% @comments.each do |c| %>
+                <div id="comment_<%= c.id %>">
+                  <dl>
+                    <dt>
+                      <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                      <% if @user == current_user %>
+                        <div class="comment-destroy">
+                          <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
+                        </div>
+                      <% end %>
+                    </dt>
+                    <br>
+                    <dd>
+                      <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+                      <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
+                    </dd>
+                  </dl>
+                </div>
+              <% end %>
+            </div>
 
-  <hr>
-  </div>
-  <div id="comments">
-    <div class="out-of-tabs">
-      <h3>練習記録</h3>
-    </div>
-  <ul>
-    <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
-    <li><a id="other_comment" href="#other_comments" class="blue1">Other (<%= @other_comments.count %>)</a></li>
-  </ul>
-
-  <div id="my_comments">
-    <% if @user == current_user %>
-      <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
-        <%= f.text_area :text %>
-        <%= f.submit "登録" %>
-      <% end %>
-    <% end %>
-
-    <% @comments.each do |c| %>
-    <div id="comment_<%= c.id %>">
-    <dl>
-      <dt>
-        <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
-        <% if @user == current_user %>
-        <div class="comment-destroy">
-          <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
+            <div id="other_comments">
+              <% @other_comments.each do |c| %>
+                <div id="comment_<%= c.id %>">
+                  <dl>
+                    <dt>
+                      <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                    </dt>
+                    <br>
+                    <dd>
+                      <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+                      <div class="comment-name">by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %></div>
+                      <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
+                    </dd>
+                  </dl>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-        <% end %>
-      </dt>
-      <br>
-      <dd>
-        <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
-        <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
-      </dd>
-    </dl>
+      </div>
     </div>
-    <% end %>
-  </div>
 
-  <div id="other_comments">
-    <% @other_comments.each do |c| %>
-    <div id="comment_<%= c.id %>">
-    <dl>
-      <dt>
-        <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
-      </dt>
-      <br>
-      <dd><div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
-        <div class="comment-name">by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %></div>
-        <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
-      </dd>
-    </dl>
+    <div class="span7">
+      <div id="sub-contents">
+        <ul>
+          <li><a id="ref-video" href="#ref-videos" class="blue0">関連動画(Youtube)</a></li>
+          <li><a id="play-user" href="#play-users" class="blue1">この曲を弾いているユーザ(<%= @tune.touched_progresses.count %>人)</a></li>
+        </ul>
+        <div id="ref-videos"></div>
+
+        <div id="play-users">
+          <table>
+            <tr>
+            </tr>
+            <% @tune.touched_progresses.each do |pr| %>
+              <tr>
+                <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
+                <td><span class="progress-bar"><%= pr.percent %></span></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
     </div>
-    <% end %>
-  </div>
- 
   </div>
 </div>
-</div>
-</div>
-
-
-<div id="sub-contents">
-  <ul>
-    <li><a id="ref-video" href="#ref-videos" class="blue0">関連動画(Youtube)</a></li>
-    <li><a id="play-user" href="#play-users" class="blue1">この曲を弾いているユーザ(<%= @tune.touched_progresses.count %>人)</a></li>
-  </ul>
-  <div id="ref-videos"></div>
-
-  <div id="play-users">
-    <table>
-      <tr>
-      </tr>
-      <% @tune.touched_progresses.each do |pr| %>
-        <tr>
-          <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
-          <td><span class="progress"><%= pr.percent %></span></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
- 
-</div>
-

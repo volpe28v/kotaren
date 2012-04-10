@@ -57,18 +57,12 @@ footer span {
 }
 
 
-#menu {
-  float: left;
-  width: 270px;
-}
-
 #menu ul {
   list-style-type:none;
 }
 
 .out-of-tabs{
   margin: 4px;
-
 }
 
 .tune_num,.tune_s_num{
@@ -83,37 +77,18 @@ footer span {
   font-size: 18px;
 }
 
-#main {
-  float: right;
-  width: 620px;
-}
-
 #tune-list {
   padding: 4pt;
-}
-
-#detail {
-  float: left;
-  width: 400px;
-}
-
-#detail-menu {
-  float: left;
-  width: 400px;
 }
 
 #detail ul {
   list-style-type:none;
 }
 
-#sub-contents {
-  float: right;
-  width: 480px;
-}
-
 #ref-videos{
   margin: 3px;
   padding: 0px;
+  height: 860px;
 }
 
 #play-users{
@@ -164,7 +139,7 @@ a:hover { color:#EA1F00; }
   color: #666;
 }
 
-.thumbnail {
+.thumbnail-video {
   text-align: center;
   float: left;
   width: 145px;
@@ -207,17 +182,13 @@ a:hover { color:#EA1F00; }
 
 /* for welcome */
 #content{
-  width: 500px;
   margin-bottom: 20px;
   padding: 20px;
-  float: left;
 }
 
 #sidebar {
-  width: 320px;
   margin: 0;
   padding: 0;
-  float: right;
   list-style: none;
   margin-bottom: 20px;
   padding: 15px 10px;
@@ -225,7 +196,7 @@ a:hover { color:#EA1F00; }
 }
 
 #comments textarea{
-  width: 374px;
+  width: 98%; 
   height: 34px;
 }
 
@@ -415,15 +386,6 @@ dd .field_w5th_errors {
   width: 480px;
 }
 
-.progress-button {
-  width: 40px;
-  height: 30px;
-}
-
-.progress-buttton font {
-  font-size: 30pt;
-}
-
 .played-now {
   width: 100px;
   height: 30px;
@@ -452,3 +414,12 @@ dd .field_w5th_errors {
 .fb-like-button{
   margin-top: 5px;
 }
+.progress-button{
+  width: 70px;
+  text-align: center;
+}
+
+.progress-bar-area{
+  width: 160px;
+}
+

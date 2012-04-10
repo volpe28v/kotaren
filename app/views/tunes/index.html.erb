@@ -41,35 +41,44 @@
 
 </script>
 
+<div class="container">
+
 <%= render "title" %>
+
+<div class="row">
+  <div class="span4">
 
 <div id="menu">
   <div id="menu-tabs">
     <div class="out-of-tabs">
-  <h2>押尾コータロー楽曲リスト</h2>
+      <center>
+        <h3>押尾コータロー楽曲リスト</h3>
+      <br>
+  <div><center>Displayed: <span id="display_num" class="tune_num" >0</span> tunes.</center></div>
+    <br>
+  <table>
+    <tr><td>Touched: </td><td><span id="touched_num" class="tune_s_num" ><%= @touched_count %></span></td><td> tunes.</td></tr>
+    <tr><td>Doing: </td><td><span id="doing_num" class="tune_s_num" ><%= @doing_count %></span></td><td> tunes.</td></tr>
+    <tr><td>Done: </td><td><span id="done_num" class="tune_s_num" ><%= @done_count %></span></td><td> tunes.</td></tr>
+  </table>
+  <hr>
+
 <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true ) do %>
   <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();") %></br>
   <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();") %></br>
   <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
   <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
 <% end %>
-
-  <br><br>
-  <div><center>Displayed: <span id="display_num" class="tune_num" >0</span> tunes.</center></div>
   <hr>
-  <center>
-  <table>
-    <tr><td>Touched: </td><td><span id="touched_num" class="tune_s_num" ><%= @touched_count %></span></td><td> tunes.</td></tr>
-    <tr><td>Doing: </td><td><span id="doing_num" class="tune_s_num" ><%= @doing_count %></span></td><td> tunes.</td></tr>
-    <tr><td>Done: </td><td><span id="done_num" class="tune_s_num" ><%= @done_count %></span></td><td> tunes.</td></tr>
-  </table>
   </center>
-  <hr>
+
 </div>
 
   <div id="comments">
   <div class="out-of-tabs">
-    <h3>最近の練習記録</h3>
+    <center>
+      <h3>最近の練習記録</h3>
+    </center>
   </div>
   <ul>
     <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
@@ -103,7 +112,9 @@
   </div>
 </div>
 </div>
+</div>
 
+<div class="span8">
 <div id="main">
   <div id="tune-tabs">
   <ul>
@@ -118,5 +129,9 @@
       <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">
     </div>
   </center>
+</div>
+</div>
+</div>
+
 </div>
 </div>

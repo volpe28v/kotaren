@@ -1,7 +1,10 @@
-<div id="content" class="ui-widget ui-widget-content ui-corner-all">
-  <center>
-    <%= image_tag ("guiter.jpg") %>
-  </center>
+<div class="container">
+<div class="row">
+  <div class="span7">
+    <div id="content" class="ui-widget ui-widget-content ui-corner-all">
+    <center>
+      <%= image_tag ("guiter.jpg") %>
+    </center>
 <p>
 押尾コータローさんの音楽って素晴らしいですね。押尾さんの楽曲に憧れて日々コピーライフを楽しんでいますが、いろいろ手を広げ過ぎ一度弾けていた曲も弾けなくなったりと心配が尽きません。「コタれん」はそんなおっちょこちょいな押尾弾きのための練習支援アプリです。
 
@@ -35,39 +38,39 @@
 
   <hr>
   <h1>人気曲Top10</h1>
-<table>
-  <tr>
-    <th class="welcome-number-title">弾いている人数</th>
-    <th class="welcome-tune-title">曲名</th>
-    <th class="welcome-tuning-title">チューニング</th>
-  </tr>
+  <table>
+    <tr>
+      <th class="welcome-number-title">弾いている人数</th>
+      <th class="welcome-tune-title">曲名</th>
+      <th class="welcome-tuning-title">チューニング</th>
+    </tr>
 
-<% @tune_ranking[0..10].each do |tr| %>
-  <tr>
-    <td class="tune-count"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
-    <td class="tune-title"><%= tr[0].title %></td>
-    <td><%= tr[0].tuning.name %></td>
-  </tr>
-<% end %>
-</table>
+  <% @tune_ranking[0..10].each do |tr| %>
+    <tr>
+      <td class="tune-count"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
+      <td class="tune-title"><%= tr[0].title %></td>
+      <td><%= tr[0].tuning.name %></td>
+    </tr>
+  <% end %>
+  </table>
+    </div>
+  </div>
 
-</div>
-
-<div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
-<div id="user-info">
-<h2>ログイン</h2>
-<%= form_tag('/users/sign_in') do %>
-  <dl>
-    <dt>Email</dt>
-    <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
-  </dl>
+  <div class="span5">
+    <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
+    <h2>ログイン</h2>
+    <%= form_tag('/users/sign_in') do %>
+      <dl>
+        <dt>Email</dt>
+        <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
+     </dl>
 
   <dl>
     <dt>Password</dt>
     <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
   </dl>
   <button id="login" style="display: none" onclick="submit();"></button>
-  <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "minibutton", :onclick => "$('#login').click();" %></p>
+  <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "btn", :onclick => "$('#login').click();" %></p>
    〜 登録ユーザ <%= @user_count %> 人 〜
 <% end %>
 
@@ -79,14 +82,14 @@
   <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
   <%= hidden_field_tag "user[password]", "sample" %>
   <button id="sample-login" style="display: none" onclick="submit();"></button>
-  <p><%= link_to raw('<span>サンプルアカウントでログイン</span>'), "#", :class => "minibutton", :onclick => "$('#sample-login').click();" %></p>
+  <p><%= link_to raw('<span>サンプルアカウントでログイン</span>'), "#", :class => "btn", :onclick => "$('#sample-login').click();" %></p>
 <% end -%>
 
 <hr>
 <h2>使ってみる</h2>
 メアドとパスワードで簡単登録できます。
 
-<p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "minibutton" %></p>
+<p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "btn" %></p>
 
 <hr>
 
@@ -101,7 +104,8 @@
 <hr>
 <h2>更新履歴(github)</h2>
 <div id="divRss"></div>
-</div>
+    </div>
+  </div>
 </div>
 
 <script>

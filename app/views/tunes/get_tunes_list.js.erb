@@ -1,7 +1,7 @@
 updateElem('#tune-list', 
            "<%= escape_javascript(render :partial => 'tunes_list_body') %>")
 
-$(".progress").each(function(elem){
+$(".progress-bar").each(function(elem){
   $(this).progressBar(progress_default_option);
 });
 

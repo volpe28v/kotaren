@@ -1,56 +1,88 @@
-<h2>新規登録</h2>
+<div class="container">
+  <div class="row">
+    <div class="span12"></div>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count,"error") %></h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-horizontal"}) do |f| %>
+      <%= devise_error_messages! %>
+      <fieldset>
+        <legend>新規登録</legend>
+       ログイン後にも変更可能です。
+        <div class="control-group">
+          <%= f.label :name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :name %>
+            <span class="help-inline label label-important">必須</span>
+          </div>
+        </div>
 
-ログイン後にも変更可能です。
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email %>
+            <span class="help-inline label label-important">必須</span>
+          </div>
+        </div>
 
-  <div id="user-info">
-    <dl>
-      <dt><%= f.label :name %> (公開、必須)</dt>
-      <dd><%= f.text_field :name %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :email %> (非公開、必須)</dt>
-      <dd><%= f.email_field :email %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :password %> (非公開、必須)</dt>
-      <dd><%= f.password_field :password %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :password_confirmation %> (非公開、必須)</dt>
-      <dd><%= f.password_field :password_confirmation %></dd>
-    </dl>
-  </div>
-
-  <div id="user-option">
-    <dl>
-      <dt><%= f.label :youtube_name %> (公開、任意)</dt>
-      <dd><%= f.text_field :youtube_name %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :twitter_name %> (公開、任意)</dt>
-      <dd><%= f.text_field :twitter_name %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :main_guitar %> (公開、任意)</dt>
-      <dd><%= f.text_field :guitar %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :favolite_tuning %> (公開、任意)</dt>
-      <dd><%= f.text_field :tuning %></dd>
-    </dl>
+        <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password %>
+            <span class="help-inline label label-important">必須</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :password_confirmation, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password_confirmation %>
+            <span class="help-inline label label-important">必須</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :twitter_name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :twitter_name %>
+            <span class="help-inline label label-info">任意</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :youtube_name, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :youtube_name %>
+            <span class="help-inline label label-info">任意</span>
+          </div>
+        </div>
+         <div class="control-group">
+          <%= f.label :main_guitar, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :guitar %>
+            <span class="help-inline label label-info">任意</span>
+          </div>
+        </div>
+         <div class="control-group">
+          <%= f.label :favolite_tuning, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :tuning %>
+            <span class="help-inline label label-info">任意</span>
+          </div>
+        </div>
  
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit "登録", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+    </div>
   </div>
-
-  <div class="float-clear"></div>
-
-  <div><%= f.submit "登録" %></div>
-<% end %>
+</div>
 

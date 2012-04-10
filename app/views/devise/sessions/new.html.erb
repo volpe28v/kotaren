@@ -1,25 +1,43 @@
-<h2>ログイン</h2>
+<div class="container">
+  <div class="row">
+    <div class="span12"></div>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count,"error") %></h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal"}) do |f| %>
+      <%= devise_error_messages! %>
+      <fieldset>
+        <legend>ログイン</legend>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email %>
+          </div>
+        </div>
 
-  <div id="user-info">
-    <dl>
-      <dt><%= f.label :email %></dt>
-      <dd><%= f.email_field :email %></dd>
-    </dl>
-
-    <dl>
-      <dt><%= f.label :password %></dt>
-      <dd><%= f.password_field :password %></dd>
-    </dl>
+        <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password %>
+          </div>
+        </div>
+ 
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit "ログイン", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+    </div>
   </div>
-
-  <div class="float-clear"></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "ログイン" %></div>
-<% end %>
+</div>
 

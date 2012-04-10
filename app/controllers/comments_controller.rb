@@ -16,4 +16,7 @@ class CommentsController < ApplicationController
     Comment.find(@comment_id).destroy
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
 end

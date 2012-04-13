@@ -9,12 +9,12 @@ module ApplicationHelper
     end
 
     if time < 3.month.ago
-      return raw('<span class="label label-important">last played at ' + time.strftime("%Y-%m-%d %H:%M") + '</span>')
+      return raw('<span class="label label-important">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
     elsif time < 1.month.ago
-      return raw('<span class="label label-warning">last played at ' + time.strftime("%Y-%m-%d %H:%M") + '</span>')
+      return raw('<span class="label label-warning">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
     end
 
-    return raw('<span class="label label-info">last played at ' + time.strftime("%Y-%m-%d %H:%M") + '</span>')
+    return raw('<span class="label label-info">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
 
   end
 end

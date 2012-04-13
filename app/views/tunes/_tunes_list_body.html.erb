@@ -11,6 +11,7 @@
           <button class="btn btn-mini" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
         </td>
       <% end %>
+      <td><%= last_played_at(t.progress_updated_at(@user)) %></td>
     </tr>
   <% end %>
 </table>

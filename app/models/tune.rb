@@ -38,7 +38,8 @@ class Tune < ActiveRecord::Base
   end
 
   def progress_updated_at(user)
-    return 0 if !user
+    return '-' if !user
+    return '-' if self.progress_val(user) == 0
 
     progress = self.progresses.find_by_user_id(user.id)
     return progress ? progress.updated_at : "-"

@@ -90,7 +90,7 @@ $(document).ready(function(){
                   <button class="btn btn-success" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i> 弾いたよ</font></button>
                 <% end %>
  
-              <div id="last-played-label">
+              <div id="progress_updated_at_<%= @tune.id %>">
                 <%= last_played_at(@tune.progress_updated_at(@user)) %>
               </div>
               <hr>

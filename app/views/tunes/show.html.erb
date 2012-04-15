@@ -84,9 +84,12 @@ $(document).ready(function(){
                 <% if current_user == @user %>
                   <button class="btn" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
                   <button class="btn" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
-                  <button class="btn btn-success" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i> 弾いたよ</font></button>
                 <% end %>
               </p>
+                <% if current_user == @user %>
+                  <button class="btn btn-success" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i> 弾いたよ</font></button>
+                <% end %>
+ 
               <div id="last-played-label">
                 <%= last_played_at(@tune.progress_updated_at(@user)) %>
               </div>

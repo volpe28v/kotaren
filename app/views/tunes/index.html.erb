@@ -24,15 +24,6 @@
     $("#my_comment").click();
   });
 
-  function updateElem(id, html){
-    if ( $(id).html() == html ){return}
-
-    $(id).hide();
-    $(id).empty();
-    $(id).html(html);
-    $(id).fadeIn();
-  }
-
   function loadTunes(){
     $('#update_tunes').click();
     $('#tune-list').hide();

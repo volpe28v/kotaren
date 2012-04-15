@@ -49,6 +49,10 @@ class Tune < ActiveRecord::Base
     return 0 if !user
 
     progress = self.progresses.find_or_initialize_by_user_id(user.id)
+    #TODO: どんな値でも updated_at を更新したいので一旦 0 で保存している
+    #      もっと良い方法があれば変更する。
+    progress.percent = 0
+    progress.save
     progress.percent = val
     progress.save
   end

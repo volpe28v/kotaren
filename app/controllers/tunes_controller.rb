@@ -77,7 +77,7 @@ class TunesController < ApplicationController
 
   def set_tune_counts(user)
     @base_tunes = session[:current_album_id] ? Album.find(session[:current_album_id]).tunes : Tune
-    tuning = session[:current_tuning_id] ? Tuning.find(session[:current_tuning_id]).name : "" 
+    tuning = session[:current_tuning_id] ? Tuning.find(session[:current_tuning_id]).name : ""
 
     @touched_count = @base_tunes.by_status_and_user(@@statuses_def[1][0],user).all_or_filter_by_tuning(tuning).count
     @doing_count   = @base_tunes.by_status_and_user(@@statuses_def[2][0],user).all_or_filter_by_tuning(tuning).count

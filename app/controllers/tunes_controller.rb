@@ -56,8 +56,8 @@ class TunesController < ApplicationController
 
   def update_progress
     @user = User.find(params[:user_id])
-    tune = Tune.find(params[:tune_id])
-    tune.update_progress(@user,params[:progress_val])
+    @tune = Tune.find(params[:tune_id])
+    @tune.update_progress(@user,params[:progress_val])
 
     set_tune_counts(@user)
   end

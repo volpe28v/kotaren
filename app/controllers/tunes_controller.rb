@@ -45,13 +45,10 @@ class TunesController < ApplicationController
     tuning = params[:tuning_name]
     status = params[:tune_status]
 
-    session[:current_album_id] = album.try(:id)
-    session[:current_tuning_id] = Tuning.find_by_name(tuning).try(:id)
-    selected_status_def = @@statuses_def.detect{|sd| sd[0] == status }
-    session[:current_status] = selected_status ? selected_status[1] : @@statuses_def[0][1]
+    set_current_tune_statuses_to_session( album,tuning,status)
 
     base_tunes = album ? album.tunes : Tune
-    @tunes = base_tunes.by_status_and_user(selected_status_def[1],@user).all_or_filter_by_tuning(tuning)
+    @tunes = base_tunes.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning(tuning)
 
     set_tune_counts(@user)
   end
@@ -65,6 +62,14 @@ class TunesController < ApplicationController
   end
 
   private
+  def set_current_tune_statuses_to_session( album, tuning, status )
+    session[:current_album_id] = album.try(:id)
+    session[:current_tuning_id] = Tuning.find_by_name(tuning).try(:id)
+
+    status_def = @@statuses_def.detect{|sd| sd[0] == status }
+    session[:current_status] = status_def ? status_def : @@statuses_def[0]
+  end
+
   def selected_album_title
     session[:current_album_id] ? Album.find(session[:current_album_id]).title : "All Albums"
   end
@@ -74,7 +79,7 @@ class TunesController < ApplicationController
   end
 
   def selected_status
-    session[:current_status] ? session[:current_status] : @@statuses_def[0][1]
+    session[:current_status] ? session[:current_status] : @@statuses_def[0]
   end
 
   def set_tune_counts(user)

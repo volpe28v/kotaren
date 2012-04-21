@@ -12,6 +12,7 @@ class Tune < ActiveRecord::Base
   scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
   scope :done , includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
   scope :touched , includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
+  scope :play_history , includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
 
   scope :progress_by_user , lambda {|user|
     includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
@@ -25,6 +26,8 @@ class Tune < ActiveRecord::Base
       done.progress_by_user(user)
     when "Touched"
       touched.progress_by_user(user)
+    when "PlayHistory"
+      play_history.progress_by_user(user)
     else
 
     end

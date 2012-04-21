@@ -6,6 +6,7 @@ class TunesController < ApplicationController
       ['Touched'   , 'touched'],
       ['Doing'     , 'doing'],
       ['Done'      , 'done'],
+      ['PlayHistory','play_history'],
   ]
 
   def index

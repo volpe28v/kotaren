@@ -3,7 +3,7 @@
   <% @tunes.each do |t| %>
     <tr>
       <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
-      <td class="tuning-name"><%= t.tuning.name %></td>
+      <td class="tuning-name"><%= link_to t.tuning.name,"#" %></td>
       <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
       <% if current_user == @user %>
         <td class="progress-button">
@@ -16,4 +16,15 @@
   <% end %>
 </table>
 </div>
+
+<script>
+  $('.tuning-name a').click(
+    function(){
+      var tuning = $(this).html();
+      $('#tuning_name').val(tuning)
+      loadTunes();
+    }
+  );
+</script>
+
 

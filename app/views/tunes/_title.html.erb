@@ -1,15 +1,21 @@
-<div id="title">
-<div class="user-name"><%= link_to @user.default_name, user_tunes_path(@user) %></div>
-<div class="this-is-you">
-  <% if @user == current_user %>
-    <%= raw('<span class="you">This is You!</span>') %>
-    <% unless current_user.is_sample? %>
-      <%= link_to raw('<span>Edit Your Profile</span>'), edit_user_path(current_user) , :class => "btn btn-mini btn-info" %>
-    <% end %>
-  <% end %>
-</div>
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span4">
+    <div class="user-name"><%= link_to @user.default_name, user_tunes_path(@user) %></div>
+  </div>
 
+  <div class="span3">
+    <div class="this-is-you">
+      <% if @user == current_user %>
+        <%= raw('<span class="you">This is You!</span>') %>
+        <% unless current_user.is_sample? %>
+          <%= link_to raw('<span>Edit Your Profile</span>'), edit_user_path(current_user) , :class => "btn btn-mini btn-info" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
+  <div class="span2">
 <div class="user-option">
   <dl>
     <dt>youtube</dt>
@@ -20,7 +26,9 @@
     <dd><%= @user.twitter_name.blank? ? "-" : link_to(@user.twitter_name, @user.twitter_url) %></dd>
   </dl>
 </div>
+  </div>
 
+  <div class="span2">
 <div class="user-option">
   <dl>
     <dt>guitar</dt>
@@ -32,7 +40,7 @@
   </dl>
 </div>
 
-<div class="clear"></div>
+  </div>
 </div>
 
 

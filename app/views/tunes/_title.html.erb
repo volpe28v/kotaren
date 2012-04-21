@@ -1,10 +1,10 @@
 <div class="row-fluid">
   <div class="span1"></div>
-  <div class="span4">
+  <div class="span3">
     <div class="user-name"><%= link_to @user.default_name, user_tunes_path(@user) %></div>
   </div>
 
-  <div class="span3">
+  <div class="span2">
     <div class="this-is-you">
       <% if @user == current_user %>
         <%= raw('<span class="you">This is You!</span>') %>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="span2">
+  <div class="span3">
 <div class="user-option">
   <dl>
     <dt>youtube</dt>
@@ -28,7 +28,7 @@
 </div>
   </div>
 
-  <div class="span2">
+  <div class="span3">
 <div class="user-option">
   <dl>
     <dt>guitar</dt>

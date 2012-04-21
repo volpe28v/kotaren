@@ -18,9 +18,9 @@ class TunesController < ApplicationController
     @current_tuning = selected_tuning_name
     @current_status = selected_status
 
-    @touched_count = @user.tunes_count(@@statuses_def[1][0])
-    @doing_count   = @user.tunes_count(@@statuses_def[2][0])
-    @done_count    = @user.tunes_count(@@statuses_def[3][0])
+    @touched_count = @user.tunes_count(@@statuses_def[1][1])
+    @doing_count   = @user.tunes_count(@@statuses_def[2][1])
+    @done_count    = @user.tunes_count(@@statuses_def[3][1])
 
     @latest_comments = @user.comments.latest
     @other_comments = Comment.other_by(@user)
@@ -47,10 +47,11 @@ class TunesController < ApplicationController
 
     session[:current_album_id] = album.try(:id)
     session[:current_tuning_id] = Tuning.find_by_name(tuning).try(:id)
-    session[:current_status] = @@statuses_def.detect{|sd| sd[0] == status }
+    selected_status_def = @@statuses_def.detect{|sd| sd[0] == status }
+    session[:current_status] = selected_status ? selected_status[1] : @@statuses_def[0][1]
 
     base_tunes = album ? album.tunes : Tune
-    @tunes = base_tunes.by_status_and_user(status,@user).all_or_filter_by_tuning(tuning)
+    @tunes = base_tunes.by_status_and_user(selected_status_def[1],@user).all_or_filter_by_tuning(tuning)
 
     set_tune_counts(@user)
   end
@@ -73,16 +74,16 @@ class TunesController < ApplicationController
   end
 
   def selected_status
-    session[:current_status] ? session[:current_status] : @statuses[0]
+    session[:current_status] ? session[:current_status] : @@statuses_def[0][1]
   end
 
   def set_tune_counts(user)
     @base_tunes = session[:current_album_id] ? Album.find(session[:current_album_id]).tunes : Tune
     tuning = session[:current_tuning_id] ? Tuning.find(session[:current_tuning_id]).name : ""
 
-    @touched_count = @base_tunes.by_status_and_user(@@statuses_def[1][0],user).all_or_filter_by_tuning(tuning).count
-    @doing_count   = @base_tunes.by_status_and_user(@@statuses_def[2][0],user).all_or_filter_by_tuning(tuning).count
-    @done_count    = @base_tunes.by_status_and_user(@@statuses_def[3][0],user).all_or_filter_by_tuning(tuning).count
+    @touched_count = @base_tunes.by_status_and_user(@@statuses_def[1][1],user).all_or_filter_by_tuning(tuning).count
+    @doing_count   = @base_tunes.by_status_and_user(@@statuses_def[2][1],user).all_or_filter_by_tuning(tuning).count
+    @done_count    = @base_tunes.by_status_and_user(@@statuses_def[3][1],user).all_or_filter_by_tuning(tuning).count
   end
 
 end

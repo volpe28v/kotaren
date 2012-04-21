@@ -20,13 +20,13 @@ class Tune < ActiveRecord::Base
 
   scope :by_status_and_user, lambda {|status,user|
     case status
-    when "Doing"
+    when "doing"
       doing.progress_by_user(user)
-    when "Done"
+    when "done"
       done.progress_by_user(user)
-    when "Touched"
+    when "touched"
       touched.progress_by_user(user)
-    when "PlayHistory"
+    when "play_history"
       play_history.progress_by_user(user)
     else
 

@@ -15,6 +15,9 @@ module ApplicationHelper
     end
 
     return raw('<span class="label label-success">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
+  end
 
+  def is_sample_user(user)
+    user.email == "sample@sample.kotaren"
   end
 end

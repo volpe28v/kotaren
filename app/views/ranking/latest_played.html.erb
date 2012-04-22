@@ -11,6 +11,7 @@
   </tr>
   <% @progresses.each do |p| %>
     <% next if p.percent == 0 %>
+    <% next if is_sample_user(p.user) %>
     <tr>
       <td id="progress_updated_at_<%= p.tune.id %>"><%= last_played_at(p.tune.progress_updated_at(p.user)) %></td>
       <td><%= link_to p.user.default_name, user_tunes_path(p.user) %>

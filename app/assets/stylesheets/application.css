@@ -312,26 +312,15 @@ a:hover { color:#EA1F00; }
   line-height: 21px;
 }
 
-.user-option {
-  float: left;
-}
-
 .user-option dl{
   margin: 0;
 }
 
 .user-option dl dt{
-  margin: 0;
   float: left;
-  width: 55px;
+  width: 60px;
   color: #999;
 }
-
-.user-option dl dd{
-  float: left;
-  margin: 0;
-}
-
 
 #error_explanation {
   width: 450px;

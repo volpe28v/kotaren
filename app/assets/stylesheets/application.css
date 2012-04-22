@@ -274,7 +274,6 @@ a:hover { color:#EA1F00; }
   color: #495961;
   float: left;
   width: 380px;
-  
 }
 
 .this-is-you {
@@ -368,6 +367,23 @@ dd .field_w5th_errors {
 .ranking-title{
   text-align: left;
 }
+
+.ranking-user-title{
+  text-align: left;
+  width: 90px;
+}
+
+.comment-count-title{
+  text-align: left;
+  width: 90px;
+}
+
+.latest_date_title{
+  text-align: left;
+  width: 150px;
+}
+
+
 
 #players-list {
   float: right;

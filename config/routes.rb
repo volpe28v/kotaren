@@ -1,6 +1,7 @@
 Kotaren::Application.routes.draw do
 
   get "ranking/index"
+  get "ranking/latest_played"
 
   root :to => "welcome#index"
 

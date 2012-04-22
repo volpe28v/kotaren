@@ -47,9 +47,10 @@
               <ul class="nav pull-left">
                 <li><%= link_to '自分の楽曲リスト', user_tunes_path(current_user) %>
                 <li><%= link_to '練習曲ランキング', ranking_index_path %>
-                <li><%= link_to 'ユーザ一覧', list_users_path %>
+                <li><%= link_to '練習履歴', ranking_latest_played_path %>
               </ul>
               <ul class="nav pull-right">
+                <li><%= link_to 'ユーザ一覧', list_users_path %>
                 <% unless current_user.is_sample? %>
                   <li><%= link_to 'ユーザ情報編集', edit_user_path(current_user) %>
                 <% end %>

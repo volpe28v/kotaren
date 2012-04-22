@@ -14,4 +14,8 @@ class RankingController < ApplicationController
     @other_comments = Comment.other_by(@user).by_tune(@tune)
     @other_member_count = Progress.includes(:tune).where("tunes.id = ? and percent > 0", @tune.id).count - ( @progress_val > 0 ? 1 : 0 )
   end
+
+  def latest_played
+    @progresses = Progress.order("updated_at DESC").limit(30)
+  end
 end

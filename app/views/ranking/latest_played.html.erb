@@ -1,0 +1,32 @@
+<div class="container">
+
+<div id="user-list">
+<table>
+  <tr>
+    <th class="latest_date_title">弾いた日</th>
+    <th class="ranking-user-title">ユーザ名</th>
+    <th class="tune-ranking-title">曲名</th>
+    <th class="ranking-title">進捗</th>
+    <th class="comment-count-title">練習記録数</th>
+  </tr>
+  <% @progresses.each do |p| %>
+    <% next if p.percent == 0 %>
+    <tr>
+      <td id="progress_updated_at_<%= p.tune.id %>"><%= last_played_at(p.tune.progress_updated_at(p.user)) %></td>
+      <td><%= link_to p.user.default_name, user_tunes_path(p.user) %>
+      <td><%= link_to p.tune.title, user_tune_path(p.user,p.tune) %></td>
+      <td class="progress-bar-area"><span class="progress-bar"><%= p.tune.progress_val(p.user) %></span></td>
+      <td><%= p.tune.comments.where(:user_id => p.user.id).count %></td>
+    </tr>
+
+  <% end %>
+</table>
+</div>
+
+</div>
+
+<script>
+$(".progress-bar").each(function(elem){
+  $(this).progressBar(progress_default_option);
+});
+</script>

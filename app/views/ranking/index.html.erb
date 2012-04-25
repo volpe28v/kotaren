@@ -15,8 +15,8 @@
     <td class="tune-count"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
     <td class="tune-ranking-title"><%= link_to tr[0].title, user_tune_path(current_user,tr[0]) %></td>
     <td><%= tr[0].tuning.name %></td>
-    <td><span id="progress_<%= tr[0].id %>" class="progress"><%= tr[0].progress_val(current_user) %></span></td>
-    <td><span class="progress"><%= tr[0].progresses.inject(0){|sum,p| sum += (p ? p.percent.to_i : 0) } / (tr[1] > 0 ? tr[1] : 1) %></span></td>
+    <td><span id="progress_<%= tr[0].id %>" class="progress-bar"><%= tr[0].progress_val(current_user) %></span></td>
+    <td><span class="progress-bar"><%= tr[0].progresses.inject(0){|sum,p| sum += (p ? p.percent.to_i : 0) } / (tr[1] > 0 ? tr[1] : 1) %></span></td>
   </tr>
 <% end %>
 </table>
@@ -25,7 +25,7 @@
 </div>
 
 <script>
-$(".progress").each(function(elem){
+$(".progress-bar").each(function(elem){
   $(this).progressBar(progress_default_option);
 });
 </script>

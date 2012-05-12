@@ -130,7 +130,7 @@ $(document).ready(function(){
                     <br>
                     <dd>
                       <div class="comment-text">
-                        <%= vrp_player( auto_link( simple_format(c.text))) %>
+                        <%= vrp_player_show( auto_link( simple_format(c.text))) %>
                       </div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
@@ -148,7 +148,9 @@ $(document).ready(function(){
                     </dt>
                     <br>
                     <dd>
-                      <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+                      <div class="comment-text">
+                        <%= vrp_player_show( auto_link( simple_format(c.text))) %>
+                      </div>
                       <div class="comment-name">by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %></div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>

@@ -21,8 +21,17 @@ module ApplicationHelper
     user.email == "sample@sample.kotaren"
   end
 
-  def vrp_player(id)
-    return raw('<iframe class="vrp" src="https://vr.shapeservices.com/play.php?id=' + id + '#player"></iframe>')
+  def vrp_player(text)
+    raw(text.sub(/vrp:(\w+)/, vrp_player_html('\1')))
+  end
+
+  def vrp_player_html(id)
+    return "" if id == nil
+    url = 'https://vr.shapeservices.com/play.php?hash=' + id
+    raw(
+      '<iframe class="vrp" scrolling="yes" src="' + url + '#player"></iframe>' +
+      '<br><a href="' + url + '">[URL for VR+]</a>'
+       )
   end
 
 end

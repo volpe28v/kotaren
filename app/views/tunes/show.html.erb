@@ -129,7 +129,9 @@ $(document).ready(function(){
                     </dt>
                     <br>
                     <dd>
-                      <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+                      <div class="comment-text">
+                        <%= vrp_player( auto_link( simple_format(c.text))) %>
+                      </div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
                   </dl>

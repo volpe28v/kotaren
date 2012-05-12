@@ -20,4 +20,9 @@ module ApplicationHelper
   def is_sample_user(user)
     user.email == "sample@sample.kotaren"
   end
+
+  def vrp_player(id)
+    return raw('<iframe class="vrp" src="https://vr.shapeservices.com/play.php?id=' + id + '#player"></iframe>')
+  end
+
 end

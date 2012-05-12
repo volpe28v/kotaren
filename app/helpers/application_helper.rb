@@ -48,7 +48,7 @@ module ApplicationHelper
   def vrp_player_link(id)
     url = get_vrp_url(id)
     raw(
-      '<a href="' + url + '">[URL for VR+]</a>'
+      '<a class="btn btn-mini" href="' + url + '">URL for VR+</a>'
        )
   end
 

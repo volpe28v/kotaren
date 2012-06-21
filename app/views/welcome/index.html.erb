@@ -70,6 +70,7 @@
   </dl>
   <button id="login" style="display: none" onclick="submit();"></button>
   <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "btn", :onclick => "$('#login').click();" %></p>
+  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
    〜 登録ユーザ <%= @user_count %> 人 〜
 <% end %>
 

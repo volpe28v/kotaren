@@ -3,6 +3,7 @@
 <div id="user-list">
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Youtube</th>
     <th>twitter</th>
@@ -14,6 +15,11 @@
 
   <% @users.each do |u| %>
     <tr>
+      <td>
+      <% if u.icon_url.blank? == false %>
+        <%= image_tag(u.icon_url, :class => "user-icon-img") %>
+      <% end %>
+      </td>
       <td>
         <%= link_to u.default_name, user_tunes_path(u) %>
         <%= raw('<br><span class="you">This is You!</span>') if u == current_user %>

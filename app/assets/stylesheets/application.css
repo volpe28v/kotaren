@@ -270,6 +270,7 @@ a:hover { color:#EA1F00; }
 
 .user-icon-img {
   height: 36px;
+  width: 36px;
   vertical-align: middle;
   position: relative;
   top: -2px;

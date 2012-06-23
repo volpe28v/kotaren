@@ -1,7 +1,6 @@
 <div class="container">
 
-<div id="user-list">
-<table>
+<table class="table table-striped">
   <tr>
     <th></th>
     <th>Name</th>
@@ -26,9 +25,9 @@
       </td>
       <td><%= u.youtube_name.blank? ? "-" : link_to(u.youtube_name, u.youtube_url) %></td>
       <td><%= u.twitter_name.blank? ? "-" : link_to(u.twitter_name, u.twitter_url) %></td>
-      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('touched') %></span></td>
-      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('doing') %></span></td>
-      <td class="tune-count"><span class="tune_s_num"><%= u.tunes_count('done') %></span></td>
+      <td><span class="tune_s_num"><%= u.tunes_count('touched') %></span></td>
+      <td><span class="tune_s_num"><%= u.tunes_count('doing') %></span></td>
+      <td><span class="tune_s_num"><%= u.tunes_count('done') %></span></td>
       <td>
       <% c = u.comments.last %>
       <% if c != nil %>
@@ -46,6 +45,4 @@
     </tr>
   <% end %>
 </table>
-</div>
-
 </div>

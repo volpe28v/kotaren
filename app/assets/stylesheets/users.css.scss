@@ -2,23 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#user-list table {
-  border-collapse: collapse;  border-spacing: 0;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#user-list th {
-  padding: 10px 20px;
-  color: #1D5C79;
-  border-bottom: 2px solid #1D5C79;
-}
-#user-list td {
-  padding: 10px 20px;
-  color: #1D5C79;
-  border-bottom: 1px solid #DDD;
-}
-
 .comment textarea{
   width: 374px;
   height: 34px;                                                                       
@@ -51,42 +34,9 @@
   font-style: bold;
 }
 
-.tune-count {
-  text-align: center;
-}
-
 .you{
   color: red;
   font-style: italic;
   font-size: 12px;
-}
-
-#user-info {
-  float: left;
-}
-
-#user-info dt , #user-option dt{
-  font-size: 14px;
-  font-weight: bold;
-}
-
-#user-info dd , #user-option dd{
-  margin: 0px;
-}
-
-#user-info input , #user-option input{
-  font-size: 14px;
-  padding: 5px;
-  font-family: helvetica, arial, freesans, sans-serif;
-  color: #666;
-}
-
-#user-option {
-  float: left;
-  padding-left: 10px;
-}
-
-.float-clear {
-  clear: both;
 }
 

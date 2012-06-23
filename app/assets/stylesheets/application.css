@@ -369,7 +369,9 @@ dd .field_w5th_errors {
   width: 150px;
 }
 
-
+.user-icon{
+  width: 36px;
+}
 
 #players-list {
   float: right;

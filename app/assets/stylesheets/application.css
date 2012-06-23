@@ -30,6 +30,10 @@ body {
   clear:both;　/*floatの解除*/
 }
 
+.sign-in-link-with-service{
+  color: white;
+}
+
 footer {
   background: #fff;
   width: 100%;

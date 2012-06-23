@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112154500) do
+ActiveRecord::Schema.define(:version => 20120623085811) do
 
   create_table "albums", :force => true do |t|
     t.string   "title"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20120112154500) do
     t.string   "twitter_name"
     t.string   "guitar"
     t.string   "tuning"
+    t.string   "icon_url"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

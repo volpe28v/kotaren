@@ -264,15 +264,25 @@ a:hover { color:#EA1F00; }
   color: #F00;
 }
 
+.user-icon-img {
+  height: 36px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 2px;
+  padding: 2px;
+  border: 1px solid #DDD;
+}
+
 .user-name {
   margin-bottom: 0;
+  vertical-align: middle;
   font-size: 30px;
   height: 30px;
   font-weight: bold;
   letter-spacing: -1px;
   text-shadow: 1px 1px 0 white;
   color: #495961;
-  float: left;
   width: 380px;
 }
 
@@ -280,35 +290,6 @@ a:hover { color:#EA1F00; }
   margin: 5px;
   width: 190px;
   float: left;
-}
-
-.minibutton {
-  position: relative;
-  display: inline-block;
-  height: 21px;
-  padding: 0 0 0 3px;
-  margin-left: 5px;
-  cursor: pointer;
-  font-family: Helvetica,arial,freesans,clean,sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  color: #333;
-  text-shadow: 1px 1px 0 white;
-  white-space: nowrap;
-  border: 1px solid #D4D4D4;
-  border-radius: 3px;
-  background: #F4F4F4;
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f4f4f4',endColorstr='#ececec');
-  background: -webkit-gradient(linear,left top,left bottom,from(#F4F4F4),to(#ECECEC));
-  background: -moz-linear-gradient(top,#F4F4F4,#ECECEC);
-  background: -o-linear-gradient(top,#F4F4F4,#ECECEC);
-}
-
-.minibutton > span {
-  display: block;
-  height: 21px;
-  padding: 0 9px 0 7px;
-  line-height: 21px;
 }
 
 .user-option dl{

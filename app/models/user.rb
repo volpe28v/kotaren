@@ -52,10 +52,13 @@ class User < ActiveRecord::Base
     user = User.find_by_email(auth.info.email)
 
     unless user
-      user = User.create(name:auth.extra.raw_info.name,
-                         email:auth.info.email,
-                         password:Devise.friendly_token[0,20]
+      user = User.create(name:     auth.extra.raw_info.name,
+                         email:    auth.info.email,
+                         icon_url: auth.info.image,
+                         password: Devise.friendly_token[0,20]
                         )
+    else
+      user.update_attribute(:icon_url, auth.info.image)
     end
     user
   end

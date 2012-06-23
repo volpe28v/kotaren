@@ -48,14 +48,14 @@ class User < ActiveRecord::Base
     self.email == "sample@sample.kotaren"
   end
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+  def self.find_for_facebook_oauth(auth, signed_in_resource = nil)
     user = User.find_by_email(auth.info.email)
 
     unless user
       user = User.create(name:auth.extra.raw_info.name,
                          email:auth.info.email,
                          password:Devise.friendly_token[0,20]
-                         )
+                        )
     end
     user
   end

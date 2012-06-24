@@ -2,8 +2,8 @@
 
 <table class="table table-striped">
   <tr>
-    <th class="latest_date_title">弾いた日</th>
-    <th class="user-icon"></th>
+    <th class="latest-date-title">弾いた日</th>
+    <th class="user-icon-mini"></th>
     <th class="ranking-user-title">ユーザ名</th>
     <th class="tune-ranking-title">曲名</th>
     <th class="ranking-title">進捗</th>
@@ -16,7 +16,7 @@
       <td id="progress_updated_at_<%= p.tune.id %>"><%= last_played_at(p.tune.progress_updated_at(p.user)) %></td>
       <td>
       <% if p.user.icon_url.blank? == false %>
-        <%= image_tag(p.user.icon_url, :class => "user-icon-img") %>
+        <%= image_tag(p.user.icon_url, :class => "user-icon-img-mini") %>
       <% end %>
       </td>
       <td><%= link_to p.user.default_name, user_tunes_path(p.user) %>

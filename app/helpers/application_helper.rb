@@ -5,16 +5,16 @@ module ApplicationHelper
 
   def last_played_at(time)
     if time == '-'
-      return raw('<span class="label">let\'s try to play this tune!</span>')
+      return raw('<span class="label">Let\'s play!</span>')
     end
 
     if time < 3.month.ago
-      return raw('<span class="label label-important">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
+      return raw('<span class="label label-important">' + time.strftime("%Y-%m-%d") + '</span>')
     elsif time < 1.month.ago
-      return raw('<span class="label label-warning">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
+      return raw('<span class="label label-warning">' + time.strftime("%Y-%m-%d") + '</span>')
     end
 
-    return raw('<span class="label label-success">last played at ' + time.strftime("%Y-%m-%d") + '</span>')
+    return raw('<span class="label label-success">' + time.strftime("%Y-%m-%d") + '</span>')
   end
 
   def is_sample_user(user)

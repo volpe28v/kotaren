@@ -10,6 +10,11 @@
           <button class="btn btn-mini" onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><%= "<" %></button>
           <button class="btn btn-mini" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
         </td>
+      <% else %>
+        <td class="progress-button">
+          <button class="btn btn-mini disabled"><%= "<" %></button>
+          <button class="btn btn-mini disabled"><%= ">" %></button>
+        </td>
       <% end %>
       <td id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
     </tr>

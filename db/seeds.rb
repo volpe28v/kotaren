@@ -291,7 +291,7 @@ register_album [
   ["ミスティ・ナイト",  "EADGBD"],
   ["天使の日曜日",  "E♭B♭E♭A♭C♭E♭"],
   ["ナユタ",  "C#G#D#G#CD#"],
-  ["風の詩",  "Standard"],
+  ["風の詩 〜10th Ver〜",  "DADGBE"],
   ["DREAMING",  "Standard"],
   ["オアシス",  "AEEF#BE"],
   ["桜・咲くころ",  "Standard"],

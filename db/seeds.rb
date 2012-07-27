@@ -262,3 +262,42 @@ register_album [
   ["fly to the dream",  "CGDGBD"],
   ["また明日。",  "Standard"],
 ]
+
+register_album [
+  "10th Anniversary BEST Upper Side",
+  ["翼 〜Hoping for the FUTURE〜", "DADGAD"],
+  ["HARD RAIN", "GGDGGD"],
+  ["RELATION!", "DADF#AE"],
+  ["Landscape",  "CGDGBD", 3],
+  ["Over Drive",  "AAEEAE"],
+  ["Fantasy!",  "CGDGBD"],
+  ["Tension",  "CGDGB♭D"],
+  ["PINK CANDY",  "BBDG#BF#"],
+  ["太陽のダンス",  "AEEF#BE"],
+  ["TREASURE",  "DADGBD"],
+  ["Snappy!",  "AAEGAE"],
+  ["HEART BEAT!",  "Standard"],
+  ["Big Blue Ocean",  "DADGAD"],
+  ["Jet",  "GGDGAC"],
+  ["Rushin'",  "AAEGAE"],
+  ["ファイト！",  "BEADF#B"],
+]
+
+register_album [
+  "10th Anniversary BEST Ballade Side",
+  ["MOTHER", "C#G#EF#BE"],
+  ["黄昏",  "Standard"],
+  ["Merry Christmas Mr. Lawrence",  "DADGAC"],
+  ["ミスティ・ナイト",  "EADGBD"],
+  ["天使の日曜日",  "E♭B♭E♭A♭C♭E♭"],
+  ["ナユタ",  "C#G#D#G#CD#"],
+  ["風の詩",  "Standard"],
+  ["DREAMING",  "Standard"],
+  ["オアシス",  "AEEF#BE"],
+  ["桜・咲くころ",  "Standard"],
+  ["日曜日のビール",  "GCFB♭DG"],
+  ["木もれ陽",  "Standard", 5],
+  ["Earth Angel",  "AEEF#BE"],
+  ["ずっと… ",  "Standard"],
+]
+

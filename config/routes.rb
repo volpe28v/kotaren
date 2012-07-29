@@ -1,5 +1,7 @@
 Kotaren::Application.routes.draw do
 
+  get "albums/index"
+
   get "ranking/index"
   get "ranking/latest_played"
 
@@ -18,7 +20,9 @@ Kotaren::Application.routes.draw do
       post :get_tunes_list , :on => :collection
       get :update_progress , :on => :collection
     end
+
+    resources :albums
   end
 
-  resources :tunings, :albums, :recordings
+  resources :tunings, :recordings
 end

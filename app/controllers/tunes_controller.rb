@@ -11,7 +11,7 @@ class TunesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @albums = Album.all
+    @albums = Album.scoped.order("id ASC")
     @statuses = @@statuses_def
 
     @current_album = selected_album_title
@@ -35,8 +35,9 @@ class TunesController < ApplicationController
     @other_comments = Comment.other_by(@user).by_tune(@tune)
   end
 
+  #TODO: 未使用かも
   def all
-    @albums = Album.all
+    @albums = Album.scoped.order("id ASC")
   end
 
   def get_tunes_list

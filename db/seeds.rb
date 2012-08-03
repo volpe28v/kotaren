@@ -143,7 +143,7 @@ register_album [
 ]
 
 register_album [
-  "Blue sky ～Kotaro Oshio Best Album～",
+  "Blue sky ~Kotaro Oshio Best Album~",
   ["Blue sky (exciting version)",  "CGDGBD"],
   ["HARD RAIN (type:D)",  "GGDGGD"],
   ["Fantasy!",  "CGDGBD"],

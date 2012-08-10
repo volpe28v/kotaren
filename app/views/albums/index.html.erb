@@ -1,6 +1,44 @@
+<div class="container">
 <div id="album-list">
-<% @albums.each do |al| %>
-  <%= image_tag ("albums/#{al.title}.jpg") %>
-<% end %>
+<div class="row">
+  <div class="span12">
+  <% @albums.each do |al| %>
+    <%= link_to image_tag("albums/#{al.title}.jpg"),"#album_#{al.id}" %>
+  <% end %>
+  </div>
 </div>
+ 
+<div class="row">
+  <div class="span12">
+<% @albums.each do |al| %>
+  <div class="album-tag" id="album_<%= al.id %>"></div>
+  <%= al.title %>
+  <table class="table table-bordered"><tr><td>
+    <%= image_tag ("albums/#{al.title}.jpg") %>
+  </td><td>
+    <table>
+    <% al.tunes.each do |t| %>
+      <tr>
+        <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
+        <td class="tuning-name"><%= t.tuning.name %></td>
+        <td class="progress-bar-area"><span id="progress_<%= "#{al.id}_#{t.id}" %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
+        <td id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
+      </tr>
+    <% end %>
+    </table>
+  </td></tr>
+  </table>
+<% end %>
+  </div>
+
+</div>
+</div>
+</div>
+
+<script>
+$(".progress-bar").each(function(elem){
+  $(this).progressBar(progress_default_option);
+});
+</script>
+
 

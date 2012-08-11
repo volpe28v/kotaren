@@ -5,12 +5,14 @@
     <ul class="thumbnails">
       <% @albums.each do |al| %>
       <li class="span2">
-        <div class="thumbnail">
-          <%= link_to image_tag("albums/#{al.title}.jpg"),"#album_#{al.id}" %>
-          <div class="album-caption">
-            <h5><%= al.title %></h5>
-            <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
-          </div>
+        <div class="thumbnail ui-widget-content">
+          <a href="<%= "#album_#{al.id}" %>">
+            <%= image_tag("albums/#{al.title}.jpg") %>
+            <div class="album-caption">
+              <h5><%= al.title %></h5>
+              <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
+            </div>
+          </a>
         </div>
       </li>
       <% end %>
@@ -25,9 +27,15 @@
 <% @albums.each do |al| %>
   <div class="album-tag" id="album_<%= al.id %>"></div>
   <%= al.title %>
-  <table class="table table-bordered"><tr><td>
+  <table class="ui-widget-content table table-bordered"><tr><td>
     <%= image_tag ("albums/#{al.title}.jpg") %>
     <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
+  <table>
+    <tr><td>All: </td><td style="text-align: right"><span id="all_num" class="tune_s_num" ><%= al.tunes.size %></span></td><td> tunes.</td></tr>
+    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= al.tunes.doing.size %></span></td><td> tunes.</td></tr>
+    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= al.tunes.done.size %></span></td><td> tunes.</td></tr>
+  </table>
+ 
   </td><td>
     <table>
     <% al.tunes.each do |t| %>

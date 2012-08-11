@@ -17,7 +17,8 @@ end
     click_on("新規登録して使ってみる")
   when "ログイン画面"
     visit('/')
-    find(".login-menu").click_on("ログイン")
+#    find(".login-menu").click_on("ログイン")
+    click_link("Login")
   else
     fail
   end
@@ -59,7 +60,7 @@ end
     page.should have_content("新規登録")
     page.should have_content("ログイン後にも変更可能です。")
   when "ログイン画面"
-    find('h2').should have_content("ログイン")
+    find('legend').should have_content("ログイン")
     page.should have_css('#user_email')
     page.should have_css('#user_password')
   when "ランキング画面"
@@ -101,7 +102,7 @@ end
 end
 
 もし /^　  "([^"]*)" リンクをクリックする$/ do |link_name|
-  find(".login-menu").click_on(link_name)
+  click_link(link_name)
 end
 
 もし /^　  "([^"]*)" のログインをクリックする$/ do |page_name|

@@ -34,8 +34,8 @@
     <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
   <table>
     <tr><td>All: </td><td style="text-align: right"><span id="all_num" class="tune_s_num" ><%= al.tunes.size %></span></td><td> tunes.</td></tr>
-    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= al.tunes.doing.size %></span></td><td> tunes.</td></tr>
-    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= al.tunes.done.size %></span></td><td> tunes.</td></tr>
+    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= al.tunes.doing.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
+    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= al.tunes.done.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
   </table>
  
   </td><td>

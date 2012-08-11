@@ -50,7 +50,7 @@ footer span {
   font-size: 12px;
 }
 
-#menu, #main , #detail, #content, #sidebar, #sub-contents{
+#menu, #main , #detail, #content, #sidebar, #sub-contents, .album-contents{
   background-color: #f6f6f6;
   border-radius: 5px;
   -moz-border-radius: 5px;

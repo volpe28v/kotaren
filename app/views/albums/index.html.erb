@@ -2,12 +2,24 @@
 <div id="album-list">
 <div class="row">
   <div class="span12">
-  <% @albums.each do |al| %>
-    <%= link_to image_tag("albums/#{al.title}.jpg"),"#album_#{al.id}" %>
-  <% end %>
+    <ul class="thumbnails">
+      <% @albums.each do |al| %>
+      <li class="span2">
+        <div class="thumbnail">
+          <%= link_to image_tag("albums/#{al.title}.jpg"),"#album_#{al.id}" %>
+          <div class="album-caption">
+            <h5><%= al.title %></h5>
+            <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
   </div>
 </div>
- 
+</div> 
+
+<div id="album-tunes">
 <div class="row">
   <div class="span12">
 <% @albums.each do |al| %>
@@ -15,6 +27,7 @@
   <%= al.title %>
   <table class="table table-bordered"><tr><td>
     <%= image_tag ("albums/#{al.title}.jpg") %>
+    <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
   </td><td>
     <table>
     <% al.tunes.each do |t| %>

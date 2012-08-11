@@ -3,9 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #album-list img{
-  width: 128px;
+  height: 128px;
 }
 
+.album-caption {
+  height: 60px;
+}
+
+#album-tunes img{
+  width: 128px;
+}
 .album-tag {
   height: 50px;
 }

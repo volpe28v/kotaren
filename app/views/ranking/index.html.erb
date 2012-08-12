@@ -2,16 +2,18 @@
 
 <table class="table table-striped">
   <tr>
-    <th>弾いている人数</th>
+    <th class="tune-player-num-title">弾いている人数</th>
     <th class="tune-ranking-title">曲名</th>
     <th class="tuning-title">チューニング</th>
-    <th class="ranking-title">あなたの進捗</th>
+    <% if current_user %>
+      <th class="ranking-title">あなたの進捗</th>
+    <% end %>
     <th class="ranking-title">平均進捗</th>
   </tr>
 
 <% @tune_ranking.each do |tr| %>
   <tr>
-    <td class="tune-count"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
+    <td class="tune-player-num-title"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
     <td class="tune-ranking-title">
       <% if current_user %>
         <%= link_to tr[0].title, user_tune_path(current_user,tr[0]) %></td>
@@ -19,7 +21,9 @@
         <%= tr[0].title %></td>
       <% end %>
     <td><%= tr[0].tuning.name %></td>
-    <td><span id="progress_<%= tr[0].id %>" class="progress-bar"><%= tr[0].progress_val(current_user) %></span></td>
+    <% if current_user %>
+      <td><span id="progress_<%= tr[0].id %>" class="progress-bar"><%= tr[0].progress_val(current_user) %></span></td>
+    <% end %>
     <td><span class="progress-bar"><%= tr[0].progresses.inject(0){|sum,p| sum += (p ? p.percent.to_i : 0) } / (tr[1] > 0 ? tr[1] : 1) %></span></td>
   </tr>
 <% end %>

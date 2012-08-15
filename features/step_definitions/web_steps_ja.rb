@@ -69,6 +69,9 @@ end
     page.should have_content("Name")
     page.should have_content("Youtube")
     page.should have_content("LatestComment")
+  when "アルバムリスト"
+    #page.should have_content("Kotaro Oshio")
+    page.should have_css('#album-list')
   else
     fail
   end

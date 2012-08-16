@@ -74,6 +74,9 @@ end
   when "練習履歴画面"
     page.should have_css('.latest-date-title')
     page.should have_content("弾いた日")
+  when "ユーザ情報編集画面"
+    #page.should have_css('.latest-date-title')
+    page.should have_content("ユーザ情報編集")
   else
     fail
   end

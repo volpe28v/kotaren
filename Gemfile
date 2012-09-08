@@ -22,7 +22,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rcov'
   gem 'ci_reporter'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
 

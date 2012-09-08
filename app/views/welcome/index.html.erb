@@ -71,7 +71,7 @@
   <button id="login" style="display: none" onclick="submit();"></button>
   <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "btn", :onclick => "$('#login').click();" %></p>
   or
-  <p><%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), :class => "btn btn-info",  %></p>
+  <p><%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), :class => "btn btn-info"  %></p>
    〜 登録ユーザ <%= @user_count %> 人 〜
 <% end %>
 

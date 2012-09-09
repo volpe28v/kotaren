@@ -22,7 +22,7 @@ class Tune < ActiveRecord::Base
     includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
   }
 
-  scope :by_status_and_user, lambda {|status,user|
+  scope :by_status_and_user, lambda {|status, user|
     case status
     when "doing"
       doing.progress_by_user(user)

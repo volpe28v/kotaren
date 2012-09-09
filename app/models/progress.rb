@@ -12,5 +12,5 @@ class Progress < ActiveRecord::Base
 
   scope :active, where("percent > 0")
 
-  scope :order_by_progress_degrees, order(:percent).reverse
+  scope :order_by_progress_degrees, order('percent DESC')
 end

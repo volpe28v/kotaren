@@ -1,7 +1,7 @@
 class Tune < ActiveRecord::Base
   def self.all_or_filter_by_tuning(tuning)
     return self.order("tunes.id ASC") if Tuning.find_by_name(tuning) == nil
-    self.includes(:tuning).where("tunings.name = ?", tuning ).order("tunes.id ASC")
+    self.includes(:tuning).where("tunings.name = ?", tuning).order("tunes.id ASC")
   end
 
   def self.get_tune_ranking
@@ -13,12 +13,12 @@ class Tune < ActiveRecord::Base
   has_many :comments
   has_many :progresses
 
-  scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
-  scope :done , includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
-  scope :touched , includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
-  scope :play_history , includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
+  scope :doing, includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
+  scope :done, includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
+  scope :touched, includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
+  scope :play_history, includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
 
-  scope :progress_by_user , lambda {|user|
+  scope :progress_by_user, lambda {|user|
     includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
   }
 

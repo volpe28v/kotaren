@@ -10,7 +10,7 @@ class Tune < ActiveRecord::Base
   end
 
   def self.get_tune_ranking
-    self.all.inject([]){|touch,tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
+    self.all.inject([]){|touch, tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end
 
   scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
@@ -50,7 +50,7 @@ class Tune < ActiveRecord::Base
     return progress ? progress.updated_at : "-"
   end
 
-  def update_progress(user,val)
+  def update_progress(user, val)
     return 0 if !user
 
     progress = self.progresses.find_or_initialize_by_user_id(user.id)

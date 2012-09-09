@@ -3,7 +3,7 @@ class Album < ActiveRecord::Base
   has_many :tunes , :through => :recordings
 
   def progress_average(user)
-    return progress_sum_by_user(user) / number_of_tunes
+    return progress_sum_of_tunes_by_user(user) / number_of_tunes
   end
 
   private
@@ -11,7 +11,7 @@ class Album < ActiveRecord::Base
     self.tunes.size
   end
 
-  def progress_sum_by_user(user)
+  def progress_sum_of_tunes_by_user(user)
     progresses_of_tunes.by_user(user).sum(:percent)
   end
 

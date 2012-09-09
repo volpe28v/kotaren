@@ -1,9 +1,4 @@
 class Tune < ActiveRecord::Base
-  belongs_to :tuning
-  has_many :recordings
-  has_many :comments
-  has_many :progresses
-
   def self.all_or_filter_by_tuning(tuning)
     return self.order("tunes.id ASC") if Tuning.find_by_name(tuning) == nil
     self.includes(:tuning).where("tunings.name = ?", tuning ).order("tunes.id ASC")
@@ -12,6 +7,11 @@ class Tune < ActiveRecord::Base
   def self.get_tune_ranking
     self.all.inject([]){|touch, tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end
+
+  belongs_to :tuning
+  has_many :recordings
+  has_many :comments
+  has_many :progresses
 
   scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
   scope :done , includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")

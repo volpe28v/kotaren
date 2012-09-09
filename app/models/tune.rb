@@ -36,8 +36,6 @@ class Tune < ActiveRecord::Base
   }
 
   def progress_val(user)
-    return 0 if !user
-
     progress = self.progresses.by_user(user).first
     return progress ? progress.percent : 0
   end

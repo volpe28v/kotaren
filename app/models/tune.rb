@@ -61,11 +61,11 @@ class Tune < ActiveRecord::Base
   end
 
   def touched_progresses
-    self.progresses.where("percent > 0").sort{|a,b| b.percent <=> a.percent }
+    self.progresses.active.sort{|a,b| b.percent <=> a.percent }
   end
 
   def self.get_tune_ranking
-    self.all.inject([]){|touch,tune| touch << [tune, tune.progresses.where("percent > 0").count] }.sort{|a,b| b[1] <=> a[1]}
+    self.all.inject([]){|touch,tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end
 
 end

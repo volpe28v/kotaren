@@ -9,4 +9,6 @@ class Progress < ActiveRecord::Base
   scope :by_user, lambda {|user|
     where(user_id: user)
   }
+
+  scope :active, where("percent > 0")
 end

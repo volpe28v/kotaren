@@ -46,7 +46,7 @@ class Tune < ActiveRecord::Base
   end
 
   def update_progress(user, val)
-    return 0 if !user
+    raise ArgumentError if !user
 
     progress = self.progresses.find_or_initialize_by_user_id(user.id)
     #TODO: どんな値でも updated_at を更新したいので一旦 0 で保存している

@@ -28,8 +28,6 @@ class Tune < ActiveRecord::Base
       touched.progress_by_user(user)
     when "play_history"
       play_history.progress_by_user(user)
-    else
-
     end
   }
 

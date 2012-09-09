@@ -3,10 +3,13 @@ class Album < ActiveRecord::Base
   has_many :tunes , :through => :recordings
 
   def progress_average(user)
-    progress_sum = self.tunes.inject(0){|sum,t|
-      sum += t.progress_val(user)
-    }
+    progress_sum = progresses_of_tunes.by_user(user).sum(:percent)
 
     return progress_sum / self.tunes.size
+  end
+
+  private
+  def progresses_of_tunes
+    Progress.of_tunes(self.tunes)
   end
 end

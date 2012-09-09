@@ -59,7 +59,7 @@ class Tune < ActiveRecord::Base
   end
 
   def touched_progresses
-    self.progresses.active.order(:percent).reverse
+    self.progresses.active.order_by_progress_degrees
   end
 
   def self.get_tune_ranking

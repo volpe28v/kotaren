@@ -9,6 +9,10 @@ class Tune < ActiveRecord::Base
     self.includes(:tuning).where("tunings.name = ?", tuning ).order("tunes.id ASC")
   end
 
+  def self.get_tune_ranking
+    self.all.inject([]){|touch,tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
+  end
+
   scope :doing , includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
   scope :done , includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
   scope :touched , includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
@@ -60,10 +64,6 @@ class Tune < ActiveRecord::Base
 
   def touched_progresses
     self.progresses.active.order_by_progress_degrees
-  end
-
-  def self.get_tune_ranking
-    self.all.inject([]){|touch,tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end
 
 end

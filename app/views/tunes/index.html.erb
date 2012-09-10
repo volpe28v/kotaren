@@ -60,6 +60,9 @@
   <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
   <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
 <% end %>
+
+  <%= link_to 'Owner\'s Albums page', user_albums_path(@user) %>
+
   <hr>
   </center>
 
@@ -79,8 +82,9 @@
   <div id="my_comments">
   <% @latest_comments.each do |c| %>
     <dl>
-      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
       <dd>
+        <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span>
         <div class="comment-text"><%= vrp_player_only_link(auto_link( simple_format(c.text))) %></div>
       </dd>
     </dl>
@@ -90,8 +94,9 @@
   <div id="other_comments">
   <% @other_comments.each do |c| %>
     <dl>
-      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+      <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
       <dd>
+        <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span>
         <div class="comment-text"><%= vrp_player_only_link(auto_link( simple_format(c.text))) %></div>
         <div class="comment-name">by <%= link_to c.user.default_name, user_tunes_path(c.user) %></div>
       </dd>

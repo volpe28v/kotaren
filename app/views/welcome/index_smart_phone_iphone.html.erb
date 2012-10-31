@@ -1,0 +1,24 @@
+<div data-role="header" data-position="fixed">
+  <h1>コタれん for iPhone</h1>
+</div>
+
+<div data-role="content" data-theme="a">
+  <p>
+  「コタれん」は押尾コータローさんの楽曲練習記録アプリです。
+  </p>
+
+  <p>
+    <%= link_to 'ユーザー登録', [ :new, :user_registration ] ,:class => 'btn btn-primary btn-large' , 'data-role' => 'button' , 'data-inline' => 'true' %>
+    <%= link_to 'ログイン', [ :new, :user_session ],:class => 'btn btn-primary btn-large' , 'data-role' => 'button' , 'data-inline' => 'true' %>
+
+    <h3>制限事項</h3>
+    <ul>
+      <li>このiPhone用サイトは現在開発中ですので使える機能が限られています。</li>
+      <li>全ての機能を使用したい場合はPCのブラウザからアクセスしてくださいませ。</li>
+    </ul>
+
+  <p>
+    〜 登録ユーザ <%= @user_count %> 人 〜
+  </p>
+</div>
+

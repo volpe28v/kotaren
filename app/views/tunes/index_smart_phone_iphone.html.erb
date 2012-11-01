@@ -36,20 +36,22 @@ $(".progress-bar").each(function(elem){
 <div data-role="page" id="tune_<%= t.id %>" data-theme="a">
   <div data-role="header" data-position="fixed">
     <a data-rel="back" data-icon="back" class="ui-btn-left">戻る</a>
-    <h1><%= t.title %></h1>
+    <h1>曲詳細</h1>
   </div>
 
   <div data-role="content" data-theme="a">
+    <h2><%= t.title %></h2>
     <div class="album-title">
       <p>
         <%= raw t.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
       </p>
     </div> 
 
-    <p><span class="tuning"><%= t.tuning.name =%></span></p>
+    <p><span class="tuning"><%= t.tuning.name =%></span>
     <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
-      <p><span class="tuning">(Capo : <%= t.tuning.capo =%>)</span></p>
+      <span class="tuning">(Capo : <%= t.tuning.capo =%>)</span>
     <% end %>
+    </p>
 
     <p><span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
     </p>

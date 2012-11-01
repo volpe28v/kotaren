@@ -10,13 +10,16 @@
   <p>
     <%= link_to 'ユーザー登録', [ :new, :user_registration ] ,'data-role' => 'button' , 'data-inline' => 'true' %>
     <%= link_to 'ログイン', [ :new, :user_session ], 'data-role' => 'button' , 'data-inline' => 'true' %>
+  </p>
 
+  <p><%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button"  %></p>
+
+  <p>
     <h3>制限事項</h3>
     <ul>
       <li>このiPhone用サイトは現在開発中ですので使える機能が限られています。</li>
       <li>全ての機能を使用したい場合はPCのブラウザからアクセスしてくださいませ。</li>
     </ul>
-
   <p>
     〜 登録ユーザ <%= @user_count %> 人 〜
   </p>

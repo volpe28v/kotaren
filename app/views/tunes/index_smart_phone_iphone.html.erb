@@ -7,21 +7,29 @@
 
   <div data-role="content">
     <ul data-role="listview">
-  <% @tunes.each do |t| %>
-<li id="id_<%= t.id %>">
-  <a href="#tune_<%= t.id %>" id="tule_li_<%= t.id %>" data-transition="slidefade">
-    <table><tr>
-      <td class="tune-title"><%= t.title %></td>
-      <td class="tuning-name"><%= t.tuning.name %></td>
-      <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
-    </tr></table>
-  </a>
-</li>
-  <% end %>
+    <% @tunes.each do |t| %>
+      <li id="id_<%= t.id %>">
+        <a href="#tune_<%= t.id %>" id="tule_li_<%= t.id %>" data-transition="slidefade">
+          <%= image_tag ("albums/#{t.recordings[0].album.title}.jpg") %>
+          <h3 class="tune-title"><%= t.title %></h3>
+          <p>
+            <span class="tuning-name"><%= t.tuning.name %></span>
+          </p>
+          <p>
+            <span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
+          </p>
+        </a>
+      </li>
+    <% end %>
     </ul>
   </div>
 </div>
 
+<script>
+$(".progress-bar").each(function(elem){
+  $(this).progressBar(progress_default_option);
+});
+</script>
 
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-theme="a">
@@ -41,7 +49,7 @@
       <p><span class="tuning">(Capo : <%= t.tuning.capo =%>)</span></p>
     <% end %>
 
-    <p><span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
+    <p><span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
     <% if current_user == @user %>
       <button data-inline="true" onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
       <button data-inline="true" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
@@ -58,4 +66,11 @@
     <a id="return_btn_<%= t.id %>" data-role="button" data-rel="back">戻る</a>
   </div>
 </div>
+
+<script>
+$('#tune_<%= t.id %>').live( 'pageinit',function(event){
+  $('#tune_<%= t.id %> .progress-bar').progressBar(progress_default_option);
+});
+</script>
+
 <% end %>

@@ -70,6 +70,7 @@ var progress_controller = {
       next_val = 0; 
     }
     $('#progress_' + tune_id ).progressBar( next_val , this.option );
+    $('#tune_progress_' + tune_id ).progressBar( next_val , this.option );
 
     this.update_remote(user_id, tune_id,next_val);
   },

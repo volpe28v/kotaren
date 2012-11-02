@@ -61,16 +61,19 @@ $(".progress-bar").each(function(elem){
     </div>
 
     <% if current_user == @user %>
-    <button onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')"><i class="icon-music icon-white"></i> 弾いたよ</font></button>
-    <div class="ui-grid-a">
+    <div class="ui-grid-b">
       <div class="ui-block-a">
         <button onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
       </div>
       <div class="ui-block-b">
+        <button onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
+      </div>
+      <div class="ui-block-c">
         <button onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
       </div>
     </div>
     <% end %>
+    <a data-rel="back" data-icon="back" data-role="button">戻る</a>
   </div>
 
   <%= render "footer_smart_phone_iphone" %>

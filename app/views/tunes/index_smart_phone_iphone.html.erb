@@ -35,7 +35,6 @@ $(".progress-bar").each(function(elem){
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-theme="a">
   <div data-role="header" data-position="fixed">
-    <a data-rel="back" data-icon="back" class="ui-btn-left">戻る</a>
     <h1>曲詳細</h1>
   </div>
 
@@ -63,13 +62,13 @@ $(".progress-bar").each(function(elem){
     <% if current_user == @user %>
     <div class="ui-grid-b">
       <div class="ui-block-a">
-        <button onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
+        <button onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
       </div>
       <div class="ui-block-b">
         <button onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
       </div>
       <div class="ui-block-c">
-        <button onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
+        <button onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
       </div>
     </div>
     <% end %>

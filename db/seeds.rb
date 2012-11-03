@@ -154,7 +154,7 @@ register_album [
   ["ハッピー・アイランド",  "DADGBD"],
   ["Chaser",  "CGCGB♭D"],
   ["ボレロ",  "CGCGBE"],
-  ["カノン",  "G♭D♭G♭BE♭G♭"],
+  ["カノン",  "DADGBD", 5],
   ["Merry Christmas Mr. Lawrence",  "DADGAC"],
   ["オアシス",  "AEEF#BE"],
   ["風の彼方（風の詩）",  "Standard"],

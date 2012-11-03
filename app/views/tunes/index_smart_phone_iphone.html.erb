@@ -62,7 +62,12 @@ $(".progress-bar").each(function(elem){
     <% @tunings.each do |t| %>
       <li id="tuning_id_<%= t.id %>">
         <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-transition="slidefade">
-          <h3 class="tune-title"><%= t.name %></h3>
+          <h3 class="tune-title">
+            <%= t.name %>
+            <% if t.capo != nil and t.capo != 0 %>
+              <span> (Capo : <%= t.capo =%>)</span>
+            <% end %>
+          </h3>
           <p><%= t.tunes.count %> tunes.</p>
         </a>
       </li>
@@ -81,9 +86,7 @@ $(".progress-bar").each(function(elem){
 
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-theme="a">
-  <div data-role="header" data-position="fixed">
-    <h1>曲詳細</h1>
-  </div>
+  <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
 
   <div data-role="content" data-theme="a">
     <h2><%= t.title %></h2>
@@ -93,7 +96,7 @@ $(".progress-bar").each(function(elem){
       </p>
     </div> 
 
-    <p><span class="tuning"><%= t.tuning.name =%></span>
+    <a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" ><%= t.tuning.name %> (<%= t.tuning.tunes.count %> tunes)</a>
     <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
       <span class="tuning">(Capo : <%= t.tuning.capo =%>)</span>
     <% end %>
@@ -128,6 +131,10 @@ $(".progress-bar").each(function(elem){
 <script>
 $('#tune_<%= t.id %>').live( 'pageinit',function(event){
   $('#tune_<%= t.id %> .progress-bar').progressBar(progress_default_option);
+  $('#same_tuning_<%= t.id %>').click(function(){
+    $('.tune_li').hide();
+    $('.tuning_<%= t.tuning.id %>').show();
+  });
 });
 </script>
 

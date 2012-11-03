@@ -1,19 +1,22 @@
 <div data-role="footer" data-position="fixed">
 	<div data-role="navbar">
     <ul>
+      <!--
+      <li><a href="#">History</a></li>
+      -->
       <% case state %>
       <% when 'tune_list' %>
+        <li><a id="all_navi" href="#tune_list">All</a></li>
         <li><a href="#album_list">Album</a></li>
         <li><a href="#tuning_list">Tuning</a></li>
-        <li><a href="#">History</a></li>
       <% when 'album_list' %>
+        <li><a id="all_navi" href="#tune_list">All</a></li>
         <li><a href="#album_list" class="ui-btn-active ui-state-persist">Album</a></li>
         <li><a href="#tuning_list">Tuning</a></li>
-        <li><a href="#">History</a></li>
       <% when 'tuning_list' %>
+        <li><a id="all_navi" href="#tune_list">All</a></li>
         <li><a href="#album_list">Album</a></li>
         <li><a href="#tuning_list" class="ui-btn-active ui-state-persist">Tuning</a></li>
-        <li><a href="#">History</a></li>
       <% else %>
         © 2011 Naoki KODAMA. 
       <% end %>
@@ -22,3 +25,9 @@
  
 </div>
 
+<script>
+  //TODO: イベントが重複登録されるかも
+  $('#all_navi').click(function(){
+    $('.tune_li').show();
+  });
+</script>

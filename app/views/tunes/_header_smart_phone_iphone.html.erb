@@ -7,6 +7,8 @@
     <h3>アルバム</h3>
   <% when 'tuning_list' %>
     <h3>チューニング</h3>
+  <% when 'tune' %>
+    <h3>曲詳細</h3>
   <% end %>
   <%= link_to 'Logout', [ :destroy, :user_session ], :class => 'ui-btn-right', 'rel' => 'external' %>
 </div>

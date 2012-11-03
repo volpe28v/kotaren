@@ -1,14 +1,10 @@
-<div data-role="page" id="todo_nav" data-theme="a">
-  <div data-role="header" data-position="fixed">
-    <a href="#option" data-icon="gear" class="ui-btn-left">Option</a>
-    <h3>楽曲リスト</h3>
-    <%= link_to 'Logout', [ :destroy, :user_session ], :class => 'ui-btn-right', 'rel' => 'external' %>
-  </div>
+<div data-role="page" id="tune_list" data-theme="a">
+  <%= render "header_smart_phone_iphone" , { :state => "tune_list" } %>
 
   <div data-role="content">
     <ul data-role="listview">
     <% @tunes.each do |t| %>
-      <li id="id_<%= t.id %>" class="<%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %>" >
+      <li id="id_<%= t.id %>" class="tune_li <%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %> <%= "tuning_#{t.tuning.id}" %>" >
         <a href="#tune_<%= t.id %>" data-transition="slidefade">
           <%= image_tag ("albums/#{t.recordings[0].album.title}.jpg") %>
           <h3 class="tune-title"><%= t.title %></h3>
@@ -23,7 +19,7 @@
     <% end %>
     </ul>
   </div>
-  <%= render "footer_smart_phone_iphone" , { :state => "tunelist" } %>
+  <%= render "footer_smart_phone_iphone" , { :state => "tune_list" } %>
 </div>
 
 <script>
@@ -31,6 +27,33 @@ $(".progress-bar").each(function(elem){
   $(this).progressBar(progress_default_option);
 });
 </script>
+
+<div data-role="page" id="album_list" data-theme="a">
+  <%= render "header_smart_phone_iphone" , { :state => "album_list" } %>
+
+  <div data-role="content">
+    <ul data-role="listview">
+    <% @albums.each do |a| %>
+      <li id="album_id_<%= a.id %>">
+        <a id="album_a_id_<%= a.id %>" href="#tune_list" data-transition="slidefade">
+          <%= image_tag ("albums/#{a.title}.jpg") %>
+          <h3 class="tune-title"><%= a.title %></h3>
+          <p>a</p>
+          <p>b</p>
+        </a>
+      </li>
+<script>
+  $('#album_a_id_<%= a.id %>').click(function(){
+    $('.tune_li').hide();
+    $('.album_<%= a.id %>').show();
+  });
+</script>
+    <% end %>
+    </ul>
+  </div>
+  <%= render "footer_smart_phone_iphone" , { :state => "album_list" } %>
+</div>
+
 
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-theme="a">

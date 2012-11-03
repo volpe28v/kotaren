@@ -1,0 +1,12 @@
+<div data-role="header" data-position="fixed">
+  <a href="#option" data-icon="gear" class="ui-btn-left">Option</a>
+  <% case state %>
+  <% when 'tune_list' %>
+    <h3>楽曲リスト</h3>
+  <% when 'album_list' %>
+    <h3>アルバムリスト</h3>
+  <% end %>
+  <%= link_to 'Logout', [ :destroy, :user_session ], :class => 'ui-btn-right', 'rel' => 'external' %>
+</div>
+
+

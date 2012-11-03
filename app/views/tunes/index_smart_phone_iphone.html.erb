@@ -23,7 +23,7 @@
 </div>
 
 <script>
-$(".progress-bar").each(function(elem){
+$("#tune_list .progress-bar").each(function(elem){
   $(this).progressBar(progress_default_option);
 });
 </script>
@@ -38,11 +38,12 @@ $(".progress-bar").each(function(elem){
         <a id="album_a_id_<%= a.id %>" href="#tune_list" data-transition="slidefade">
           <%= image_tag ("albums/#{a.title}.jpg") %>
           <h3 class="tune-title"><%= a.title %></h3>
-          <p>a</p>
-          <p>b</p>
+          <p><%= a.tunes.count %> tunes.</p>
+          <p><span id="album_progress_<%= a.id %>" class="progress-bar"><%= a.progress_average(@user) %></span></p>
         </a>
       </li>
 <script>
+  $('#album_id_<%= a.id %> .progress-bar').progressBar(progress_default_option);
   $('#album_a_id_<%= a.id %>').click(function(){
     $('.tune_li').hide();
     $('.album_<%= a.id %>').show();
@@ -96,10 +97,13 @@ $(".progress-bar").each(function(elem){
       </p>
     </div> 
 
-    <a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" ><%= t.tuning.name %> (<%= t.tuning.tunes.count %> tunes)</a>
-    <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
-      <span class="tuning">(Capo : <%= t.tuning.capo =%>)</span>
-    <% end %>
+    <a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" >
+      <%= t.tuning.name %>
+      <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
+        <span> Capo : <%= t.tuning.capo =%></span>
+      <% end %>
+      <br />
+      (<%= t.tuning.tunes.count %> tunes)</a>
     </p>
 
     <p><span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>

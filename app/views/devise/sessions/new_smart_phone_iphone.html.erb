@@ -1,0 +1,27 @@
+<div data-role="page" id="sign-in" data-theme="a">
+  <div data-role="header"><h1>ログイン</h1></div> 
+
+  <div data-role="content"> 
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+      <fieldset>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.email_field :email, :placeholder => "Email" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <%= f.password_field :password, :placeholder => "Password" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= f.submit "ログイン", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+

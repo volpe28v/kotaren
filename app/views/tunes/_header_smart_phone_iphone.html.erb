@@ -1,5 +1,7 @@
 <div data-role="header" data-position="fixed">
+  <!--
   <a href="#option" data-icon="gear" class="ui-btn-left">Option</a>
+  -->
   <% case state %>
   <% when 'tune_list' %>
     <h3>楽曲</h3>
@@ -10,7 +12,7 @@
   <% when 'tune' %>
     <h3>曲詳細</h3>
   <% end %>
-  <%= link_to 'Logout', [ :destroy, :user_session ], :class => 'ui-btn-right', 'rel' => 'external' %>
+  <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right', 'rel' => 'external' %>
 </div>
 
 

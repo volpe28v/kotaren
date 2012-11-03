@@ -55,7 +55,7 @@
                 <% unless current_user.is_sample? %>
                   <li><%= link_to 'EditProfile', edit_user_path(current_user) %>
                 <% end %>
-                <li><%= link_to 'Logout', destroy_user_session_path , :method => :delete %>
+                <li><%= link_to 'Logout', destroy_user_session_path , :method => :get %>
               </ul>
             <% else %>
               <ul class="nav pull-right">

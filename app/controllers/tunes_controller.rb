@@ -26,7 +26,7 @@ class TunesController < ApplicationController
 
     if request.smart_phone?
       @tunes = Tune.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning("")
-      @tunings = Tuning.all
+      @tunings = Tuning.scoped.order("name ASC")
     end
   end
 

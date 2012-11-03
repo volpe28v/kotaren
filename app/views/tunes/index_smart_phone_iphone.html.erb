@@ -61,6 +61,7 @@ $("#tune_list .progress-bar").each(function(elem){
   <div data-role="content">
     <ul data-role="listview">
     <% @tunings.each do |t| %>
+      <% next if t.tunes.count == 0 %>
       <li id="tuning_id_<%= t.id %>">
         <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-transition="slidefade">
           <h3 class="tune-title">

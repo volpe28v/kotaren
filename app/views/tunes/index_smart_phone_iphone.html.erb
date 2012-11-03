@@ -8,8 +8,8 @@
   <div data-role="content">
     <ul data-role="listview">
     <% @tunes.each do |t| %>
-      <li id="id_<%= t.id %>">
-        <a href="#tune_<%= t.id %>" id="tule_li_<%= t.id %>" data-transition="slidefade">
+      <li id="id_<%= t.id %>" class="<%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %>" >
+        <a href="#tune_<%= t.id %>" data-transition="slidefade">
           <%= image_tag ("albums/#{t.recordings[0].album.title}.jpg") %>
           <h3 class="tune-title"><%= t.title %></h3>
           <p>
@@ -23,7 +23,7 @@
     <% end %>
     </ul>
   </div>
-  <%= render "footer_smart_phone_iphone" %>
+  <%= render "footer_smart_phone_iphone" , { :state => "tunelist" } %>
 </div>
 
 <script>
@@ -75,7 +75,7 @@ $(".progress-bar").each(function(elem){
     <a data-rel="back" data-icon="back" data-role="button">戻る</a>
   </div>
 
-  <%= render "footer_smart_phone_iphone" %>
+  <%= render "footer_smart_phone_iphone" , { :state => "tune" } %>
 </div>
 
 <script>

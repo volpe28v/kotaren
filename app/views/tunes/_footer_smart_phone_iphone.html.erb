@@ -1,4 +1,17 @@
-<div data-role="footer">
-  © 2011 Naoki KODAMA. 
+<div data-role="footer" data-position="fixed">
+	<div data-role="navbar">
+    <ul>
+      <% case state %>
+      <% when 'tunelist' %>
+        <li><a href="#album">Album</a></li>
+        <li><a href="#tuning">Tuning</a></li>
+        <li><a href="#">History</a></li>
+
+      <% else %>
+        © 2011 Naoki KODAMA. 
+      <% end %>
+    </ul>
+  </div>
+ 
 </div>
 

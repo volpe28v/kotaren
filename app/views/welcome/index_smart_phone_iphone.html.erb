@@ -12,7 +12,7 @@
     <%= link_to 'ログイン', [ :new, :user_session ], 'data-role' => 'button' , 'data-inline' => 'true' %>
   </p>
 
-  <p><%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button"  %></p>
+  <p><%= link_to raw('<span class="sign-in-link-with-service">Facebook でログイン</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button", 'data-inline' => "true", 'data-theme' => "b" %></p>
 
   <p>
     <h3>制限事項</h3>

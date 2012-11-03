@@ -4,7 +4,7 @@
   -->
   <% case state %>
   <% when 'tune_list' %>
-    <h3>楽曲</h3>
+    <h3>コタれん</h3>
   <% when 'album_list' %>
     <h3>アルバム</h3>
   <% when 'tuning_list' %>
@@ -12,7 +12,12 @@
   <% when 'tune' %>
     <h3>曲詳細</h3>
   <% end %>
-  <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right', 'rel' => 'external' %>
+
+  <% if current_user %>
+    <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right' %>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path, :class => 'ui-btn-right'  %>
+  <% end %>
 </div>
 
 

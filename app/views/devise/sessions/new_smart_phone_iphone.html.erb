@@ -18,6 +18,7 @@
         <div class="control-group">
           <div class="controls">
             <%= f.submit "ログイン", :class => "btn btn-primary" %>
+            <%= link_to raw('<span class="sign-in-link-with-service">Facebook でログイン</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button", 'data-theme' => "b" %>
           </div>
         </div>
       </fieldset>

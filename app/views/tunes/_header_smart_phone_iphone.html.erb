@@ -3,7 +3,7 @@
   <a href="#option" data-icon="gear" class="ui-btn-left">Option</a>
   -->
   <% if @user.icon_url.blank? == false %>
-    <a href="#option" class="ui-btn-left"><%= image_tag(@user.icon_url, :class => "ui-li-icon" ) %></a>
+    <a href="#option" class="ui-btn-left"><%= image_tag(@user.icon_url, :height => "16" ) %></a>
   <% else %>
     <a href="#option" data-icon="gear" class="ui-btn-left">Option</a>
   <% end %>

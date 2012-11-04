@@ -1,0 +1,449 @@
+body{
+  color: #444;
+  font: 12px/1.55em arial, helvetica, sans-serif;
+}
+
+#wrapper {
+  width: 900px;
+  margin: auto;
+}
+
+.logo {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  float :left;
+}   
+
+.login-menu {
+  float: right;
+}
+
+.clear {
+  clear:both;　/*floatの解除*/
+}
+
+.sign-in-link-with-service{
+  color: white;
+}
+
+footer {
+  background: #fff;
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px 0;
+  text-align: right;
+  border-top: 1px solid #DDD;
+}
+
+footer span {
+  display: block;
+  margin-right: 30px;
+  color: #888;
+  font-size: 12px;
+}
+
+#menu, #main , #detail, #content, #sidebar, #sub-contents, .album-contents{
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 10px;
+  box-shadow: 4px 4px 6px 0px #999;
+  -moz-box-shadow: 4px 4px 6px 0px #999;
+  -webkit-box-shadow: 4px 4px 6px 0px #999;
+}
+
+#menu {
+  width: 232px;
+  float:left;
+  margin-right: 20px;
+}
+
+#menu ul {
+  list-style-type:none;
+}
+
+#main {
+  width: 680px;
+  float:left;
+}
+
+.out-of-tabs{
+  margin: 4px;
+}
+
+.tune_num,.tune_s_num{
+  color: blue;
+}
+
+.tune_num {
+  font-size: 30px;
+}
+
+.tune_s_num {
+  font-size: 18px;
+}
+
+#tune-list {
+  padding: 4pt;
+}
+
+#detail ul {
+  list-style-type:none;
+}
+
+#ref-videos{
+  margin: 3px;
+  padding: 0px;
+  height: 860px;
+}
+
+#play-users{
+  margin: 10px;
+  padding: 0px;
+}
+
+#play-users table {
+  border-collapse:collapse;
+  width: 100%;
+}
+
+#play-users td {
+  margin: 0px;
+  padding: 5px;
+  border-bottom: 1px dashed #bbb;
+}
+
+#play-users tr:hover {
+  background-color: #f0f8ff;
+}
+
+.tuning {
+  font-size: 26px;
+  color: blue;
+}
+
+.holded a { color: blue; }
+.holded a:hover { color: #EA1F00; }
+
+a { color:#262626; text-decoration:none; }
+a:hover { color:#EA1F00; }
+
+.tune-title{
+  width: 200px;
+}
+
+.tune-big-title{
+  font-size: large;
+}
+
+.album-title{
+  margin-left: 10px;
+  color: #777;
+}
+.tuning-name{
+  width: 150px;
+  color: #666;
+}
+
+.thumbnail-video {
+  text-align: center;
+  float: left;
+  width: 145px;
+  height: 200px;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin: 5px 5px 0 0;
+  padding: 3px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 4px 4px 6px 0px #999;
+  -moz-box-shadow: 4px 4px 6px 0px #999;
+  -webkit-box-shadow: 4px 4px 6px 0px #999;
+}
+
+.thumbnail:hover {
+  background-color: #f0f8ff;
+  border: 1px solid #c0cfff;
+}
+
+.thumbnail img {
+  width: 145px;
+}
+
+#tune-list table {
+  border-collapse:collapse;
+  margin:auto;
+}
+
+#tune-list td {
+  margin: 5px 5px 5px 5px;
+  padding: 0;
+  border-bottom: 1px dashed #bbb;
+}
+
+#tune-list tr:hover {
+  background-color: #f0f8ff;
+}
+
+
+/* for welcome */
+#content{
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+#sidebar {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  background-color: #f6f6f6;
+}
+
+#comments textarea{
+  width: 98%; 
+  height: 34px;
+}
+
+#comments dl{
+  background-color: #fbfbfb;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+#comments dt{
+  color: #555;
+  margin-left: 3px;
+  margin-right: 5px;
+}
+
+#comments dd{
+  margin-left: 8px;
+  margin-right: 3px;
+  margin-top: 0px;
+  color: #666;
+}
+
+#comments p{
+  margin: 0px;
+}
+
+#comments span a{
+  color: mediumvioletred; 
+  font-style: bold;
+}
+
+.comment-date{
+    float: left;
+}
+
+.comment-destroy{
+    float: right;
+}
+.comment-destroy a{ color: #ccc; }
+.comment-destroy a:hover{ color: #EA1F00; }
+
+.comment-text a{
+  color: #44f;
+}
+
+.comment-name {
+  text-align: right;
+  color: black;
+}
+
+#my_comments, #other_comments{
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding: 5px;
+}
+ 
+#my_comments dl, #other_comments dl{
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+.fixed{
+  list-style-type:none;
+  color: #F00;
+}
+
+.user-icon-img {
+  height: 36px;
+  width: 36px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 2px;
+  padding: 2px;
+  border: 1px solid #DDD;
+}
+
+.user-icon-img-mini {
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  margin-right: 2px;
+  padding: 2px;
+  border: 1px solid #DDD;
+}
+
+.user-name {
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-size: 30px;
+  height: 30px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-shadow: 1px 1px 0 white;
+  color: #495961;
+  width: 380px;
+}
+
+.this-is-you {
+  margin: 5px;
+  width: 190px;
+}
+
+.user-option dl{
+  margin: 0;
+}
+
+.user-option dl dt{
+  float: left;
+  width: 60px;
+  color: #999;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+dd .field_w5th_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.clear {
+  clear:both;
+}
+
+.tune-player-num-title{
+  width: 120px;
+}
+
+.tune-ranking-title{
+  text-align: left;
+  width: 200px;
+}
+
+.tuning-title{
+  text-align: left;
+  width: 90px;
+}
+
+.ranking-title{
+  text-align: left;
+}
+
+.ranking-user-title{
+  text-align: left;
+  width: 90px;
+}
+
+.comment-count-title{
+  text-align: left;
+  width: 90px;
+}
+
+.latest-date-title{
+  text-align: left;
+  width: 50px;
+}
+
+.user-icon{
+  width: 36px;
+}
+
+.user-icon-mini{
+  width: 20px;
+}
+
+#players-list {
+  float: right;
+  width: 480px;
+}
+
+.played-now {
+  width: 100px;
+  height: 30px;
+}
+
+.welcome-number-title {
+  text-align: left;
+  width: 120px;
+}
+
+.welcome-tune-title{
+  text-align: left;
+  width: 150px;
+}
+
+.welcome-tuning-title{
+  text-align: left;
+  width: 100px;
+}
+
+#loading {
+  height: 400px;
+  padding: 50px;
+}
+
+.fb-like-button{
+  margin-top: 5px;
+}
+.progress-button{
+  width: 70px;
+  text-align: center;
+}
+
+.progress-bar-area{
+  width: 160px;
+}
+
+.vrp{
+  width: 320px;
+  height: 76px;
+  border: none;
+}
+ 
+.vrp_link{
+  color: white;
+
+}
+

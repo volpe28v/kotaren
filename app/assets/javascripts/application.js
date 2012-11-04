@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require FeedEk
+//= require jquery.progressbar
 
 function updateElem(id, html){
   if ( $(id).html() == html ){return}

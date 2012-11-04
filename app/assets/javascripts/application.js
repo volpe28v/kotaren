@@ -8,5 +8,6 @@
 //= require jquery_ujs
 //= require FeedEk
 //= require jquery.progressbar
+//= require jquery.prettyPhoto
 //= require kotaren
 

@@ -5,6 +5,16 @@ $(document).bind("mobileinit", function(){
   });
 });
 
+$(document).ready(function(){ 
+  // この数値以上、横スワイプしたときにイベントを発生
+  $.event.special.swipe.horizontalDistanceThreshold = 60; 
+
+  // フリック・スワイプ画面遷移
+  $(".swipe_back").bind("swiperight", function(){
+    history.back();
+  }); 
+});
+
 
 function updateElem(id, html){
   if ( $(id).html() == html ){return}

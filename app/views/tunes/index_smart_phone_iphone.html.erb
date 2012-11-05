@@ -1,4 +1,4 @@
-<div data-role="page" id="tune_list" data-theme="a">
+<div data-role="page" id="tune_list" data-theme="a" class="swipe_back">
   <%= render "header_smart_phone_iphone" , { :state => "tune_list" } %>
 
   <div data-role="content">
@@ -87,7 +87,7 @@ $("#tune_list .progress-bar").each(function(elem){
 
 
 <% @tunes.each do |t| %>
-<div data-role="page" id="tune_<%= t.id %>" data-theme="a">
+<div data-role="page" id="tune_<%= t.id %>" data-theme="a" class="swipe_back">
   <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
 
   <div data-role="content" data-theme="a">

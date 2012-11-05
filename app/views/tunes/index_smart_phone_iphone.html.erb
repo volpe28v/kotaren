@@ -6,7 +6,7 @@
     <% @tunes.each do |t| %>
       <li id="id_<%= t.id %>" class="tune_li <%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %> <%= "tuning_#{t.tuning.id}" %>" >
         <a href="#tune_<%= t.id %>" data-transition="slidefade">
-          <%= image_tag ("albums/#{t.recordings[0].album.title}.jpg") %>
+          <%= image_tag ("albums/#{t.recordings[0].album.title}_s.jpg") %>
           <h3 class="tune-title"><%= t.title %></h3>
           <p>
             <span class="tuning-name"><%= t.tuning.name %></span>
@@ -36,7 +36,7 @@ $("#tune_list .progress-bar").each(function(elem){
     <% @albums.each do |a| %>
       <li id="album_id_<%= a.id %>">
         <a id="album_a_id_<%= a.id %>" href="#tune_list" data-transition="slidefade">
-          <%= image_tag ("albums/#{a.title}.jpg") %>
+          <%= image_tag ("albums/#{a.title}_s.jpg") %>
           <h3 class="tune-title"><%= a.title %></h3>
           <p><%= a.tunes.count %> tunes.</p>
           <p><span id="album_progress_<%= a.id %>" class="progress-bar"><%= a.progress_average(@user) %></span></p>

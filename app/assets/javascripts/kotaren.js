@@ -16,12 +16,12 @@ var progress_default_option = {
     width           : 120,
     height          : 12, 
     callback        : null,
-    boxImage        : '/assets/progressbar.gif',
+    boxImage        : '/assets/progress/progressbar.gif',
     barImage        : { 
-        0:   '/assets/progressbg_red.gif',
-        30:  '/assets/progressbg_orange.gif',
-        60:  '/assets/progressbg_yellow.gif',
-        100: '/assets/progressbg_green.gif'
+        0:   '/assets/progress/progressbg_red.gif',
+        30:  '/assets/progress/progressbg_orange.gif',
+        60:  '/assets/progress/progressbg_yellow.gif',
+        100: '/assets/progress/progressbg_green.gif'
     } 
 }
 

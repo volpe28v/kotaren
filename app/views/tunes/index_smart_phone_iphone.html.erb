@@ -6,7 +6,7 @@
     <% @tunes.each do |t| %>
       <li id="id_<%= t.id %>" class="tune_li <%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %> <%= "tuning_#{t.tuning.id}" %>" >
         <a href="#tune_<%= t.id %>" data-transition="slidefade">
-          <%= image_tag ("albums/mini/#{t.recordings[0].album.title}_s.jpg") %>
+          <img src="/assets/albums/mini/<%= t.recordings[0].album.title %>_s.jpg" class="album-img">
           <h3 class="tune-title"><%= t.title %></h3>
           <p>
             <span class="tuning-name"><%= t.tuning.name %></span>
@@ -36,7 +36,7 @@ $("#tune_list .progress-bar").each(function(elem){
     <% @albums.each do |a| %>
       <li id="album_id_<%= a.id %>">
         <a id="album_a_id_<%= a.id %>" href="#tune_list" data-transition="slidefade">
-          <%= image_tag ("albums/mini/#{a.title}_s.jpg") %>
+          <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
           <h3 class="tune-title"><%= a.title %></h3>
           <p><%= a.tunes.count %> tunes.</p>
           <p><span id="album_progress_<%= a.id %>" class="progress-bar"><%= a.progress_average(@user) %></span></p>
@@ -91,28 +91,40 @@ $("#tune_list .progress-bar").each(function(elem){
   <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
 
   <div data-role="content" data-theme="a">
+
     <h2><%= t.title %></h2>
     <div class="album-title">
       <p>
         <%= raw t.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
       </p>
+      <% t.recordings.each do |r| %>
+        <a id="tune_album_a_id_<%= t.id %>_<%= r.album.id %>" href="#tune_list" data-transition="slidefade" class="tune-album-img" >
+          <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
+        </a>
+<script>
+  $('#tune_album_a_id_<%= t.id %>_<%= r.album.id %>').click(function(){
+    $('.tune_li').hide();
+    $('.album_<%= r.album.id %>').show();
+  });
+</script>
+      <% end %>
     </div> 
 
-    <a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" >
+    <center>
+    <p><a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" >
       <%= t.tuning.name %>
       <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
         <span> Capo : <%= t.tuning.capo =%></span>
+        <br/>
       <% end %>
-      <br />
-      (<%= t.tuning.tunes.count %> tunes)</a>
-    </p>
+      (<%= t.tuning.tunes.count %> tunes)
+    </a></p>
 
-    <p><span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
-    </p>
-
-    <div id="progress_updated_at_<%= t.id %>">
+    <span id="progress_updated_at_<%= t.id %>">
       <%= last_played_at(t.progress_updated_at(@user)) %>
-    </div>
+    </span>
+    <span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
+  </center>
 
     <% if current_user == @user %>
     <div class="ui-grid-b">

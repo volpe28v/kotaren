@@ -9,7 +9,11 @@
           <img src="/assets/albums/mini/<%= t.recordings[0].album.title %>_s.jpg" class="album-img">
           <h3 class="tune-title"><%= t.title %></h3>
           <p>
-            <span class="tuning-name"><%= t.tuning.name %></span>
+            <span class="tuning-name"><%= t.tuning.name %>
+            <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
+              <span> (Capo : <%= t.tuning.capo =%>)</span>
+            </span>
+            <% end %>
           </p>
           <p>
             <span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
@@ -64,7 +68,7 @@ $("#tune_list .progress-bar").each(function(elem){
       <% next if t.tunes.count == 0 %>
       <li id="tuning_id_<%= t.id %>">
         <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-transition="slidefade">
-          <h3 class="tune-title">
+          <h3 class="tuning-name">
             <%= t.name %>
             <% if t.capo != nil and t.capo != 0 %>
               <span> (Capo : <%= t.capo =%>)</span>
@@ -112,11 +116,13 @@ $("#tune_list .progress-bar").each(function(elem){
 
     <center>
     <p><a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" >
+      <span class="tuning-name">
       <%= t.tuning.name %>
       <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
         <span> Capo : <%= t.tuning.capo =%></span>
         <br/>
       <% end %>
+      </span>
       (<%= t.tuning.tunes.count %> tunes)
     </a></p>
 

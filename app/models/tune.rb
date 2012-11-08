@@ -8,6 +8,12 @@ class Tune < ActiveRecord::Base
     self.all.inject([]){|touch, tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end
 
+  def self.all_play_history(user)
+    touched_tunes = self.play_history.progress_by_user(user)
+    untouched_tunes = self.order("id ASC") - touched_tunes
+    touched_tunes + untouched_tunes
+  end
+
   belongs_to :tuning
   has_many :recordings
   has_many :comments

@@ -25,7 +25,7 @@ class TunesController < ApplicationController
     @other_comments = Comment.other_by(@user)
 
     if request.smart_phone?
-      @tunes = Tune.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning("")
+      @tunes = Tune.all_play_history(@user)
       @tunings = Tuning.scoped.order("name ASC, capo ASC")
     end
   end

@@ -2,7 +2,7 @@
   <%= render "header_smart_phone_iphone" , { :state => "tune_list" } %>
 
   <div data-role="content">
-    <ul data-role="listview">
+    <ul id="tune_list_ul" data-role="listview">
     <% @tunes.each do |t| %>
       <li id="id_<%= t.id %>" class="tune_li <%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %> <%= "tuning_#{t.tuning.id}" %>" >
         <a href="#tune_<%= t.id %>" data-transition="slidefade">

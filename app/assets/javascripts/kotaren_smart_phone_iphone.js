@@ -86,6 +86,8 @@ var progress_controller = {
   },
 
   update_remote : function(user_id, tune_id, val){
+    $('#tune_list_ul').prepend($('#id_' + tune_id));
+
     $.ajax({
       type: "GET",
       cache: false,

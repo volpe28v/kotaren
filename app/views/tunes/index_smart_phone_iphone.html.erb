@@ -52,6 +52,7 @@ $("#tune_list .progress-bar").each(function(elem){
   <%= render "footer_smart_phone_iphone" , { :state => "album_list" } %>
 </div>
 <script>
+$(document).delegate('#album_list','pageinit',function(event){
   $('#album_list_ul').delegate('a', 'click',function(){
     $('.tune_li').hide();
     $('.album_' + $(this).data('id')).show();
@@ -59,6 +60,7 @@ $("#tune_list .progress-bar").each(function(elem){
   $('#album_list_ul .progress-bar').each(function(){
     $(this).progressBar(progress_default_option);
   });
+});
 </script>
  
 <div data-role="page" id="tuning_list" data-theme="a">

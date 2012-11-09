@@ -36,29 +36,31 @@ $("#tune_list .progress-bar").each(function(elem){
   <%= render "header_smart_phone_iphone" , { :state => "album_list" } %>
 
   <div data-role="content">
-    <ul data-role="listview">
+    <ul data-role="listview" id="album_list_ul">
     <% @albums.each do |a| %>
       <li id="album_id_<%= a.id %>">
-        <a id="album_a_id_<%= a.id %>" href="#tune_list" data-transition="slidefade">
+        <a id="album_a_id_<%= a.id %>" href="#tune_list" data-id="<%= a.id %>" data-transition="slidefade">
           <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
           <h3 class="tune-title"><%= a.title %></h3>
           <p><%= a.tunes.count %> tunes.</p>
           <p><span id="album_progress_<%= a.id %>" class="progress-bar"><%= a.progress_average(@user) %></span></p>
         </a>
       </li>
-<script>
-  $('#album_id_<%= a.id %> .progress-bar').progressBar(progress_default_option);
-  $('#album_a_id_<%= a.id %>').click(function(){
-    $('.tune_li').hide();
-    $('.album_<%= a.id %>').show();
-  });
-</script>
     <% end %>
     </ul>
   </div>
   <%= render "footer_smart_phone_iphone" , { :state => "album_list" } %>
 </div>
-
+<script>
+  $('#album_list_ul').delegate('a', 'click',function(){
+    $('.tune_li').hide();
+    $('.album_' + $(this).data('id')).show();
+  });
+  $('#album_list_ul .progress-bar').each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+</script>
+ 
 <div data-role="page" id="tuning_list" data-theme="a">
   <%= render "header_smart_phone_iphone" , { :state => "tuning_list" } %>
 

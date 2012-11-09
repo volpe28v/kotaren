@@ -27,8 +27,10 @@
 </div>
 
 <script>
-$("#tune_list .progress-bar").each(function(elem){
-  $(this).progressBar(progress_default_option);
+$(document).delegate('#tune_list','pageinit',function(){
+  $("#tune_list .progress-bar").each(function(){
+    $(this).progressBar(progress_default_option);
+  });
 });
 </script>
 
@@ -52,7 +54,7 @@ $("#tune_list .progress-bar").each(function(elem){
   <%= render "footer_smart_phone_iphone" , { :state => "album_list" } %>
 </div>
 <script>
-$(document).delegate('#album_list','pageinit',function(event){
+$(document).delegate('#album_list','pageinit',function(){
   $('#album_list_ul').delegate('a', 'click',function(){
     $('.tune_li').hide();
     $('.album_' + $(this).data('id')).show();
@@ -67,11 +69,11 @@ $(document).delegate('#album_list','pageinit',function(event){
   <%= render "header_smart_phone_iphone" , { :state => "tuning_list" } %>
 
   <div data-role="content">
-    <ul data-role="listview">
+    <ul data-role="listview" id="tuning_list_ul">
     <% @tunings.each do |t| %>
       <% next if t.tunes.count == 0 %>
       <li id="tuning_id_<%= t.id %>">
-        <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-transition="slidefade">
+        <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-id="<%= t.id %>" data-transition="slidefade">
           <h3 class="tuning-name">
             <%= t.name %>
             <% if t.capo != nil and t.capo != 0 %>
@@ -81,21 +83,22 @@ $(document).delegate('#album_list','pageinit',function(event){
           <p><%= t.tunes.count %> tunes.</p>
         </a>
       </li>
-<script>
-  $('#tuning_a_id_<%= t.id %>').click(function(){
-    $('.tune_li').hide();
-    $('.tuning_<%= t.id %>').show();
-  });
-</script>
     <% end %>
     </ul>
   </div>
   <%= render "footer_smart_phone_iphone" , { :state => "tuning_list" } %>
 </div>
-
+<script>
+$(document).delegate('#tuning_list','pageinit',function(event){
+  $('#tuning_list_ul').delegate('a', 'click', function(){
+    $('.tune_li').hide();
+    $('.tuning_' + $(this).data('id')).show();
+  });
+});
+</script>
 
 <% @tunes.each do |t| %>
-<div data-role="page" id="tune_<%= t.id %>" data-theme="a" class="swipe_back">
+<div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="swipe_back">
   <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
 
   <div data-role="content" data-theme="a">
@@ -119,7 +122,7 @@ $(document).delegate('#album_list','pageinit',function(event){
     </div> 
 
     <center>
-    <p><a id="same_tuning_<%= t.id %>" href="#tune_list" data-role="button" data-inline="true" >
+    <p><a id="same_tuning_<%= t.id %>" href="#tune_list" data-tuning="<%= t.tuning.id %>" data-role="button" data-inline="true" >
       <span class="tuning-name">
       <%= t.tuning.name %>
       <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
@@ -156,11 +159,13 @@ $(document).delegate('#album_list','pageinit',function(event){
 </div>
 
 <script>
-$('#tune_<%= t.id %>').live( 'pageinit',function(event){
-  $('#tune_<%= t.id %> .progress-bar').progressBar(progress_default_option);
-  $('#same_tuning_<%= t.id %>').click(function(){
+$(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
+  $('#tune_' + $(this).data('id') + ' .progress-bar').each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+  $('#same_tuning_' + $(this).data('id')).click(function(){
     $('.tune_li').hide();
-    $('.tuning_<%= t.tuning.id %>').show();
+    $('.tuning_' + $(this).data('tuning')).show();
   });
 });
 </script>

@@ -41,7 +41,7 @@ $(document).delegate('#tune_list','pageinit',function(){
     <ul data-role="listview" id="album_list_ul">
     <% @albums.each do |a| %>
       <li id="album_id_<%= a.id %>">
-        <a id="album_a_id_<%= a.id %>" href="#tune_list" data-id="<%= a.id %>" data-transition="slidefade">
+        <a href="#tune_list" data-id="<%= a.id %>" data-transition="slidefade">
           <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
           <h3 class="tune-title"><%= a.title %></h3>
           <p><%= a.tunes.count %> tunes.</p>
@@ -59,6 +59,7 @@ $(document).delegate('#album_list','pageinit',function(){
     $('.tune_li').hide();
     $('.album_' + $(this).data('id')).show();
   });
+
   $('#album_list_ul .progress-bar').each(function(){
     $(this).progressBar(progress_default_option);
   });
@@ -73,7 +74,7 @@ $(document).delegate('#album_list','pageinit',function(){
     <% @tunings.each do |t| %>
       <% next if t.tunes.count == 0 %>
       <li id="tuning_id_<%= t.id %>">
-        <a id="tuning_a_id_<%= t.id %>" href="#tune_list" data-id="<%= t.id %>" data-transition="slidefade">
+        <a href="#tune_list" data-id="<%= t.id %>" data-transition="slidefade">
           <h3 class="tuning-name">
             <%= t.name %>
             <% if t.capo != nil and t.capo != 0 %>
@@ -98,31 +99,24 @@ $(document).delegate('#tuning_list','pageinit',function(event){
 </script>
 
 <% @tunes.each do |t| %>
-<div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="swipe_back">
+<div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="tune-page swipe_back">
   <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
 
   <div data-role="content" data-theme="a">
-
     <h2><%= t.title %></h2>
     <div class="album-title">
       <p>
         <%= raw t.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
       </p>
       <% t.recordings.each do |r| %>
-        <a id="tune_album_a_id_<%= t.id %>_<%= r.album.id %>" href="#tune_list" data-transition="slidefade" class="tune-album-img" >
+        <a href="#tune_list" data-id="<%= r.album.id %>" data-transition="slidefade" class="tune-album-img" >
           <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
         </a>
-<script>
-  $('#tune_album_a_id_<%= t.id %>_<%= r.album.id %>').click(function(){
-    $('.tune_li').hide();
-    $('.album_<%= r.album.id %>').show();
-  });
-</script>
       <% end %>
     </div> 
 
     <center>
-    <p><a id="same_tuning_<%= t.id %>" href="#tune_list" data-tuning="<%= t.tuning.id %>" data-role="button" data-inline="true" >
+    <p><a class="same-tuning-btn" href="#tune_list" data-tuning="<%= t.tuning.id %>" data-role="button" data-inline="true" >
       <span class="tuning-name">
       <%= t.tuning.name %>
       <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
@@ -163,11 +157,16 @@ $(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
   $('#tune_' + $(this).data('id') + ' .progress-bar').each(function(){
     $(this).progressBar(progress_default_option);
   });
-  $('#same_tuning_' + $(this).data('id')).click(function(){
+
+  $('#tune_<%= t.id %>').delegate('.same-tuning-btn', 'click', function(){
     $('.tune_li').hide();
     $('.tuning_' + $(this).data('tuning')).show();
   });
+
+  $('#tune_<%= t.id %>').delegate('.tune-album-img', 'click', function(){
+    $('.tune_li').hide();
+    $('.album_' + $(this).data('id')).show();
+  });
 });
 </script>
-
 <% end %>

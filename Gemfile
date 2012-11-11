@@ -6,7 +6,7 @@ gem 'omniauth-facebook'
 gem 'oa-core'
 
 gem 'jpmobile'
-gem 'jpmobile-terminfo'
+#gem 'jpmobile-terminfo'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"

@@ -146,7 +146,8 @@ $(document).delegate('#tuning_list','pageinit',function(event){
       </div>
     </div>
     <% end %>
-    <a data-rel="back" data-icon="back" data-role="button">戻る</a>
+
+    <%= render "comments_smart_phone_iphone", { :user => @user , :tune => t } %>
   </div>
 
   <%= render "footer_smart_phone_iphone" , { :state => "tune" } %>

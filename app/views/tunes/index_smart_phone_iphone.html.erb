@@ -12,8 +12,8 @@
             <span class="tuning-name"><%= t.tuning.name %>
             <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
               <span> (Capo : <%= t.tuning.capo =%>)</span>
-            </span>
             <% end %>
+            </span>
           </p>
           <p>
             <span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>

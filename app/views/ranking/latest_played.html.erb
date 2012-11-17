@@ -23,7 +23,7 @@
       <td><%= link_to p.tune.title, user_tune_path(p.user,p.tune) %></td>
       <td class="progress-bar-area"><span class="progress-bar"><%= p.tune.progress_val(p.user) %></span></td>
       <td>
-      <% c = p.user.comments.by_tune(p.tune).last %>
+      <% c = p.user.comments.by_tune(p.tune).first %>
       <% if c != nil %>
         <div class="comment">
         <dl>

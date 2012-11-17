@@ -45,10 +45,10 @@
               <ul class="nav pull-left">
                 <li><%= link_to 'MyTunes', user_tunes_path(current_user) %>
                 <li><%= link_to 'MyAlbums', user_albums_path(current_user) %>
-                <li><%= link_to 'Ranking', ranking_index_path %>
-                <li><%= link_to 'History', ranking_latest_played_path %>
               </ul>
               <ul class="nav pull-right">
+                <li><%= link_to 'Activity', ranking_latest_played_path %>
+                <li><%= link_to 'Ranking', ranking_index_path %>
                 <li><%= link_to 'AllUsers', list_users_path %>
                 <% unless current_user.is_sample? %>
                   <li><%= link_to 'EditProfile', edit_user_path(current_user) %>
@@ -57,6 +57,9 @@
               </ul>
             <% else %>
               <ul class="nav pull-right">
+                <li><%= link_to 'Activity', ranking_latest_played_path %>
+                <li><%= link_to 'Ranking', ranking_index_path %>
+                <li><%= link_to 'AllUsers', list_users_path %>
                 <li><%= link_to 'Login', new_user_session_path  %>
                 <li><%= link_to 'NewAccount', new_user_registration_path %>
               </ul>

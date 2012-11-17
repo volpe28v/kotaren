@@ -27,7 +27,7 @@
       <% if c != nil %>
         <div class="comment">
         <dl>
-        <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+        <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
         <dd><div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div></dd> 
         </dl> 
         </div>

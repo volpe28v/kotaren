@@ -1,0 +1,6 @@
+updateElem('#touched_num',<%= @touched_count %>)
+updateElem('#doing_num',<%= @doing_count %>)
+updateElem('#done_num',<%= @done_count %>)
+updateElem('#progress_updated_at_<%= @tune.id %>','<%= last_played_at(@tune.progress_updated_at(@user)) %>')
+updateElem('#tune_list_progress_updated_at_<%= @tune.id %>','<%= mini_last_played_at(@tune.progress_updated_at(@user)) %>')
+

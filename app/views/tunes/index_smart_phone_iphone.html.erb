@@ -16,6 +16,9 @@
             </span>
           </p>
           <p>
+            <span id="tune_list_progress_updated_at_<%= t.id %>">
+              <%= mini_last_played_at(t.progress_updated_at(@user)) %>
+            </span>
             <span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
           </p>
         </a>

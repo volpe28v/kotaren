@@ -4,6 +4,6 @@ class RankingController < ApplicationController
   end
 
   def latest_played
-    @progresses = Progress.order("updated_at DESC").limit(30)
+    @progresses = Progress.order("updated_at DESC").limit(50)
   end
 end

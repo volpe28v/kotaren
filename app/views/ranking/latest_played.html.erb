@@ -7,7 +7,7 @@
     <th class="ranking-user-title">ユーザ名</th>
     <th class="tune-ranking-title">曲名</th>
     <th class="ranking-title">進捗</th>
-    <th class="comment-count-title">練習記録数</th>
+    <th class="latest-tune-comment">最終練習メモ</th>
   </tr>
   <% @progresses.each do |p| %>
     <% next if p.percent == 0 %>
@@ -22,7 +22,17 @@
       <td><%= link_to p.user.default_name, user_tunes_path(p.user) %>
       <td><%= link_to p.tune.title, user_tune_path(p.user,p.tune) %></td>
       <td class="progress-bar-area"><span class="progress-bar"><%= p.tune.progress_val(p.user) %></span></td>
-      <td><%= p.tune.comments.where(:user_id => p.user.id).count %></td>
+      <td>
+      <% c = p.user.comments.by_tune(p.tune).last %>
+      <% if c != nil %>
+        <div class="comment">
+        <dl>
+        <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+        <dd><div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div></dd> 
+        </dl> 
+        </div>
+      <% end %>
+    </td>
     </tr>
 
   <% end %>

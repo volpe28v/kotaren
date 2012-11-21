@@ -84,7 +84,11 @@ $(document).delegate('#album_list','pageinit',function(){
               <span> (Capo : <%= t.capo =%>)</span>
             <% end %>
           </h3>
-          <p><%= t.tunes.count %> tunes.</p>
+          <% if t.tunes.count == 1 %>
+            <p>1 tune. <span class="tuning-tune-title"><%= t.tunes.first.title %></span></p>
+          <% else %>
+            <p><%= t.tunes.count %> tunes. <span class="tuning-tune-title"><%= t.tunes.sample.title %> etc...</span></p>
+          <% end %>
         </a>
       </li>
     <% end %>

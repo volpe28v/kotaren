@@ -92,8 +92,21 @@ var progress_controller = {
       type: "GET",
       cache: false,
       url: "/users/" + user_id + "/tunes/update_progress",
-      data: "tune_id=" + tune_id + "&progress_val=" + val
+      data: "tune_id=" + tune_id + "&progress_val=" + val,
+      dataType: "jsonp"
+
     });
   }
+}
+
+function updateProgress(data){
+  updateElem('#progress_updated_at_' + data.id, data.date)
+  updateElem('#tune_list_progress_updated_at_' + data.id, data.mini_date)
+  updateElem('#progress_word_' + data.id, data.comment + " by " + data.name)
+  $('#progress_word_' + data.id).fadeIn('slow',function(){
+    setTimeout(function(){
+      $('#progress_word_' + data.id).fadeOut('slow');
+    },5000);
+  });
 }
 

@@ -62,8 +62,18 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     @tune = Tune.find(params[:tune_id])
     @tune.update_progress(@user,params[:progress_val])
-
     set_tune_counts(@user)
+
+    if request.smart_phone?
+      comment = Comment.scoped.sample
+      render :json => { id: @tune.id,
+                        name: comment.user.name,
+                        date: ApplicationController.helpers.last_played_at(@tune.progress_updated_at(@user)),
+                        mini_date: ApplicationController.helpers.mini_last_played_at(@tune.progress_updated_at(@user)),
+                        comment: comment.text
+                      },
+             :callback => 'updateProgress'
+    end
   end
 
   private

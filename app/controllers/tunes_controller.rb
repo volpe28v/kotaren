@@ -65,7 +65,8 @@ class TunesController < ApplicationController
     set_tune_counts(@user)
 
     if request.smart_phone?
-      comment = Comment.scoped.sample
+      #TODO: コメントがなかった場合の処理が必要
+      comment = Comment.includes(:user).where("users.id != ?", @user.id).sample
       render :json => { id: @tune.id,
                         name: comment.user.name,
                         date: ApplicationController.helpers.last_played_at(@tune.progress_updated_at(@user)),

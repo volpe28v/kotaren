@@ -114,3 +114,21 @@ function updateProgress(data){
   });
 }
 
+function loadTuneList(user_id){
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: "/users/" + user_id + "/tunes/load_tune_list",
+    dataType: "jsonp"
+  });
+}
+
+function showTuneList(data){
+  $('#tune_list_ul').hide();
+  $('#tune_list_ul').append(data.lists);
+  $('#tune_list_ul').listview('refresh');
+  $("#tune_list .progress-bar").each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+  $('#tune_list_ul').fadeIn();
+}

@@ -1,0 +1,18 @@
+    <% @tunings.each do |t| %>
+      <% next if t.tunes.count == 0 %>
+      <li id="tuning_id_<%= t.id %>">
+        <a href="#tune_list" data-id="<%= t.id %>" data-transition="slidefade">
+          <h3 class="tuning-name">
+            <%= t.name %>
+            <% if t.capo != nil and t.capo != 0 %>
+              <span> (Capo : <%= t.capo =%>)</span>
+            <% end %>
+          </h3>
+          <% if t.tunes.count == 1 %>
+            <p>1 tune. <span class="tuning-tune-title"><%= t.tunes.first.title %></span></p>
+          <% else %>
+            <p><%= t.tunes.count %> tunes. <span class="tuning-tune-title"><%= t.tunes.sample.title %> etc...</span></p>
+          <% end %>
+        </a>
+      </li>
+    <% end %>

@@ -10,23 +10,22 @@ class TunesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @albums = Album.scoped.order("id ASC")
-    @statuses = @@statuses_def
-
-    @current_album = selected_album_title
-    @current_tuning = selected_tuning_name
-    @current_status = selected_status
-
-    @touched_count = @user.tunes_count(@@statuses_def[1][1])
-    @doing_count   = @user.tunes_count(@@statuses_def[2][1])
-    @done_count    = @user.tunes_count(@@statuses_def[3][1])
-
-    @latest_comments = @user.comments.latest
-    @other_comments = Comment.other_by(@user)
-
     if request.smart_phone?
       @tunes = Tune.all_play_history(@user)
-      @tunings = Tuning.scoped.order("name ASC, capo ASC")
+    else
+      @albums = Album.scoped.order("id ASC")
+      @statuses = @@statuses_def
+
+      @current_album = selected_album_title
+      @current_tuning = selected_tuning_name
+      @current_status = selected_status
+
+      @touched_count = @user.tunes_count(@@statuses_def[1][1])
+      @doing_count   = @user.tunes_count(@@statuses_def[2][1])
+      @done_count    = @user.tunes_count(@@statuses_def[3][1])
+
+      @latest_comments = @user.comments.latest
+      @other_comments = Comment.other_by(@user)
     end
   end
 
@@ -96,6 +95,13 @@ class TunesController < ApplicationController
            :callback => 'showAlbumList'
   end
 
+  def load_tuning_list
+    @tunings = Tuning.scoped.order("name ASC, capo ASC")
+
+    lists = render_to_string :partial => 'tuning_list_body_smart_phone_iphone'
+    render :json => { lists: lists },
+           :callback => 'showTuningList'
+  end
 
   private
   def set_current_tune_statuses_to_session( album, tuning, status )

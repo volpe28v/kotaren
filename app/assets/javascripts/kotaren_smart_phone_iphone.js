@@ -158,3 +158,25 @@ function showAlbumList(data){
 //TODO: 曲リストが無ければロードする必要がある
 }
 
+function loadTuningList(user_id){
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: "/users/" + user_id + "/tunes/load_tuning_list",
+    dataType: "jsonp"
+  });
+}
+
+function showTuningList(data){
+  $('#tuning_list_ul').hide();
+  $('#tuning_list_ul').append(data.lists);
+  $('#tuning_list_ul').listview('refresh');
+  $('#tuning_list_ul').delegate('a', 'click', function(){
+    $('.tune_li').hide();
+    $('.tuning_' + $(this).data('id')).show();
+  });
+  $('#tuning_list_ul').fadeIn();
+
+//TODO: 曲リストが無ければロードする必要がある
+}
+

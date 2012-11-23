@@ -22,6 +22,7 @@ Kotaren::Application.routes.draw do
       get :load_tune_list, :on => :collection
       get :load_album_list, :on => :collection
       get :load_tuning_list, :on => :collection
+      get :load_tune, :on => :collection
     end
 
     resources :albums

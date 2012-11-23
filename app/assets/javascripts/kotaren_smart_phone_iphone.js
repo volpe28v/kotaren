@@ -180,3 +180,34 @@ function showTuningList(data){
 //TODO: 曲リストが無ければロードする必要がある
 }
 
+function loadTune(user_id, tune_id){
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: "/users/" + user_id + "/tunes/load_tune",
+    data: "tune_id=" + tune_id,
+    dataType: "jsonp"
+  });
+}
+
+function showTune(data){
+  $('#tune_body_' + data.id).hide();
+  $('#tune_body_' + data.id).append(data.tune);
+  $('#tune_body_' + data.id).trigger('create');
+  $('#tune_body_' + data.id).fadeIn();
+
+  $('#tune_' + data.id + ' .progress-bar').each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+
+  $('#tune_' + data.id).delegate('.same-tuning-btn', 'click', function(){
+    $('.tune_li').hide();
+    $('.tuning_' + $(this).data('tuning')).show();
+  });
+
+  $('#tune_' + data.id).delegate('.tune-album-img', 'click', function(){
+    $('.tune_li').hide();
+    $('.album_' + $(this).data('id')).show();
+  });
+}
+

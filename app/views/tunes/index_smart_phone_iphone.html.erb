@@ -47,78 +47,14 @@ $(document).delegate('#tuning_list','pageinit',function(event){
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="tune-page swipe_back">
   <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
-
-  <div data-role="content" data-theme="a">
-    <h2><%= t.title %></h2>
-    <div class="album-title">
-      <p>
-        <%= raw t.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-      </p>
-      <% t.recordings.each do |r| %>
-        <a href="#tune_list" data-id="<%= r.album.id %>" data-transition="slidefade" class="tune-album-img" >
-          <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
-        </a>
-      <% end %>
-    </div> 
-
-    <center>
-    <p><a class="same-tuning-btn" href="#tune_list" data-tuning="<%= t.tuning.id %>" data-role="button" data-inline="true" >
-      <span class="tuning-name">
-      <%= t.tuning.name %>
-      <% if t.tuning.capo != nil and t.tuning.capo != 0 %>
-        <span> Capo : <%= t.tuning.capo =%></span>
-        <br/>
-      <% end %>
-      </span>
-      (<%= t.tuning.tunes.count %> tunes)
-    </a></p>
-
-    <span id="progress_updated_at_<%= t.id %>">
-      <%= last_played_at(t.progress_updated_at(@user)) %>
-    </span>
-    <span id="tune_progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
-  </center>
-
-    <% if current_user == @user %>
-    <div class="ui-grid-b">
-      <div class="ui-block-a">
-        <button onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
-      </div>
-      <div class="ui-block-b">
-        <button onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
-      </div>
-      <div class="ui-block-c">
-        <button onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
-      </div>
-    </div>
-    <% end %>
-
-    <div id="progress_response_<%= t.id %>" class="progress-response">
-      <div id="progress_word_<%= t.id %>" class="progress-word"></div>
-      <div id="progress_title_<%= t.id %>" class="progress-title"></div>
-    </div>
-
-    <%= render "comments_smart_phone_iphone", { :user => @user , :tune => t } %>
-  </div>
+  <div id="tune_body_<%= t.id %>" class="tune-body"></div>
 
   <%= render "footer_smart_phone_iphone" , { :state => "tune" } %>
 </div>
 
 <script>
 $(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
-  $('#tune_' + $(this).data('id') + ' .progress-bar').each(function(){
-    $(this).progressBar(progress_default_option);
-  });
-
-  $('#tune_<%= t.id %>').delegate('.same-tuning-btn', 'click', function(){
-    $('.tune_li').hide();
-    $('.tuning_' + $(this).data('tuning')).show();
-  });
-
-  $('#tune_<%= t.id %>').delegate('.tune-album-img', 'click', function(){
-    $('.tune_li').hide();
-    $('.album_' + $(this).data('id')).show();
-  });
+  loadTune(<%= @user.id %> ,<%= t.id %>)
 });
 </script>
 <% end %>

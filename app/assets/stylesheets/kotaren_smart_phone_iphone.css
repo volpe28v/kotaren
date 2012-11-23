@@ -29,6 +29,11 @@
 
 .comment-date {
   color: gray;
+  font-size: 12px;
+}
+
+.comment-text {
+  font-size: 14px;
 }
 
 .label{
@@ -53,5 +58,10 @@
 
 .progress-word {
   color: yellow;
+  font-size: 14px;
+}
+
+.progress-title {
+  font-size: 12px;
 }
 

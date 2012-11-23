@@ -99,14 +99,18 @@ var progress_controller = {
   }
 }
 
+var updateProgressTimerID = 0;
 function updateProgress(data){
   updateElem('#progress_updated_at_' + data.id, data.date)
   updateElem('#tune_list_progress_updated_at_' + data.id, data.mini_date)
-  updateElem('#progress_word_' + data.id, data.comment + " by " + data.name)
-  $('#progress_word_' + data.id).fadeIn('slow',function(){
-    setTimeout(function(){
-      $('#progress_word_' + data.id).fadeOut('slow');
-    },5000);
+  updateElem('#progress_title_' + data.id, data.title + " by " + data.name )
+  updateElem('#progress_word_' + data.id, data.comment )
+
+  clearTimeout(updateProgressTimerID);
+  $('#progress_response_' + data.id).fadeIn('slow',function(){
+    updateProgressTimerID = setTimeout(function(){
+      $('#progress_response_' + data.id).fadeOut('slow');
+    },10000);
   });
 }
 

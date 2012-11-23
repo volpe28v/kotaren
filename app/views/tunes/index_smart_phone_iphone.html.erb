@@ -154,7 +154,10 @@ $(document).delegate('#tuning_list','pageinit',function(event){
     </div>
     <% end %>
 
-    <div id="progress_word_<%= t.id %>" class="progress-word"></div>
+    <div id="progress_response_<%= t.id %>" class="progress-response">
+      <div id="progress_word_<%= t.id %>" class="progress-word"></div>
+      <div id="progress_title_<%= t.id %>" class="progress-title"></div>
+    </div>
 
     <%= render "comments_smart_phone_iphone", { :user => @user , :tune => t } %>
   </div>

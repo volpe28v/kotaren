@@ -69,6 +69,7 @@ class TunesController < ApplicationController
       comment = Comment.includes(:user).where("users.id != ?", @user.id).sample
       render :json => { id: @tune.id,
                         name: comment.user.name,
+                        title: comment.tune.title,
                         date: ApplicationController.helpers.last_played_at(@tune.progress_updated_at(@user)),
                         mini_date: ApplicationController.helpers.mini_last_played_at(@tune.progress_updated_at(@user)),
                         comment: comment.text

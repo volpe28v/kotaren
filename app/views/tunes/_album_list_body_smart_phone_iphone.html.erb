@@ -1,0 +1,11 @@
+    <% @albums.each do |a| %>
+      <li id="album_id_<%= a.id %>">
+        <a href="#tune_list" data-id="<%= a.id %>" data-transition="slidefade">
+          <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
+          <h3 class="tune-title"><%= a.title %></h3>
+          <p><%= a.tunes.count %> tunes.</p>
+          <p><span id="album_progress_<%= a.id %>" class="progress-bar"><%= a.progress_average(@user) %></span></p>
+        </a>
+      </li>
+    <% end %>
+

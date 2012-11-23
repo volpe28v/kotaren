@@ -132,3 +132,29 @@ function showTuneList(data){
   });
   $('#tune_list_ul').fadeIn();
 }
+
+function loadAlbumList(user_id){
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: "/users/" + user_id + "/tunes/load_album_list",
+    dataType: "jsonp"
+  });
+}
+
+function showAlbumList(data){
+  $('#album_list_ul').hide();
+  $('#album_list_ul').append(data.lists);
+  $('#album_list_ul').listview('refresh');
+  $("#album_list .progress-bar").each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+  $('#album_list_ul').delegate('a', 'click',function(){
+    $('.tune_li').hide();
+    $('.album_' + $(this).data('id')).show();
+  });
+  $('#album_list_ul').fadeIn();
+
+//TODO: 曲リストが無ければロードする必要がある
+}
+

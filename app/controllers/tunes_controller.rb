@@ -83,10 +83,19 @@ class TunesController < ApplicationController
     @tunes = Tune.all_play_history(@user)
 
     lists = render_to_string :partial => 'tune_list_body_smart_phone_iphone'
-    render :json => { lists: lists
-                    },
+    render :json => { lists: lists },
            :callback => 'showTuneList'
   end
+
+  def load_album_list
+    @user = User.find(params[:user_id])
+    @albums = Album.scoped.order("id ASC")
+
+    lists = render_to_string :partial => 'album_list_body_smart_phone_iphone'
+    render :json => { lists: lists },
+           :callback => 'showAlbumList'
+  end
+
 
   private
   def set_current_tune_statuses_to_session( album, tuning, status )

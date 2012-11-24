@@ -12,6 +12,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     if request.smart_phone?
       @tunes = Tune.all_play_history(@user)
+      @other_comment = Comment.other_by(@user).sample
     else
       @albums = Album.scoped.order("id ASC")
       @statuses = @@statuses_def
@@ -65,7 +66,7 @@ class TunesController < ApplicationController
 
     if request.smart_phone?
       #TODO: コメントがなかった場合の処理が必要
-      comment = Comment.includes(:user).where("users.id != ?", @user.id).sample
+      comment = Comment.other_by(@user).sample
       render :json => { id: @tune.id,
                         name: comment.user.name,
                         title: comment.tune.title,
@@ -86,6 +87,7 @@ class TunesController < ApplicationController
            :callback => 'showTuneList'
   end
 
+  #TODO: albumコントローラに移動する
   def load_album_list
     @user = User.find(params[:user_id])
     @albums = Album.scoped.order("id ASC")
@@ -95,6 +97,7 @@ class TunesController < ApplicationController
            :callback => 'showAlbumList'
   end
 
+  #TODO: tuningコントローラに移動する
   def load_tuning_list
     @tunings = Tuning.scoped.order("name ASC, capo ASC")
 
@@ -112,7 +115,6 @@ class TunesController < ApplicationController
                       tune: body },
            :callback => 'showTune'
   end
-
 
   private
   def set_current_tune_statuses_to_session( album, tuning, status )

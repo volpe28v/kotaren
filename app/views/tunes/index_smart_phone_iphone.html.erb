@@ -4,6 +4,8 @@
   <div id="tune_list_loading" class="loading">
     <center>
       <img src="<%= image_path 'ajax-loader.gif' %> ">
+      <div class="progress-word"><%= @other_comment.text %></div>
+      <div class="progress-title"><%= @other_comment.tune.title %> by <%= @other_comment.user.name %></div>
     </center>
   </div>
 

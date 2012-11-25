@@ -1,4 +1,3 @@
-
   <div data-role="content" data-theme="a">
     <h2><%= @tune.title %></h2>
     <div class="album-title">
@@ -42,12 +41,17 @@
         <button onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
       </div>
     </div>
-    <% end %>
 
     <div id="progress_response_<%= @tune.id %>" class="progress-response">
       <div id="progress_word_<%= @tune.id %>" class="progress-word"></div>
       <div id="progress_title_<%= @tune.id %>" class="progress-title"></div>
     </div>
+
+    <form method="post" class="add-comment-form form-inline">
+      <textarea class="add-comment-form-msg" data-mini="true" maxlength="200" placeholder="Memo"></textarea>
+      <a data-role="button" class="add-comment-button" data-mini="true" data-inline="true">Add</a>
+    </form>
+    <% end %>
 
     <%= render "comments_smart_phone_iphone", { :user => @user , :tune => @tune } %>
   </div>

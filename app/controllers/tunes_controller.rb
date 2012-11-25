@@ -112,6 +112,7 @@ class TunesController < ApplicationController
 
     body = render_to_string :partial => 'tune_body_smart_phone_iphone'
     render :json => { id: @tune.id,
+                      user_id: @user.id,
                       tune: body },
            :callback => 'showTune'
   end

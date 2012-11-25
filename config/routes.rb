@@ -14,7 +14,9 @@ Kotaren::Application.routes.draw do
   resources :users do
     get :list , :on => :collection
     resources :tunes do
-      resources :comments
+      resources :comments do
+        post :ajax_create , :on => :collection
+      end
       resources :progresses
       get :all , :on => :collection
       post :get_tunes_list , :on => :collection

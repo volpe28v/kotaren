@@ -213,5 +213,34 @@ function showTune(data){
     $('.tune_li').hide();
     $('.album_' + $(this).data('id')).show();
   });
+
+  $('#tune_' + data.id).delegate('.add-comment-button', 'click', function(){
+    var text_area = $('#tune_' + data.id).find('.add-comment-form-msg');
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: "/users/" + data.user_id + "/tunes/" + data.id + "/comments/ajax_create",
+      data: "comment=" + text_area.val(),
+      dataType: "jsonp"
+    });
+
+    text_area.val("");
+  });
 }
 
+function addComment(data){
+  var $new_comment = $('<div/>').attr("id", "comment_" + data.comment_id)
+                                .attr("style","display:none")
+  .append(
+    $('<dl/>').append(
+      $('<dt/>').append(
+        $('<div/>').addClass("comment-date").html(data.date))))
+  .append(
+    $('<dl/>').append(
+     $('<dd/>').append(
+       $('<div/>').addClass("comment-text").html(data.comment))));
+
+  $('#tune_' + data.id).find('.comment-area')
+    .prepend($new_comment);
+  $new_comment.fadeIn();
+}

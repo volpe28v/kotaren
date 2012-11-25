@@ -104,7 +104,7 @@ function updateProgress(data){
   updateElem('#progress_updated_at_' + data.id, data.date)
   updateElem('#tune_list_progress_updated_at_' + data.id, data.mini_date)
   updateElem('#progress_title_' + data.id, data.title + " by " + data.name )
-  updateElem('#progress_word_' + data.id, data.comment )
+  updateElem('#progress_word_' + data.id, comment_decorater(data.comment) )
 
   clearTimeout(updateProgressTimerID);
   $('#progress_response_' + data.id).fadeIn('slow',function(){
@@ -238,9 +238,24 @@ function addComment(data){
   .append(
     $('<dl/>').append(
      $('<dd/>').append(
-       $('<div/>').addClass("comment-text").html(data.comment))));
+       $('<div/>').addClass("comment-text").html(comment_decorater(data.comment)))));
 
   $('#tune_' + data.id).find('.comment-area')
     .prepend($new_comment);
   $new_comment.fadeIn();
+}
+
+function comment_decorater(text){
+  var deco_text = text.replace(/((https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+))/g,
+    function(){
+      var matched_link = arguments[1];
+        if ( matched_link.match(/(\.jpg|\.gif|\.png|\.bmp)$/)){
+          return '<img src="' + matched_link + '"/>';
+        }else{
+          return '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
+        }
+      });
+  deco_text= deco_text.replace(/\n/g,'<br/>');
+
+  return deco_text;
 }

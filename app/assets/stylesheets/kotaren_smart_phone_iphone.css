@@ -61,6 +61,10 @@
   font-size: 14px;
 }
 
+.progress-word a{
+  color: skyblue;
+}
+
 .progress-title {
   font-size: 12px;
 }
@@ -71,3 +75,5 @@
 
 .loading {
   padding: 80px 0px;
+}
+

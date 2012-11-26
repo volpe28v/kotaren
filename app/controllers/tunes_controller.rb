@@ -82,7 +82,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     @tunes = Tune.all_play_history(@user)
 
-    lists = render_to_string :partial => 'tune_list_body_smart_phone_iphone'
+    lists = render_to_string :partial => 'tune_list_body_smart_phone'
     render :json => { lists: lists },
            :callback => 'showTuneList'
   end
@@ -92,7 +92,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     @albums = Album.scoped.order("id ASC")
 
-    lists = render_to_string :partial => 'album_list_body_smart_phone_iphone'
+    lists = render_to_string :partial => 'album_list_body_smart_phone'
     render :json => { lists: lists },
            :callback => 'showAlbumList'
   end
@@ -101,7 +101,7 @@ class TunesController < ApplicationController
   def load_tuning_list
     @tunings = Tuning.scoped.order("name ASC, capo ASC")
 
-    lists = render_to_string :partial => 'tuning_list_body_smart_phone_iphone'
+    lists = render_to_string :partial => 'tuning_list_body_smart_phone'
     render :json => { lists: lists },
            :callback => 'showTuningList'
   end
@@ -110,7 +110,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     @tune = Tune.find(params[:tune_id])
 
-    body = render_to_string :partial => 'tune_body_smart_phone_iphone'
+    body = render_to_string :partial => 'tune_body_smart_phone'
     render :json => { id: @tune.id,
                       user_id: @user.id,
                       tune: body },

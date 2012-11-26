@@ -1,5 +1,5 @@
 <div data-role="page" id="tune_list" data-theme="a" class="swipe_back">
-  <%= render "header_smart_phone_iphone" , { :state => "tune_list" } %>
+  <%= render "header_smart_phone" , { :state => "tune_list" } %>
 
   <div id="tune_list_loading" class="loading">
     <center>
@@ -13,7 +13,7 @@
     <ul id="tune_list_ul" data-role="listview">
     </ul>
   </div>
-  <%= render "footer_smart_phone_iphone" , { :state => "tune_list" } %>
+  <%= render "footer_smart_phone" , { :state => "tune_list" } %>
 </div>
 
 <script>
@@ -23,7 +23,7 @@ $(document).delegate('#tune_list','pageinit',function(){
 </script>
 
 <div data-role="page" id="album_list" data-theme="a">
-  <%= render "header_smart_phone_iphone" , { :state => "album_list" } %>
+  <%= render "header_smart_phone" , { :state => "album_list" } %>
 
   <div id="album_list_loading" class="loading">
     <center>
@@ -35,7 +35,7 @@ $(document).delegate('#tune_list','pageinit',function(){
     <ul data-role="listview" id="album_list_ul">
     </ul>
   </div>
-  <%= render "footer_smart_phone_iphone" , { :state => "album_list" } %>
+  <%= render "footer_smart_phone" , { :state => "album_list" } %>
 </div>
 <script>
 $(document).delegate('#album_list','pageinit',function(){
@@ -44,7 +44,7 @@ $(document).delegate('#album_list','pageinit',function(){
 </script>
  
 <div data-role="page" id="tuning_list" data-theme="a">
-  <%= render "header_smart_phone_iphone" , { :state => "tuning_list" } %>
+  <%= render "header_smart_phone" , { :state => "tuning_list" } %>
 
   <div id="tuning_list_loading" class="loading">
     <center>
@@ -56,7 +56,7 @@ $(document).delegate('#album_list','pageinit',function(){
     <ul data-role="listview" id="tuning_list_ul">
     </ul>
   </div>
-  <%= render "footer_smart_phone_iphone" , { :state => "tuning_list" } %>
+  <%= render "footer_smart_phone" , { :state => "tuning_list" } %>
 </div>
 <script>
 $(document).delegate('#tuning_list','pageinit',function(event){
@@ -66,7 +66,7 @@ $(document).delegate('#tuning_list','pageinit',function(event){
 
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="tune-page swipe_back">
-  <%= render "header_smart_phone_iphone" , { :state => "tune" } %>
+  <%= render "header_smart_phone" , { :state => "tune" } %>
   <div id="tune_body_<%= t.id %>" class="tune-body"></div>
 
   <div id="tune_loading_<%= t.id %>" class="loading">
@@ -75,7 +75,7 @@ $(document).delegate('#tuning_list','pageinit',function(event){
     </center>
   </div>
 
-  <%= render "footer_smart_phone_iphone" , { :state => "tune" } %>
+  <%= render "footer_smart_phone" , { :state => "tune" } %>
 </div>
 
 <script>

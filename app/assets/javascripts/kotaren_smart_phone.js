@@ -164,7 +164,7 @@ function loadTuningList(user_id){
   $.ajax({
     type: "GET",
     cache: false,
-    url: "/users/" + user_id + "/tunes/load_tuning_list",
+    url: "/users/" + user_id + "/tunings/load_tuning_list",
     dataType: "jsonp"
   });
 }

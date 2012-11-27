@@ -87,15 +87,6 @@ class TunesController < ApplicationController
            :callback => 'showTuneList'
   end
 
-  #TODO: tuningコントローラに移動する
-  def load_tuning_list
-    @tunings = Tuning.scoped.order("name ASC, capo ASC")
-
-    lists = render_to_string :partial => 'tuning_list_body_smart_phone'
-    render :json => { lists: lists },
-           :callback => 'showTuningList'
-  end
-
   def load_tune
     @user = User.find(params[:user_id])
     @tune = Tune.find(params[:tune_id])

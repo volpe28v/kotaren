@@ -66,9 +66,9 @@ end
   when "ランキング画面"
     page.should have_content("弾いている人数")
   when "ユーザ一覧画面"
-    page.should have_content("Name")
+    page.should have_content("ユーザ名")
     page.should have_content("Youtube")
-    page.should have_content("LatestComment")
+    page.should have_content("最後の練習メモ")
   when "アルバムリスト"
     page.should have_css('#album-list')
   when "練習履歴画面"

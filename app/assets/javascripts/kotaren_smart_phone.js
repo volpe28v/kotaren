@@ -138,7 +138,7 @@ function loadAlbumList(user_id){
   $.ajax({
     type: "GET",
     cache: false,
-    url: "/users/" + user_id + "/tunes/load_album_list",
+    url: "/users/" + user_id + "/albums/load_album_list",
     dataType: "jsonp"
   });
 }

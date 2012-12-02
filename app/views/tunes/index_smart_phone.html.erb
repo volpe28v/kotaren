@@ -85,3 +85,26 @@ $(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
 });
 </script>
 <% end %>
+
+<div data-role="page" id="activity_list" data-theme="a">
+  <%= render "header_smart_phone" , { :state => "activity_list" } %>
+
+  <div id="album_list_loading" class="loading">
+    <center>
+      <!--
+      <img src="<%= image_path 'ajax-loader.gif' %> ">
+      -->
+      <h3>工事中...</h3>
+    </center>
+  </div>
+
+  <div data-role="content">
+  </div>
+  <%= render "footer_smart_phone" , { :state => "activity_list" } %>
+</div>
+<script>
+$(document).delegate('#activity_list','pageinit',function(){
+//  loadAlbumList(<%= @user.id %>);
+});
+</script>
+ 

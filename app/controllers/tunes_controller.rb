@@ -12,7 +12,7 @@ class TunesController < ApplicationController
     @user = User.find(params[:user_id])
     if request.smart_phone?
       @tunes = Tune.all_play_history(@user)
-      @other_comment = Comment.other_by(@user).sample
+      @other_comment = Comment.other_by(@user,30).sample
     else
       @albums = Album.scoped.order("id ASC")
       @statuses = @@statuses_def
@@ -68,11 +68,12 @@ class TunesController < ApplicationController
       #TODO: コメントがなかった場合の処理が必要
       comment = Comment.other_by(@user).sample
       render :json => { id: @tune.id,
-                        name: comment.user.name,
-                        title: comment.tune.title,
                         date: ApplicationController.helpers.last_played_at(@tune.progress_updated_at(@user)),
                         mini_date: ApplicationController.helpers.mini_last_played_at(@tune.progress_updated_at(@user)),
-                        comment: comment.text
+                        comment_name: comment.user.name,
+                        comment_title: comment.tune.title,
+                        comment_date: comment.updated_at.strftime("%y/%m/%d"),
+                        comment_text: comment.text
                       },
              :callback => 'updateProgress'
     end

@@ -103,8 +103,8 @@ var updateProgressTimerID = 0;
 function updateProgress(data){
   updateElem('#progress_updated_at_' + data.id, data.date)
   updateElem('#tune_list_progress_updated_at_' + data.id, data.mini_date)
-  updateElem('#progress_title_' + data.id, data.title + " by " + data.name )
-  updateElem('#progress_word_' + data.id, comment_decorater(data.comment) )
+  updateElem('#progress_title_' + data.id, data.comment_title + " by " + data.comment_name + " at " + data.comment_date )
+  updateElem('#progress_word_' + data.id, comment_decorater(data.comment_text) )
 
   clearTimeout(updateProgressTimerID);
   $('#progress_response_' + data.id).fadeIn('slow',function(){

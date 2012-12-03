@@ -36,5 +36,12 @@ class CommentsController < ApplicationController
            :callback => 'addComment'
   end
 
+  def load_comment_list
+    @albums = Album.scoped.order("id ASC")
+    @comments = Comment.scoped.order("updated_at DESC").limit(50)
 
+    lists = render_to_string :partial => 'comment_list_smart_phone'
+    render :json => { lists: lists },
+           :callback => 'showCommentList'
+  end
 end

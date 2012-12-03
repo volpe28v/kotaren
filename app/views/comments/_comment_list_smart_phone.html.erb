@@ -1,0 +1,18 @@
+<% @comments.each do |c| %>
+  <div data-role="collapsible" data-content-theme="a"> 
+    <h3>
+      <div><%= c.tune.title %></div>
+      <span class="comment-date">
+        <%= c.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </span>
+      <span class="comment-name">
+        <%= c.user.name %>
+      </span>
+ 
+    </h3>
+    <div class="progress-word">
+      <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
+    </div>
+  </div>
+<% end %>
+

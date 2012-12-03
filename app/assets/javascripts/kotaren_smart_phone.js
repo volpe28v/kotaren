@@ -259,3 +259,22 @@ function comment_decorater(text){
 
   return deco_text;
 }
+
+function loadCommentList(){
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: "/comments/load_comment_list",
+    dataType: "jsonp"
+  });
+}
+
+function showCommentList(data){
+  $('#comment_list_area').hide();
+  $('#comment_list_area').append(data.lists);
+  $('#comment_list_area').trigger('create');
+  $('#comment_list_loading').remove();
+  $('#comment_list_area').fadeIn();
+}
+
+

@@ -26,10 +26,15 @@
 .tuning-name {
   color: skyblue;
 }
+.comment-name {
+  color: #bbb;
+  font-size: 12px;
+}
 
 .comment-date {
   color: gray;
   font-size: 12px;
+  margin-right: 5px;
 }
 
 .comment-text {

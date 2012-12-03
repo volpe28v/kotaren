@@ -35,4 +35,8 @@ Kotaren::Application.routes.draw do
   end
 
   resources :tunings, :recordings
+
+  resources :comments do
+      get :load_comment_list, :on => :collection
+  end
 end

@@ -1,5 +1,5 @@
 <% @comments.each do |c| %>
-  <div data-role="collapsible" data-content-theme="a"> 
+  <div id="comment_<%= c.id %>" data-role="collapsible" data-content-theme="a"> 
     <h3>
       <div><%= c.tune.title %></div>
       <span class="comment-date">
@@ -18,8 +18,27 @@
 
     <form method="post" class="add-reply-form form-inline">
       <textarea class="add-reply-form-msg" data-mini="true" maxlength="200" placeholder="Reply"></textarea>
-      <a data-role="button" class="add-reply-button" data-mini="true" data-inline="true">Send</a>
+      <a data-role="button" class="add-reply-button" data-id="<%= c.id %>" data-mini="true" data-inline="true">Send</a>
     </form>
+    <div id="comment_reply_<%= c.id %>">
+      <% c.replies.order("updated_at DESC").each do |r| %>
+        <div id="reply_<%= r.id %>">
+          <dl>
+            <dt>
+            <div class="comment-date">
+              <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+              <%= r.user.name %>
+            </div>
+            </dt>
+            <dd>
+              <div class="comment-text">
+                <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 

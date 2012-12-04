@@ -38,5 +38,6 @@ Kotaren::Application.routes.draw do
 
   resources :comments do
       get :load_comment_list, :on => :collection
+      post :ajax_create_reply 
   end
 end

@@ -280,6 +280,35 @@ function showCommentList(data){
   });
 
   $('#comment_list_area').fadeIn();
+
+  $('#comment_list_area').delegate('.add-reply-button', 'click', function(){
+    var text_area = $('#comment_' + $(this).data("id")).find('.add-reply-form-msg');
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: "/comments/" + $(this).data("id") + "/ajax_create_reply",
+      data: "reply=" + text_area.val(),
+      dataType: "jsonp"
+    });
+
+    text_area.val("");
+  });
+}
+
+function addReply(data){
+  var $new_reply = $('<div/>').attr("id", "reply_" + data.reply_id)
+                                .attr("style","display:none")
+  .append(
+    $('<dl/>').append(
+      $('<dt/>').append(
+        $('<div/>').addClass("comment-date").html(data.date + " " + data.name)))
+    .append(
+      $('<dd/>').append(
+        $('<div/>').addClass("comment-text").append(
+          $('<p/>').html(comment_decorater(data.reply))))));
+
+  $('#comment_reply_' + data.id).prepend($new_reply);
+  $new_reply.fadeIn();
 }
 
 

@@ -10,9 +10,16 @@
       </span>
  
     </h3>
+    <span><%= mini_last_played_at(c.tune.progress_updated_at(c.user)) %></span>
+    <span class="progress-bar"><%= c.tune.progress_val(c.user) %></span>
     <div class="progress-word">
       <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
     </div>
+
+    <form method="post" class="add-reply-form form-inline">
+      <textarea class="add-reply-form-msg" data-mini="true" maxlength="200" placeholder="Reply"></textarea>
+      <a data-role="button" class="add-reply-button" data-mini="true" data-inline="true">Send</a>
+    </form>
   </div>
 <% end %>
 

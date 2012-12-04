@@ -274,6 +274,11 @@ function showCommentList(data){
   $('#comment_list_area').append(data.lists);
   $('#comment_list_area').trigger('create');
   $('#comment_list_loading').remove();
+
+  $("#comment_list_area .progress-bar").each(function(){
+    $(this).progressBar(progress_default_option);
+  });
+
   $('#comment_list_area').fadeIn();
 }
 

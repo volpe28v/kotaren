@@ -234,11 +234,12 @@ function addComment(data){
   .append(
     $('<dl/>').append(
       $('<dt/>').append(
-        $('<div/>').addClass("comment-date").html(data.date))))
-  .append(
-    $('<dl/>').append(
-     $('<dd/>').append(
-       $('<div/>').addClass("comment-text").html(comment_decorater(data.comment)))));
+        $('<span/>').addClass("comment-date").html(data.date)))
+    .append(
+      $('<dd/>').append(
+        $('<div/>').addClass("comment-text").append(
+          $('<p/>').html(comment_decorater(data.comment))))));
+
 
   $('#tune_' + data.id).find('.comment-area')
     .prepend($new_comment);
@@ -283,6 +284,8 @@ function showCommentList(data){
 
   $('#comment_list_area').delegate('.add-reply-button', 'click', function(){
     var text_area = $('#comment_' + $(this).data("id")).find('.add-reply-form-msg');
+    if ( text_area.val() == "" ){ return; }
+
     $.ajax({
       type: "POST",
       cache: false,
@@ -301,7 +304,9 @@ function addReply(data){
   .append(
     $('<dl/>').append(
       $('<dt/>').append(
-        $('<div/>').addClass("comment-date").html(data.date + " " + data.name)))
+        $('<span/>').addClass("comment-date").html(data.date))
+      .append(
+        $('<span/>').addClass("comment-name").html(data.name)))
     .append(
       $('<dd/>').append(
         $('<div/>').addClass("comment-text").append(

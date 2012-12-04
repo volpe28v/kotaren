@@ -8,6 +8,11 @@
       <span class="comment-name">
         <%= c.user.name %>
       </span>
+      <% if c.replies.count > 0 then %>
+        <div class="label label-info" style="float:right"><%= c.replies.count %></div>
+      <% else %>
+        <div class="label label-inverse" style="float:right"><%= c.replies.count %></div>
+      <% end %>
  
     </h3>
     <span><%= mini_last_played_at(c.tune.progress_updated_at(c.user)) %></span>
@@ -25,10 +30,12 @@
         <div id="reply_<%= r.id %>">
           <dl>
             <dt>
-            <div class="comment-date">
-              <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
-              <%= r.user.name %>
-            </div>
+              <span class="comment-date">
+                <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+              </span>
+              <span class="comment-name">
+                <%= r.user.name %>
+              </span>
             </dt>
             <dd>
               <div class="comment-text">

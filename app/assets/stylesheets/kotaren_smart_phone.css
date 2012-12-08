@@ -88,5 +88,14 @@
 
 .remove-reply, .reply-count {
   float: right;
+  margin-top: 5px;
 }
+
+.reply-date {
+  color: gray;
+  float: right;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 

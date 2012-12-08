@@ -341,20 +341,25 @@ function addReply(data){
   $new_reply.trigger('create');
   $new_reply.fadeIn();
 
-  updateReplyCount(data.id, data.count);
+  updateReplyCount(data.id, data.count, data.reply_latest_date);
 }
 
 function removeReply(data){
-  updateReplyCount(data.id, data.count);
+  updateReplyCount(data.id, data.count, data.reply_latest_date);
 }
 
-function updateReplyCount(comment_id, count){
+function updateReplyCount(comment_id, count, date){
   var $reply_count = $('#reply_count_' + comment_id);
   $reply_count.empty();
+
+  var $reply_date = $('#reply_date_' + comment_id);
+  $reply_date.empty();
 
   if (count > 0){
     $reply_count.append($('<span/>').html(count)
       .addClass("reply-count label label-info"))
+    $reply_date.append($('<span/>').html(date)
+      .addClass("reply-date"))
   }else{
     $reply_count.append($('<span/>').html(count)
       .addClass("reply-count label label-inverse"))

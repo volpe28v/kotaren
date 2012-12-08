@@ -1,18 +1,25 @@
 <% @comments.each do |c| %>
   <div id="comment_<%= c.id %>" data-role="collapsible" data-content-theme="a"> 
     <h3>
-      <div><%= c.tune.title %></div>
+      <div>
+        <%= c.tune.title %>
+        <span id="reply_count_<%= c.id %>">
+        <% if c.replies.count > 0 then %>
+          <span class="reply-count label label-info"><%= c.replies.count %></span>
+        <% else %>
+          <span class="reply-count label label-inverse"><%= c.replies.count %></span>
+        <% end %>
+        </span>
+      </div>
       <span class="comment-date">
-        <%= c.created_at.strftime("%Y/%m/%d %H:%M") %>
+        <%= c.created_at.strftime("%y/%m/%d %H:%M") %>
       </span>
       <span class="comment-name">
         <%= c.user.name %>
       </span>
-      <span id="reply_count_<%= c.id %>">
+      <span id="reply_date_<%= c.id %>">
       <% if c.replies.count > 0 then %>
-        <span class="reply-count label label-info"><%= c.replies.count %></span>
-      <% else %>
-        <span class="reply-count label label-inverse"><%= c.replies.count %></span>
+        <span class="reply-date"><%= c.updated_at.strftime("%m/%d") %></span>
       <% end %>
       </span>
  

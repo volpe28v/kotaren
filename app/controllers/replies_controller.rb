@@ -17,6 +17,7 @@ class RepliesController < ApplicationController
       name: new_reply.user.name,
       reply_id: new_reply.id,
       date: new_reply.updated_at.strftime("%Y/%m/%d %H:%M"),
+      reply_latest_date: comment.updated_at.strftime("%m/%d"),
       reply: reply_text
     },
     :callback => 'addReply'
@@ -28,6 +29,7 @@ class RepliesController < ApplicationController
 
     render :json => {
       id: comment.id,
+      reply_latest_date: comment.updated_at.strftime("%m/%d"),
       count: comment.replies.count
     },
     :callback => 'removeReply'

@@ -36,6 +36,11 @@
               <span class="comment-name">
                 <%= r.user.name %>
               </span>
+              <% if r.user == current_user %>
+              <span style="float: right">
+                <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= c.id %>" data-mini="true" data-inline="true">削除</a>
+              </span>
+              <% end %>
             </dt>
             <dd>
               <div class="comment-text">

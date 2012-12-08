@@ -105,4 +105,16 @@ $(document).delegate('#activity_list','pageinit',function(){
   loadCommentList(<%= @user.id %>);
 });
 </script>
+
+<div data-role="page" id="remove_reply_dialog" data-theme="a">
+  <div data-role="header" data-position="fixed">
+    <h3>返信を削除</h3>
+  </div>
+
+  <div data-role="content">
+    <p>返信を削除しますか？</p>
+    <a data-role="button">OK</a>
+    <a data-role="button" data-rel="back">Cancel</a>
+  </div>
+</div>
  

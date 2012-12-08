@@ -289,7 +289,7 @@ function showCommentList(data){
     $.ajax({
       type: "POST",
       cache: false,
-      url: "/comments/" + $(this).data("id") + "/ajax_create_reply",
+      url: "/comments/" + $(this).data("id") + "/replies",
       data: "reply=" + text_area.val(),
       dataType: "jsonp"
     });
@@ -299,20 +299,28 @@ function showCommentList(data){
 }
 
 function addReply(data){
-  var $new_reply = $('<div/>').attr("id", "reply_" + data.reply_id)
-                                .attr("style","display:none")
-  .append(
-    $('<dl/>').append(
-      $('<dt/>').append(
-        $('<span/>').addClass("comment-date").html(data.date))
-      .append(
-        $('<span/>').addClass("comment-name").html(data.name)))
-    .append(
-      $('<dd/>').append(
-        $('<div/>').addClass("comment-text").append(
-          $('<p/>').html(comment_decorater(data.reply))))));
+  var $new_reply = $('<div/>')
+    .attr("id", "reply_" + data.reply_id)
+    .attr("style","display:none")
+    .append($('<dl/>')
+      .append($('<dt/>')
+        .append($('<span/>').addClass("comment-date").html(data.date))
+        .append($('<span/>').addClass("comment-name").html(data.name))
+        .append($('<span/>').addClass("remove-reply")
+        .append($('<a/>').addClass("remove-reply-button")
+          .attr('href',"#remove_reply_dialog")
+          .attr('data-rel',"dialog")
+          .attr('data-transition',"pop")
+          .attr('data-id', data.reply_id)
+          .attr('data-mini',"true")
+          .attr('data-inline',"true")
+          .html('削除'))))
+      .append($('<dd/>')
+        .append($('<div/>').addClass("comment-text")
+          .append($('<p/>').html(comment_decorater(data.reply))))));
 
   $('#comment_reply_' + data.id).prepend($new_reply);
+  $new_reply.trigger('create');
   $new_reply.fadeIn();
 }
 

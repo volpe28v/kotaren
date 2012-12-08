@@ -85,3 +85,8 @@
 .remove-reply-button {
   font-size: 12px;
 }
+
+.remove-reply {
+  float: right;
+}
+

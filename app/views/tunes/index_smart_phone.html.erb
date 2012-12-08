@@ -108,12 +108,13 @@ $(document).delegate('#activity_list','pageinit',function(){
 
 <div data-role="page" id="remove_reply_dialog" data-theme="a">
   <div data-role="header" data-position="fixed">
-    <h3>返信を削除</h3>
+    <h3>リプライを削除</h3>
   </div>
 
   <div data-role="content">
-    <p>返信を削除しますか？</p>
-    <a data-role="button">OK</a>
+    <p id="remove_reply_target" class="progress-word"></p>
+    <p>リプライを削除しますか？</p>
+    <a id="remove_reply_ok" data-role="button">OK</a>
     <a data-role="button" data-rel="back">Cancel</a>
   </div>
 </div>

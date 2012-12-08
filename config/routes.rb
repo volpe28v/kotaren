@@ -34,10 +34,11 @@ Kotaren::Application.routes.draw do
     end
   end
 
-  resources :tunings, :recordings
 
   resources :comments do
     get :load_comment_list, :on => :collection
-    resources :replies
+    resources :replies, :only => %w[create destroy]
   end
+
+  resources :recordings
 end

@@ -296,6 +296,23 @@ function showCommentList(data){
 
     text_area.val("");
   });
+
+  $('#comment_list_area').delegate('.remove-reply-button', 'click', function(){
+    var comment_id = $(this).data("commentId")
+    var reply_id = $(this).data("id")
+    $('#remove_reply_target').html($('#reply_' + reply_id + ' .comment-text').html());
+    $('#remove_reply_ok').unbind('click');
+    $('#remove_reply_ok').click(function(){
+      $.ajax({
+        type: "DELETE",
+        cache: false,
+        url: "/comments/" + comment_id + "/replies/" + reply_id,
+        dataType: "jsonp"
+      });
+      $('#reply_' + reply_id ).remove();
+      history.back();
+    });
+  });
 }
 
 function addReply(data){
@@ -312,6 +329,7 @@ function addReply(data){
           .attr('data-rel',"dialog")
           .attr('data-transition',"pop")
           .attr('data-id', data.reply_id)
+          .attr('data-comment-id', data.id)
           .attr('data-mini',"true")
           .attr('data-inline',"true")
           .html('削除'))))
@@ -322,6 +340,23 @@ function addReply(data){
   $('#comment_reply_' + data.id).prepend($new_reply);
   $new_reply.trigger('create');
   $new_reply.fadeIn();
+
+  updateReplyCount(data.id, data.count);
 }
 
+function removeReply(data){
+  updateReplyCount(data.id, data.count);
+}
 
+function updateReplyCount(comment_id, count){
+  var $reply_count = $('#reply_count_' + comment_id);
+  $reply_count.empty();
+
+  if (count > 0){
+    $reply_count.append($('<span/>').html(count)
+      .addClass("reply-count label label-info"))
+  }else{
+    $reply_count.append($('<span/>').html(count)
+      .addClass("reply-count label label-inverse"))
+  }
+}

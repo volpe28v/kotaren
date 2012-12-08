@@ -8,11 +8,13 @@
       <span class="comment-name">
         <%= c.user.name %>
       </span>
+      <span id="reply_count_<%= c.id %>">
       <% if c.replies.count > 0 then %>
-        <div class="label label-info" style="float:right"><%= c.replies.count %></div>
+        <span class="reply-count label label-info"><%= c.replies.count %></span>
       <% else %>
-        <div class="label label-inverse" style="float:right"><%= c.replies.count %></div>
+        <span class="reply-count label label-inverse"><%= c.replies.count %></span>
       <% end %>
+      </span>
  
     </h3>
     <span><%= mini_last_played_at(c.tune.progress_updated_at(c.user)) %></span>
@@ -37,8 +39,8 @@
                 <%= r.user.name %>
               </span>
               <% if r.user == current_user %>
-              <span style="float: right">
-                <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= c.id %>" data-mini="true" data-inline="true">削除</a>
+              <span class="remove-reply">
+                <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">削除</a>
               </span>
               <% end %>
             </dt>

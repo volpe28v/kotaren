@@ -76,3 +76,19 @@ var progress_controller = {
   }
 }
 
+// youtubinへのラッパー
+var applyYoutubin = function(){
+  var link_id = 0;
+  return function(id){
+    $(id + "[href*='www.youtube.com']").each(function(){
+      $(this).attr("id", "comment_link_" + link_id);
+      link_id += 1;
+
+      $(this).youtubin({
+        swfWidth : 200,
+        swfHeight : 180
+      });
+    });
+  }
+}();
+

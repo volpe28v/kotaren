@@ -9,5 +9,6 @@
 //= require FeedEk
 //= require jquery.progressbar
 //= require jquery.prettyPhoto
+//= require jquery.youtubin
 //= require kotaren
 

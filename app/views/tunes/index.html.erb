@@ -22,6 +22,9 @@
 
     $("#<%= @current_status[1] %>").click();
     $("#my_comment").click();
+
+    applyYoutubin("#my_comments .comment-text a");
+    applyYoutubin("#other_comments .comment-text a");
   });
 
   function loadTunes(){

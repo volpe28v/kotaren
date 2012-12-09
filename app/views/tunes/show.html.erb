@@ -116,6 +116,11 @@ $(document).ready(function(){
                 <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
                   <%= f.text_area :text %>
                   <button onclick="submit();" class="btn"><i class="icon-pencil"></i> 記録する</button>
+                  <p>
+                  例)<br>
+                  Aメロの途中まで覚えた。<br>
+                  http://www.youtube.com/watch?v=XXXXXXXXXXX
+                  </p>
                 <% end %>
               <% end %>
 

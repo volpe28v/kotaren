@@ -173,6 +173,9 @@ function showTuningList(data){
   $('#tuning_list_ul').hide();
   $('#tuning_list_ul').append(data.lists);
   $('#tuning_list_ul').listview('refresh');
+  $("#tuning_list .progress-bar").each(function(){
+    $(this).progressBar(progress_default_option);
+  });
   $('#tuning_list_ul').delegate('a', 'click', function(){
     $('.tune_li').hide();
     $('.tuning_' + $(this).data('id')).show();

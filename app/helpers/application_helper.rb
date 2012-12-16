@@ -31,6 +31,14 @@ module ApplicationHelper
     return raw('<span class="label label-success">' + time.strftime("%y-%m-%d") + '</span>')
   end
 
+  def reply_count_label(comment)
+    if comment.replies.count == 0
+      return ""
+    else
+      return raw('<span class="label label-info">' + comment.replies.count.to_s + '</span>')
+    end
+  end
+
   def is_sample_user(user)
     user.email == "sample@sample.kotaren"
   end

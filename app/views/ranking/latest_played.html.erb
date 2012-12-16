@@ -29,7 +29,7 @@
           <dl>
             <dt>
               <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
-              <div style="float: right">10</div>
+              <div style="float: right"><%= reply_count_label(c) %></span></div>
             </dt>
             <dd>
               <div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div>

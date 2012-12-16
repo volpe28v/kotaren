@@ -32,7 +32,7 @@
               <div style="float: right"><%= reply_count_label(c) %></span></div>
             </dt>
             <dd>
-              <div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div>
+              <div class="comment-text"><%= simple_format(truncate(c.text, :length => 26)) %></div>
             </dd> 
           </dl> 
         </div>

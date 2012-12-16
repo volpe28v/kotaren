@@ -25,8 +25,8 @@ class TunesController < ApplicationController
       @doing_count   = @user.tunes_count(@@statuses_def[2][1])
       @done_count    = @user.tunes_count(@@statuses_def[3][1])
 
-      @latest_comments = @user.comments.latest
-      @other_comments = Comment.other_by(@user)
+      @latest_comments = @user.comments.order("updated_at DESC").latest
+      @other_comments = Comment.other_by(@user).order("updated_at DESC")
     end
   end
 

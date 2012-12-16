@@ -14,8 +14,37 @@
               </dd>
             </dl>
           </div>
+          <% if current_user %>
+          <form method="post" class="add-reply-form">
+            <textarea class="add-reply-form-msg"  maxlength="200" placeholder="Reply"></textarea>
+            <a class="btn add-reply-button" data-id="<%= c.id %>">Send</a>
+          </form>
+          <% end %>
+          <div id="replies">
+            <% c.replies.order("updated_at DESC").each do |r| %>
+            <div id="reply_<%= r.id %>">
+              <dl>
+                <dt><%= r.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
+                <dd>
+                  <div class="comment-text"><%= auto_link( simple_format(r.text)) %></div>
+                  <div class="comment-name">by <%= link_to r.user.default_name, user_path(r.user) %></div>
+                </dd>
+              </dl>
+            </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    showComment();
+    applyYoutubin("#my_comments .comment-text a");
+    applyYoutubin("#replies .comment-text a");
+  });
+</script>
+

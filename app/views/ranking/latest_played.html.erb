@@ -26,10 +26,15 @@
       <% c = p.user.comments.by_tune(p.tune).first %>
       <% if c != nil %>
         <div class="comment">
-        <dl>
-        <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></dt>
-        <dd><div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div></dd> 
-        </dl> 
+          <dl>
+            <dt>
+              <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
+              <div style="float: right">10</div>
+            </dt>
+            <dd>
+              <div class="comment-text"><%= auto_link( simple_format(truncate(c.text, :length => 26))) %></div>
+            </dd> 
+          </dl> 
         </div>
       <% end %>
     </td>

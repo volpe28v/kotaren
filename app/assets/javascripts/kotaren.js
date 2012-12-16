@@ -92,3 +92,53 @@ var applyYoutubin = function(){
   }
 }();
 
+function showComment(){
+  $('#comments').delegate('.add-reply-button', 'click', function(){
+    var text_area = $('#comments').find('.add-reply-form-msg');
+    if ( text_area.val() == "" ){ return; }
+
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: "/comments/" + $(this).data("id") + "/replies",
+      data: "reply=" + text_area.val(),
+      dataType: "jsonp"
+    });
+
+    text_area.val("");
+  });
+
+  $('#comments').delegate('.remove-reply-button', 'click', function(){
+    var comment_id = $(this).data("commentId")
+    var reply_id = $(this).data("id")
+    $('#remove_reply_target').html($('#reply_' + reply_id + ' .comment-text').html());
+    $('#remove_reply_ok').unbind('click');
+    $('#remove_reply_ok').click(function(){
+      $.ajax({
+        type: "DELETE",
+        cache: false,
+        url: "/comments/" + comment_id + "/replies/" + reply_id,
+        dataType: "jsonp"
+      });
+      $('#reply_' + reply_id ).remove();
+      history.back();
+    });
+  });
+}
+
+function addReply(data){
+  var $new_reply = $('<div/>')
+    .attr("id", "reply_" + data.reply_id)
+    .attr("style","display:none")
+    .append($('<dl/>')
+      .append($('<dt/>')
+        .append($('<span/>').html(data.date)))
+      .append($('<dd/>')
+        .append($('<div/>').addClass("comment-text")
+          .append($('<p/>').html(data.reply)))
+        .append($('<div/>').addClass("comment-name").html("by " + data.name))));
+
+  $('#replies').prepend($new_reply);
+  $new_reply.fadeIn();
+}
+

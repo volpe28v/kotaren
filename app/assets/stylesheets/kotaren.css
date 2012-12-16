@@ -254,13 +254,13 @@ a:hover { color:#EA1F00; }
   color: black;
 }
 
-#my_comments, #other_comments{
+#my_comments, #other_comments, #replies{
   margin-top: 5px;
   margin-bottom: 0px;
   padding: 5px;
 }
  
-#my_comments dl, #other_comments dl{
+#my_comments dl, #other_comments dl, #replies dl{
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;

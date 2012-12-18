@@ -131,18 +131,18 @@ $(document).ready(function(){
                       <div class="comment-date">
                         <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
                       </div>
-                      <% if @user == current_user %>
-                        <div class="comment-destroy">
-                          <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
-                        </div>
-                      <% end %>
+                      <div style="float: right">
+                        <%= link_to reply_count_label(c), comment_path(c.id) %>
+                      </div>
                     </dt>
                     <br>
                     <dd>
                       <div class="comment-text">
                         <%= vrp_player_show( auto_link( simple_format(c.text))) %>
                       </div>
-                      <div style="float: right"><%= reply_count_label(c) %></span></div>
+                      <div class="comment-destroy">
+                        <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
+                      </div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
                   </dl>
@@ -155,14 +155,21 @@ $(document).ready(function(){
                 <div id="comment_<%= c.id %>">
                   <dl>
                     <dt>
-                      <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                      <div style="float: right;">
+                        <%= link_to reply_count_label(c), comment_path(c.id) %>
+                      </div>
+                      <div class="comment-date">
+                        <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
+                      </div>
                     </dt>
                     <br>
                     <dd>
                       <div class="comment-text">
                         <%= vrp_player_show( auto_link( simple_format(c.text))) %>
                       </div>
-                      <div class="comment-name">by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %></div>
+                      <div style="float: right;" class="comment-name">
+                          by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
+                      </div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
                   </dl>

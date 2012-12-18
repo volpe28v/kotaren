@@ -128,7 +128,9 @@ $(document).ready(function(){
                 <div id="comment_<%= c.id %>">
                   <dl>
                     <dt>
-                      <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+                      <div class="comment-date">
+                        <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
+                      </div>
                       <% if @user == current_user %>
                         <div class="comment-destroy">
                           <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
@@ -140,6 +142,7 @@ $(document).ready(function(){
                       <div class="comment-text">
                         <%= vrp_player_show( auto_link( simple_format(c.text))) %>
                       </div>
+                      <div style="float: right"><%= reply_count_label(c) %></span></div>
                       <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
                   </dl>

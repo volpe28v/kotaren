@@ -16,8 +16,8 @@
           </div>
           <% if current_user %>
           <form method="post" class="add-reply-form">
-            <textarea class="add-reply-form-msg"  maxlength="200" placeholder="Reply"></textarea>
-            <a class="btn add-reply-button" data-id="<%= c.id %>">Send</a>
+            <textarea class="add-reply-form-msg"  maxlength="200" placeholder="Comment"></textarea>
+            <a class="btn add-reply-button" data-id="<%= c.id %>"><i class="icon-pencil"></i> コメントする</a>
           </form>
           <% end %>
           <div id="replies">

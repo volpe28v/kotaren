@@ -114,7 +114,7 @@ $(document).ready(function(){
               <% if @user == current_user %>
                 <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment), :remote => true ) do |f| %>
                   <%= f.text_area :text, :id => "my_comment_text_area", :placeholder => "Memo" %> 
-                  <%= f.submit( "記録する", :class => "btn" ) %>
+                  <button class="btn"><i class="icon-pencil"></i>記録する</button>
                   <p>
                   例)<br>
                   Aメロの途中まで覚えた。<br>

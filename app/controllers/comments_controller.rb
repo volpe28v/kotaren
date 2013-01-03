@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   def create
-    user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
     tune = Tune.find(params[:tune_id])
 
-    @comment = user.comments.build(params[:comment])
+    @comment = @user.comments.build(params[:comment])
     @comment.tune = tune
     @comment.save!
     @comment_html = render_to_string(:partial => 'comment_body', :locals => {:c => @comment}).gsub(/\n/,"").gsub(/"/,"\\\"");

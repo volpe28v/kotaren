@@ -13,7 +13,7 @@
       <div class="comment-text">
         <%= vrp_player_show( auto_link( simple_format(c.text))) %>
       </div>
-      <% if c.user == current_user %>
+      <% if c.user == @user %>
       <div class="comment-destroy">
         <%= link_to 'x', user_tune_comment_path(c.user,c.tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
       </div>

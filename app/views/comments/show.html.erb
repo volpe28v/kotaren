@@ -6,10 +6,12 @@
           <div id="my_comments">
             <% c = @comment %>
             <dl>
-              <dt><%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span></dt>
+              <dt>
+                <%= c.created_at.strftime("%Y/%m/%d %H:%M") %> <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span>
+                <div class="comment-name">by <%= link_to c.user.default_name, user_tunes_path(c.user) %></div>
+              </dt>
               <dd>
                 <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
-                <div class="comment-name">by <%= link_to c.user.default_name, user_tunes_path(c.user) %></div>
               </dd>
             </dl>
           </div>
@@ -25,15 +27,16 @@
               <dl>
                 <dt>
                   <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+                  <div class="comment-name">by <%= link_to r.user.default_name, user_tunes_path(r.user) %></div>
+                </dt>
+                <dd>
+                  <div class="comment-text"><%= auto_link( simple_format(r.text)) %></div>
                   <% if r.user == current_user %>
                   <div class="comment-destroy">
                     <%= link_to 'x', comment_reply_path(c,r), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
                   </div>
                   <% end %>
-                </dt>
-                <dd>
-                  <div class="comment-text"><%= auto_link( simple_format(r.text)) %></div>
-                  <div class="comment-name">by <%= link_to r.user.default_name, user_tunes_path(r.user) %></div>
+                  <br>
                 </dd>
               </dl>
             </div>

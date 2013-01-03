@@ -116,18 +116,19 @@ function addReply(data){
     .append($('<dl/>')
       .append($('<dt/>')
         .append($('<span/>').html(data.date))
+        .append($('<div/>').addClass("comment-name").html("by ")
+          .append($('<a/>').attr("href",data.user_url).html(data.name))))
+      .append($('<dd/>')
+        .append($('<div/>').addClass("comment-text")
+          .append($('<p/>').html(data.reply)))
         .append($('<div/>').addClass("comment-destroy")
           .append($('<a/>').attr("href", data.destroy_url)
                            .attr("data-confirm","本当に削除しますか？")
                            .attr("data-method","delete")
                            .attr("data-remote","true")
                            .attr("rel","nofllow")
-                           .html("x"))))
-      .append($('<dd/>')
-        .append($('<div/>').addClass("comment-text")
-          .append($('<p/>').html(data.reply)))
-        .append($('<div/>').addClass("comment-name").html("by ")
-          .append($('<a/>').attr("href",data.user_url).html(data.name)))));
+                           .html("x")))
+        .append($('<br/>'))));
 
   $('#replies').prepend($new_reply);
   $new_reply.fadeIn();

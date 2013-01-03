@@ -250,7 +250,7 @@ a:hover { color:#EA1F00; }
 }
 
 .comment-name {
-  text-align: right;
+  float: right;
   color: black;
 }
 

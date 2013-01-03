@@ -113,7 +113,7 @@ $(document).ready(function(){
 
               <% if @user == current_user %>
                 <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment), :remote => true ) do |f| %>
-                  <%= f.text_area :text, :id => "my_comment_text_area" %> 
+                  <%= f.text_area :text, :id => "my_comment_text_area", :placeholder => "Memo" %> 
                   <%= f.submit( "記録する", :class => "btn" ) %>
                   <p>
                   例)<br>
@@ -125,54 +125,13 @@ $(document).ready(function(){
 
             <div id="my_comments">
               <% @comments.each do |c| %>
-                <div id="comment_<%= c.id %>">
-                  <dl>
-                    <dt>
-                      <div class="comment-date">
-                        <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
-                      </div>
-                      <div style="float: right">
-                        <%= link_to reply_count_label(c), comment_path(c.id) %>
-                      </div>
-                    </dt>
-                    <br>
-                    <dd>
-                      <div class="comment-text">
-                        <%= vrp_player_show( auto_link( simple_format(c.text))) %>
-                      </div>
-                      <div class="comment-destroy">
-                        <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
-                      </div>
-                      <br>
-                    </dd>
-                  </dl>
-                </div>
+                <%= render "comments/comment_body", {:c => c } %>
               <% end %>
             </div>
 
             <div id="other_comments">
               <% @other_comments.each do |c| %>
-                <div id="comment_<%= c.id %>">
-                  <dl>
-                    <dt>
-                      <div style="float: right;">
-                        <%= link_to reply_count_label(c), comment_path(c.id) %>
-                      </div>
-                      <div class="comment-date">
-                        <%= link_to c.created_at.strftime("%Y/%m/%d %H:%M"), comment_path(c.id) %>
-                      </div>
-                    </dt>
-                    <br>
-                    <dd>
-                      <div class="comment-text">
-                        <%= vrp_player_show( auto_link( simple_format(c.text))) %>
-                      </div>
-                      <div style="float: right;" class="comment-name">
-                          by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
-                      </div>
-                    </dd>
-                  </dl>
-                </div>
+                <%= render "comments/comment_body", {:c => c } %>
               <% end %>
             </div>
           </div>

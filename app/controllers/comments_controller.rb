@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment = user.comments.build(params[:comment])
     @comment.tune = tune
     @comment.save!
-    @comment_html = render_to_string(:partial => 'comment_body').gsub(/\n/,"").gsub(/"/,"\\\"");
+    @comment_html = render_to_string(:partial => 'comment_body', :locals => {:c => @comment}).gsub(/\n/,"").gsub(/"/,"\\\"");
   end
 
   def destroy

@@ -1,4 +1,3 @@
-<% c = @comment %>
 <div id="comment_<%= c.id %>">
   <dl>
     <dt>
@@ -14,9 +13,15 @@
       <div class="comment-text">
         <%= vrp_player_show( auto_link( simple_format(c.text))) %>
       </div>
+      <% if c.user == current_user %>
       <div class="comment-destroy">
         <%= link_to 'x', user_tune_comment_path(c.user,c.tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
       </div>
+      <% else %>
+      <div style="float: right;" class="comment-name">
+        by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
+      </div>
+      <% end %>
       <br>
     </dd>
   </dl>

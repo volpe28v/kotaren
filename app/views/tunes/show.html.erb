@@ -111,11 +111,10 @@ $(document).ready(function(){
               <li><a id="other_comment" href="#other_comments" class="blue1">Other (<%= @other_comments.count %>)</a></li>
             </ul>
 
-            <div id="my_comments">
               <% if @user == current_user %>
-                <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment)) do |f| %>
-                  <%= f.text_area :text %>
-                  <button onclick="submit();" class="btn"><i class="icon-pencil"></i> 記録する</button>
+                <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment), :remote => true ) do |f| %>
+                  <%= f.text_area :text, :id => "my_comment_text_area" %> 
+                  <%= f.submit( "記録する", :class => "btn" ) %>
                   <p>
                   例)<br>
                   Aメロの途中まで覚えた。<br>
@@ -124,6 +123,7 @@ $(document).ready(function(){
                 <% end %>
               <% end %>
 
+            <div id="my_comments">
               <% @comments.each do |c| %>
                 <div id="comment_<%= c.id %>">
                   <dl>
@@ -143,7 +143,7 @@ $(document).ready(function(){
                       <div class="comment-destroy">
                         <%= link_to 'x', user_tune_comment_path(@user,@tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
                       </div>
-                      <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
+                      <br>
                     </dd>
                   </dl>
                 </div>
@@ -170,7 +170,6 @@ $(document).ready(function(){
                       <div style="float: right;" class="comment-name">
                           by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
                       </div>
-                      <div class="fb-like-button"><%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %></div>
                     </dd>
                   </dl>
                 </div>

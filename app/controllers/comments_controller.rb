@@ -4,11 +4,10 @@ class CommentsController < ApplicationController
     user = User.find(params[:user_id])
     tune = Tune.find(params[:tune_id])
 
-    comment = user.comments.build(params[:comment])
-    comment.tune = tune
-    comment.save!
-
-    redirect_to user_tune_path(user,tune)
+    @comment = user.comments.build(params[:comment])
+    @comment.tune = tune
+    @comment.save!
+    @comment_html = render_to_string(:partial => 'comment_body').gsub(/\n/,"").gsub(/"/,"\\\"");
   end
 
   def destroy

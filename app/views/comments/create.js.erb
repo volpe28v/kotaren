@@ -1,0 +1,5 @@
+$('#my_comment_text_area').val("");
+var $comment = $('<div/>').html("<%= raw @comment_html %>");
+$comment.hide();
+$('#my_comments').prepend($comment);
+$comment.fadeIn();

@@ -10,7 +10,6 @@
               <dd>
                 <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
                 <div class="comment-name">by <%= link_to c.user.default_name, user_tunes_path(c.user) %></div>
-                <%= fb_like(user_tune_comment_url(c.user, c.tune, c)) %>
               </dd>
             </dl>
           </div>

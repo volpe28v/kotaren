@@ -32,7 +32,7 @@ end
 group :production do
   gem 'pg'
   gem 'execjs'
-#  gem 'therubyracer'
+  gem 'therubyracer', '0.11.0beta8'
 end
 
 

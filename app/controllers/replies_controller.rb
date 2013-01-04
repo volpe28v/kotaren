@@ -9,7 +9,10 @@ class RepliesController < ApplicationController
     })
     new_reply.user = user
     new_reply.comment = comment
-    new_reply.save!
+    if new_reply.save == false
+      render :nothing => true
+      return
+    end
 
     render :json => {
       id: comment.id,

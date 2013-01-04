@@ -6,7 +6,10 @@ class CommentsController < ApplicationController
 
     @comment = @user.comments.build(params[:comment])
     @comment.tune = tune
-    @comment.save!
+    if @comment.save == false
+      render :nothing => true
+      return
+    end
 
     if request.smart_phone?
       render :json => { id:         tune.id,

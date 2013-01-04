@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   has_many :replies
 
+  validates :text, :presence => true
+
   scope :by_tune, lambda {|tune|
     where(:tune_id => tune.id).order("updated_at DESC")
   }

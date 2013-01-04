@@ -222,8 +222,8 @@ function showTune(data){
     $.ajax({
       type: "POST",
       cache: false,
-      url: "/users/" + data.user_id + "/tunes/" + data.id + "/comments/ajax_create",
-      data: "comment=" + text_area.val(),
+      url: "/users/" + data.user_id + "/tunes/" + data.id + "/comments",
+      data: "comment[text]=" + text_area.val(),
       dataType: "jsonp"
     });
 

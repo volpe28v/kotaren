@@ -7,7 +7,17 @@ class CommentsController < ApplicationController
     @comment = @user.comments.build(params[:comment])
     @comment.tune = tune
     @comment.save!
-    @comment_html = render_to_string(:partial => 'comment_body', :locals => {:c => @comment}).gsub(/\n/,"").gsub(/"/,"\\\"");
+
+    if request.smart_phone?
+      render :json => { id:         tune.id,
+                        comment_id: @comment.id,
+                        date:       @comment.created_at.strftime("%Y/%m/%d %H:%M"),
+                        comment:    @comment.text
+                      },
+             :callback => 'addComment'
+    else
+      @comment_html = render_to_string(:partial => 'comment_body', :locals => {:c => @comment}).gsub(/\n/,"").gsub(/"/,"\\\"");
+    end
   end
 
   def destroy
@@ -17,22 +27,6 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
-  end
-
-  def ajax_create
-    user = User.find(params[:user_id])
-    tune = Tune.find(params[:tune_id])
-
-    comment = user.comments.build({"text" => params[:comment]})
-    comment.tune = tune
-    comment.save!
-
-    render :json => { id:         tune.id,
-                      comment_id: comment.id,
-                      date:       comment.created_at.strftime("%Y/%m/%d %H:%M"),
-                      comment:    comment.text
-                    },
-           :callback => 'addComment'
   end
 
   def load_comment_list

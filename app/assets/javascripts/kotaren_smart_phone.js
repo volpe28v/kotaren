@@ -335,7 +335,7 @@ function addReply(data){
           .attr('data-comment-id', data.id)
           .attr('data-mini',"true")
           .attr('data-inline',"true")
-          .html('削除'))))
+          .html('x'))))
       .append($('<dd/>')
         .append($('<div/>').addClass("comment-text")
           .append($('<p/>').html(comment_decorater(data.reply))))));

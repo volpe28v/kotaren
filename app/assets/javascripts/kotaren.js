@@ -125,7 +125,7 @@ function addReply(data){
           .append($('<a/>').attr("href",data.user_url).html(data.name))))
       .append($('<dd/>')
         .append($('<div/>').addClass("comment-text")
-          .append($('<p/>').html(data.reply)))
+          .append($('<p/>').html(data.reply.replace(/\n/g,"<br>"))))
         .append($('<div/>').addClass("comment-destroy")
           .append($('<a/>').attr("href", data.destroy_url)
                            .attr("data-confirm","本当に削除しますか？")

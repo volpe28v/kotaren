@@ -88,11 +88,15 @@ var progress_controller = {
   update_remote : function(user_id, tune_id, val){
     $('#tune_list_ul').prepend($('#id_' + tune_id));
 
+    var data = {
+      tune_id: tune_id,
+      progress_val: val
+    };
     $.ajax({
       type: "GET",
       cache: false,
       url: "/users/" + user_id + "/tunes/update_progress",
-      data: "tune_id=" + tune_id + "&progress_val=" + val,
+      data: data,
       dataType: "jsonp"
 
     });
@@ -187,11 +191,12 @@ function showTuningList(data){
 }
 
 function loadTune(user_id, tune_id){
+  var data = { tune_id: tune_id };
   $.ajax({
     type: "GET",
     cache: false,
     url: "/users/" + user_id + "/tunes/load_tune",
-    data: "tune_id=" + tune_id,
+    data: data,
     dataType: "jsonp"
   });
 }
@@ -223,7 +228,7 @@ function showTune(data){
       type: "POST",
       cache: false,
       url: "/users/" + data.user_id + "/tunes/" + data.id + "/comments",
-      data: "comment[text]=" + text_area.val(),
+      data: {"comment[text]": text_area.val() },
       dataType: "jsonp"
     });
 
@@ -293,7 +298,7 @@ function showCommentList(data){
       type: "POST",
       cache: false,
       url: "/comments/" + $(this).data("id") + "/replies",
-      data: "reply=" + text_area.val(),
+      data: { reply: text_area.val() },
       dataType: "jsonp"
     });
 

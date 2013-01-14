@@ -67,11 +67,15 @@ var progress_controller = {
   },
 
   update_remote : function(user_id, tune_id, val){
+    var data = { 
+      tune_id: tune_id,
+      progress_val: val
+    };
     $.ajax({
       type: "GET",
       cache: false,
       url: "/users/" + user_id + "/tunes/update_progress",
-      data: "tune_id=" + tune_id + "&progress_val=" + val
+      data: data
     });
   }
 }
@@ -97,11 +101,12 @@ function showComment(){
     var text_area = $('#comments').find('.add-reply-form-msg');
     if ( text_area.val() == "" ){ return; }
 
+    var data = {reply: text_area.val()};
     $.ajax({
       type: "POST",
       cache: false,
       url: "/comments/" + $(this).data("id") + "/replies",
-      data: "reply=" + text_area.val(),
+      data: data,
       dataType: "jsonp"
     });
 

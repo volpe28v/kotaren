@@ -135,7 +135,7 @@ function showTuneList(data){
     $(this).progressBar(progress_default_option);
   });
   $('#tune_list_loading').remove();
-  $('#tune_list_ul').fadeIn();
+  $('#tune_list_ul').show();
 }
 
 function loadAlbumList(user_id){
@@ -159,7 +159,7 @@ function showAlbumList(data){
     $('.album_' + $(this).data('id')).show();
   });
   $('#album_list_loading').remove();
-  $('#album_list_ul').fadeIn();
+  $('#album_list_ul').show();
 
 //TODO: 曲リストが無ければロードする必要がある
 }
@@ -185,7 +185,7 @@ function showTuningList(data){
     $('.tuning_' + $(this).data('id')).show();
   });
   $('#tuning_list_loading').remove();
-  $('#tuning_list_ul').fadeIn();
+  $('#tuning_list_ul').show();
 
 //TODO: 曲リストが無ければロードする必要がある
 }
@@ -206,7 +206,7 @@ function showTune(data){
   $('#tune_body_' + data.id).append(data.tune);
   $('#tune_body_' + data.id).trigger('create');
   $('#tune_loading_' + data.id).remove();
-  $('#tune_body_' + data.id).fadeIn();
+  $('#tune_body_' + data.id).show();
 
   $('#tune_' + data.id + ' .progress-bar').each(function(){
     $(this).progressBar(progress_default_option);
@@ -288,7 +288,7 @@ function showCommentList(data){
     $(this).progressBar(progress_default_option);
   });
 
-  $('#comment_list_area').fadeIn();
+  $('#comment_list_area').show();
 
   $('#comment_list_area').delegate('.add-reply-button', 'click', function(){
     var text_area = $('#comment_' + $(this).data("id")).find('.add-reply-form-msg');

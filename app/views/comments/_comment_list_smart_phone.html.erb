@@ -47,12 +47,12 @@
             <span class="comment-name">
               <%= r.user.name %>
             </span>
-          </div>
-          <% if r.user == current_user %>
-          <span class="remove-reply">
-            <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">x</a>
-          </span>
+            <% if r.user == current_user %>
+            <span class="remove-reply">
+              <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">x</a>
+            </span>
           <% end %>
+          </div>
           <div class="comment-text">
             <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
           </div>

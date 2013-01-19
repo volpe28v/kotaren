@@ -1,44 +1,53 @@
   <div data-role="content" data-theme="a">
-    <h2><%= @tune.title %></h2>
-    <div class="album-title">
-      <p>
-        <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-      </p>
+    <h3><%= @tune.title %></h3>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">
+        <div class="album-title">
+          <p>
+            <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
+          </p>
+        </div>
+
+        <div>
+          <a class="same-tuning-btn" href="#tune_list" data-tuning="<%= @tune.tuning.id %>" data-inline="true" >
+            <span class="tuning-name">
+            <%= @tune.tuning.name %>
+            <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
+              <span> Capo : <%= @tune.tuning.capo =%></span>
+            <% end %>
+            </span>
+          </a>
+        </div>
+        <div class="tune-count">
+          (<%= @tune.tuning.tunes.count %> tunes)
+        </div>
+      </div>
+      <div class="ui-block-b">
       <% @tune.recordings.each do |r| %>
         <a href="#tune_list" data-id="<%= r.album.id %>" data-transition="slidefade" class="tune-album-img" >
           <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
         </a>
       <% end %>
-    </div> 
+      </div>
+    </div><!-- /grid-a -->
 
-    <center>
-    <p><a class="same-tuning-btn" href="#tune_list" data-tuning="<%= @tune.tuning.id %>" data-role="button" data-inline="true" >
-      <span class="tuning-name">
-      <%= @tune.tuning.name %>
-      <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
-        <span> Capo : <%= @tune.tuning.capo =%></span>
-        <br/>
-      <% end %>
+    <div class="progress-controll">
+      <span id="progress_updated_at_<%= @tune.id %>">
+        <%= last_played_at(@tune.progress_updated_at(@user)) %>
       </span>
-      (<%= @tune.tuning.tunes.count %> tunes)
-    </a></p>
+      <span id="tune_progress_<%= @tune.id %>" class="progress-bar"><%= @tune.progress_val(@user) %></span>
 
-    <span id="progress_updated_at_<%= @tune.id %>">
-      <%= last_played_at(@tune.progress_updated_at(@user)) %>
-    </span>
-    <span id="tune_progress_<%= @tune.id %>" class="progress-bar"><%= @tune.progress_val(@user) %></span>
-  </center>
-
-    <% if current_user == @user %>
-    <div class="ui-grid-b">
-      <div class="ui-block-a">
-        <button onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
-      </div>
-      <div class="ui-block-b">
-        <button onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
-      </div>
-      <div class="ui-block-c">
-        <button onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
+      <% if current_user == @user %>
+      <div class="ui-grid-b">
+        <div class="ui-block-a">
+          <button data-mini="true" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
+        </div>
+        <div class="ui-block-b">
+          <button data-mini="true" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
+        </div>
+        <div class="ui-block-c">
+          <button data-mini="true" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
+        </div>
       </div>
     </div>
 
@@ -48,7 +57,7 @@
     </div>
 
     <form method="post" class="add-comment-form form-inline">
-      <textarea class="add-comment-form-msg" data-mini="true" maxlength="200" placeholder="Memo"></textarea>
+      <textarea class="add-comment-form-msg" data-mini="true" maxlength="200" placeholder="練習メモ..."></textarea>
       <a data-role="button" class="add-comment-button" data-mini="true" data-inline="true">記録する</a>
     </form>
     <% end %>

@@ -237,16 +237,14 @@ function showTune(data){
 }
 
 function addComment(data){
-  var $new_comment = $('<div/>').attr("id", "comment_" + data.comment_id)
+  var $new_comment = $('<div/>').addClass("comment-one")
+                                .attr("id", "comment_" + data.comment_id)
                                 .attr("style","display:none")
   .append(
-    $('<dl/>').append(
-      $('<dt/>').append(
-        $('<span/>').addClass("comment-date").html(data.date)))
+    $('<div/>').addClass("comment-date").html(data.date))
     .append(
-      $('<dd/>').append(
         $('<div/>').addClass("comment-text").append(
-          $('<p/>').html(comment_decorater(data.comment))))));
+          $('<p/>').html(comment_decorater(data.comment))));
 
 
   $('#tune_' + data.id).find('.comment-area')
@@ -325,13 +323,13 @@ function showCommentList(data){
 
 function addReply(data){
   var $new_reply = $('<div/>')
+    .addClass("comment-one")
     .attr("id", "reply_" + data.reply_id)
     .attr("style","display:none")
-    .append($('<dl/>')
-      .append($('<dt/>')
+      .append($('<div/>')
         .append($('<span/>').addClass("comment-date").html(data.date))
-        .append($('<span/>').addClass("comment-name").html(data.name))
-        .append($('<span/>').addClass("remove-reply")
+        .append($('<span/>').addClass("comment-name").html(data.name)))
+      .append($('<span/>').addClass("remove-reply")
         .append($('<a/>').addClass("remove-reply-button")
           .attr('href',"#remove_reply_dialog")
           .attr('data-rel',"dialog")
@@ -340,10 +338,9 @@ function addReply(data){
           .attr('data-comment-id', data.id)
           .attr('data-mini',"true")
           .attr('data-inline',"true")
-          .html('x'))))
-      .append($('<dd/>')
-        .append($('<div/>').addClass("comment-text")
-          .append($('<p/>').html(comment_decorater(data.reply))))));
+          .html('x')))
+      .append($('<div/>').addClass("comment-text")
+        .append($('<p/>').html(comment_decorater(data.reply))));
 
   $('#comment_reply_' + data.id).prepend($new_reply);
   $new_reply.trigger('create');

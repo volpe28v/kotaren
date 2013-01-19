@@ -39,27 +39,23 @@
 
     <div id="comment_reply_<%= c.id %>">
       <% c.replies.order("updated_at DESC").each do |r| %>
-        <div id="reply_<%= r.id %>">
-          <dl>
-            <dt>
-              <span class="comment-date">
-                <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
-              </span>
-              <span class="comment-name">
-                <%= r.user.name %>
-              </span>
-              <% if r.user == current_user %>
-              <span class="remove-reply">
-                <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">x</a>
-              </span>
-              <% end %>
-            </dt>
-            <dd>
-              <div class="comment-text">
-                <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
-              </div>
-            </dd>
-          </dl>
+        <div id="reply_<%= r.id %>" class="comment-one">
+          <div>
+            <span class="comment-date">
+              <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+            </span>
+            <span class="comment-name">
+              <%= r.user.name %>
+            </span>
+          </div>
+          <% if r.user == current_user %>
+          <span class="remove-reply">
+            <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">x</a>
+          </span>
+          <% end %>
+          <div class="comment-text">
+            <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
+          </div>
         </div>
       <% end %>
     </div>

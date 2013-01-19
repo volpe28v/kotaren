@@ -51,18 +51,29 @@
   -webkit-border-radius: 4px; /* Safari,Chrome */
 }
 
+.comment-one{
+  margin: 4px 0px 4px 0px;
+  padding: 2px 5px 0px 5px;
+  background-color: #444;
+  border-radius: 20px;         /* CSS3 */
+  -moz-border-radius: 20px;    /* Firefox */
+  -webkit-border-radius: 4px; /* Safari,Chrome */
+}
+
 .comment-name {
   color: #bbb;
   font-size: 12px;
 }
 
 .comment-date {
-  color: gray;
+  color: #999;
   font-size: 12px;
   margin-right: 5px;
 }
 
-.comment-text {
+.comment-text p{
+  margin: 0px;
+  padding: 2px 4px 2px 4px;
   font-size: 14px;
 }
 

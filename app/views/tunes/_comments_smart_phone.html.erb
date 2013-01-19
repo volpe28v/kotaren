@@ -1,16 +1,10 @@
 <div class="comment-area">
 <% user.comments.by_tune(tune).each do |c| %>
-  <div id="comment_<%= c.id %>">
-    <dl>
-      <dt>
-        <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
-      </dt>
-      <dd>
-        <div class="comment-text">
-          <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
-        </div>
-      </dd>
-    </dl>
+  <div id="comment_<%= c.id %>" class="comment-one">
+    <div class="comment-date"><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+    <div class="comment-text">
+      <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
+    </div>
   </div>
 <% end %>
 </div> 

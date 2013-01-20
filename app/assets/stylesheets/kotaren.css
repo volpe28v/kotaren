@@ -47,9 +47,9 @@ footer span {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 10px;
-  box-shadow: 4px 4px 6px 0px #999;
-  -moz-box-shadow: 4px 4px 6px 0px #999;
-  -webkit-box-shadow: 4px 4px 6px 0px #999;
+  box-shadow: 0px 0px 5px #aaa;
+  -moz-box-shadow: 0px 0px 5px #aaa;
+  -webkit-box-shadow: 0px 0px 5px #aaa;
 }
 
 #menu {
@@ -142,6 +142,7 @@ a:hover { color:#EA1F00; }
 }
 
 .album-img {
+  box-shadow: 0 0 10px #000;
   -moz-box-shadow: 0 0 10px #000;
   -webkit-box-shadow: 0 0 10px #000;
 }
@@ -168,9 +169,9 @@ a:hover { color:#EA1F00; }
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  box-shadow: 4px 4px 6px 0px #999;
-  -moz-box-shadow: 4px 4px 6px 0px #999;
-  -webkit-box-shadow: 4px 4px 6px 0px #999;
+  box-shadow: 0px 0px 6px #666;
+  -moz-box-shadow: 0px 0px 6px #666;
+  -webkit-box-shadow: 0px 0px 6px #666;
 }
 
 .thumbnail:hover {
@@ -291,6 +292,7 @@ a:hover { color:#EA1F00; }
   margin-right: 2px;
   padding: 2px;
   border: 1px solid #DDD;
+  box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;
   -webkit-box-shadow: 0 0 7px #000;
 }
@@ -304,6 +306,7 @@ a:hover { color:#EA1F00; }
   margin-right: 2px;
   padding: 2px;
   border: 1px solid #DDD;
+  box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;
   -webkit-box-shadow: 0 0 7px #000;
 }

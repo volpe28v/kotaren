@@ -291,8 +291,8 @@ a:hover { color:#EA1F00; }
   margin-right: 2px;
   padding: 2px;
   border: 1px solid #DDD;
-  -moz-box-shadow: 0 0 10px #000;
-  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 7px #000;
+  -webkit-box-shadow: 0 0 7px #000;
 }
 
 .user-icon-img-mini {
@@ -304,8 +304,8 @@ a:hover { color:#EA1F00; }
   margin-right: 2px;
   padding: 2px;
   border: 1px solid #DDD;
-  -moz-box-shadow: 0 0 10px #000;
-  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 7px #000;
+  -webkit-box-shadow: 0 0 7px #000;
 }
 
 .user-name {

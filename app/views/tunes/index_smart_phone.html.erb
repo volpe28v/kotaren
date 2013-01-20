@@ -1,16 +1,18 @@
 <div data-role="page" id="tune_list" data-theme="a" class="swipe_back">
   <%= render "header_smart_phone" , { :state => "tune_list" } %>
 
-  <div id="tune_list_loading" class="loading">
-    <center>
-      <img src="<%= image_path 'ajax-loader.gif' %> ">
-      <div class="progress-word"><%= auto_link( simple_format(@other_comment.text),:all, :target => "_blank" ) %></div>
-      <div class="progress-title"><%= @other_comment.tune.title %></div>
-      <div class="progress-title"><%= @other_comment.user.name %> at <%= @other_comment.updated_at.strftime("%Y/%m/%d") %></div>
-    </center>
-  </div>
-
   <div data-role="content">
+    <div id="tune_list_loading" class="loading">
+      <center>
+        <img src="<%= image_path 'ajax-loader.gif' %> ">
+        <div class="comment-one">
+          <div class="comment-name"><%= @other_comment.tune.title %></div>
+          <div class="comment-text"><%= auto_link( simple_format(@other_comment.text),:all, :target => "_blank" ) %></div>
+          <div class="comment-name"><%= @other_comment.user.name %> at <%= @other_comment.updated_at.strftime("%Y/%m/%d") %></div>
+        </div>
+      </center>
+    </div>
+
     <ul id="tune_list_ul" data-role="listview">
     </ul>
   </div>

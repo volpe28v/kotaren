@@ -21,6 +21,7 @@
         <div class="tune-count">
           (<%= @tune.tuning.tunes.count %> tunes)
         </div>
+        <%= first_played_at(@tune.progress_created_at(@user)) %>
       </div>
       <div class="ui-block-b">
       <% @tune.recordings.each do |r| %>

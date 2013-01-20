@@ -3,6 +3,15 @@ module ApplicationHelper
     raw ('<div class="fb-like" data-href="' + url + '" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false" data-font="arial"></div>')
   end
 
+  def first_played_at(time)
+    if time == '-'
+      return ""
+    end
+
+    return raw('<span class="since">since ' + time.strftime("%Y-%m-%d") + '</span>')
+  end
+
+
   def last_played_at(time)
     if time == '-'
       return raw('<span class="label">Let\'s play!</span>')

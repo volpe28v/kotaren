@@ -40,6 +40,11 @@
   color: skyblue;
 }
 
+.since {
+  font-size: 12px;
+  color: #999;
+}
+
 .progress-controll{
   margin-top: 10px;
   margin-bottom: 10px;
@@ -132,5 +137,4 @@
   font-size: 12px;
   margin-top: 5px;
 }
-
 

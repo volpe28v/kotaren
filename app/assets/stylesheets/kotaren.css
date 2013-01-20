@@ -140,9 +140,20 @@ a:hover { color:#EA1F00; }
   margin-left: 10px;
   color: #777;
 }
+
+.album-img {
+  -moz-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
+}
+
 .tuning-name{
   width: 150px;
   color: #666;
+}
+
+.since {
+  margin-left: 14px;
+  font-size: 12px;
 }
 
 .thumbnail-video {

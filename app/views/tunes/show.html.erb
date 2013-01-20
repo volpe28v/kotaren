@@ -73,30 +73,46 @@ $(document).ready(function(){
         <div id="detail-tabs">
           <div class="out-of-tabs">
             <center>
-              <p><h2><%= @tune.title %></h2></p>
-              <div class="album-title">
-                <p>
-                  <%= raw @tune.recordings.inject([]){|albums,r| albums << r.album.title}.join("<br>") %>
-                </p>
-              </div> 
+              <h2><%= @tune.title %></h2>
+            </center>
+            <div class="album-title">
+              <% @tune.recordings.each do |r| %>
+                <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>">
+                  <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
+                </a>
+              <% end %>
+              <div>
+                <% @tune.recordings.each do |r| %>
+                  <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>" class="tune-album-img">
+                    <%= r.album.title %>
+                  </a>
+                  </br>
+                <% end %>
+              </div>
+            </div> 
+            <br>
+
+            <center>
               <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
               <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
                 <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>
               <% end %>
               <hr>
-              <p><span id="progress_<%= @tune.id %>" class="progress-bar"><%= @progress_val %></span>
-                <% if current_user == @user %>
-                  <button class="btn" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<" %></font></button>
-                  <button class="btn" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">" %></font></button>
-                <% end %>
-              </p>
-                <% if current_user == @user %>
-                  <button class="btn btn-success" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i> 弾いたよ</font></button>
-                <% end %>
- 
-              <div id="progress_updated_at_<%= @tune.id %>">
+              <p>
+              <span id="progress_updated_at_<%= @tune.id %>">
                 <%= last_played_at(@tune.progress_updated_at(@user)) %>
+              </span>
+                <span id="progress_<%= @tune.id %>" class="progress-bar"><%= @progress_val %></span>
+              </p>
+              <% if current_user == @user %>
+                <button class="btn btn-inverse" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
+                <button class="btn btn-inverse" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')">+1 <i class="icon-music icon-white"></i></font></button>
+                <button class="btn btn-inverse" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
+              <% end %>
+              <div>
+                <%= first_played_at(@tune.progress_created_at(@user)) %>
               </div>
+ 
               <hr>
             </center>
           </div>

@@ -169,6 +169,11 @@ $(document).ready(function(){
             </tr>
             <% @tune.touched_progresses.each do |pr| %>
               <tr>
+                <td class="user-icon-mini">
+                <% if pr.user.icon_url.blank? == false %>
+                  <%= image_tag(pr.user.icon_url, :class => "user-icon-img-mini") %>
+                <% end %>
+                </td>
                 <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
                 <td><span class="progress-bar"><%= pr.percent %></span></td>
               </tr>

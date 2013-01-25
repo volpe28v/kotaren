@@ -93,9 +93,12 @@ class TunesController < ApplicationController
     @tune = Tune.find(params[:tune_id])
 
     body = render_to_string :partial => 'tune_body_smart_phone'
+    progre_controller = render_to_string :partial => 'tune_controller_smart_phone'
     render :json => { id: @tune.id,
                       user_id: @user.id,
-                      tune: body },
+                      tune: body,
+                      controller: progre_controller
+                    },
            :callback => 'showTune'
   end
 

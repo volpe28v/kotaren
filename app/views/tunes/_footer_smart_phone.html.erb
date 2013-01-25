@@ -1,5 +1,9 @@
 <div data-role="footer" data-position="fixed">
 	<div data-role="navbar">
+
+    <% if state == 'tune' %>
+      <span id="tune_controller_<%= tune.id %>"></span>
+    <% end %>
     <ul>
       <% case state %>
       <% when 'tune_list' %>

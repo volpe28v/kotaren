@@ -1,0 +1,23 @@
+  <div data-role="content" data-theme="a">
+    <div class="progress-controll">
+      <span id="progress_updated_at_<%= @tune.id %>">
+        <%= last_played_at(@tune.progress_updated_at(@user)) %>
+      </span>
+      <span id="tune_progress_<%= @tune.id %>" class="progress-bar"><%= @tune.progress_val(@user) %></span>
+
+      <% if current_user == @user %>
+      <div class="ui-grid-b">
+        <div class="ui-block-a">
+          <button data-mini="true" onclick="progress_controller.down('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= "<<" %></font></button>
+        </div>
+        <div class="ui-block-b">
+          <button data-mini="true" onclick="progress_controller.play('<%= @user.id %>','<%= @tune.id %>')"><i class="icon-music icon-white"></i>+1</font></button>
+        </div>
+        <div class="ui-block-c">
+          <button data-mini="true" onclick="progress_controller.up('<%= @user.id %>','<%= @tune.id %>')"><font style="font-size: 14pt;"><%= ">>" %></font></button>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+

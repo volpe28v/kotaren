@@ -72,7 +72,8 @@ var progress_controller = {
 
 
   move_bar : function ( user_id, tune_id, move_callback ){
-    var current_val = Number($('#progress_' + tune_id + '_pbText').html().replace("%",""))
+    var current_html = $('#progress_' + tune_id + '_pbText').size() != 0 ? $('#progress_' + tune_id + '_pbText').html() : $('#tune_progress_' + tune_id + '_pbText').html();
+    var current_val = Number(current_html.replace("%",""));
     var next_val = move_callback(current_val, this.step);
     if (next_val > 100){ 
       next_val = 100; 
@@ -207,6 +208,11 @@ function showTune(data){
   $('#tune_body_' + data.id).trigger('create');
   $('#tune_loading_' + data.id).remove();
   $('#tune_body_' + data.id).show();
+
+  $('#tune_controller_' + data.id).hide();
+  $('#tune_controller_' + data.id).append(data.controller);
+  $('#tune_controller_' + data.id).trigger('create');
+  $('#tune_controller_' + data.id).show();
 
   $('#tune_' + data.id + ' .progress-bar').each(function(){
     $(this).progressBar(progress_default_option);

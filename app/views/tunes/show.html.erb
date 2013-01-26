@@ -129,13 +129,10 @@ $(document).ready(function(){
 
               <% if @user == current_user %>
                 <%= form_for(@comment, :url => user_tune_comments_path(@user,@tune,@comment), :remote => true ) do |f| %>
-                  <%= f.text_area :text, :id => "my_comment_text_area", :placeholder => "Memo" %> 
-                  <button class="btn"><i class="icon-pencil"></i>記録する</button>
-                  <p>
-                  例)<br>
-                  Aメロの途中まで覚えた。<br>
+                  <%= f.text_area :text, :id => "my_comment_text_area", :placeholder => "例) Aメロを覚えた。
                   http://www.youtube.com/watch?v=XXXXXXXXXXX
-                  </p>
+                  " %> 
+                  <button class="btn"><i class="icon-pencil"></i>記録する</button>
                 <% end %>
               <% end %>
 

@@ -7,6 +7,8 @@ gem 'oa-core'
 
 gem 'jpmobile'
 #gem 'jpmobile-terminfo'
+#
+gem 'eventmachine'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"

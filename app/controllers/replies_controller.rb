@@ -26,6 +26,10 @@ class RepliesController < ApplicationController
       destroy_url: comment_reply_path(comment.id, new_reply.id)
     },
     :callback => 'addReply'
+
+    EM::defer do
+      CommentMailer.add_comment(comment.user, comment, new_reply).deliver
+    end
   end
 
   def destroy

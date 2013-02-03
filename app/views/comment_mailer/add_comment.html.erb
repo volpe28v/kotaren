@@ -59,6 +59,9 @@ body {
   color: black;
 }
 
+.caution {
+  color: #666;
+}
 </style>
 
 <h2>コタれん</h2>
@@ -84,6 +87,7 @@ body {
     </dd>
   </dl>
  
+  <hr>
   <h3>あなたのコメント</h3>
 
   <% c = @comment %>
@@ -108,4 +112,7 @@ body {
   </dl>
 </div>
 
-
+<hr>
+<div class="caution">
+メール配信を止めたい場合は「<%= link_to 'コタれん', 'http://kotaren.heroku.com/' %>」のPCサイトからユーザ情報編集ページにて設定を変更してください。
+</div>

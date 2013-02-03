@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="span12"></div>
-  <% if @user.errors.any? %>
+    <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count,"error") %></h2>
       <ul>
@@ -10,7 +10,7 @@
         <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
     <%= form_for(@user, :html => { :method => :put ,:class => "form-horizontal"}) do |f| %>
       <fieldset>
         <legend>ユーザ情報編集</legend>
@@ -42,6 +42,13 @@
           <div class="controls">
             <%= f.password_field :password_confirmation %>
             <span class="help-inline label label-important">変更する場合は入力</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :notify, :class => "control-label" %>
+          <div class="controls">
+            <%= f.check_box :notify%>
+            <span class="help-inline">リプライをメールで受信する</span>
           </div>
         </div>
         <div class="control-group">

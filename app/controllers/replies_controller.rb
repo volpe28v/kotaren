@@ -28,7 +28,7 @@ class RepliesController < ApplicationController
     :callback => 'addReply'
 
     EM::defer do
-      CommentMailer.add_comment(comment.user, comment, new_reply).deliver
+      send_to_comment_owner(comment, new_reply)
     end
   end
 
@@ -46,5 +46,12 @@ class RepliesController < ApplicationController
     else
       @reply_id = params[:id] # destroy.js.erb で用いる
     end
+  end
+
+  private
+  def send_to_comment_owner(comment, reply)
+    return if !comment.user.notify
+    return if comment.user == reply.user
+    CommentMailer.add_comment(comment.user, comment, reply).deliver
   end
 end

@@ -59,6 +59,7 @@ class RepliesController < ApplicationController
   def send_mail_to_comment_other(comment, reply)
     comment.replies.map{|r| r.user }.uniq.each{|u|
       next if u == reply.user
+      next if u == comment.user
       sleep 10
       CommentMailer.to_other(u, comment, reply).deliver
     }

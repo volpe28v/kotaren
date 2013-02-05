@@ -29,6 +29,7 @@ class RepliesController < ApplicationController
 
     EM::defer do
       send_mail_to_comment_owner(comment, new_reply)
+      send_mail_to_comment_other(comment, new_reply)
     end
   end
 
@@ -52,6 +53,14 @@ class RepliesController < ApplicationController
   def send_mail_to_comment_owner(comment, reply)
     return if !comment.user.notify
     return if comment.user == reply.user
-    CommentMailer.add_comment(comment.user, comment, reply).deliver
+    CommentMailer.to_owner(comment.user, comment, reply).deliver
+  end
+
+  def send_mail_to_comment_other(comment, reply)
+    comment.replies.map{|r| r.user }.uniq.each{|u|
+      next if u == reply.user
+      sleep 10
+      CommentMailer.to_other(u, comment, reply).deliver
+    }
   end
 end

@@ -1,0 +1,118 @@
+<style>
+body {
+  background-color: #eceadf;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+#comments dl{
+  background-color: #fbfbfb;
+  margin-top: 5px;
+  margin-bottom: 0px;
+
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+#comments dt{
+  color: #555;
+  margin-left: 3px;
+  margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#comments dd{
+  margin-left: 8px;
+  margin-right: 3px;
+  margin-top: 0px;
+  color: #666;
+}
+
+#comments p{
+  margin: 0px;
+}
+
+#comments span a{
+  color: mediumvioletred; 
+  font-style: bold;
+}
+
+.comment-date{
+  decoration: none;
+  font-style: bold;
+}
+
+.comment-tune{
+  margin-left: 5px;
+  color: blue;
+  font-style: bold;
+}
+
+.comment-text a{
+  color: #44f;
+}
+
+.comment-name {
+  float: right;
+  color: black;
+}
+
+.caution {
+  color: #666;
+}
+</style>
+
+<h2>コタれん</h2>
+
+<%= @reply.user.default_name %>さんがあなたに関連のあるコメントに返信しました。
+
+<div id="comments">
+  <% r = @reply %>
+  <dl>
+    <dt>
+      <span class="comment-date">
+        <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </span>
+    </dt>
+    <dd>
+      <div class="comment-text">
+        <%= auto_link( simple_format(r.text)) %>
+      </div>
+      <div style="float: right;" class="comment-name">
+        by <%= r.user.default_name %>
+      </div>
+      </br>
+    </dd>
+  </dl>
+ 
+  <hr>
+  <h3>返信先のコメント</h3>
+
+  <% c = @comment %>
+  <dl>
+    <dt>
+      <span class="comment-date">
+        <%= c.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </span>
+      <span class="comment-tune">
+        <%= c.tune.title %>
+      </span >
+    </dt>
+    <dd>
+      <div class="comment-text">
+        <%= auto_link( simple_format(c.text)) %>
+      </div>
+      <div style="float: right;" class="comment-name">
+        by <%= c.user.default_name %>
+      </div>
+      <br>
+    </dd>
+  </dl>
+</div>
+
+<hr>
+<div class="caution">
+メール配信を止めたい場合は「<%= link_to 'コタれん', 'http://kotaren.heroku.com/' %>」のPCサイトからユーザ情報編集ページにて設定を変更してください。
+</div>

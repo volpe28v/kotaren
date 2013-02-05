@@ -28,7 +28,7 @@ class RepliesController < ApplicationController
     :callback => 'addReply'
 
     EM::defer do
-      send_to_comment_owner(comment, new_reply)
+      send_mail_to_comment_owner(comment, new_reply)
     end
   end
 
@@ -49,7 +49,7 @@ class RepliesController < ApplicationController
   end
 
   private
-  def send_to_comment_owner(comment, reply)
+  def send_mail_to_comment_owner(comment, reply)
     return if !comment.user.notify
     return if comment.user == reply.user
     CommentMailer.add_comment(comment.user, comment, reply).deliver

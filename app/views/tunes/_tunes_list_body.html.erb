@@ -7,16 +7,22 @@
       <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
       <% if current_user == @user %>
         <td class="progress-button">
-          <button class="btn btn-mini" onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><%= "<" %></button>
-          <button class="btn btn-mini" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
+          <div class="btn-group">
+            <button class="btn btn-mini" onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><%= "<" %></button>
+            <button class="btn btn-mini" onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')">+</button>
+            <button class="btn btn-mini" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
+          </div>
         </td>
       <% else %>
         <td class="progress-button">
-          <button class="btn btn-mini disabled"><%= "<" %></button>
-          <button class="btn btn-mini disabled"><%= ">" %></button>
+          <div class="btn-group">
+            <button class="btn btn-mini disabled"><%= "<" %></button>
+            <button class="btn btn-mini disabled">+</button>
+            <button class="btn btn-mini disabled"><%= ">" %></button>
+          </div>
         </td>
       <% end %>
-      <td id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
+      <td class="progress-date" id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
     </tr>
   <% end %>
 </table>

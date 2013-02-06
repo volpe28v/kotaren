@@ -129,7 +129,7 @@ a { color:#262626; text-decoration:none; }
 a:hover { color:#EA1F00; }
 
 .tune-title{
-  width: 200px;
+  width: 198px;
 }
 
 .tune-big-title{
@@ -190,7 +190,7 @@ a:hover { color:#EA1F00; }
 
 #tune-list td {
   margin: 5px 5px 5px 5px;
-  padding: 0;
+  padding: 1px;
   border-bottom: 1px dashed #bbb;
 }
 
@@ -445,9 +445,14 @@ dd .field_w5th_errors {
 .fb-like-button{
   margin-top: 5px;
 }
+
 .progress-button{
-  width: 70px;
+  width: 74px;
   text-align: center;
+}
+
+.progress-date{
+  width: 64px;
 }
 
 .progress-bar-area{

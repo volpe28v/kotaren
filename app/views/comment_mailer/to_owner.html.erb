@@ -110,6 +110,26 @@ body {
       <br>
     </dd>
   </dl>
+
+  <hr>
+  <% c.replies.each do |r| %>
+  <dl>
+    <dt>
+      <span class="comment-date">
+        <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+      </span>
+    </dt>
+    <dd>
+      <div class="comment-text">
+        <%= auto_link( simple_format(r.text)) %>
+      </div>
+      <div style="float: right;" class="comment-name">
+        by <%= r.user.default_name %>
+      </div>
+      </br>
+    </dd>
+  </dl>
+  <% end %>
 </div>
 
 <hr>

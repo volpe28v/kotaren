@@ -60,6 +60,14 @@
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
+          point: {
+            events: {
+              click: function() {
+                $('#tuning_name').val(this.name)
+                loadTunes();
+              }
+            }
+          },
           dataLabels: {
             enabled: false,
             color: '#000000',

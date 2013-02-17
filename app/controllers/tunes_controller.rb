@@ -21,12 +21,12 @@ class TunesController < ApplicationController
       @current_tuning = selected_tuning_name
       @current_status = selected_status
 
-      @touched_count = @user.tunes_count(@@statuses_def[1][1])
-      @doing_count   = @user.tunes_count(@@statuses_def[2][1])
-      @done_count    = @user.tunes_count(@@statuses_def[3][1])
-
       @latest_comments = @user.comments.latest.order("updated_at DESC")
       @other_comments = Comment.other_by(@user).order("updated_at DESC")
+
+      @tuning_count = Tuning.all.inject(Hash.new(0)){|h,t| h[t.name] += t.number_of_touched_tunes_by_user(@user).size; h }
+                            .delete_if{|k,v| v == 0 }
+                            .sort{|a,b| b[1] <=> a[1]}.map{|t| { name: t[0], count: t[1] }}
     end
   end
 

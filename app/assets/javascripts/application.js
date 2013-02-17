@@ -10,5 +10,6 @@
 //= require jquery.progressbar
 //= require jquery.prettyPhoto
 //= require jquery.youtubin
+//= require highcharts
 //= require kotaren
 

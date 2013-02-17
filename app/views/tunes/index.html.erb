@@ -25,6 +25,8 @@
 
     applyYoutubin("#my_comments .comment-text a");
     applyYoutubin("#other_comments .comment-text a");
+
+    setTuningChart();
   });
 
   function loadTunes(){
@@ -33,6 +35,54 @@
     $('#loading').show();
   }
 
+  function setTuningChart(){
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+      return {
+        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+        stops: [
+        [0, color],
+        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+        ]
+      };
+    });
+
+    var chart_task = new Highcharts.Chart({
+      chart: {
+        renderTo: 'tuning_chart',
+        type: 'pie',
+        height: 250,
+        backgroundColor: "#fbfbfb" 
+      },
+      title: {
+        text: 'Tuning count'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>';
+            }
+          },
+          showInLegend: false 
+        }
+      },
+      series: [
+      { name: 'tunes', 
+        data: [
+        <% @tuning_count.each do |t| %>
+          { name: '<%= t[:name] %>', y: <%= t[:count] %> },
+        <% end %>
+        ],
+      }]
+    });
+  };
+
+
 </script>
 
 <div class="container">
@@ -40,9 +90,7 @@
 <%= render "layouts/title" %>
 
 <div class="row">
-  <div class="span12">
-
-<div id="menu">
+<div class="span3">
   <div id="menu-tabs">
     <div class="out-of-tabs">
       <center>
@@ -51,18 +99,13 @@
   <div><center>Displayed: <span id="display_num" class="tune_num" >0</span> tunes.</center></div>
     <br>
   <table>
-    <tr><td>Touched: </td><td style="text-align: right"><span id="touched_num" class="tune_s_num" ><%= @touched_count %></span></td><td> tunes.</td></tr>
-    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= @doing_count %></span></td><td> tunes.</td></tr>
-    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= @done_count %></span></td><td> tunes.</td></tr>
+    <tr><td>Touched: </td><td style="text-align: right"><span id="touched_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
+    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
+    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
   </table>
   <hr>
 
-<%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true ) do %>
-  <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();") %></br>
-  <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();") %></br>
-  <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
-  <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
-<% end %>
+  <div id="tuning_chart"></div>
 
   <%= link_to 'Owner\'s Albums page', user_albums_path(@user) %>
 
@@ -97,9 +140,15 @@
 </div>
 </div>
 
-<div id="main">
+<div class="span9">
   <div id="tune-tabs">
-  <ul>
+    <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true, :style => "margin-bottom: 0px;" ) do %>
+      <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();", :class => "span4", :style => "margin-bottom: 2px;" ) %>
+      <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();", :class => "span3", :style => "margin-bottom: 2px;" ) %>
+      <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
+      <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
+    <% end %>
+    <ul>
     <% @statuses.each_with_index do |s,i| %>
       <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
     <% end %>

@@ -1,6 +1,7 @@
 body{
   color: #444;
   font: 12px/1.55em arial, helvetica, sans-serif;
+  background: url(/assets/oshio_bg.jpg) top left repeat;
 }
 
 #wrapper {

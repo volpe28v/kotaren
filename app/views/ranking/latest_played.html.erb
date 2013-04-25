@@ -15,9 +15,7 @@
     <tr>
       <td id="progress_updated_at_<%= p.tune.id %>"><%= last_played_at(p.tune.progress_updated_at(p.user)) %></td>
       <td>
-      <% if p.user.icon_url.blank? == false %>
-        <%= image_tag(p.user.icon_url, :class => "user-icon-img-mini") %>
-      <% end %>
+        <%= icon_img(p.user) %>
       </td>
       <td><%= link_to p.user.default_name, user_tunes_path(p.user) %>
       <td><%= link_to p.tune.title, user_tune_path(p.user,p.tune) %></td>

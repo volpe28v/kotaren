@@ -88,4 +88,9 @@ module ApplicationHelper
     'https://vr.shapeservices.com/play.php?hash=' + id
   end
 
+  def icon_img(user)
+    if user.icon_url.blank? == false
+      image_tag(user.icon_url, :class => "user-icon-img-mini")
+    end
+  end
 end

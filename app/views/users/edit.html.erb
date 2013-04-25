@@ -48,7 +48,7 @@
           <%= f.label :notify, :class => "control-label" %>
           <div class="controls">
             <%= f.check_box :notify%>
-            <span class="help-inline">リプライをメールで受信する</span>
+            <span class="help-inline">コメントへの返信をメールで受信する</span>
           </div>
         </div>
         <div class="control-group">
@@ -65,7 +65,14 @@
             <span class="help-inline label label-info">任意</span>
           </div>
         </div>
-         <div class="control-group">
+        <div class="control-group">
+          <%= f.label :icon_url, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :icon_url%>
+            <span class="help-inline label label-info">画像へのURLを入力</span>
+          </div>
+        </div>
+        <div class="control-group">
           <%= f.label :main_guitar, :class => "control-label" %>
           <div class="controls">
             <%= f.text_field :guitar %>

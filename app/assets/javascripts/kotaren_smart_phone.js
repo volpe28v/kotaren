@@ -325,6 +325,11 @@ function showCommentList(data){
       history.back();
     });
   });
+
+  $('#comment_list_area').delegate('.same-tuning-btn', 'click', function(){
+    $('.tune_li').hide();
+    $('.tuning_' + $(this).data('tuning')).show();
+  });
 }
 
 function addReply(data){

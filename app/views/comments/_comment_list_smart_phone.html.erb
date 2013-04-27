@@ -26,6 +26,16 @@
     </h3>
     <span><%= mini_last_played_at(c.tune.progress_updated_at(c.user)) %></span>
     <span class="progress-bar"><%= c.tune.progress_val(c.user) %></span>
+    <div>
+      <a class="same-tuning-btn" href="#tune_list" data-tuning="<%= c.tune.tuning.id %>" data-inline="true" >
+        <span class="tuning-name">
+          <%= c.tune.tuning.name %>
+          <% if c.tune.tuning.capo != nil and c.tune.tuning.capo != 0 %>
+            <span> Capo : <%= c.tune.tuning.capo =%></span>
+          <% end %>
+        </span>
+      </a>
+    </div>
     <div class="progress-word">
       <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
     </div>

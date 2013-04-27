@@ -301,3 +301,16 @@ register_album [
   ["ずっと… ",  "Standard"],
 ]
 
+register_album [
+  "Reboot & Collabo. Disc 1",
+  ["Ready, Go!", "AAEGAE"],
+  ["One Love, ～T's theme～", "DADGAD"],
+  ["Weather Report", "DAEF#BE"],
+  ["nanairo" ,"Standard"],
+  ["Midnight Rain", "BBDF#BD"],
+  ["MISSION", "CGCE♭B♭E♭"],
+  ["キミノコト", "C#G#EF#BE"],
+  ["STEALTH", "C#G#EF#BE"],
+  ["Kiwi & Avocado", "Standard"],
+]
+

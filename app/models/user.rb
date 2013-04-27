@@ -59,7 +59,9 @@ class User < ActiveRecord::Base
                          password: Devise.friendly_token[0,20]
                         )
     else
-      user.update_attribute(:icon_url, auth.info.image)
+      if user.icon_url.blank?
+        user.update_attribute(:icon_url, auth.info.image)
+      end
     end
     user
   end

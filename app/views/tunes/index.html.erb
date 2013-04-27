@@ -123,11 +123,14 @@
             <br>
 
             <div class="album-list">
-            <% Album.all.each do |a| %>
-              <a href="#" data-name="<%= a.title %>">
-                <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
+              <a href="#" data-name="All Albums">
+                <img src="/assets/albums/mini/ALL.png" class="album-img" alt="All Albums" title="All Albums">
               </a>
-            <% end %>
+              <% Album.all.each do |a| %>
+                <a href="#" data-name="<%= a.title %>">
+                  <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img" alt="<%= a.title %>" title="<%= a.title %>">
+                </a>
+              <% end %>
             </div>
             <!--
             <%= link_to 'Owner\'s Albums page', user_albums_path(@user) %>
@@ -165,13 +168,17 @@
 
     <div class="span7">
       <div id="tune-tabs">
+        <div style="display: none">
         <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true, :style => "margin-bottom: 0px;" ) do %>
           <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();", :class => "span4", :style => "margin-bottom: 2px;" ) %>
           <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();", :class => "span3", :style => "margin-bottom: 2px;" ) %>
           <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
           <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
         <% end %>
+        </div>
 
+        <span>Album: <span id="album_label"><%= @current_album %></span></span>
+        <span style="float: right;">Tuning: <span id="tuning_label"><%= @current_tuning %></span></span>
         <ul>
           <% @statuses.each_with_index do |s,i| %>
             <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
@@ -190,6 +197,7 @@
     <div class="span2">
       <div class="ui-widget ui-widget-content ui-corner-all">
         <ul class="nav nav-list tuning-list">
+          <li class="nav-header">Select Tuning</li>
           <li><a href="#">All Tunings</a></li>
           <li><a href="#">Standard</a></li>
           <% Tuning.all.map(&:name).uniq.sort.each do |tuning_name| %>
@@ -206,6 +214,7 @@
   $('.album-list').delegate('a', 'click', function(){
       var album = $(this).data('name');
       $('#album_title').val(album)
+      $('#album_label').html(album)
       loadTunes();
     }
   );
@@ -213,6 +222,7 @@
   $('.tuning-list').delegate('a', 'click', function(){
       var tuning = $(this).html();
       $('#tuning_name').val(tuning)
+      $('#tuning_label').html(tuning)
       loadTunes();
     }
   );

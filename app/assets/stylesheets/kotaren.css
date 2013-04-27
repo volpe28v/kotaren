@@ -68,6 +68,10 @@ footer span {
   float:left;
 }
 
+#menu-tabs {
+  margin-bottom: 10px;
+}
+
 .out-of-tabs{
   margin: 4px;
 }
@@ -130,7 +134,7 @@ a { color:#262626; text-decoration:none; }
 a:hover { color:#EA1F00; }
 
 .tune-title{
-  width: 198px;
+  width: 180px;
 }
 
 .tune-big-title{
@@ -218,12 +222,12 @@ ul.tune-counts {
 ul.tune-counts li {
   display: inline-block;
   list-style-type: none;
-  min-width: 60px;
+  min-width: 56px;
 }
 
 ul.tune-counts li strong {
   display: block;
-  font-size: 30px;
+  font-size: 28px;
   line-height: 1;
   font-weight: bold;
   color: #222;

@@ -146,6 +146,13 @@ a:hover { color:#EA1F00; }
   box-shadow: 0 0 10px #000;
   -moz-box-shadow: 0 0 10px #000;
   -webkit-box-shadow: 0 0 10px #000;
+  width: 40px;
+}
+
+.album-img {
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
 }
 
 .album-img-large {
@@ -154,7 +161,6 @@ a:hover { color:#EA1F00; }
   -webkit-box-shadow: 0 0 10px #000;
   width: 160px;
 }
-
 
 .tuning-name{
   width: 150px;
@@ -201,6 +207,33 @@ a:hover { color:#EA1F00; }
   margin: 5px 5px 5px 5px;
   padding: 1px;
   border-bottom: 1px dashed #bbb;
+}
+
+ul.tune-counts {
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 17px 0;
+  padding: 6px 0 15px 0;
+}
+
+ul.tune-counts li {
+  display: inline-block;
+  list-style-type: none;
+  min-width: 60px;
+}
+
+ul.tune-counts li strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: bold;
+  color: #222;
+}
+
+ul.tune-counts li span {
+  display: block;
+  margin-top: -2px;
+  font-size: 11px;
+  color: #999;
 }
 
 /* for welcome */

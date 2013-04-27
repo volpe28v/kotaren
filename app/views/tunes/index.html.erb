@@ -10,7 +10,9 @@
     );
 
     $('#menu-tabs').tabs();
-    $('#menu-tabs ul li a').click(
+
+    $('#comments-tabs').tabs();
+    $('#comments-tabs ul li a').click(
       function(){
         var comments_id = $(this).attr("id") + "s";
 
@@ -26,7 +28,7 @@
     applyYoutubin("#my_comments .comment-text a");
     applyYoutubin("#other_comments .comment-text a");
 
-    setTuningChart();
+//    setTuningChart();
   });
 
   function loadTunes(){
@@ -93,84 +95,127 @@
 
 </script>
 
-<div class="container">
+<div class="container-fluid">
+  <%= render "layouts/title" %>
+  <div class="row-fluid">
+    <div class="span3">
+      <div id="menu-tabs">
+        <div class="out-of-tabs">
+          <center>
+            <ul class="tune-counts">
+              <li>
+              <strong id="display_num" class="tune_s_num" >0</strong>
+              <span>Displayed</span>
+              </li>
+              <li>
+              <strong id="touched_num" class="tune_s_num" >0</strong>
+              <span>Touched</span>
+              </li>
+              <li>
+              <strong id="doing_num" class="tune_s_num" >0</strong>
+              <span>Doing</span>
+              </li>
+              <li>
+              <strong id="done_num" class="tune_s_num" >0</strong>
+              <span>Done</span>
+              </li>
+            </ul>
+            <br>
 
-<%= render "layouts/title" %>
+            <div class="album-list">
+            <% Album.all.each do |a| %>
+              <a href="#" data-name="<%= a.title %>">
+                <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img">
+              </a>
+            <% end %>
+            </div>
+            <!--
+            <%= link_to 'Owner\'s Albums page', user_albums_path(@user) %>
+            -->
+          </center>
+        </div>
+      </div>
 
-<div class="row">
-<div class="span3">
-  <div id="menu-tabs">
-    <div class="out-of-tabs">
-      <center>
-        <h3>押尾コータロー楽曲リスト</h3>
-      <br>
-  <div><center>Displayed: <span id="display_num" class="tune_num" >0</span> tunes.</center></div>
-    <br>
-  <table>
-    <tr><td>Touched: </td><td style="text-align: right"><span id="touched_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
-    <tr><td>Doing: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
-    <tr><td>Done: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" >0</span></td><td> tunes.</td></tr>
-  </table>
-  <hr>
+      <div id="comments-tabs">
+        <div id="comments">
+          <div class="out-of-tabs">
+            <center>
+              <h3>最近の練習記録</h3>
+            </center>
+          </div>
+          <ul>
+            <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
+            <li><a id="other_comment" href="#other_comments" class="blue1">Other</a></li>
+          </ul>
 
-  <div id="tuning_chart"></div>
+          <div id="my_comments">
+            <% @latest_comments.each do |c| %>
+              <%= render :partial => "comments/comment_with_tune_name", :locals => { :c => c } %>
+            <% end %>
+          </div>
 
-  <%= link_to 'Owner\'s Albums page', user_albums_path(@user) %>
-
-  <hr>
-  </center>
-
-</div>
-
-  <div id="comments">
-  <div class="out-of-tabs">
-    <center>
-      <h3>最近の練習記録</h3>
-    </center>
-  </div>
-  <ul>
-    <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
-    <li><a id="other_comment" href="#other_comments" class="blue1">Other</a></li>
-  </ul>
-
-  <div id="my_comments">
-  <% @latest_comments.each do |c| %>
-    <%= render :partial => "comments/comment_with_tune_name", :locals => { :c => c } %>
-  <% end %>
-  </div>
-
-  <div id="other_comments">
-  <% @other_comments.each do |c| %>
-    <%= render :partial => "comments/comment_with_tune_name", :locals => { :c => c } %>
-  <% end %>
-  </div>
-  </div>
-</div>
-</div>
-
-<div class="span9">
-  <div id="tune-tabs">
-    <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true, :style => "margin-bottom: 0px;" ) do %>
-      <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();", :class => "span4", :style => "margin-bottom: 2px;" ) %>
-      <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();", :class => "span3", :style => "margin-bottom: 2px;" ) %>
-      <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
-      <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
-    <% end %>
-    <ul>
-    <% @statuses.each_with_index do |s,i| %>
-      <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
-    <% end %>
-  </ul>
-
-  <div id="tune-list"></div>
-  <center>
-    <div id="loading">
-      <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">
+          <div id="other_comments">
+            <% @other_comments.each do |c| %>
+              <%= render :partial => "comments/comment_with_tune_name", :locals => { :c => c } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  </center>
-</div>
-</div>
+
+    <div class="span7">
+      <div id="tune-tabs">
+        <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true, :style => "margin-bottom: 0px;" ) do %>
+          <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();", :class => "span4", :style => "margin-bottom: 2px;" ) %>
+          <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();", :class => "span3", :style => "margin-bottom: 2px;" ) %>
+          <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>
+          <%= submit_tag('Update', :id => "update_tunes", :style => "display: none") %>
+        <% end %>
+
+        <ul>
+          <% @statuses.each_with_index do |s,i| %>
+            <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
+          <% end %>
+        </ul>
+
+        <div id="tune-list"></div>
+        <center>
+          <div id="loading">
+            <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">
+          </div>
+        </center>
+      </div>
+    </div>
+
+    <div class="span2">
+      <div class="ui-widget ui-widget-content ui-corner-all">
+        <ul class="nav nav-list tuning-list">
+          <li><a href="#">All Tunings</a></li>
+          <li><a href="#">Standard</a></li>
+          <% Tuning.all.map(&:name).uniq.sort.each do |tuning_name| %>
+            <li><a href="#"><%= tuning_name %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-</div>
-</div>
+<script>
+  $('.album-list').delegate('a', 'click', function(){
+      var album = $(this).data('name');
+      $('#album_title').val(album)
+      loadTunes();
+    }
+  );
+
+  $('.tuning-list').delegate('a', 'click', function(){
+      var tuning = $(this).html();
+      $('#tuning_name').val(tuning)
+      loadTunes();
+    }
+  );
+</script>
+
+

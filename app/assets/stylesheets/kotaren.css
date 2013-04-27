@@ -148,6 +148,14 @@ a:hover { color:#EA1F00; }
   -webkit-box-shadow: 0 0 10px #000;
 }
 
+.album-img-large {
+  box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
+  width: 160px;
+}
+
+
 .tuning-name{
   width: 150px;
   color: #666;
@@ -194,11 +202,6 @@ a:hover { color:#EA1F00; }
   padding: 1px;
   border-bottom: 1px dashed #bbb;
 }
-
-#tune-list tr:hover {
-  background-color: #f0f8ff;
-}
-
 
 /* for welcome */
 #content{

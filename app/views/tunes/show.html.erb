@@ -74,25 +74,27 @@ $(document).ready(function(){
           <div class="out-of-tabs">
             <center>
               <h2><%= @tune.title %></h2>
-            </center>
-            <div class="album-title">
-              <% @tune.recordings.each do |r| %>
-                <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>">
-                  <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
-                </a>
-              <% end %>
-              <div>
+              <div class="album-title">
+                <% count = @tune.recordings.count %>
                 <% @tune.recordings.each do |r| %>
-                  <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>" class="tune-album-img">
-                    <%= r.album.title %>
+                  <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>">
+                    <% if count <= 2 %>
+                      <img src="/assets/albums/<%= r.album.title %>.jpg" class="album-img album-img-large">
+                    <% else %>
+                      <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
+                    <% end %>
                   </a>
-                  </br>
                 <% end %>
-              </div>
-            </div> 
-            <br>
-
-            <center>
+                <div>
+                  <% @tune.recordings.each do |r| %>
+                    <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>" class="tune-album-img">
+                      <%= r.album.title %>
+                    </a>
+                    </br>
+                  <% end %>
+                </div>
+              </div> 
+              <br>
               <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
               <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
                 <p><span class="tuning">(Capo : <%= @tune.tuning.capo =%>)</span></p>

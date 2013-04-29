@@ -28,12 +28,14 @@ class RepliesController < ApplicationController
     :callback => 'addReply'
 
     EM::defer do
-      begin
-        send_mail_to_comment_owner(comment, new_reply)
-        send_mail_to_comment_other(comment, new_reply)
-      rescue => e
-        logger.error e.class.name
-        logger.error e.message
+      ActiveRecord::Base.connection_pool.with_connection do
+        begin
+          send_mail_to_comment_owner(comment, new_reply)
+          send_mail_to_comment_other(comment, new_reply)
+        rescue => e
+          logger.error e.class.name
+          logger.error e.message
+        end
       end
     end
   end

@@ -330,14 +330,17 @@ ul.tune-counts li span {
   color: #F00;
 }
 
+#user-header {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
 .user-icon-img {
-  height: 36px;
-  width: 36px;
+  height: 40px;
+  width: 40px;
   vertical-align: middle;
   position: relative;
-  top: -2px;
-  margin-right: 2px;
-  padding: 2px;
+  margin-right: 6px;
   border: 1px solid #DDD;
   box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;
@@ -351,7 +354,6 @@ ul.tune-counts li span {
   position: relative;
   top: -2px;
   margin-right: 2px;
-  padding: 2px;
   border: 1px solid #DDD;
   box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;

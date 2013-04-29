@@ -3,8 +3,8 @@ class TunesController < ApplicationController
   @@statuses_def = [
       ['All Status', 'all_status'],
       ['Touched'   , 'touched'],
-      ['Doing'     , 'doing'],
-      ['Done'      , 'done'],
+      ['Trying'     , 'doing'],
+      ['Completed'  , 'done'],
       ['PlayHistory','play_history'],
   ]
 

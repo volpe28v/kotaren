@@ -68,6 +68,12 @@ footer span {
   float:left;
 }
 
+#menu-tabs, #comments-tabs, #tune-tabs, #tuning-menu {
+  box-shadow: 0px 0px 5px #aaa;
+  -moz-box-shadow: 0px 0px 5px #aaa;
+  -webkit-box-shadow: 0px 0px 5px #aaa;
+}
+
 #menu-tabs {
   margin-bottom: 10px;
 }
@@ -153,12 +159,6 @@ a:hover { color:#EA1F00; }
   width: 40px;
 }
 
-.album-img {
-  box-shadow: 0 0 10px #000;
-  -moz-box-shadow: 0 0 10px #000;
-  -webkit-box-shadow: 0 0 10px #000;
-}
-
 .album-img-large {
   box-shadow: 0 0 10px #000;
   -moz-box-shadow: 0 0 10px #000;
@@ -200,6 +200,12 @@ a:hover { color:#EA1F00; }
 
 .thumbnail img {
   width: 145px;
+}
+
+#tune-list-header, #comments-header, #tuning-header {
+  margin: 0 5px;
+  color: #999999;
+
 }
 
 #tune-list table {

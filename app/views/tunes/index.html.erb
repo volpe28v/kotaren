@@ -113,11 +113,11 @@
               </li>
               <li>
               <strong id="doing_num" class="tune_s_num" >0</strong>
-              <span>Doing</span>
+              <span>Trying</span>
               </li>
               <li>
               <strong id="done_num" class="tune_s_num" >0</strong>
-              <span>Done</span>
+              <span>Completed</span>
               </li>
             </ul>
             <br>
@@ -142,9 +142,9 @@
       <div id="comments-tabs">
         <div id="comments">
           <div class="out-of-tabs">
-            <center>
-              <h3>最近の練習記録</h3>
-            </center>
+            <div id="comments-header">
+              <span>Practice Records</span>
+            </div>
           </div>
           <ul>
             <li><a id="my_comment" href="#my_comments" class="blue0">Owner</a></li>
@@ -177,8 +177,10 @@
         <% end %>
         </div>
 
-        <span>Album: <span id="album_label"><%= @current_album %></span></span>
-        <span style="float: right;">Tuning: <span id="tuning_label"><%= @current_tuning %></span></span>
+        <div id="tune-list-header">
+          <span>Album: <span id="album_label"><%= @current_album %></span></span>
+          <span style="float: right;">Tuning: <span id="tuning_label"><%= @current_tuning %></span></span>
+        </div>
         <ul>
           <% @statuses.each_with_index do |s,i| %>
             <li><a id="<%= s[1] %>" href="#tune-list" class="blue<%= i %>"><%= s[0] %></a></li>
@@ -195,15 +197,19 @@
     </div>
 
     <div class="span2">
-      <div class="ui-widget ui-widget-content ui-corner-all">
-        <ul class="nav nav-list tuning-list">
-          <li class="nav-header">Select Tuning</li>
-          <li><a href="#">All Tunings</a></li>
-          <li><a href="#">Standard</a></li>
-          <% Tuning.all.map(&:name).uniq.sort.each do |tuning_name| %>
-            <li><a href="#"><%= tuning_name %></a></li>
-          <% end %>
-        </ul>
+      <div id="tuning-menu" class="ui-widget ui-widget-content ui-corner-all">
+        <div class="out-of-tabs">
+          <div id="tuning-header">
+            <span>Select Tuning</span>
+          </div>
+          <ul class="nav nav-list tuning-list">
+            <li><a href="#">All Tunings</a></li>
+            <li><a href="#">Standard</a></li>
+            <% Tuning.all.map(&:name).uniq.sort.each do |tuning_name| %>
+              <li><a href="#"><%= tuning_name %></a></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
 

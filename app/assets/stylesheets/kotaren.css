@@ -341,7 +341,6 @@ ul.tune-counts li span {
   vertical-align: middle;
   position: relative;
   margin-right: 6px;
-  border: 1px solid #DDD;
   box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;
   -webkit-box-shadow: 0 0 7px #000;
@@ -354,7 +353,6 @@ ul.tune-counts li span {
   position: relative;
   top: -2px;
   margin-right: 2px;
-  border: 1px solid #DDD;
   box-shadow: 0 0 7px #000;
   -moz-box-shadow: 0 0 7px #000;
   -webkit-box-shadow: 0 0 7px #000;

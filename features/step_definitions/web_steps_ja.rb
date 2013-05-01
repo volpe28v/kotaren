@@ -43,7 +43,6 @@ end
 
 ならば /^　サンプルアカウントの楽曲リストを表示すること$/ do
   page.should have_content("サンプルアカウント")
-  page.should have_content("押尾コータロー楽曲リスト")
 end
 
 ならば /^　カレントユーザがサンプルアカウントであること$/ do
@@ -82,7 +81,7 @@ end
 end
 
 もし /^　  ユーザ "([^"]*)" を登録する$/ do |user_name|
-  fill_in("user_name", :with => user_name) 
+  fill_in("user_name", :with => user_name)
   fill_in("user_email", :with => "#{user_name}@kotaren.com")
   fill_in("user_password", :with => "#{user_name}#{user_name}")
   fill_in("user_password_confirmation", :with => "#{user_name}#{user_name}")
@@ -92,7 +91,7 @@ end
 
 ならば /^　"([^"]*)" 楽曲リストを表示すること$/ do |user_name|
   page.should have_content(user_name)
-  page.should have_content("押尾コータロー楽曲リスト")
+  page.should have_css('#menu-tabs')
 end
 
 前提 /^ユーザ "([^"]*)" が登録されている$/ do |user_name|

@@ -107,7 +107,7 @@ register_album [
   ["桜・咲くころ",  "Standard"],
   ["坂の上の公園",  "Standard"],
 ]
-  
+
 register_album [
   "BOLERO! Be HAPPY LIVE",
   ["ボレロ",  "CGCGBE"],

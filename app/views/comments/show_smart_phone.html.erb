@@ -1,0 +1,28 @@
+<div data-role="page" id="activity_list" data-theme="a">
+  <%= render "header_smart_phone" %>
+
+  <div data-role="content">
+    <div id="comment_list_area">
+      <%= render "comment_body_smart_phone", {:c => @comment } %>
+    </div>
+  </div>
+</div>
+<script>
+$(document).delegate('#activity_list','pageinit',function(){
+  showCommentBody();
+});
+</script>
+
+<div data-role="page" id="remove_reply_dialog" data-theme="a">
+  <div data-role="header" data-position="fixed">
+    <h3>リプライを削除</h3>
+  </div>
+
+  <div data-role="content">
+    <p id="remove_reply_target" class="progress-word"></p>
+    <p>リプライを削除しますか？</p>
+    <a id="remove_reply_ok" data-role="button">OK</a>
+    <a data-role="button" data-rel="back">Cancel</a>
+  </div>
+</div>
+ 

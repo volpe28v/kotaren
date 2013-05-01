@@ -1,0 +1,12 @@
+<div data-role="header" data-position="fixed">
+  <h3>コタれん</h3>
+
+  <% if current_user %>
+    <%= link_to 'Home', user_tunes_path(current_user), :class => 'ui-btn-left'  %>
+    <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right' %>
+  <% else %>
+    <%= link_to 'Login', new_user_session_path, :class => 'ui-btn-right'  %>
+  <% end %>
+</div>
+
+

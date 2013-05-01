@@ -1,0 +1,71 @@
+  <div id="comment_<%= c.id %>" data-role="collapsible" data-collapsed="false" data-content-theme="a"> 
+    <h3>
+      <div>
+        <%= c.tune.title %>
+        <span id="reply_count_<%= c.id %>">
+        <% if c.replies.count > 0 then %>
+          <span class="reply-count label label-info"><%= c.replies.count %></span>
+        <% else %>
+          <span class="reply-count label label-inverse"><%= c.replies.count %></span>
+        <% end %>
+        </span>
+      </div>
+      <span class="comment-date">
+        <%= c.created_at.strftime("%y/%m/%d %H:%M") %>
+      </span>
+      <span class="comment-name">
+        <%= c.user.name %>
+      </span>
+      <span id="reply_date_<%= c.id %>">
+      <% if c.replies.count > 0 then %>
+        <span class="reply-date"><%= c.updated_at.strftime("%m/%d") %></span>
+      <% end %>
+      </span>
+ 
+    </h3>
+    <span><%= mini_last_played_at(c.tune.progress_updated_at(c.user)) %></span>
+    <span class="progress-bar"><%= c.tune.progress_val(c.user) %></span>
+    <div>
+      <a class="same-tuning-btn" href="#tune_list" data-tuning="<%= c.tune.tuning.id %>" data-inline="true" >
+        <span class="tuning-name">
+          <%= c.tune.tuning.name %>
+          <% if c.tune.tuning.capo != nil and c.tune.tuning.capo != 0 %>
+            <span> Capo : <%= c.tune.tuning.capo =%></span>
+          <% end %>
+        </span>
+      </a>
+    </div>
+    <div class="progress-word">
+      <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
+    </div>
+
+    <% if current_user %>
+      <form method="post" class="add-reply-form form-inline">
+        <textarea class="add-reply-form-msg" data-mini="true" maxlength="200" placeholder="Reply"></textarea>
+        <a data-role="button" class="add-reply-button" data-id="<%= c.id %>" data-mini="true" data-inline="true">Send</a>
+      </form>
+    <% end %>
+
+    <div id="comment_reply_<%= c.id %>">
+      <% c.replies.order("updated_at DESC").each do |r| %>
+        <div id="reply_<%= r.id %>" class="comment-one">
+          <div>
+            <span class="comment-date">
+              <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+            </span>
+            <span class="comment-name">
+              <%= r.user.name %>
+            </span>
+            <% if r.user == current_user %>
+            <span class="remove-reply">
+              <a href="#remove_reply_dialog" data-rel="dialog" data-transition="pop" class="remove-reply-button" data-id="<%= r.id %>" data-comment-id="<%= c.id %>" data-mini="true" data-inline="true">x</a>
+            </span>
+          <% end %>
+          </div>
+          <div class="comment-text">
+            <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

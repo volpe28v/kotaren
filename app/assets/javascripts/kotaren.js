@@ -96,6 +96,7 @@ var applyYoutubin = function(){
  
   return function(id){
     $(id + "[href*='www.youtube.com']").each(function(){ doYoutubin(this); });
+    $(id + "[href*='m.youtube.com']").each(function(){ doYoutubin(this); });
     $(id + "[href*='youtu.be']").each(function(){ doYoutubin(this); });
   }
 }();

@@ -9,12 +9,11 @@
     <dd>
       <span><%= link_to c.tune.title, user_tune_path(c.user,c.tune) %></span>
       <div class="comment-text"><%= vrp_player_only_link(auto_link( simple_format(c.text))) %></div>
-      <% if c.user == @user %>
-
-      <% else %>
-      <div class="comment-name">by <%= link_to c.user.default_name, user_tunes_path(c.user) %></div>
+      <div class="comment-name">
+        by <%= link_to c.user.default_name, user_tunes_path(c.user) %>
+        <%= icon_img(c.user) %>
+      </div>
       <br>
-      <% end %>
     </dd>
   </dl>
 </div>

@@ -20,6 +20,7 @@
       <% else %>
       <div style="float: right;" class="comment-name">
         by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
+        <%= icon_img(c.user) %>
       </div>
       <% end %>
       <br>

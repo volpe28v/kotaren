@@ -1,5 +1,6 @@
 # coding: utf-8
 class CommentMailer < ActionMailer::Base
+  helper :application
   default from: "コタれん <#{ENV['MAIL_ADDRESS']}>"
 
   def to_owner(user, comment, reply)

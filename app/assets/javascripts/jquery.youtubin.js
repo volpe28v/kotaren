@@ -38,6 +38,7 @@
         if ( typeof( box ) == 'undefined' || !box ) {
             options.scope = options.scope || $('body');
             $('a[href^=http://www.youtube.com/watch?v=]', options.scope).youtubin(options);
+            $('a[href^=http://youtu.be/]', options.scope).youtubin(options);
             
             return false;
         }
@@ -95,6 +96,7 @@
     
             // build swf url from youtube link
             if ( src.substr(0,31) == 'http://www.youtube.com/watch?v=' ) src = 'http://www.youtube.com/v/' + src.substr(31) + options.srcOptions;
+            if ( src.substr(0,16) == 'http://youtu.be/' ) src = 'http://www.youtube.com/v/' + src.substr(16) + options.srcOptions;
         
             // set the target
             if ( options.target ) {

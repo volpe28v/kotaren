@@ -21,8 +21,9 @@
           </div>
         </td>
       <% end %>
-      <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
-      <td class="progress-date" id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
+      <% p = t.progress_val_and_updated_at(@user) %>
+      <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= p[:val] %></span></td>
+      <td class="progress-date" id="progress_updated_at_<%= t.id %>"><%= last_played_at( p[:updated_at] ) %></td>
     </tr>
   <% end %>
 </table>

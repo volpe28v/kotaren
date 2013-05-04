@@ -11,10 +11,11 @@
             </span>
           </p>
           <p>
+            <% p = t.progress_val_and_updated_at(@user) %>
             <span id="tune_list_progress_updated_at_<%= t.id %>">
-              <%= mini_last_played_at(t.progress_updated_at(@user)) %>
+              <%= mini_last_played_at(p[:updated_at]) %>
             </span>
-            <span id="progress_<%= t.id %>" class="progress-bar"><%= t.progress_val(@user) %></span>
+            <span id="progress_<%= t.id %>" class="progress-bar"><%= p[:val] %></span>
           </p>
         </a>
       </li>

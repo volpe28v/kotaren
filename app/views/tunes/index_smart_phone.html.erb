@@ -69,7 +69,16 @@ $(document).delegate('#tuning_list','pageinit',function(event){
 
 <% @tunes.each do |t| %>
 <div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="tune-page swipe_back">
-  <%= render "header_smart_phone" , { :state => "tune" } %>
+  <div data-role="header" data-position="fixed">
+    <a data-rel="back" data-icon="back" class="ui-btn-left">戻る</a>
+    <h3>曲詳細</h3>
+    <% if current_user %>
+      <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right' %>
+    <% else %>
+      <%= link_to 'Login', new_user_session_path, :class => 'ui-btn-right'  %>
+    <% end %>
+  </div>
+
   <div id="tune_body_<%= t.id %>" class="tune-body"></div>
 
   <div id="tune_loading_<%= t.id %>" class="loading">
@@ -78,7 +87,9 @@ $(document).delegate('#tuning_list','pageinit',function(event){
     </center>
   </div>
 
-  <%= render "footer_smart_phone" , { :state => "tune", :tune => t } %>
+  <div data-role="footer" data-position="fixed">
+    <span id="tune_controller_<%= t.id %>"></span>
+  </div>
 </div>
 
 <script>

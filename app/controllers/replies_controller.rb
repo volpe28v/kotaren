@@ -1,12 +1,9 @@
 class RepliesController < ApplicationController
   def create
     comment = Comment.find(params[:comment_id])
-    reply_text = params[:reply]
     user = current_user
 
-    new_reply = Reply.new({
-      :text => reply_text,
-    })
+    new_reply = Reply.new(params[:reply])
     new_reply.user = user
     new_reply.comment = comment
     if new_reply.save == false
@@ -19,10 +16,11 @@ class RepliesController < ApplicationController
       count: comment.replies.count,
       name: new_reply.user.name,
       user_url: user_tunes_path(user),
+      icon_url: new_reply.user.icon_url,
       reply_id: new_reply.id,
       date: new_reply.updated_at.strftime("%Y/%m/%d %H:%M"),
       reply_latest_date: comment.updated_at.strftime("%m/%d"),
-      reply: reply_text,
+      reply: new_reply.text,
       destroy_url: comment_reply_path(comment.id, new_reply.id)
     },
     :callback => 'addReply'

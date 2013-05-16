@@ -289,11 +289,6 @@ ul.tune-counts li span {
   margin: 0px;
 }
 
-#comments span a{
-  color: mediumvioletred; 
-  font-style: bold;
-}
-
 .comment-date{
     float: left;
 }

@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.10'
+#ruby '2.0.0'
+
+gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'omniauth-facebook'
 gem 'oa-core'
@@ -11,8 +13,8 @@ gem 'jpmobile'
 gem 'eventmachine'
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
@@ -34,7 +36,7 @@ end
 group :production do
   gem 'pg'
   gem 'execjs'
-  gem 'therubyracer', '0.9.8'
+  gem 'therubyracer'
 end
 
 

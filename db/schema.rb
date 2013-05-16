@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(:version => 20130203113111) do
   create_table "albums", :force => true do |t|
     t.string   "title"
     t.date     "release"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "comments", :force => true do |t|
     t.integer  "tune_id"
     t.integer  "user_id"
     t.string   "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "progresses", :force => true do |t|
@@ -33,43 +33,43 @@ ActiveRecord::Schema.define(:version => 20130203113111) do
     t.integer  "percent"
     t.integer  "tune_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "recordings", :force => true do |t|
     t.integer  "tune_id"
     t.integer  "album_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "replies", :force => true do |t|
     t.integer  "comment_id"
     t.string   "text"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tunes", :force => true do |t|
     t.string   "title"
     t.integer  "tuning_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tunings", :force => true do |t|
     t.string   "name"
     t.integer  "capo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "email",                                 :default => "",   :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",   :null => false
     t.string   "reset_password_token"

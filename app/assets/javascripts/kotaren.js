@@ -106,12 +106,12 @@ function showComment(){
     var text_area = $('#comments').find('.add-reply-form-msg');
     if ( text_area.val() == "" ){ return; }
 
-    var data = {reply: text_area.val()};
+    var data = {text: text_area.val()};
     $.ajax({
       type: "POST",
       cache: false,
       url: "/comments/" + $(this).data("id") + "/replies",
-      data: data,
+      data: {reply: data},
       dataType: "jsonp"
     });
 
@@ -126,8 +126,9 @@ function addReply(data){
     .append($('<dl/>')
       .append($('<dt/>')
         .append($('<span/>').html(data.date))
-        .append($('<div/>').addClass("comment-name").html("by ")
-          .append($('<a/>').attr("href",data.user_url).html(data.name))))
+        .append($('<div/>').addClass("comment-name")
+          .append($('<a/>').attr("href",data.user_url).html(data.name))
+          .append($( data.icon_url != null && data.icon_url != "" ? '<img src="' + data.icon_url + '" class="user-icon-img-mini" style="margin: 0 2px 0 5px">' : ""))))
       .append($('<dd/>')
         .append($('<div/>').addClass("comment-text")
           .append($('<p/>').html(data.reply.replace(/\n/g,"<br>"))))
@@ -143,4 +144,80 @@ function addReply(data){
   $('#replies').prepend($new_reply);
   $new_reply.fadeIn();
 }
+
+function showCommentOnTune(){
+  $('#comments').delegate('.add-comment-button', 'click', function(){
+    var text_area = $('#comments').find('.add-comment-form-msg');
+    if ( text_area.val() == "" ){ return; }
+
+    var data = {text: text_area.val()};
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: $(this).data("url"),
+      data: {comment: data},
+      dataType: "jsonp"
+    });
+
+    text_area.val("");
+  });
+}
+
+function addComment(data){
+  var $new_comment = $('<div/>')
+    .attr("id", "comment_" + data.id)
+    .attr("style","display:none")
+    .append($('<dl/>')
+      .append($('<dt/>')
+        .append($('<span/>').html(data.date)))
+      .append($('<dd/>')
+        .append($('<div/>').addClass("comment-text")
+          .append($('<p/>').html(data.comment.replace(/\n/g,"<br>"))))
+        .append($('<div/>').addClass("comment-destroy")
+          .append($('<a/>').attr("href",data.user_url).html(data.name))
+          .append($( data.icon_url != null && data.icon_url != "" ? '<img src="' + data.icon_url + '" class="user-icon-img-mini" style="margin: 0 0 0 5px">' : ""))
+          .append($('<a/>').attr("href", data.destroy_url)
+                           .attr("data-confirm","本当に削除しますか？")
+                           .attr("data-method","delete")
+                           .attr("data-remote","true")
+                           .attr("rel","nofllow")
+                           .attr("style","margin: 0 0 0 5px")
+                           .html("x")))
+        .append($('<br/>'))));
+
+  $('#my_comments').prepend($new_comment);
+  $new_comment.fadeIn();
+}
+
+function loadYoutube(tune_name)
+{
+  $.ajax({
+    dataType: "jsonp",
+    data: {
+      "vq": "押尾コータロー " + tune_name,
+      "orderby": "relevance",
+      "start-index": 1,
+      "max-results": 12,
+      "alt":"json-in-script"
+    },
+    cache: false,
+    url: "http://gdata.youtube.com/feeds/api/videos",
+    success: function (data) {
+      $.each(data.feed.entry, function(i,item){
+        var group = item.media$group;
+
+         var youtube_link_a = $("<a/>").attr("href",group.media$player[0].url).attr("title","").addClass("prettyPhoto").prettyPhoto();
+         var thumb_div = $("<div/>").addClass("thumbnail-video ui-widget-content ui-corner-all")
+           .append($("<img/>").attr("src", group.media$thumbnail[0].url)).append("<br/")
+           .append(item.title.$t).append("<br/>") 
+           .append(item.author[0].name.$t).append("<br/>") 
+           .append($("<span/>").addClass("info").text("再生回数：" + ((item.yt$statistics == null) ? "0" : item.yt$statistics.viewCount)));
+         
+         youtube_link_a.append(thumb_div).appendTo("#ref-videos");
+        
+      });
+    }
+  });
+}
+
 

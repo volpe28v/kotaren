@@ -1,0 +1,5 @@
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li { padding: .1em 10px .1em; display: block; }
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb  { min-height: 59px; padding-left: 74px;}
+.ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow { padding-right: 30px; }
+.ui-li-has-arrow.ui-li-has-count .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow.ui-li-has-count { padding-right: 65px; }
+.ui-li-thumb, .ui-listview .ui-li-icon { position: absolute; left: 5px; top: 5px; max-height: 62px; max-width: 62px; }

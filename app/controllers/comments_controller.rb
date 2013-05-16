@@ -12,14 +12,22 @@ class CommentsController < ApplicationController
     end
 
     if request.smart_phone?
-      render :json => { id:         tune.id,
-                        comment_id: @comment.id,
-                        date:       @comment.created_at.strftime("%Y/%m/%d %H:%M"),
-                        comment:    @comment.text
-                      },
-             :callback => 'addComment'
+      render :json => {
+        id:         tune.id,
+        comment_id: @comment.id,
+        date:       @comment.created_at.strftime("%Y/%m/%d %H:%M"),
+        comment:    @comment.text
+      },:callback => 'addComment'
     else
-      @comment_html = render_to_string(:partial => 'comment_body', :locals => {:c => @comment}).gsub(/\n/,"").gsub(/"/,"\\\"");
+      render :json => {
+        id: @comment.id,
+        name: @comment.user.name,
+        user_url: user_tune_path(@comment.user,tune),
+        icon_url: @comment.user.icon_url,
+        date: @comment.updated_at.strftime("%Y/%m/%d %H:%M"),
+        comment: @comment.text,
+        destroy_url: user_tune_comment_path(@comment.user,tune,@comment.id)
+      },:callback => 'addComment'
     end
   end
 

@@ -306,7 +306,7 @@ function showCommentBody(){
       type: "POST",
       cache: false,
       url: "/comments/" + $(this).data("id") + "/replies",
-      data: { reply: text_area.val() },
+      data: { reply: { text: text_area.val() }},
       dataType: "jsonp"
     });
 

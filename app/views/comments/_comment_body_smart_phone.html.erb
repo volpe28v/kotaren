@@ -35,7 +35,7 @@
         </span>
       </a>
     </div>
-    <div class="progress-word">
+    <div class="progress-word" style="word-break:break-all;">
       <%= auto_link( simple_format(c.text),:all, :target => "_blank") %>
     </div>
 
@@ -62,7 +62,7 @@
             </span>
           <% end %>
           </div>
-          <div class="comment-text">
+          <div class="comment-text" style="word-break:break-all;">
             <%= auto_link( simple_format(r.text),:all, :target => "_blank") %>
           </div>
         </div>

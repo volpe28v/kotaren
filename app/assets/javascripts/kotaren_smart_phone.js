@@ -246,11 +246,10 @@ function addComment(data){
   var $new_comment = $('<div/>').addClass("comment-one")
                                 .attr("id", "comment_" + data.comment_id)
                                 .attr("style","display:none")
-  .append(
-    $('<div/>').addClass("comment-date").html(data.date))
-    .append(
-        $('<div/>').addClass("comment-text").append(
-          $('<p/>').html(comment_decorater(data.comment))));
+  .append($('<div/>').addClass("comment-date").html(data.date))
+  .append($('<div/>').addClass("comment-text")
+                     .attr("style", "word-break:break-all;")
+    .append($('<p/>').html(comment_decorater(data.comment))));
 
 
   $('#tune_' + data.id).find('.comment-area')
@@ -356,6 +355,7 @@ function addReply(data){
             .attr('data-inline',"true")
             .html('x'))))
       .append($('<div/>').addClass("comment-text")
+                         .attr("style", "word-break:break-all;")
         .append($('<p/>').html(comment_decorater(data.reply))));
 
   $('#comment_reply_' + data.id).prepend($new_reply);

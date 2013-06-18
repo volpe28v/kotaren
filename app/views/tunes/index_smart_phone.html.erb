@@ -7,7 +7,7 @@
         <img src="<%= image_path 'ajax-loader.gif' %> ">
         <div class="comment-one">
           <div class="comment-name"><%= @other_comment.tune.title %></div>
-          <div class="comment-text"><%= auto_link( simple_format(@other_comment.text),:all, :target => "_blank" ) %></div>
+          <div class="comment-text" style="word-break:break-all;"><%= auto_link( simple_format(@other_comment.text),:all, :target => "_blank" ) %></div>
           <div class="comment-name"><%= @other_comment.user.name %> at <%= @other_comment.updated_at.strftime("%Y/%m/%d") %></div>
         </div>
       </center>

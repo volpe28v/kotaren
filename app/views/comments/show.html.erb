@@ -14,7 +14,7 @@
                 </div>
               </dt>
               <dd>
-                <div class="comment-text"><%= auto_link( simple_format(c.text)) %></div>
+                <div class="comment-text" style="word-break:break-all;"><%= auto_link( simple_format(c.text)) %></div>
               </dd>
             </dl>
           </div>
@@ -36,7 +36,7 @@
                   </div>
                 </dt>
                 <dd>
-                  <div class="comment-text"><%= auto_link( simple_format(r.text)) %></div>
+                  <div class="comment-text" style="word-break:break-all;"><%= auto_link( simple_format(r.text)) %></div>
                   <% if r.user == current_user %>
                   <div class="comment-destroy">
                     <%= link_to 'x', comment_reply_path(c,r), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>

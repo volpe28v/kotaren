@@ -181,6 +181,10 @@ function loadYoutube(tune_name)
 function loadSpecificYoutube(url, $target)
 {
   var videoID = $.url(url).param().v;
+  if ( videoID == undefined || videoID == ""){
+    videoID = url.replace("http://youtu.be/","");
+  }
+
   $.ajax({
     dataType: "jsonp",
     cache: false,

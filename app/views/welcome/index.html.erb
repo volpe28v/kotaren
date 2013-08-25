@@ -61,8 +61,7 @@
     <dt>Password</dt>
     <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
   </dl>
-  <button id="login" style="display: none" onclick="submit();"></button>
-  <p><%= link_to raw('<span>ログイン</span>'), "#", :class => "btn", :onclick => "$('#login').click();" %></p>
+  <button id="login" class="btn" onclick="submit();">ログイン</button>
   or
   <p><%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), :class => "btn btn-info"  %></p>
    〜 登録ユーザ <%= @user_count %> 人 〜
@@ -75,8 +74,7 @@
 <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
   <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
   <%= hidden_field_tag "user[password]", "sample" %>
-  <button id="sample-login" style="display: none" onclick="submit();"></button>
-  <p><%= link_to raw('<span>サンプルアカウントでログイン</span>'), "#", :class => "btn", :onclick => "$('#sample-login').click();" %></p>
+  <button id="sample-login" class="btn" onclick="submit();">サンプルアカウントでログイン</button>
 <% end -%>
 
 <hr>

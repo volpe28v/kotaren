@@ -21,13 +21,8 @@ class CommentsController < ApplicationController
     else
       render :json => {
         id: @comment.id,
-        name: @comment.user.name,
-        user_url: user_tune_path(@comment.user,tune),
-        icon_url: @comment.user.icon_url,
-        date: @comment.updated_at.strftime("%Y/%m/%d %H:%M"),
-        comment: @comment.text,
-        destroy_url: user_tune_comment_path(@comment.user,tune,@comment.id)
-      },:callback => 'addComment'
+        html: render_to_string(:partial => "comments/comment_body", :locals => { :c => @comment })
+      }
     end
   end
 

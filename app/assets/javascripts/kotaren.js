@@ -155,38 +155,17 @@ function showCommentOnTune(){
       cache: false,
       url: $(this).data("url"),
       data: {comment: data},
-      dataType: "jsonp"
+      dataType: "json",
+      success: function (data) {
+        var $new_comment = $('<div/>').html(data.html).css('display','none');
+        $('#my_comments').prepend($new_comment);
+        applyYoutubin("#comment_" + data.id + " a");
+        $new_comment.fadeIn();
+      }
     });
 
     text_area.val("");
   });
-}
-
-function addComment(data){
-  var $new_comment = $('<div/>')
-    .attr("id", "comment_" + data.id)
-    .attr("style","display:none")
-    .append($('<dl/>')
-      .append($('<dt/>')
-        .append($('<span/>').html(data.date)))
-      .append($('<dd/>')
-        .append($('<div/>').addClass("comment-text")
-                           .attr("style", "word-break:break-all;")
-          .append($('<p/>').html(data.comment.replace(/\n/g,"<br>"))))
-        .append($('<div/>').addClass("comment-destroy")
-          .append($('<a/>').attr("href",data.user_url).html(data.name))
-          .append($( data.icon_url != null && data.icon_url != "" ? '<img src="' + data.icon_url + '" class="user-icon-img-mini" style="margin: 0 0 0 5px">' : ""))
-          .append($('<a/>').attr("href", data.destroy_url)
-                           .attr("data-confirm","本当に削除しますか？")
-                           .attr("data-method","delete")
-                           .attr("data-remote","true")
-                           .attr("rel","nofllow")
-                           .attr("style","margin: 0 0 0 5px")
-                           .html("x")))
-        .append($('<br/>'))));
-
-  $('#my_comments').prepend($new_comment);
-  $new_comment.fadeIn();
 }
 
 function loadYoutube(tune_name)

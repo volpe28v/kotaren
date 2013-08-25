@@ -9,7 +9,7 @@
 //= require FeedEk
 //= require jquery.progressbar
 //= require jquery.prettyPhoto
-//= require jquery.youtubin
-//= require highcharts
+//= require jquery.xml2json
+//= require purl
 //= require kotaren
 

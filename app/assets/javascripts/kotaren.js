@@ -88,10 +88,8 @@ var applyYoutubin = function(){
     $(that).attr("id", "comment_link_" + link_id);
     link_id += 1;
 
-    $(that).youtubin({
-      swfWidth : 200,
-      swfHeight : 180
-    });
+    loadSpecificYoutube($(that).attr("href"), $(that));
+    $(that).hide();
   }
  
   return function(id){
@@ -222,4 +220,26 @@ function loadYoutube(tune_name)
   });
 }
 
+function loadSpecificYoutube(url, $target)
+{
+  var videoID = $.url(url).param().v;
+  $.ajax({
+    dataType: "jsonp",
+    cache: false,
+    url: "http://gdata.youtube.com/feeds/api/videos/" + videoID,
+    success: function (data) {
+      var json = $.xml2json(data);
+      var item = json;
+      var group = item.group;
 
+      var youtube_link_a = $("<a/>").attr("href",group.player.url).attr("title","").addClass("prettyPhoto").prettyPhoto();
+      var thumb_div = $("<div/>").addClass("thumbnail-video-comment ui-widget-content ui-corner-all")
+        .append($("<img/>").attr("src", group.thumbnail[0].url)).append("<br/")
+        .append(item.title).append("<br/>") 
+        .append(item.author.name).append("<br/>") 
+        .append($("<span/>").addClass("info").text("再生回数：" + ((item.statistics == null) ? "0" : item.statistics.viewCount)));
+        
+      $target.before(youtube_link_a.append(thumb_div));
+    }
+  });
+}

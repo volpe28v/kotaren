@@ -1,0 +1,21 @@
+            <div id="reply_<%= r.id %>">
+              <dl>
+                <dt>
+                  <%= r.created_at.strftime("%Y/%m/%d %H:%M") %>
+                  <div class="comment-name">
+                    <%= link_to r.user.default_name, user_tunes_path(r.user) %>
+                    <%= icon_img(r.user) %>
+                  </div>
+                </dt>
+                <dd>
+                  <div class="comment-text" style="word-break:break-all;"><%= auto_link( simple_format(r.text)) %></div>
+                  <% if r.user == current_user %>
+                  <div class="comment-destroy">
+                    <%= link_to 'x', comment_reply_path(c,r), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
+                  </div>
+                  <% end %>
+                  <br>
+                </dd>
+              </dl>
+            </div>
+ 

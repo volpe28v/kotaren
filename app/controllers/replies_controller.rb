@@ -12,18 +12,9 @@ class RepliesController < ApplicationController
     end
 
     render :json => {
-      id: comment.id,
-      count: comment.replies.count,
-      name: new_reply.user.name,
-      user_url: user_tunes_path(user),
-      icon_url: new_reply.user.icon_url,
-      reply_id: new_reply.id,
-      date: new_reply.updated_at.strftime("%Y/%m/%d %H:%M"),
-      reply_latest_date: comment.updated_at.strftime("%m/%d"),
-      reply: new_reply.text,
-      destroy_url: comment_reply_path(comment.id, new_reply.id)
-    },
-    :callback => 'addReply'
+      id: new_reply.id,
+      html: render_to_string(:partial => "replies/reply_body", :locals => { :c => comment, :r => new_reply })
+    }
 
     EM::defer do
       ActiveRecord::Base.connection_pool.with_connection do

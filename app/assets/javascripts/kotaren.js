@@ -110,38 +110,17 @@ function showComment(){
       cache: false,
       url: "/comments/" + $(this).data("id") + "/replies",
       data: {reply: data},
-      dataType: "jsonp"
+      dataType: "json",
+      success: function (data) {
+        var $new_reply = $('<div/>').html(data.html).css('display','none');
+        $('#replies').prepend($new_reply);
+        applyYoutubin("#reply_" + data.id + " a");
+        $new_reply.fadeIn();
+      }
     });
 
     text_area.val("");
   });
-}
-
-function addReply(data){
-  var $new_reply = $('<div/>')
-    .attr("id", "reply_" + data.reply_id)
-    .attr("style","display:none")
-    .append($('<dl/>')
-      .append($('<dt/>')
-        .append($('<span/>').html(data.date))
-        .append($('<div/>').addClass("comment-name")
-          .append($('<a/>').attr("href",data.user_url).html(data.name))
-          .append($( data.icon_url != null && data.icon_url != "" ? '<img src="' + data.icon_url + '" class="user-icon-img-mini" style="margin: 0 2px 0 5px">' : ""))))
-      .append($('<dd/>')
-        .append($('<div/>').addClass("comment-text")
-                           .attr("style", "word-break:break-all;")
-          .append($('<p/>').html(data.reply.replace(/\n/g,"<br>"))))
-        .append($('<div/>').addClass("comment-destroy")
-          .append($('<a/>').attr("href", data.destroy_url)
-                           .attr("data-confirm","本当に削除しますか？")
-                           .attr("data-method","delete")
-                           .attr("data-remote","true")
-                           .attr("rel","nofllow")
-                           .html("x")))
-        .append($('<br/>'))));
-
-  $('#replies').prepend($new_reply);
-  $new_reply.fadeIn();
 }
 
 function showCommentOnTune(){

@@ -15,13 +15,13 @@
       </div>
       <% if c.user == current_user %>
       <div class="comment-destroy">
-        <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
+        <%= link_to c.user.default_name, user_tunes_path(c.user) %>
         <%= icon_img(c.user) %>
         <%= link_to 'x', user_tune_comment_path(c.user,c.tune,c), :method => :delete,:remote => true, :confirm => "本当に削除しますか？" %>
       </div>
       <% else %>
       <div style="float: right;" class="comment-name">
-        by <%= link_to c.user.default_name, user_tune_path(c.user,c.tune) %>
+        by <%= link_to c.user.default_name, user_tunes_path(c.user) %>
         <%= icon_img(c.user) %>
       </div>
       <% end %>

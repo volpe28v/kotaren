@@ -27,8 +27,6 @@
 
     applyYoutubin("#my_comments .comment-text a");
     applyYoutubin("#other_comments .comment-text a");
-
-//    setTuningChart();
   });
 
   function loadTunes(){
@@ -36,62 +34,6 @@
     $('#tune-list').hide();
     $('#loading').show();
   }
-
-  function setTuningChart(){
-    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
-      return {
-        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-        stops: [
-        [0, color],
-        [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-        ]
-      };
-    });
-
-    var chart_task = new Highcharts.Chart({
-      chart: {
-        renderTo: 'tuning_chart',
-        type: 'pie',
-        height: 250,
-        backgroundColor: "#fbfbfb" 
-      },
-      title: {
-        text: 'Tuning count'
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          point: {
-            events: {
-              click: function() {
-                $('#tuning_name').val(this.name)
-                loadTunes();
-              }
-            }
-          },
-          dataLabels: {
-            enabled: false,
-            color: '#000000',
-            connectorColor: '#000000',
-            formatter: function() {
-              return '<b>'+ this.point.name +'</b>';
-            }
-          },
-          showInLegend: false 
-        }
-      },
-      series: [
-      { name: 'tunes', 
-        data: [
-        <% @tuning_count.each do |t| %>
-          { name: '<%= t[:name] %>', y: <%= t[:count] %> },
-        <% end %>
-        ],
-      }]
-    });
-  };
-
 
 </script>
 

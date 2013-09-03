@@ -43,8 +43,8 @@
           <div class="nav-collapse">
             <% if current_user %>
               <ul class="nav pull-left">
-                <li><%= link_to 'MyTunes', user_tunes_path(current_user) %>
-                <li><%= link_to 'MyAlbums', user_albums_path(current_user) %>
+                <li><%= link_to raw('<i class="icon-home"></i>'), user_tunes_path(current_user) %>
+                <li><%= link_to 'Albums', user_albums_path(current_user) %>
               </ul>
               <ul class="nav pull-right">
                 <li><%= link_to 'Activity', ranking_latest_played_path %>

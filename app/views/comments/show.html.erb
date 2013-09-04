@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="span7">
+    <div class="span6">
       <div id="content" class="ui-widget ui-widget-content ui-corner-all">
         <div id="comments">
           <div id="my_comments">
@@ -24,11 +24,15 @@
             <a class="btn add-reply-button" data-id="<%= c.id %>"><i class="icon-pencil"></i> コメントする</a>
           </form>
           <% end %>
-          <div id="replies">
-            <% c.replies.order("updated_at DESC").each do |r| %>
-              <%= render :partial => "replies/reply_body", :locals => { :c => c, :r => r } %>
-            <% end %>
-          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div id="content" class="ui-widget ui-widget-content ui-corner-all">
+        <div id="replies">
+        <% c.replies.order("updated_at DESC").each do |r| %>
+          <%= render :partial => "replies/reply_body", :locals => { :c => c, :r => r } %>
+        <% end %>
         </div>
       </div>
     </div>

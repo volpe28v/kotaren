@@ -280,26 +280,26 @@ ul.tune-counts li span {
   height: 34px;
 }
 
-#comments dl{
+#comments dl, #replies dl {
   background-color: #fbfbfb;
   margin-top: 5px;
   margin-bottom: 0px;
 }
 
-#comments dt{
+#comments dt, #replies dt {
   color: #555;
   margin-left: 3px;
   margin-right: 5px;
 }
 
-#comments dd{
+#comments dd, #replies dd {
   margin-left: 8px;
   margin-right: 3px;
   margin-top: 0px;
   color: #666;
 }
 
-#comments p{
+#comments p, #replies p{
   margin: 0px;
 }
 

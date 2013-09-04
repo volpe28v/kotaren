@@ -10,6 +10,7 @@
 //= require jquery.progressbar
 //= require jquery.prettyPhoto
 //= require jquery.xml2json
+//= require jquery.autofit
 //= require purl
 //= require kotaren
 

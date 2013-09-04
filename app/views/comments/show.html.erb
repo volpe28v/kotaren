@@ -20,7 +20,7 @@
           </div>
           <% if current_user %>
           <form method="post" class="add-reply-form">
-            <textarea class="add-reply-form-msg"  maxlength="200" placeholder="Comment"></textarea>
+            <textarea class="add-reply-form-msg"  maxlength="200" placeholder="<%= c.user.default_name %>さんの練習記録にコメントしよう！"></textarea>
             <a class="btn add-reply-button" data-id="<%= c.id %>"><i class="icon-pencil"></i> コメントする</a>
           </form>
           <% end %>

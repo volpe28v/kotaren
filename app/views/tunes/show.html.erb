@@ -105,7 +105,7 @@ $(document).ready(function(){
 
               <% if @user == current_user %>
                 <form method="post" class="add-comment-form">
-                  <textarea class="add-comment-form-msg"  maxlength="199" placeholder="Comment"></textarea>
+                  <textarea class="add-comment-form-msg"  maxlength="199" placeholder="今日の練習はどうでしたか？(YoutubeのURLを貼るといいかも)"></textarea>
                   <a class="btn add-comment-button" data-url="<%= user_tune_comments_path(@user,@tune,@comment) %>"><i class="icon-pencil"></i>記録する</a>
                 </form>
               <% end %>

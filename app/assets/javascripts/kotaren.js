@@ -120,6 +120,7 @@ function showComment(){
     });
 
     text_area.val("");
+    text_area.trigger('keyup');
   });
 }
 
@@ -144,6 +145,7 @@ function showCommentOnTune(){
     });
 
     text_area.val("");
+    text_area.trigger('keyup');
   });
 }
 

@@ -43,7 +43,7 @@
           <div class="nav-collapse">
             <% if current_user %>
               <ul class="nav pull-left">
-                <li><%= link_to raw('<i class="icon-home"></i>'), user_tunes_path(current_user) %>
+                <li><%= link_to raw('<i class="icon-home"></i>'), user_tunes_path(current_user), :class => 'home' %>
                 <li><%= link_to 'Albums', user_albums_path(current_user) %>
               </ul>
               <ul class="nav pull-right">

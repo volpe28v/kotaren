@@ -111,6 +111,10 @@ end
   click_link(link_name)
 end
 
+もし /^　  "([^"]*)" cssをクリックする$/ do |link_name|
+  page.find(link_name).click
+end
+
 もし /^　  "([^"]*)" のログインをクリックする$/ do |page_name|
   case page_name
   when "トップページ"

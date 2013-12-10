@@ -1,3 +1,22 @@
+$(function($){
+  $('#tunes_list_form')
+    .bind("ajax:success", function(xhr, data){
+      $('#loading').hide();
+      data.forEach(function(tune){
+        $("#tune_" + tune.id).appendTo("#tune_list_table");
+        $("#tune_" + tune.id).show();
+      });
+      $("#tune_list_table").fadeIn("slow");
+    }
+  );
+});
+
+function loadTunes(){
+  $('#update_tunes').click();
+  $('.tune-tr').hide();
+  $('#loading').show();
+}
+
 function updateElem(id, html){
   if ( $(id).html() == html ){return}
 

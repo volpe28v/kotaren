@@ -1,5 +1,5 @@
 <script>
-  $(document).ready(function(){
+  $(function($){
     $('#tune-tabs').tabs();
     $('#tune-tabs ul li a').click(
       function(){
@@ -22,19 +22,19 @@
       }
     );
 
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/users/<%= @user.id %>/tunes/get_all_tunes_list",
+      dataType: "jsonp"
+    });
     $("#<%= @current_status[1] %>").click();
+ 
     $("#my_comment").click();
 
     applyYoutubin("#my_comments .comment-text a");
     applyYoutubin("#other_comments .comment-text a");
   });
-
-  function loadTunes(){
-    $('#update_tunes').click();
-    $('#tune-list').hide();
-    $('#loading').show();
-  }
-
 </script>
 
 <div class="container-fluid">
@@ -111,7 +111,7 @@
     <div class="span7">
       <div id="tune-tabs">
         <div style="display: none">
-        <%= form_tag( get_tunes_list_user_tunes_path(@user), :remote => true, :style => "margin-bottom: 0px;" ) do %>
+          <%= form_tag( get_tunes_list_user_tunes_path(@user), :id => "tunes_list_form", :remote => true, :style => "margin-bottom: 0px;" ) do %>
           <%= select_tag('album_title', options_for_select(["All Albums"] + @albums.map(&:title), @current_album ) , :onchange => "loadTunes();", :class => "span4", :style => "margin-bottom: 2px;" ) %>
           <%= select_tag('tuning_name', options_for_select(["All Tunings"] + Tuning.all.map(&:name).uniq.sort, @current_tuning) , :onchange => "loadTunes();", :class => "span3", :style => "margin-bottom: 2px;" ) %>
           <%= select_tag('tune_status', options_for_select(@statuses.map{|s| s[0]}, @current_status[0] ) , :onchange => "loadTunes();", :style => "display: none") %>

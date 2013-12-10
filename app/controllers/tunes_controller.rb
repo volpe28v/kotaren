@@ -44,6 +44,20 @@ class TunesController < ApplicationController
     @albums = Album.scoped.order("id ASC")
   end
 
+  def get_all_tunes_list
+    @user = User.find(params[:user_id])
+    album = Album.find_by_title("All Albums")
+    tuning = "All Tunings"
+    status = "All Status"
+
+    set_current_tune_statuses_to_session( album,tuning,status)
+
+    base_tunes = album ? album.tunes : Tune
+    @tunes = base_tunes.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning(tuning)
+
+    set_tune_counts(@user)
+  end
+
   def get_tunes_list
     @user = User.find(params[:user_id])
     album = Album.find_by_title(params[:album_title])
@@ -56,6 +70,8 @@ class TunesController < ApplicationController
     @tunes = base_tunes.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning(tuning)
 
     set_tune_counts(@user)
+
+    render :json => @tunes.to_json(only: "id")
   end
 
   def update_progress

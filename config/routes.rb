@@ -17,7 +17,6 @@ Kotaren::Application.routes.draw do
       resources :comments
       resources :progresses
       get :all , :on => :collection
-      get :get_all_tunes_list, :on => :collection
       post :get_tunes_list , :on => :collection
       get :update_progress , :on => :collection
       get :load_tune_list, :on => :collection

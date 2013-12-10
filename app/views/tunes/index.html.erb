@@ -22,12 +22,6 @@
       }
     );
 
-//    $.ajax({
-//      type: "GET",
-//      cache: false,
-//      url: "/users/<%= @user.id %>/tunes/get_all_tunes_list",
-//      dataType: "jsonp"
-//    });
     $("#<%= @current_status[1] %>").click();
  
     $("#my_comment").click();
@@ -47,7 +41,7 @@
             <ul class="tune-counts">
               <li>
               <strong id="display_num" class="tune_s_num" >0</strong>
-              <span>Displayed</span>
+              <span>All Tunes</span>
               </li>
               <li>
               <strong id="touched_num" class="tune_s_num" >0</strong>

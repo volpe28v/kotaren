@@ -24,18 +24,7 @@ class TunesController < ApplicationController
       @latest_comments = @user.comments.latest.order("updated_at DESC")
       @other_comments = Comment.other_by(@user).order("updated_at DESC")
 
-      @tuning_count = Tuning.all.inject(Hash.new(0)){|h,t| h[t.name] += t.number_of_touched_tunes_by_user(@user).size; h }
-                            .delete_if{|k,v| v == 0 }
-                            .sort{|a,b| b[1] <=> a[1]}.map{|t| { name: t[0], count: t[1] }}
-
-      album = Album.find_by_title("All Albums")
-      tuning = "All Tunings"
-      status = "All Status"
-
-      set_current_tune_statuses_to_session( album,tuning,status)
-
-      base_tunes = album ? album.tunes : Tune
-      @tunes = base_tunes.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning(tuning)
+      @tunes = Tune.scoped
 
       set_tune_counts(@user)
     end
@@ -53,20 +42,6 @@ class TunesController < ApplicationController
   #TODO: 未使用かも
   def all
     @albums = Album.scoped.order("id ASC")
-  end
-
-  def get_all_tunes_list
-    @user = User.find(params[:user_id])
-    album = Album.find_by_title("All Albums")
-    tuning = "All Tunings"
-    status = "All Status"
-
-    set_current_tune_statuses_to_session( album,tuning,status)
-
-    base_tunes = album ? album.tunes : Tune
-    @tunes = base_tunes.by_status_and_user(selected_status[1],@user).all_or_filter_by_tuning(tuning)
-
-    set_tune_counts(@user)
   end
 
   def get_tunes_list

@@ -22,12 +22,12 @@
       }
     );
 
-    $.ajax({
-      type: "GET",
-      cache: false,
-      url: "/users/<%= @user.id %>/tunes/get_all_tunes_list",
-      dataType: "jsonp"
-    });
+//    $.ajax({
+//      type: "GET",
+//      cache: false,
+//      url: "/users/<%= @user.id %>/tunes/get_all_tunes_list",
+//      dataType: "jsonp"
+//    });
     $("#<%= @current_status[1] %>").click();
  
     $("#my_comment").click();
@@ -129,7 +129,9 @@
           <% end %>
         </ul>
 
-        <div id="tune-list"></div>
+        <div id="tune-list">
+          <%= render :partial => "tunes_list_body" %>
+        </div>
         <center>
           <div id="loading">
             <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">

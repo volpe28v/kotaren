@@ -37,5 +37,15 @@
       loadTunes();
     }
   );
+
+  $(".progress-bar").each(function(elem){
+    $(this).progressBar(progress_default_option);
+  });
+
+  updateElem('#display_num', <%= @tunes.count %>)
+
+  updateElem('#touched_num',<%= @touched_count %>)
+  updateElem('#doing_num',<%= @doing_count %>)
+  updateElem('#done_num',<%= @done_count %>)
 </script>
 

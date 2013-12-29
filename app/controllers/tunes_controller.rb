@@ -57,7 +57,10 @@ class TunesController < ApplicationController
 
     set_tune_counts(@user)
 
-    render :json => @tunes.to_json(only: "id")
+    render :json => { tunes: @tunes.map{|t| {:id => t.id} },
+                      touched_count: @touched_count,
+                      doing_count: @doing_count,
+                      done_count: @done_count}
   end
 
   def update_progress

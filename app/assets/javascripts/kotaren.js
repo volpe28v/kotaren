@@ -2,10 +2,13 @@ $(function($){
   $('#tunes_list_form')
     .bind("ajax:success", function(xhr, data){
       $('#loading').hide();
-      data.forEach(function(tune){
+      data.tunes.forEach(function(tune){
         $("#tune_" + tune.id).appendTo("#tune_list_table");
         $("#tune_" + tune.id).show();
       });
+      updateElem('#touched_num', data.touched_count)
+      updateElem('#doing_num', data.doing_count)
+      updateElem('#done_num', data.done_count)
       $("#tune_list_table").fadeIn("slow");
     }
   );

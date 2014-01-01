@@ -111,7 +111,6 @@ var applyYoutubin = function(){
     link_id += 1;
 
     loadSpecificYoutube($(that).attr("href"), $(that));
-    $(that).hide();
   }
  
   return function(id){

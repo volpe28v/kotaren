@@ -56,5 +56,7 @@ module Kotaren
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    config.paths.add "app/api", :glob => "**/*.rb"
+    config.autoload_paths += Dir["#{Rails.root}/app"]
   end
 end

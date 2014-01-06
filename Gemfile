@@ -11,6 +11,7 @@ gem 'jpmobile'
 #gem 'jpmobile-terminfo'
 #
 gem 'eventmachine'
+gem 'grape'
 
 group :assets do
   gem 'sass-rails'

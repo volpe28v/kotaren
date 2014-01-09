@@ -4,6 +4,11 @@ class Tune < ActiveRecord::Base
     self.includes(:tuning).where("tunings.name = ?", tuning).order("tunes.id ASC")
   end
 
+  def self.all_or_filter_by_tuning_id(tuning_id)
+    return self.order("tunes.id ASC") if Tuning.find_by_id(tuning_id) == nil
+    self.includes(:tuning).where("tunings.id = ?", tuning_id).order("tunes.id ASC")
+  end
+
   def self.get_tune_ranking
     self.all.inject([]){|touch, tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
   end

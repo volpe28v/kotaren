@@ -48,7 +48,14 @@
           <%= f.label :notify, :class => "control-label" %>
           <div class="controls">
             <%= f.check_box :notify%>
-            <span class="help-inline">コメントへの返信をメールで受信する</span>
+            <span class="help-inline">自分に関連するコメントへの返信をメールで受信する</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label :all_notify, :class => "control-label" %>
+          <div class="controls">
+            <%= f.check_box :all_notify%>
+            <span class="help-inline">全ての練習記録・コメントをメールで受信する</span>
           </div>
         </div>
         <div class="control-group">

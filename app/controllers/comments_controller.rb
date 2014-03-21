@@ -24,6 +24,16 @@ class CommentsController < ApplicationController
         html: render_to_string(:partial => "comments/comment_body", :locals => { :c => @comment })
       }
     end
+    EM::defer do
+      ActiveRecord::Base.connection_pool.with_connection do
+        begin
+          send_mail_to_other(@comment)
+        rescue => e
+          logger.error e.class.name
+          logger.error e.message
+        end
+      end
+    end
   end
 
   def destroy
@@ -43,4 +53,15 @@ class CommentsController < ApplicationController
     render :json => { lists: lists },
            :callback => 'showCommentList'
   end
+  private
+  def send_mail_to_other(comment)
+    send_users = User.all.select{|u| u.all_notify}
+    send_users.each{|u|
+      next if u == comment.user
+      sleep 10
+      CommentMailer.to_other_with_comment(u, comment).deliver
+    }
+  end
+
+
 end

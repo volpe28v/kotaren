@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :name, :youtube_name, :twitter_name, :icon_url
   attr_accessible :guitar, :tuning
-  attr_accessible :notify
+  attr_accessible :notify, :all_notify
 
   validates :name,
     :presence => true,

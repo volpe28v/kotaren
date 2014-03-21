@@ -63,14 +63,19 @@ class RepliesController < ApplicationController
 
   private
   def send_mail_to_comment_owner(comment, reply)
-    return if !comment.user.notify
+    return if (!comment.user.notify and !comment.user.all_notify)
     return if comment.user == reply.user
     CommentMailer.to_owner(comment.user, comment, reply).deliver
   end
 
   def send_mail_to_comment_other(comment, reply)
-    comment.replies.map{|r| r.user }.uniq.each{|u|
+    send_users = User.all.select{|u| u.all_notify}
+    comment.replies.map{|r| r.user }.each{|u|
       next if !u.notify
+      send_users << u
+    }
+
+    send_users.uniq.each{|u|
       next if u == reply.user
       next if u == comment.user
       sleep 10

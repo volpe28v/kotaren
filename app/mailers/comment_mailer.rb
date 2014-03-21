@@ -9,7 +9,7 @@ class CommentMailer < ActionMailer::Base
     @reply = reply
 
     mail(to: @user.email,
-         subject: "#{@user.name}さんのコメントに返信がありました！")
+         subject: "#{@user.default_name}さんのコメントに返信がありました！")
   end
 
   def to_other(user, comment, reply)
@@ -18,6 +18,14 @@ class CommentMailer < ActionMailer::Base
     @reply = reply
 
     mail(to: @user.email,
-         subject: "#{@user.name}さんに関連のあるコメントに返信がありました！")
+         subject: "#{@user.default_name}さんに関連のあるコメントに返信がありました！")
+  end
+
+  def to_other_with_comment(user, comment)
+    @user = user
+    @comment = comment
+
+    mail(to: @user.email,
+         subject: "#{@comment.user.default_name}さんがコメントしました！")
   end
 end

@@ -20,7 +20,7 @@ module Api
         from = params[:start]
         to = params[:stop]
 
-        comments = user.comments.where(created_at: from...to).order(created_at: :desc)
+        comments = user.comments.where(created_at: from...to)
         comments.map{|c| c.created_at.to_i}.inject(Hash.new(0)){|h, tm| h[tm] += 1; h}.to_json
       end
     end

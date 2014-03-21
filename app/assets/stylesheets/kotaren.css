@@ -124,8 +124,10 @@ footer span {
   border-bottom: 1px dashed #bbb;
 }
 
-#play-users tr:hover {
-  background-color: #f0f8ff;
+#play-users tr:hover,
+.tune-tr:hover
+{
+  background-color: #eeeeee;
 }
 
 .tuning {
@@ -505,6 +507,10 @@ dd .field_w5th_errors {
 .progress-button{
   width: 74px;
   text-align: center;
+}
+
+.progress-button a{
+  cursor: pointer;
 }
 
 .progress-date{

@@ -4,27 +4,23 @@
     <tr id="tune_<%= t.id %>" class="tune-tr" style="display:none">
       <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
       <td class="tuning-name"><%= link_to t.tuning.name,"#" %></td>
+
       <% if current_user == @user %>
         <td class="progress-button">
-          <div class="btn-group">
-            <button class="btn btn-mini" onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><%= "<" %></button>
-            <button class="btn btn-mini" onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')">+</button>
-            <button class="btn btn-mini" onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><%= ">" %></button>
-          </div>
+          <a onclick="progress_controller.down('<%= @user.id %>','<%= t.id %>')"><i class="icon-backward"></i></a>
+          <a onclick="progress_controller.play('<%= @user.id %>','<%= t.id %>')"><i class="icon-music"></i></a>
+          <a onclick="progress_controller.up('<%= @user.id %>','<%= t.id %>')"><i class="icon-forward"></i></a>
         </td>
       <% else %>
         <td class="progress-button">
-          <div class="btn-group">
-            <button class="btn btn-mini disabled"><%= "<" %></button>
-            <button class="btn btn-mini disabled">+</button>
-            <button class="btn btn-mini disabled"><%= ">" %></button>
-          </div>
         </td>
       <% end %>
+
       <% p = t.progress_val_and_updated_at(@user) %>
       <td class="progress-bar-area"><span id="progress_<%= t.id %>" class="progress-bar"><%= p[:val] %></span></td>
       <td class="progress-date" id="progress_updated_at_<%= t.id %>"><%= last_played_at( p[:updated_at] ) %></td>
-    </tr>
+ 
+   </tr>
   <% end %>
 </table>
 </div>

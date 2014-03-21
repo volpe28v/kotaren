@@ -13,6 +13,17 @@ module Api
         Tune.find(params[:id])
       end
     end
+
+    resource :comments do
+      get do
+        user = User.find_by_id(params[:user_id])
+        from = params[:start]
+        to = params[:stop]
+
+        comments = user.comments.where(created_at: from...to).order(created_at: :desc)
+        comments.map{|c| c.created_at.to_i}.inject(Hash.new(0)){|h, tm| h[tm] += 1; h}.to_json
+      end
+    end
   end
 end
 

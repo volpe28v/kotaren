@@ -68,6 +68,7 @@ class TunesController < ApplicationController
     @tune = Tune.find(params[:tune_id])
     @tune.update_progress(@user,params[:progress_val])
     set_tune_counts(@user)
+    @user.add_activity
 
     if request.smart_phone?
       #TODO: コメントがなかった場合の処理が必要

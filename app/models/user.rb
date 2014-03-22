@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :comments
   has_many :progresses
+  has_many :activities
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -47,6 +48,12 @@ class User < ActiveRecord::Base
 
   def is_sample?
     self.email == "sample@sample.kotaren"
+  end
+
+  def add_activity
+    activity = self.activities.find_or_create_by_date(Date.today)
+    activity.count += 1
+    activity.save
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource = nil)

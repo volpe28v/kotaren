@@ -31,6 +31,35 @@ body{
   padding: 4px 0;
 }
 
+.graph-rect {
+  fill: #fbfbfb;
+}
+
+.q1 {
+  background-color: #dae289;
+  fill: #dae289
+}
+
+.q2 {
+  background-color: #cedb9c;
+  fill: #9cc069
+}
+
+.q3 {
+  background-color: #b5cf6b;
+  fill: #669d45
+}
+
+.q4 {
+  background-color: #637939;
+  fill: #637939
+}
+
+.q5 {
+  background-color: #3b6427;
+  fill: #3b6427
+}
+
 footer {
   background-color:#f7f7f7;
   width: 100%;

@@ -13,6 +13,7 @@
       </center>
     </div>
 
+    <div id="heatmap_tunes"></div>
     <ul id="tune_list_ul" data-role="listview">
     </ul>
   </div>
@@ -22,6 +23,30 @@
 <script>
 $(document).delegate('#tune_list','pageinit',function(){
   loadTuneList(<%= @user.id %>);
+
+  var startDate = new Date();
+  startDate.setMonth(startDate.getMonth() - 5);
+
+  var parser = function(data) {
+    return eval("(" + data + ")");
+  };
+
+  var cal = new CalHeatMap();
+  cal.init({
+    itemSelector: "#heatmap_tunes",
+    data: "/api/activities?user_id=<%= @user.id %>&start={{d:start}}&stop={{d:end}}",
+    afterLoadData: parser,
+    cellSize: 7,
+    domain: "month",
+    subDomain: "day",
+    subDomainDateFormat: "%m/%d %Y",
+    range: 6,
+    tooltip: true,
+    start: startDate,
+    domainLabelFormat: "%b",
+    itemName: ["activity", "activities"],
+    legend: [1,3,7,10]
+   });
 });
 </script>
 
@@ -102,13 +127,14 @@ $(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
 <div data-role="page" id="activity_list" data-theme="a">
   <%= render "header_smart_phone" , { :state => "activity_list" } %>
 
-  <div id="comment_list_loading" class="loading">
-    <center>
-      <img src="<%= image_path 'ajax-loader.gif' %> ">
-    </center>
-  </div>
-
   <div data-role="content">
+    <div id="comment_list_loading" class="loading">
+      <center>
+        <img src="<%= image_path 'ajax-loader.gif' %> ">
+      </center>
+    </div>
+
+    <div id="heatmap_activity"></div>
     <div id="comment_list_area"></div>
   </div>
   <%= render "footer_smart_phone" , { :state => "activity_list" } %>
@@ -116,6 +142,31 @@ $(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
 <script>
 $(document).delegate('#activity_list','pageinit',function(){
   loadCommentList(<%= @user.id %>);
+
+  var startDate = new Date();
+  startDate.setMonth(startDate.getMonth() - 5);
+
+  var parser = function(data) {
+    return eval("(" + data + ")");
+  };
+
+  var cal = new CalHeatMap();
+  cal.init({
+    itemSelector: "#heatmap_activity",
+    data: "/api/activities?user_id=<%= @user.id %>&start={{d:start}}&stop={{d:end}}",
+    afterLoadData: parser,
+    cellSize: 7,
+    domain: "month",
+    subDomain: "day",
+    subDomainDateFormat: "%m/%d %Y",
+    range: 6,
+    tooltip: true,
+    start: startDate,
+    domainLabelFormat: "%b",
+    itemName: ["activity", "activities"],
+    legend: [1,3,7,10],
+    displayLegend: false
+   });
 });
 </script>
 

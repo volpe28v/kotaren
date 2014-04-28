@@ -1,72 +1,70 @@
 <%= stylesheet_link_tag    "albums" %>
 
-<div class="container">
-
-<%= render "layouts/title" %>
-
-<div id="album-list">
-<div class="row">
-  <div class="span12">
-    <ul class="thumbnails">
-      <% @albums.each do |al| %>
-      <li class="span2">
-        <div class="album-contents">
-          <div class="thumbnail ui-widget-content">
-            <a href="<%= "#album_#{al.id}" %>">
-              <img src="/assets/albums/<%= al.title %>.jpg" class="album-img">
-              <div class="album-caption">
-                <h5><%= al.title %></h5>
-                <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
+<div class="container-fluid">
+  <%= render "layouts/title" %>
+  <div id="album-list">
+    <div class="row-fluid">
+      <div class="span12">
+        <ul class="thumbnails">
+          <% @albums.each do |al| %>
+            <li class="span2">
+            <div class="album-contents">
+              <div class="thumbnail ui-widget-content">
+                <a href="<%= "#album_#{al.id}" %>">
+                  <img src="/assets/albums/<%= al.title %>.jpg" class="album-img">
+                  <div class="album-caption">
+                    <h5><%= al.title %></h5>
+                    <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-        </div>
-      </li>
-      <% end %>
-    </ul>
+            </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
-</div> 
 
-<div id="album-tunes">
-<div class="row">
-  <div class="span12">
-  <% @albums.each do |al| %>
-    <div class="album-tag" id="album_<%= al.id %>"></div>
-    <%= al.title %>
-    <table class="ui-widget-content table table-bordered album-contents"><tr><td style="text-align: center">
-      <img src="/assets/albums/<%= al.title %>.jpg" class="album-img">
-      <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
-      <table>
-        <tr><td>All: </td><td style="text-align: right"><span id="all_num" class="tune_s_num" ><%= al.tunes.size %></span></td><td> tunes.</td></tr>
-        <tr><td>Trying: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= al.tunes.doing.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
-        <tr><td>Completed: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= al.tunes.done.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
-      </table>
- 
-      </td><td>
-        <table>
-        <% al.tunes.each do |t| %>
-          <tr>
-            <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
-            <td class="tuning-name"><%= t.tuning.name %></td>
-            <td class="progress-bar-area"><span id="progress_<%= "#{al.id}_#{t.id}" %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
-            <td id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
-          </tr>
+  <div id="album-tunes">
+    <div class="row">
+      <div class="span12">
+        <% @albums.each do |al| %>
+          <div class="album-tag" id="album_<%= al.id %>"></div>
+          <%= al.title %>
+          <table class="ui-widget-content table table-bordered album-contents"><tr><td style="text-align: center">
+                <img src="/assets/albums/<%= al.title %>.jpg" class="album-img">
+                <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
+                <table>
+                  <tr><td>All: </td><td style="text-align: right"><span id="all_num" class="tune_s_num" ><%= al.tunes.size %></span></td><td> tunes.</td></tr>
+                  <tr><td>Trying: </td><td style="text-align: right"><span id="doing_num" class="tune_s_num" ><%= al.tunes.doing.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
+                  <tr><td>Completed: </td><td style="text-align: right"><span id="done_num" class="tune_s_num" ><%= al.tunes.done.progress_by_user(@user).size %></span></td><td> tunes.</td></tr>
+                </table>
+
+                </td><td>
+                <table>
+                  <% al.tunes.each do |t| %>
+                    <tr>
+                      <td class="tune-title"><%= link_to t.title, user_tune_path(@user,t) %></td>
+                      <td class="tuning-name"><%= t.tuning.name %></td>
+                      <td class="progress-bar-area"><span id="progress_<%= "#{al.id}_#{t.id}" %>" class="progress-bar"><%= t.progress_val(@user) %></span></td>
+                      <td id="progress_updated_at_<%= t.id %>"><%= last_played_at(t.progress_updated_at(@user)) %></td>
+                    </tr>
+                  <% end %>
+                </table>
+            </td></tr>
+          </table>
         <% end %>
-        </table>
-      </td></tr>
-    </table>
-  <% end %>
-  </div>
+      </div>
 
-</div>
-</div>
+    </div>
+  </div>
 </div>
 
 <script>
-$(".progress-bar").each(function(elem){
-  $(this).progressBar(progress_default_option);
-});
+  $(".progress-bar").each(function(elem){
+    $(this).progressBar(progress_default_option);
+  });
 </script>
 
 

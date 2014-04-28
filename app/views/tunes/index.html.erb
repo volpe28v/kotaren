@@ -151,47 +151,23 @@
 
     applyYoutubin("#my_comments .comment-text a");
     applyYoutubin("#other_comments .comment-text a");
-  });
 
-  $('.album-list').delegate('a', 'click', function(){
+    $('.album-list').delegate('a', 'click', function(){
       var album = $(this).data('name');
       $('#album_title').val(album)
       $('#album_label').html(album)
       loadTunes();
     }
-  );
+    );
 
-  $('.tuning-list').delegate('a', 'click', function(){
+    $('.tuning-list').delegate('a', 'click', function(){
       var tuning = $(this).html();
       $('#tuning_name').val(tuning)
       $('#tuning_label').html(tuning)
       loadTunes();
-    }
-  );
-  var startDate = new Date();
-  startDate.setMonth(startDate.getMonth() - 12);
+    });
+  });
 
-  var parser = function(data) {
-    return eval("(" + data + ")");
-  };
-
-  var cal = new CalHeatMap();
-  cal.init({
-    itemSelector: "#heatmap",
-    data: "/api/activities?user_id=<%= @user.id %>&start={{d:start}}&stop={{d:end}}",
-    afterLoadData: parser,
-    cellSize: 7,
-    domain: "month",
-    subDomain: "day",
-    subDomainDateFormat: "%m/%d %Y",
-    range: 13,
-    tooltip: true,
-    start: startDate,
-    domainLabelFormat: "%b",
-    itemName: ["activity", "activities"],
-    legend: [1,3,7,10],
-    displayLegend: false
-   });
 </script>
 
 

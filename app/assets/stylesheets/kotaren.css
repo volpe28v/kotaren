@@ -380,6 +380,17 @@ ul.tune-counts li span {
 }
 
 .user-icon-img {
+  height: 70px;
+  width: 70px;
+  vertical-align: middle;
+  position: relative;
+  margin-right: 6px;
+  box-shadow: 0 0 7px #000;
+  -moz-box-shadow: 0 0 7px #000;
+  -webkit-box-shadow: 0 0 7px #000;
+}
+
+.user-icon-img-list {
   height: 40px;
   width: 40px;
   vertical-align: middle;
@@ -403,7 +414,7 @@ ul.tune-counts li span {
 }
 
 .user-name {
-  margin-bottom: 0;
+  padding-top: 8px;
   vertical-align: middle;
   font-size: 30px;
   height: 30px;
@@ -411,7 +422,7 @@ ul.tune-counts li span {
   letter-spacing: -1px;
   text-shadow: 1px 1px 0 white;
   color: #495961;
-  width: 380px;
+  line-height: 30px;
 }
 
 .this-is-you {
@@ -478,6 +489,11 @@ dd .field_w5th_errors {
 
 .ranking-title{
   text-align: left;
+}
+
+.latest-tune-comment{
+  text-align: left;
+  width: 160px;
 }
 
 .ranking-user-title{

@@ -1,15 +1,12 @@
 <div id="user-header" class="row-fluid">
   <div class="span3">
-    <div>
+    <div style="float: left;">
       <% if @user.icon_url.blank? == false %>
         <%= image_tag(@user.icon_url, :class => "user-icon-img") %>
       <% end %>
-      <span class="user-name"><%= link_to @user.default_name, user_tunes_path(@user) %></span>
     </div>
-    <div class="this-is-you">
-      <% if @user == current_user %>
-        <%= raw('<span class="you">This is You!</span>') %>
-      <% end %>
+    <div class="user-name">
+      <%= link_to @user.default_name, user_tunes_path(@user) %>
     </div>
   </div>
 

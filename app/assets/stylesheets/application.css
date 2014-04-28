@@ -4,8 +4,8 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require kotaren
  *= require FeedEk
- *= require bootstrap-responsive.min
  *= require bootstrap.spacelab
+ *= require bootstrap-responsive.min
  *= require prettyPhoto
  *= require users
 */

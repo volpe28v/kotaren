@@ -45,10 +45,6 @@ end
   page.should have_content("サンプルアカウント")
 end
 
-ならば /^　カレントユーザがサンプルアカウントであること$/ do
-  page.should have_content("This is You!")
-end
-
 もし /^　  新規登録を選択する$/ do
   click_on("新規登録して使ってみる")
 end

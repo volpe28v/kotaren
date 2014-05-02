@@ -1,49 +1,8 @@
-<script>                                                                          
-$(document).ready(function(){                                                     
-  $('#detail-tabs').tabs();
-  $(".progress-bar").each(function(elem){                                             
-    $(this).progressBar(progress_default_option);                                 
-  });                                                                             
-
-  $('#detail-tabs ul li a').click(
-    function(){
-      var comments_id = $(this).attr("id") + "s";
-
-      $("#my_comments").hide();
-      $("#other_comments").hide();
-      $("#" + comments_id).fadeIn();
-    }
-  );
-
-  $("#my_comment").click();
-  showCommentOnTune();
-
-  $('#sub-contents').tabs();
-  $('#sub-contents ul li a').click(
-    function(){
-      var comments_id = $(this).attr("id") + "s";
-
-      $("#ref-videos").hide();
-      $("#play-users").hide();
-      $("#" + comments_id).fadeIn();
-    }
-  );
-
-  loadYoutube('<%= @tune.title %>');
-  applyYoutubin("#my_comments .comment-text a");
-  applyYoutubin("#other_comments .comment-text a");
-
-  $('.add-comment-form-msg').autofit({min_height: 70});
-  $("#ref-video").click();
-});
-</script>     
-
-<div class="container-fluid">
+<div class="container">
   <%= render "layouts/title" %>
 
-  <div class="row-fluid">
-    <div class="span1"></div>
-    <div class="span4">
+  <div class="row">
+    <div class="span3">
       <div id="detail">
         <div id="detail-tabs">
           <div class="out-of-tabs">
@@ -68,7 +27,7 @@ $(document).ready(function(){
                     </br>
                   <% end %>
                 </div>
-              </div> 
+              </div>
               <br>
               <p><span class="tuning"><%= @tune.tuning.name =%></span></p>
               <% if @tune.tuning.capo != nil and @tune.tuning.capo != 0 %>
@@ -89,7 +48,7 @@ $(document).ready(function(){
               <div>
                 <%= first_played_at(@tune.progress_created_at(@user)) %>
               </div>
- 
+
               <hr>
             </center>
           </div>
@@ -126,7 +85,7 @@ $(document).ready(function(){
       </div>
     </div>
 
-    <div class="span7">
+    <div class="span9">
       <div id="sub-contents">
         <ul>
           <li><a id="ref-video" href="#ref-videos" class="blue0">関連動画(Youtube)</a></li>
@@ -155,3 +114,45 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('#detail-tabs').tabs();
+  $(".progress-bar").each(function(elem){
+    $(this).progressBar(progress_default_option);
+  });
+
+  $('#detail-tabs ul li a').click(
+    function(){
+      var comments_id = $(this).attr("id") + "s";
+
+      $("#my_comments").hide();
+      $("#other_comments").hide();
+      $("#" + comments_id).fadeIn();
+    }
+  );
+
+  $("#my_comment").click();
+  showCommentOnTune();
+
+  $('#sub-contents').tabs();
+  $('#sub-contents ul li a').click(
+    function(){
+      var comments_id = $(this).attr("id") + "s";
+
+      $("#ref-videos").hide();
+      $("#play-users").hide();
+      $("#" + comments_id).fadeIn();
+    }
+  );
+
+  loadYoutube('<%= @tune.title %>');
+  applyYoutubin("#my_comments .comment-text a");
+  applyYoutubin("#other_comments .comment-text a");
+
+  $('.add-comment-form-msg').autofit({min_height: 70});
+  $("#ref-video").click();
+});
+</script>
+
+

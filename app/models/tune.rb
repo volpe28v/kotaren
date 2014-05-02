@@ -86,7 +86,8 @@ class Tune < ActiveRecord::Base
   end
 
   def touched_progresses
-    self.progresses.active.order_by_progress_degrees
+    #self.progresses.active.order_by_progress_degrees
+    self.progresses.active.map{|pr| [pr, pr.user.comments.by_tune(self).count]}.sort{|a,b| b[1] <=> a[1] }
   end
 
 end

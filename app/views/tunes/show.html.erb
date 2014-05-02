@@ -100,7 +100,8 @@
             <span>Players</span>
           </div>
           <ul class="nav nav-list tuning-list">
-            <% @tune.touched_progresses.each do |pr| %>
+            <% @tune.touched_progresses.each do |p| %>
+              <% pr = p[0] %>
               <li>
                 <table width="100%">
                   <tr>
@@ -111,8 +112,8 @@
                     </td>
                     <td><%= link_to pr.user.default_name, user_tune_path(pr.user, @tune) %></td>
                     <td align="right">
-                      <% comments_count = pr.user.comments.by_tune(@tune).count %>
-                      <% if comments_count> 0 %>
+                      <% comments_count = p[1] %>
+                      <% if comments_count > 0 %>
                         <span class="label label-info"><%= comments_count %></span>
                       <% end %>
                     </td>

@@ -12,7 +12,7 @@
                 <% count = @tune.recordings.count %>
                 <% @tune.recordings.each do |r| %>
                   <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>">
-                    <% if count <= 2 %>
+                    <% if count == 1 %>
                       <img src="/assets/albums/<%= r.album.title %>.jpg" class="album-img album-img-large">
                     <% else %>
                       <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
@@ -85,30 +85,37 @@
       </div>
     </div>
 
-    <div class="span9">
+    <div class="span7">
       <div id="sub-contents">
         <ul>
           <li><a id="ref-video" href="#ref-videos" class="blue0">関連動画(Youtube)</a></li>
-          <li><a id="play-user" href="#play-users" class="blue1">この曲を弾いているユーザ(<%= @tune.touched_progresses.count %>人)</a></li>
         </ul>
         <div id="ref-videos"></div>
-
-        <div id="play-users">
-          <table>
-            <tr>
-            </tr>
+      </div>
+    </div>
+    <div class="span2">
+      <div id="tune-players" class="ui-widget ui-widget-content ui-corner-all">
+        <div class="out-of-tabs">
+          <div id="players-header">
+            <span>Players</span>
+          </div>
+          <ul class="nav nav-list tuning-list">
             <% @tune.touched_progresses.each do |pr| %>
-              <tr>
-                <td class="user-icon-mini">
-                <% if pr.user.icon_url.blank? == false %>
-                  <%= image_tag(pr.user.icon_url, :class => "user-icon-img-mini") %>
-                <% end %>
-                </td>
-                <td><%= link_to pr.user.default_name, user_tunes_path(pr.user) %></td>
-                <td><span class="progress-bar"><%= pr.percent %></span></td>
-              </tr>
+              <li>
+                <table>
+                  <tr>
+                    <td class="user-icon-mini">
+                      <% if pr.user.icon_url.blank? == false %>
+                        <%= image_tag(pr.user.icon_url, :class => "user-icon-img-mini") %>
+                      <% end %>
+                    </td>
+                    <td><%= link_to pr.user.default_name, user_tune_path(pr.user, @tune) %></td>
+                  </tr>
+                </table>
+              </li>
+
             <% end %>
-          </table>
+          </ul>
         </div>
       </div>
     </div>

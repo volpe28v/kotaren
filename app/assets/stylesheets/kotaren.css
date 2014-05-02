@@ -101,10 +101,14 @@ footer span {
   float:left;
 }
 
-#menu-tabs, #comments-tabs, #tune-tabs, #tuning-menu {
+#menu-tabs, #comments-tabs, #tune-tabs, #tuning-menu, #tune-players {
   box-shadow: 0px 0px 5px #aaa;
   -moz-box-shadow: 0px 0px 5px #aaa;
   -webkit-box-shadow: 0px 0px 5px #aaa;
+}
+
+#tune-players {
+  min-height: 600px;
 }
 
 #menu-tabs {
@@ -251,9 +255,13 @@ a:hover { color:#EA1F00; }
   width: 145px;
 }
 
-#tune-list-header, #comments-header, #tuning-header {
+#tune-list-header, #comments-header, #tuning-header, #players-header {
   margin: 0 5px;
   color: #999999;
+}
+
+#players-header {
+  margin-bottom: 8px;
 
 }
 
@@ -311,7 +319,9 @@ ul.tune-counts li span {
 }
 
 #comments textarea{
-  width: 98%; 
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 96%; 
   height: 34px;
 }
 
@@ -516,7 +526,7 @@ dd .field_w5th_errors {
 }
 
 .user-icon-mini{
-  width: 20px;
+  width: 22px;
 }
 
 #players-list {

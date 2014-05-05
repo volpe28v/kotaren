@@ -8,7 +8,7 @@
 * 他のユーザの進捗情報を閲覧できます。
 
 ## App on Heroku
-[http://kotaren.heroku.com/](http://kotaren.heroku.com/)
+[http://kotaren.heroku.com/](http://kotaren.herokuapp.com/)
 
 
 ## Local development

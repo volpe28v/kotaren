@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '3.2.16'
-gem 'sqlite3'
 gem 'omniauth-facebook'
 gem 'oa-core'
 
@@ -22,6 +21,7 @@ gem 'devise', "1.5"
 gem 'rails_autolink'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'

@@ -12,15 +12,15 @@ body{
 .logo {
   margin-top: 0px;
   margin-bottom: 10px;
-  float :left;
-}   
+  float: left;
+}
 
 .login-menu {
   float: right;
 }
 
 .clear {
-  clear:both;　/*floatの解除*/
+  clear: both;
 }
 
 .sign-in-link-with-service{

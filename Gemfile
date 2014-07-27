@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-#ruby '2.0.0'
+ruby '2.1.2'
 
 gem 'rails', '3.2.16'
 gem 'sqlite3'
@@ -8,8 +8,6 @@ gem 'omniauth-facebook'
 gem 'oa-core'
 
 gem 'jpmobile'
-#gem 'jpmobile-terminfo'
-#
 gem 'eventmachine'
 gem 'grape'
 

@@ -314,3 +314,20 @@ register_album [
   ["Kiwi & Avocado", "Standard"],
 ]
 
+register_album [
+  "PANDORA",
+  ["In the beginning", "CGDGB♭D"],
+  ["彼方へ", "C#G#EF#BE"],
+  ["いつか君と", "Standard"],
+  ["誘惑", "CGDGB♭E♭", 2],
+  ["月のナミダ", "DADF#BD"],
+  ["亡き王女のためのパヴァーヌ", "AECF#BD"],
+  ["恋の夢", "Standard"],
+  ["キラキラ", "Standard", 5],
+  ["Legend 〜時の英雄たち〜", "GGDGAD"],
+  ["Marble", "Standard"],
+  ["タイムカプセル", "CGDGBD"],
+  ["星の贈り物", "CGDGBD"],
+  ["NOW OR NEVER", "CGDGBD"],
+  ["美しき人生", "Standard"],
+]

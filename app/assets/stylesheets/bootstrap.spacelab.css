@@ -681,6 +681,5 @@ a.thumbnail:hover{border-color:#4183c4;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 .control-group.success input,.control-group.success select,.control-group.success textarea{color:#2ba949;border-color:#2ba949;}.control-group.success input:focus,.control-group.success select:focus,.control-group.success textarea:focus{border-color:#218037;-webkit-box-shadow:0 0 6px #63d77e;-moz-box-shadow:0 0 6px #63d77e;box-shadow:0 0 6px #63d77e;}
 .control-group.success .input-prepend .add-on,.control-group.success .input-append .add-on{color:#2ba949;background-color:#bedebe;border-color:#2ba949;}
 .label-important{background-color:#BD2C00;}
-.label-warning{background-color:#E3E84D;}
 .label-success{background-color:#6CC644;}
 .label-info{background-color:#4183C4;}

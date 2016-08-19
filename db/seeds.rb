@@ -331,3 +331,18 @@ register_album [
   ["NOW OR NEVER", "CGDGBD"],
   ["美しき人生", "Standard"],
 ]
+
+register_album [
+  "Tussie mussie II ~loves cinema~",
+  ["Melody Fair", "CGDGBD", 3],
+  ["Shape Of My Heart", "CGBGBD"],
+  ["Mission Impossible Theme", "C#G#EF#BE"],
+  ["The Never Ending Story", "CGDGBD"],
+  ["風の谷のナウシカ", "FCGCEG"],
+  ["Stand By Me", "CGDGBD"],
+  ["The Last Emperor", "BEDGBE"],
+  ["Calling You", "BF#DEAD"],
+  ["Ben", "C#G#EF#BE"],
+  ["The Godfather Medley", "CGDGBbD"],
+  ["Smile", "DADGBE"],
+]

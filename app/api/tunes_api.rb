@@ -2,11 +2,30 @@ module Api
   class TunesApi < Grape::API
     resource :tunes do
       get do
-        album = Album.find_by_id(params[:album])
-        base_tunes = album ? album.tunes : Tune.scoped
-        base_tunes = base_tunes.all_or_filter_by_tuning_id(params[:tuning])
+        #TODO user_id を設定する
+        touched_tunes = Tune.includes({recordings: :album}, :progresses, :tuning).where(progresses: {user_id: 2})
+        untouched_tunes = Tune.includes({recordings: :album}, :tuning).order("id ASC") - touched_tunes
+        all_tunes = touched_tunes + untouched_tunes
 
-        base_tunes.map{|t| {:id => t.id, :title => t.title,:tuning_id => t.tuning_id}}
+        touched_tunes = touched_tunes.map{|tune|
+          th = {
+            tune: tune,
+            albums: tune.recordings.map{|rec| rec.album},
+            progress: tune.progresses.first,
+            tuning: tune.tuning
+          }
+        }
+
+        untouched_tunes = untouched_tunes.map{|tune|
+          th = {
+            tune: tune,
+            albums: tune.recordings.map{|rec| rec.album},
+            progress: { percent: 0 },
+            tuning: tune.tuning
+          }
+        }
+
+        touched_tunes + untouched_tunes
       end
 
       get ':id' do

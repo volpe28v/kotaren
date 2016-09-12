@@ -10,16 +10,12 @@
 
   <ons-list data-bind="foreach: items">
     <ons-list-item>
-      <div class="list__item__center">
-      <div class="list__item__title">  
-        <ons-carousel swipeable auto-refresh style="height: 40px; width: 100%;" initial-index="0" auto-scroll>
-          <ons-carousel-item data-bind="text: content, click: function(){$parent.nextCarouselItem($index);}"></ons-carousel-item>
-          <ons-carousel-item>
-            <ons-button data-bind="click: $parent.removeItem">Delete this item</ons-button>
-            <ons-button data-bind="click: $parent.detailsItem">See details</ons-button>
-          </ons-carousel-item>
-        </ons-carousel>
+      <div class="list__item__left">
+        <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums[0].title + '_s.jpg'}">
       </div>
+      <div class="list__item__center">
+        <span class="list__item__title" data-bind="text: tune.title"></span>
+        <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
       </div>
     </ons-list-item>
   </ons-list>

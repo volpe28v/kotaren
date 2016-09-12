@@ -1,5 +1,4 @@
   // Rewrite Navigator behavior to connect the new page with the viewModel
-console.log(window);
   window.OnsNavigatorElement.rewritables.link = function(element, target, options, callback) {
     if (!options.viewModel) {
       options.viewModel = new ListViewModel();
@@ -26,9 +25,21 @@ console.log(window);
     var self = this;
 
     self.items = ko.observableArray([]);
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/tunes",
+      success: function (data) {
+        console.log(data);
+        self.items(data);
+      }
+    });
+
+    /*
     for(var i = 0; i < 10; i++) {
       self.items.push(new ListItem("Item " + i));
     }
+    */
 
     self.nextCarouselItem = function(index) {
       document.querySelectorAll('ons-carousel')[index()].next();

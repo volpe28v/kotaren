@@ -45,6 +45,7 @@ class Tune < ActiveRecord::Base
       play_history.progress_by_user(user)
     end
   }
+  scope :with_albums, includes(:recordings)
 
   def progress_val_and_updated_at(user)
     progress = self.active_progress_by_user(user)

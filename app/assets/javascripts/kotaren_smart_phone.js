@@ -21,6 +21,7 @@ function ListItem(content) {
 function DetailsViewModel(item) {
   var self = this;
   self.item = item;
+  console.log(item);
 }
 
 // List page view model

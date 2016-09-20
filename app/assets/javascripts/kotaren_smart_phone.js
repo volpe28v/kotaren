@@ -20,8 +20,41 @@ function ListItem(content) {
 // Details page view model
 function DetailsViewModel(item) {
   var self = this;
-  self.item = item;
+  self.item = ko.mapping.fromJS(item);
   console.log(item);
+
+  self.updated_date = ko.computed(function(){
+    return moment(self.item.progress.updated_at).format('YYYY/MM/DD');
+  });
+
+  self.do_plus = function(){
+    var after_percent = self.item.progress.percent() + 1;
+
+    update_progress(after_percent);
+  }
+
+  self.do_plus10 = function(){
+    var after_percent = self.item.progress.percent() + 10;
+
+    update_progress(after_percent);
+  }
+
+  self.do_minus10 = function(){
+    var after_percent = self.item.progress.percent() - 10;
+
+    update_progress(after_percent);
+  }
+
+
+  function update_progress(percent){
+    if (percent > 100){
+      self.item.progress.percent(100);
+    }else if (percent < 0){
+      self.item.progress.percent(0);
+    }else{
+      self.item.progress.percent(percent);
+    }
+  }
 }
 
 // List page view model

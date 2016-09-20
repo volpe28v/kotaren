@@ -34,11 +34,11 @@
   <ons-row>
     <ons-col>
       <!-- ko if: albums.length == 1 -->
-        <img width="90%" data-bind="attr: {src: '/assets/albums/' + albums[0].title + '.jpg'}">
+        <img width="90%" data-bind="attr: {src: '/assets/albums/' + albums[0].title() + '.jpg'}">
       <!-- /ko -->
       <!-- ko if: albums.length != 1 -->
         <!-- ko foreach: albums -->
-          <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title + '_s.jpg'}">
+          <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
         <!-- /ko -->
       <!-- /ko -->
     </ons-col>
@@ -51,21 +51,26 @@
   </ons-row>
   <ons-row>
     <ons-col>
-      <ons-progress-bar data-bind="value: progress.percent"></ons-progress-bar>
+      last updated at <span class="list__item__subtitle" data-bind="text: $parent.updated_date"></span>
     </ons-col>
-    <ons-col width="60px">
-      <span class="list__item__subtitle" data-bind="text: progress.percent + '%'"></span>
+    <ons-col width="50px">
+      <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
     </ons-col>
   </ons-row>
   <ons-row>
     <ons-col>
-      <ons-button modifier="large"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
+      <ons-progress-bar data-bind="value: progress.percent"></ons-progress-bar>
+    </ons-col>
+  </ons-row>
+  <ons-row style="padding-top: 5px;">
+    <ons-col>
+      <ons-button modifier="large" data-bind="click: $parent.do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
     </ons-col>
     <ons-col>
-      <ons-button modifier="large"><ons-icon icon="fa-plus"></ons-icon></ons-button>
+      <ons-button modifier="large" data-bind="click: $parent.do_plus"><ons-icon icon="fa-plus"></ons-icon></ons-button>
     </ons-col>
     <ons-col>
-      <ons-button modifier="large"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
+      <ons-button modifier="large" data-bind="click: $parent.do_plus10"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
     </ons-col>
   </ons-row>
 </ons-page>

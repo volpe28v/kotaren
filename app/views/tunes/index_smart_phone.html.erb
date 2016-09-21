@@ -31,12 +31,12 @@
     <div class="left"><ons-back-button></ons-back-button></div>
     <div class="center" data-bind="text: tune.title"></div>
   </ons-toolbar>
-  <ons-row>
+  <ons-row style="padding: 5px 5px 0px 5px">
     <ons-col>
-      <!-- ko if: albums.length == 1 -->
-        <img width="90%" data-bind="attr: {src: '/assets/albums/' + albums[0].title() + '.jpg'}">
+      <!-- ko if: albums().length == 1 -->
+        <img width="90%" data-bind="attr: {src: '/assets/albums/' + albums()[0].title() + '.jpg'}">
       <!-- /ko -->
-      <!-- ko if: albums.length != 1 -->
+      <!-- ko if: albums().length != 1 -->
         <!-- ko foreach: albums -->
           <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
         <!-- /ko -->
@@ -49,7 +49,7 @@
       <div data-bind="text: tuning.name"></div>
     </ons-col>
   </ons-row>
-  <ons-row>
+  <ons-row style="padding: 0px 5px 0px 5px">
     <ons-col>
       last updated at <span class="list__item__subtitle" data-bind="text: $parent.updated_date"></span>
     </ons-col>
@@ -57,19 +57,19 @@
       <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
     </ons-col>
   </ons-row>
-  <ons-row>
+  <ons-row style="padding: 0px 5px 0px 5px">
     <ons-col>
       <ons-progress-bar data-bind="value: progress.percent"></ons-progress-bar>
     </ons-col>
   </ons-row>
-  <ons-row style="padding-top: 5px;">
-    <ons-col>
+  <ons-row style="padding: 5px 5px 0px 5px">
+    <ons-col style="margin: 5px">
       <ons-button modifier="large" data-bind="click: $parent.do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
     </ons-col>
-    <ons-col>
+    <ons-col style="margin: 5px">
       <ons-button modifier="large" data-bind="click: $parent.do_plus"><ons-icon icon="fa-plus"></ons-icon></ons-button>
     </ons-col>
-    <ons-col>
+    <ons-col style="margin: 5px">
       <ons-button modifier="large" data-bind="click: $parent.do_plus10"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
     </ons-col>
   </ons-row>

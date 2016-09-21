@@ -21,10 +21,9 @@ function ListItem(content) {
 function DetailsViewModel(item) {
   var self = this;
   self.item = ko.mapping.fromJS(item);
-  console.log(item);
 
   self.updated_date = ko.computed(function(){
-    return moment(self.item.progress.updated_at).format('YYYY/MM/DD');
+    return moment(self.item.progress.updated_at()).format('YYYY/MM/DD');
   });
 
   self.do_plus = function(){

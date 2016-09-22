@@ -21,8 +21,13 @@ function ListItem(content) {
 function DetailsViewModel(item) {
   var self = this;
   self.item = item;
+  if (self.item.progress.updated_at == null){
+    self.item.progress.updated_at = ko.observable(null);
+  }
 
   self.updated_date = ko.computed(function(){
+    if (self.item.progress.updated_at() == null){ return null; }
+
     return moment(self.item.progress.updated_at()).format('YYYY/MM/DD');
   });
 

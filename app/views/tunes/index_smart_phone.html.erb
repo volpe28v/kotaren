@@ -56,7 +56,9 @@ var UserID= <%= @user.id %>;
   </ons-row>
   <ons-row style="padding: 0px 5px 0px 5px">
     <ons-col>
+      <!-- ko if: $parent.updated_date() != null -->
       last updated at <span class="list__item__subtitle" data-bind="text: $parent.updated_date"></span>
+      <!-- /ko -->
     </ons-col>
     <ons-col width="50px">
       <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>

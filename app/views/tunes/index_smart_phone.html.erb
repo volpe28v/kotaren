@@ -1,3 +1,8 @@
+<script>
+var UserID= <%= @user.id %>;
+
+</script>
+
 <ons-navigator>
 </ons-navigator>
 
@@ -11,14 +16,14 @@
   <ons-list data-bind="foreach: items">
     <ons-list-item tappable data-bind="click: $parent.detailsItem">
       <div class="left">
-        <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums[0].title + '_s.jpg'}">
+        <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
       </div>
       <div class="center">
         <span class="list__item__title" data-bind="text: tune.title"></span>
         <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
       </div>
       <div class="right">
-        <span class="list__item__subtitle" data-bind="text: progress.percent + '%'"></span>
+        <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
       </div>
     </ons-list-item>
   </ons-list>

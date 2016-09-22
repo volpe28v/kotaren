@@ -2,8 +2,8 @@ module Api
   class TunesApi < Grape::API
     resource :tunes do
       get do
-        #TODO user_id を設定する
-        touched_tunes = Tune.includes({recordings: :album}, :progresses, :tuning).where(progresses: {user_id: 2})
+        user_id = params[:user_id]
+        touched_tunes = Tune.includes({recordings: :album}, :progresses, :tuning).where(progresses: {user_id: user_id})
         untouched_tunes = Tune.includes({recordings: :album}, :tuning).order("id ASC") - touched_tunes
         all_tunes = touched_tunes + untouched_tunes
 
@@ -30,6 +30,20 @@ module Api
 
       get ':id' do
         Tune.find(params[:id])
+      end
+    end
+
+    resource :progresses do
+      post do
+        @user = User.find(params[:user_id])
+        @tune = Tune.find(params[:tune_id])
+        @tune.update_progress(@user,params[:progress_val])
+        @user.add_activity
+
+        {
+          id:  @tune.id,
+          date: @tune.progress_updated_at(@user)
+        }
       end
     end
 

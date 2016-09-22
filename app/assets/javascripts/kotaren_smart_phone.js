@@ -20,7 +20,7 @@ function ListItem(content) {
 // Details page view model
 function DetailsViewModel(item) {
   var self = this;
-  self.item = ko.mapping.fromJS(item);
+  self.item = item;
 
   self.updated_date = ko.computed(function(){
     return moment(self.item.progress.updated_at()).format('YYYY/MM/DD');
@@ -46,13 +46,29 @@ function DetailsViewModel(item) {
 
 
   function update_progress(percent){
+    var valid_parcent = percent;
     if (percent > 100){
-      self.item.progress.percent(100);
+      valid_parcent = 100;
     }else if (percent < 0){
-      self.item.progress.percent(0);
-    }else{
-      self.item.progress.percent(percent);
+      valid_parcent = 0;
     }
+
+    self.item.progress.percent(valid_parcent);
+
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: "/api/progresses",
+      data: {
+        user_id: UserID,
+        tune_id: self.item.tune.id,
+        progress_val: valid_parcent
+      },
+      success: function (data) {
+        console.log(data);
+        self.item.progress.updated_at(data.date);
+      }
+    });
   }
 }
 
@@ -65,9 +81,11 @@ function ListViewModel() {
     type: "GET",
     cache: false,
     url: "/api/tunes",
+    data: { user_id: UserID },
     success: function (data) {
       console.log(data);
-      self.items(data);
+      var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
+      self.items(mapped_data);
     }
   });
 

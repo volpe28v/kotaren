@@ -10,7 +10,7 @@ var UserID= <%= @user.id %>;
 <ons-page>
   <ons-toolbar>
     <div class="center">Kotaren</div>
-    <div class="right"><ons-toolbar-button data-bind="click: addItem"><ons-toolbar-button>Add</ons-toolbar-button></ons-toolbar-button></div>
+    <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
   </ons-toolbar>
 
   <div data-bind="if: items().length == 0">

@@ -97,17 +97,35 @@ function ListViewModel() {
   var self = this;
 
   self.items = ko.observableArray([]);
-  $.ajax({
-    type: "GET",
-    cache: false,
-    url: "/api/tunes",
-    data: { user_id: UserID },
-    success: function (data) {
-      console.log(data);
-      var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
-      self.items(mapped_data);
-    }
-  });
+  loadItems();
+
+  function loadItems(){
+    self.items([]);
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/tunes",
+      data: { user_id: UserID },
+      success: function (data) {
+        console.log(data);
+        var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
+        self.items(mapped_data);
+        sortItems();
+      }
+    });
+  }
+
+  function sortItems(){
+    self.items.sort(function(l,r){
+      var l_date = l.progress.updated_at ? l.progress.updated_at() : new Date(-8640000000000000);
+      var r_date = r.progress.updated_at ? r.progress.updated_at() : new Date(-8640000000000000);
+      return moment(l_date) < moment(r_date) ? 1 : -1;
+    });
+  }
+
+  self.refresh = function(){
+    loadItems();
+  }
 
   self.nextCarouselItem = function(index) {
     document.querySelectorAll('ons-carousel')[index()].next();

@@ -21,6 +21,9 @@ function ListItem(content) {
 function DetailsViewModel(item) {
   var self = this;
   self.item = item;
+
+  self.inputComment = ko.observable("");
+
   if (self.item.progress.updated_at == null){
     self.item.progress.updated_at = ko.observable(null);
   }
@@ -49,6 +52,18 @@ function DetailsViewModel(item) {
     update_progress(after_percent);
   }
 
+  self.save_comment = function(){
+    var comment = self.inputComment();
+    console.log(comment);
+    self.inputComment("");
+
+    $.ajax({
+      type: "POST",
+      cache: false,
+      url: "/users/" + UserID + "/tunes/" + self.item.tune.id() + "/comments",
+      data: {"comment[text]": comment }
+    });
+  }
 
   function update_progress(percent){
     var valid_parcent = percent;

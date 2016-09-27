@@ -32,7 +32,7 @@ function DetailsViewModel(item) {
   self.updated_date = ko.computed(function(){
     if (self.item.progress.updated_at() == null){ return null; }
 
-    return moment(self.item.progress.updated_at()).format('YYYY/MM/DD');
+    return moment(self.item.progress.updated_at()).format('YYYY/MM/DD HH:mm');
   });
 
   load_comments();

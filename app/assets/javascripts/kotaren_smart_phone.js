@@ -23,6 +23,7 @@ function DetailsViewModel(item) {
   self.item = item;
 
   self.inputComment = ko.observable("");
+  self.comments = ko.observableArray([]);
 
   if (self.item.progress.updated_at == null){
     self.item.progress.updated_at = ko.observable(null);
@@ -33,6 +34,28 @@ function DetailsViewModel(item) {
 
     return moment(self.item.progress.updated_at()).format('YYYY/MM/DD');
   });
+
+  load_comments();
+
+  function load_comments(){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/comments",
+      data: {
+        user_id: UserID,
+        tune_id: item.tune.id
+      },
+      success: function (data) {
+        console.log(data);
+        self.comments(data);
+      }
+    });
+  }
+
+  self.date_format = function(date){
+    return moment(date).format('YYYY/MM/DD HH:mm');
+  }
 
   self.do_plus = function(){
     var after_percent = self.item.progress.percent() + 1;
@@ -61,7 +84,10 @@ function DetailsViewModel(item) {
       type: "POST",
       cache: false,
       url: "/users/" + UserID + "/tunes/" + self.item.tune.id() + "/comments",
-      data: {"comment[text]": comment }
+      data: {"comment[text]": comment },
+      success: function (data) {
+        self.comments.unshift(data);
+      }
     });
   }
 

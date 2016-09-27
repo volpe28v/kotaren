@@ -7,92 +7,101 @@ var UserID= <%= @user.id %>;
 </ons-navigator>
 
 <ons-template id="list.html">
-<ons-page>
-  <ons-toolbar>
-    <div class="center">Kotaren</div>
-    <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
-  </ons-toolbar>
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Kotaren</div>
+      <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
+    </ons-toolbar>
 
-  <div data-bind="if: items().length == 0">
-    <div class="progress-bar progress-bar--indeterminate">
-      <div class="progress-bar__primary"></div>
-      <div class="progress-bar__secondary"></div>
+    <div data-bind="if: items().length == 0">
+      <div class="progress-bar progress-bar--indeterminate">
+        <div class="progress-bar__primary"></div>
+        <div class="progress-bar__secondary"></div>
+      </div>
     </div>
-  </div>
 
-  <ons-list data-bind="foreach: items">
-    <ons-list-item tappable data-bind="click: $parent.detailsItem">
-      <div class="left">
-        <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
-      </div>
-      <div class="center">
-        <span class="list__item__title" data-bind="text: tune.title"></span>
-        <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
-      </div>
-      <div class="right">
-        <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
-      </div>
-    </ons-list-item>
-  </ons-list>
-</ons-page>
+    <ons-list data-bind="foreach: items">
+      <ons-list-item tappable data-bind="click: $parent.detailsItem">
+        <div class="left">
+          <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
+        </div>
+        <div class="center">
+          <span class="list__item__title" data-bind="text: tune.title"></span>
+          <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
+        </div>
+        <div class="right">
+          <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
 </ons-template>
 
 <ons-template id="details.html">
-  <ons-page data-bind="with: item">
-  <ons-toolbar>
-    <div class="left"><ons-back-button></ons-back-button></div>
-    <div class="center" data-bind="text: tune.title"></div>
-  </ons-toolbar>
-  <ons-row style="padding: 5px 5px 0px 5px">
-    <ons-col>
-      <!-- ko if: albums().length == 1 -->
-        <img width="90%" data-bind="attr: {src: '/assets/albums/' + albums()[0].title() + '.jpg'}">
-      <!-- /ko -->
-      <!-- ko if: albums().length != 1 -->
-        <!-- ko foreach: albums -->
-          <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center" data-bind="text: item.tune.title"></div>
+    </ons-toolbar>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col>
+        <!-- ko if: item.albums().length == 1 -->
+        <img width="90%" data-bind="attr: {src: '/assets/albums/' + item.albums()[0].title() + '.jpg'}">
         <!-- /ko -->
-      <!-- /ko -->
-    </ons-col>
-    <ons-col>
-      <!-- ko foreach: albums -->
-        <div data-bind="text: title"></div>
-      <!-- /ko -->
-      <div data-bind="text: tuning.name"></div>
-    </ons-col>
-  </ons-row>
-  <ons-row style="padding: 10px 5px 0px 5px">
-    <ons-col>
-      <!-- ko if: $parent.updated_date() != null -->
-      last updated at <span class="list__item__subtitle" data-bind="text: $parent.updated_date"></span>
-      <!-- /ko -->
-    </ons-col>
-    <ons-col width="50px">
-      <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
-    </ons-col>
-  </ons-row>
-  <ons-row style="padding: 0px 5px 0px 5px">
-    <ons-col>
-      <ons-progress-bar data-bind="value: progress.percent"></ons-progress-bar>
-    </ons-col>
-  </ons-row>
-  <ons-row style="padding: 5px 5px 0px 5px">
-    <ons-col style="margin: 5px">
-      <ons-button modifier="large" data-bind="click: $parent.do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
-    </ons-col>
-    <ons-col style="margin: 5px">
-      <ons-button modifier="large" data-bind="click: $parent.do_plus"><ons-icon icon="fa-plus"></ons-icon></ons-button>
-    </ons-col>
-    <ons-col style="margin: 5px">
-      <ons-button modifier="large" data-bind="click: $parent.do_plus10"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
-    </ons-col>
-  </ons-row>
-  <ons-row style="padding: 10px 5px 0px 5px">
-    <textarea class="textarea" data-bind="textInput: $parent.inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
-  </ons-row>
-  <ons-row style="padding: 5px 5px 0px 5px">
-    <ons-button data-bind="click: $parent.save_comment">記録</ons-button>
-  </ons-row>
-</ons-page>
+        <!-- ko if: item.albums().length != 1 -->
+          <!-- ko foreach: item.albums -->
+            <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
+          <!-- /ko -->
+        <!-- /ko -->
+      </ons-col>
+      <ons-col>
+        <!-- ko foreach: item.albums -->
+          <div data-bind="text: title"></div>
+        <!-- /ko -->
+        <div data-bind="text: item.tuning.name"></div>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <ons-col>
+        <!-- ko if: updated_date() != null -->
+        last updated at <span class="list__item__subtitle" data-bind="text: item.updated_date"></span>
+        <!-- /ko -->
+      </ons-col>
+      <ons-col width="50px">
+        <span class="list__item__subtitle" data-bind="text: item.progress.percent() + '%'"></span>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 0px 5px 0px 5px">
+      <ons-col>
+        <ons-progress-bar data-bind="value: item.progress.percent"></ons-progress-bar>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_plus"><ons-icon icon="fa-plus"></ons-icon></ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_plus10"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <textarea class="textarea" data-bind="textInput: inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-button data-bind="click: save_comment">記録</ons-button>
+    </ons-row>
+
+    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
+      <ons-list-item modifier="longdivider">
+        <div class="center">
+          <span class="list__item__title" data-bind="text: text"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at)"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
 </ons-template>
 

@@ -12,12 +12,7 @@ class CommentsController < ApplicationController
     end
 
     if request.smart_phone?
-      render :json => {
-        id:         tune.id,
-        comment_id: @comment.id,
-        date:       @comment.created_at.strftime("%Y/%m/%d %H:%M"),
-        comment:    @comment.text
-      },:callback => 'addComment'
+      render :json => @comment
     else
       render :json => {
         id: @comment.id,

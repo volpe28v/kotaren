@@ -47,6 +47,15 @@ module Api
       end
     end
 
+    resource :comments do
+      get do
+        @tune = Tune.find(params[:tune_id])
+        user_id = params[:user_id]
+
+        @tune.comments.where(user_id: user_id).order("updated_at desc")
+      end
+    end
+
     resource :activities do
       get do
         user = User.find_by_id(params[:user_id])

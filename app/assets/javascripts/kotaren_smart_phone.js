@@ -10,13 +10,6 @@ window.ons.NavigatorElement.rewritables.link = function(element, target, options
   callback(target);
 };
 
-// Item model
-function ListItem(content) {
-  var self = this;
-  self.content = content;
-}
-
-
 // Details page view model
 function DetailsViewModel(item) {
   var self = this;
@@ -91,6 +84,10 @@ function DetailsViewModel(item) {
     });
   }
 
+  self.detailsComment= function() {
+    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(self.item.tune), this)});
+  }
+
   function update_progress(percent){
     var valid_parcent = percent;
     if (percent > 100){
@@ -153,19 +150,18 @@ function ListViewModel() {
     loadItems();
   }
 
-  self.nextCarouselItem = function(index) {
-    document.querySelectorAll('ons-carousel')[index()].next();
-  }
-
-  self.addItem = function() {
-    self.items.push(new ListItem('Item ' + self.items().length));
-  };
-
-  self.removeItem = function() {
-    self.items.remove(this);
-  }
-
   self.detailsItem = function() {
     document.querySelector('ons-navigator').pushPage('details.html', {viewModel: new DetailsViewModel(this)});
   }
+}
+
+
+function DetailsCommentViewModel(tune, comment) {
+  var self = this;
+  self.tune = tune;
+  self.comment = comment;
+
+  console.log(tune);
+  console.log(comment);
+
 }

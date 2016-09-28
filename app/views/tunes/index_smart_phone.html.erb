@@ -95,7 +95,7 @@ var UserID= <%= @user.id %>;
     </ons-row>
 
     <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
-      <ons-list-item modifier="longdivider">
+      <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
           <span class="list__item__title" data-bind="text: text"></span>
           <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at)"></span>
@@ -105,3 +105,11 @@ var UserID= <%= @user.id %>;
   </ons-page>
 </ons-template>
 
+<ons-template id="detailsComment.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center" data-bind="text: tune.title"></div>
+    </ons-toolbar>
+  <ons-page>
+</ons-template>

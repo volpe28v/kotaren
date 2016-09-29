@@ -12,7 +12,10 @@ class CommentsController < ApplicationController
     end
 
     if request.smart_phone?
-      render :json => @comment
+      render :json => {
+        comment: @comment,
+        replies: []
+      }
     else
       render :json => {
         id: @comment.id,

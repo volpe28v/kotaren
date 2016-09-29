@@ -91,14 +91,22 @@ var UserID= <%= @user.id %>;
       <textarea class="textarea" data-bind="textInput: inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
     </ons-row>
     <ons-row style="padding: 5px 5px 0px 5px">
-      <ons-button data-bind="click: save_comment">記録</ons-button>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: save_comment">記録</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
     </ons-row>
 
     <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
-          <span class="list__item__title" data-bind="text: text"></span>
-          <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at)"></span>
+          <span class="list__item__title" data-bind="text: comment.text"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(comment.updated_at())"></span>
+        </div>
+        <div class="right">
+          <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
         </div>
       </ons-list-item>
     </ons-list>
@@ -111,5 +119,33 @@ var UserID= <%= @user.id %>;
       <div class="left"><ons-back-button></ons-back-button></div>
       <div class="center" data-bind="text: tune.title"></div>
     </ons-toolbar>
-  <ons-page>
+
+    <ons-row style="padding: 10px 10px 0px 10px">
+      <span class="list__item__title" data-bind="text: item.comment.text"></span>
+      <span class="list__item__subtitle" data-bind="text: date_format(item.comment.updated_at())"></span>
+    </ons-row>
+
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: save_reply">リプライ</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+       <ons-col style="margin: 5px">
+        <ons-button modifier="large--quiet" data-bind="click: delete_comment">削除</ons-button>
+      </ons-col>
+    </ons-row>
+
+    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: replies">
+      <ons-list-item modifier="longdivider">
+        <div class="center">
+          <span class="list__item__title" data-bind="text: text"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at())"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
 </ons-template>

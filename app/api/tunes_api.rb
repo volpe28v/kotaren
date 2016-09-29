@@ -8,7 +8,7 @@ module Api
         all_tunes = touched_tunes + untouched_tunes
 
         touched_tunes = touched_tunes.map{|tune|
-          th = {
+          {
             tune: tune,
             albums: tune.recordings.map{|rec| rec.album},
             progress: tune.progresses.first,
@@ -17,7 +17,7 @@ module Api
         }
 
         untouched_tunes = untouched_tunes.map{|tune|
-          th = {
+          {
             tune: tune,
             albums: tune.recordings.map{|rec| rec.album},
             progress: { percent: 0 },
@@ -52,7 +52,14 @@ module Api
         @tune = Tune.find(params[:tune_id])
         user_id = params[:user_id]
 
-        @tune.comments.where(user_id: user_id).order("updated_at desc")
+        comments = @tune.comments.includes(:replies).where(user_id: user_id).order("updated_at desc")
+        comments.map{|comment|
+          {
+            comment: comment,
+            replies: comment.replies.order("updated_at desc")
+          }
+        }
+
       end
     end
 

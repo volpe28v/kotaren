@@ -1,5 +1,5 @@
 ons.ready(function(){
-  document.querySelector('ons-navigator').pushPage('list.html');
+  document.querySelector('ons-navigator').pushPage('tunes.html');
 });
 
 window.ons.NavigatorElement.rewritables.link = function(element, target, options, callback) {
@@ -10,6 +10,17 @@ window.ons.NavigatorElement.rewritables.link = function(element, target, options
   callback(target);
 };
 
+window.fn = {};
+window.fn.open = function() {
+  var menu = document.getElementById('menu');
+  menu.open();
+};
+
+window.fn.load = function(page) {
+  var menu = document.getElementById('menu');
+  menu.close();
+  document.querySelector('ons-navigator').resetToPage(page);
+};
 
 // List page view model
 function ListViewModel() {

@@ -3,12 +3,41 @@ var UserID= <%= @user.id %>;
 
 </script>
 
-<ons-navigator>
-</ons-navigator>
+<ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="fn.load('tunes.html')" tappable>
+          Tunes 
+        </ons-list-item>
+        <!--
+        <ons-list-item onclick="fn.load('albums.html')" tappable>
+          Albums 
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('tuning.html')" tappable>
+          Tuning 
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('activity.html')" tappable>
+          Activity
+        </ons-list-item>
+        -->
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content>
+    <ons-navigator></ons-navigator>
+  </ons-splitter-content>
+</ons-splitter>
 
-<ons-template id="list.html">
+
+<ons-template id="tunes.html">
   <ons-page>
     <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
       <div class="center">Kotaren</div>
       <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
     </ons-toolbar>

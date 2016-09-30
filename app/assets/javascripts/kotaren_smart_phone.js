@@ -128,7 +128,7 @@ function DetailsViewModel(item) {
   }
 
   self.detailsComment= function() {
-    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(self.item.tune), this)});
+    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(self.item.tune), this, self.comments)});
   }
 
   function update_progress(percent){
@@ -158,10 +158,11 @@ function DetailsViewModel(item) {
   }
 }
 
-function DetailsCommentViewModel(tune, comment) {
+function DetailsCommentViewModel(tune, comment, comments) {
   var self = this;
   self.tune = tune;
   self.item = comment;
+  self.comments = comments;
   self.comment = comment.comment;
   self.replies = comment.replies;
   self.inputReply = ko.observable("");
@@ -184,7 +185,19 @@ function DetailsCommentViewModel(tune, comment) {
   }
 
   self.delete_comment = function(){
-
+    ons.notification.confirm({message: '本当に削除しますか?'}).then(function(result){
+      if (result == 1){
+        $.ajax({
+          type: "DELETE",
+          cache: false,
+          url: "/comments/" + self.comment.id(),
+          success: function(data){
+            self.comments.remove(self.item);
+            document.querySelector('ons-navigator').popPage();
+          }
+        });
+      }
+    });
   }
 
   self.date_format = function(date){

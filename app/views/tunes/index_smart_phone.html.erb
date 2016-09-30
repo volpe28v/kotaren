@@ -121,8 +121,8 @@ var UserID= <%= @user.id %>;
     </ons-toolbar>
 
     <ons-row style="padding: 10px 10px 0px 10px">
-      <span class="list__item__title" data-bind="text: item.comment.text"></span>
-      <span class="list__item__subtitle" data-bind="text: date_format(item.comment.updated_at())"></span>
+      <span class="list__item__title" data-bind="text: comment.text"></span>
+      <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
     </ons-row>
 
     <ons-row style="padding: 10px 5px 0px 5px">

@@ -1,186 +1,180 @@
-<div data-role="page" id="tune_list" data-theme="a" class="swipe_back">
-  <%= render "header_smart_phone" , { :state => "tune_list" } %>
+<script>
+var UserID= <%= @user.id %>;
 
-  <div data-role="content">
-    <div id="tune_list_loading" class="loading">
-      <center>
-        <img src="<%= image_path 'ajax-loader.gif' %> ">
-        <div class="comment-one">
-          <div class="comment-name"><%= @other_comment.tune.title %></div>
-          <div class="comment-text" style="word-break:break-all;"><%= auto_link( simple_format(@other_comment.text),:all, :target => "_blank" ) %></div>
-          <div class="comment-name"><%= @other_comment.user.name %> at <%= @other_comment.updated_at.strftime("%Y/%m/%d") %></div>
+</script>
+
+<ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="fn.load('tunes.html')" tappable>
+          Tunes 
+        </ons-list-item>
+        <!--
+        <ons-list-item onclick="fn.load('albums.html')" tappable>
+          Albums 
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('tuning.html')" tappable>
+          Tuning 
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('activity.html')" tappable>
+          Activity
+        </ons-list-item>
+        -->
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content>
+    <ons-navigator></ons-navigator>
+  </ons-splitter-content>
+</ons-splitter>
+
+
+<ons-template id="tunes.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Kotaren</div>
+      <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
+    </ons-toolbar>
+
+    <div data-bind="if: items().length == 0">
+      <div class="progress-bar progress-bar--indeterminate">
+        <div class="progress-bar__primary"></div>
+        <div class="progress-bar__secondary"></div>
+      </div>
+    </div>
+
+    <ons-list data-bind="foreach: items">
+      <ons-list-item tappable data-bind="click: $parent.detailsItem">
+        <div class="left">
+          <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
         </div>
-      </center>
-    </div>
+        <div class="center">
+          <span class="list__item__title" data-bind="text: tune.title"></span>
+          <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
+        </div>
+        <div class="right">
+          <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
 
-    <div id="heatmap_tunes"></div>
-    <ul id="tune_list_ul" data-role="listview">
-    </ul>
-  </div>
-  <%= render "footer_smart_phone" , { :state => "tune_list" } %>
-</div>
+<ons-template id="details.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center" data-bind="text: item.tune.title"></div>
+    </ons-toolbar>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col>
+        <!-- ko if: item.albums().length == 1 -->
+        <img width="90%" data-bind="attr: {src: '/assets/albums/' + item.albums()[0].title() + '.jpg'}">
+        <!-- /ko -->
+        <!-- ko if: item.albums().length != 1 -->
+          <!-- ko foreach: item.albums -->
+            <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
+          <!-- /ko -->
+        <!-- /ko -->
+      </ons-col>
+      <ons-col>
+        <!-- ko foreach: item.albums -->
+          <div data-bind="text: title"></div>
+        <!-- /ko -->
+        <div data-bind="text: item.tuning.name"></div>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <ons-col>
+        <!-- ko if: updated_date() != null -->
+        last updated at <span class="list__item__subtitle" data-bind="text: updated_date"></span>
+        <!-- /ko -->
+      </ons-col>
+      <ons-col width="50px">
+        <span class="list__item__subtitle" data-bind="text: item.progress.percent() + '%'"></span>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 0px 5px 0px 5px">
+      <ons-col>
+        <ons-progress-bar data-bind="value: item.progress.percent"></ons-progress-bar>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_plus"><ons-icon icon="fa-plus"></ons-icon></ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: do_plus10"><ons-icon icon="fa-plus"></ons-icon> 10</ons-button>
+      </ons-col>
+    </ons-row>
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <textarea class="textarea" data-bind="textInput: inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: save_comment">記録</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+    </ons-row>
 
-<script>
-$(document).delegate('#tune_list','pageinit',function(){
-  loadTuneList(<%= @user.id %>);
+    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
+      <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
+        <div class="center">
+          <span class="list__item__title" data-bind="text: comment.text"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(comment.updated_at())"></span>
+        </div>
+        <div class="right">
+          <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
 
-  var startDate = new Date();
-  startDate.setMonth(startDate.getMonth() - 5);
+<ons-template id="detailsComment.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center" data-bind="text: tune.title"></div>
+    </ons-toolbar>
 
-  var parser = function(data) {
-    return eval("(" + data + ")");
-  };
+    <ons-row style="padding: 10px 10px 0px 10px">
+      <span class="list__item__title" data-bind="text: comment.text"></span>
+      <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
+    </ons-row>
 
-  var cal = new CalHeatMap();
-  cal.init({
-    itemSelector: "#heatmap_tunes",
-    data: "/api/activities?user_id=<%= @user.id %>&start={{d:start}}&stop={{d:end}}",
-    afterLoadData: parser,
-    cellSize: 7,
-    domain: "month",
-    subDomain: "day",
-    subDomainDateFormat: "%m/%d %Y",
-    range: 6,
-    tooltip: true,
-    start: startDate,
-    domainLabelFormat: "%b",
-    itemName: ["activity", "activities"],
-    legend: [1,3,7,10],
-    displayLegend: false
-   });
-});
-</script>
+    <ons-row style="padding: 10px 5px 0px 5px">
+      <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
+    </ons-row>
+    <ons-row style="padding: 5px 5px 0px 5px">
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large" data-bind="click: save_reply">リプライ</ons-button>
+      </ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+      <ons-col style="margin: 5px"></ons-col>
+       <ons-col style="margin: 5px">
+        <ons-button modifier="large--quiet" data-bind="click: delete_comment">削除</ons-button>
+      </ons-col>
+    </ons-row>
 
-<div data-role="page" id="album_list" data-theme="a">
-  <%= render "header_smart_phone" , { :state => "album_list" } %>
-
-  <div id="album_list_loading" class="loading">
-    <center>
-      <img src="<%= image_path 'ajax-loader.gif' %> ">
-    </center>
-  </div>
-
-  <div data-role="content">
-    <ul data-role="listview" id="album_list_ul">
-    </ul>
-  </div>
-  <%= render "footer_smart_phone" , { :state => "album_list" } %>
-</div>
-<script>
-$(document).delegate('#album_list','pageinit',function(){
-  loadAlbumList(<%= @user.id %>);
-});
-</script>
- 
-<div data-role="page" id="tuning_list" data-theme="a">
-  <%= render "header_smart_phone" , { :state => "tuning_list" } %>
-
-  <div id="tuning_list_loading" class="loading">
-    <center>
-      <img src="<%= image_path 'ajax-loader.gif' %> ">
-    </center>
-  </div>
-
-  <div data-role="content">
-    <ul data-role="listview" id="tuning_list_ul">
-    </ul>
-  </div>
-  <%= render "footer_smart_phone" , { :state => "tuning_list" } %>
-</div>
-<script>
-$(document).delegate('#tuning_list','pageinit',function(event){
-  loadTuningList(<%= @user.id %>);
-});
-</script>
-
-<% @tunes.each do |t| %>
-<div data-role="page" id="tune_<%= t.id %>" data-id="<%= t.id %>" data-theme="a" class="tune-page swipe_back">
-  <div data-role="header" data-position="fixed">
-    <a data-rel="back" data-icon="back" class="ui-btn-left">戻る</a>
-    <h3>曲詳細</h3>
-    <% if current_user %>
-      <%= link_to 'Logout', destroy_user_session_path , :method => :get, :class => 'ui-btn-right' %>
-    <% else %>
-      <%= link_to 'Login', new_user_session_path, :class => 'ui-btn-right'  %>
-    <% end %>
-  </div>
-
-  <div id="tune_body_<%= t.id %>" class="tune-body"></div>
-
-  <div id="tune_loading_<%= t.id %>" class="loading">
-    <center>
-      <img src="<%= image_path 'ajax-loader.gif' %> ">
-    </center>
-  </div>
-
-  <div data-role="footer" data-position="fixed">
-    <span id="tune_controller_<%= t.id %>"></span>
-  </div>
-</div>
-
-<script>
-$(document).delegate('#tune_<%= t.id %>','pageinit',function(event){
-  loadTune(<%= @user.id %> ,<%= t.id %>)
-});
-</script>
-<% end %>
-
-<div data-role="page" id="activity_list" data-theme="a">
-  <%= render "header_smart_phone" , { :state => "activity_list" } %>
-
-  <div data-role="content">
-    <div id="comment_list_loading" class="loading">
-      <center>
-        <img src="<%= image_path 'ajax-loader.gif' %> ">
-      </center>
-    </div>
-
-    <div id="heatmap_activity"></div>
-    <div id="comment_list_area"></div>
-  </div>
-  <%= render "footer_smart_phone" , { :state => "activity_list" } %>
-</div>
-<script>
-$(document).delegate('#activity_list','pageinit',function(){
-  loadCommentList(<%= @user.id %>);
-
-  var startDate = new Date();
-  startDate.setMonth(startDate.getMonth() - 5);
-
-  var parser = function(data) {
-    return eval("(" + data + ")");
-  };
-
-  var cal = new CalHeatMap();
-  cal.init({
-    itemSelector: "#heatmap_activity",
-    data: "/api/activities?user_id=<%= @user.id %>&start={{d:start}}&stop={{d:end}}",
-    afterLoadData: parser,
-    cellSize: 7,
-    domain: "month",
-    subDomain: "day",
-    subDomainDateFormat: "%m/%d %Y",
-    range: 6,
-    tooltip: true,
-    start: startDate,
-    domainLabelFormat: "%b",
-    itemName: ["activity", "activities"],
-    legend: [1,3,7,10],
-    displayLegend: false
-   });
-});
-</script>
-
-<div data-role="page" id="remove_reply_dialog" data-theme="a">
-  <div data-role="header" data-position="fixed">
-    <h3>リプライを削除</h3>
-  </div>
-
-  <div data-role="content">
-    <p id="remove_reply_target" class="progress-word"></p>
-    <p>リプライを削除しますか？</p>
-    <a id="remove_reply_ok" data-role="button">OK</a>
-    <a data-role="button" data-rel="back">Cancel</a>
-  </div>
-</div>
- 
+    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: replies">
+      <ons-list-item modifier="longdivider">
+        <div class="center">
+          <span class="list__item__title" data-bind="text: text"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at())"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>

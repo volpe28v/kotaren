@@ -52,11 +52,18 @@ module Api
         @tune = Tune.find(params[:tune_id])
         user_id = params[:user_id]
 
-        comments = @tune.comments.includes(:replies).where(user_id: user_id).order("updated_at desc")
+        comments = @tune.comments.includes({replies: :user}).where(user_id: user_id).order("updated_at desc")
         comments.map{|comment|
           {
             comment: comment,
-            replies: comment.replies.order("updated_at desc")
+            replies: comment.replies.order("updated_at desc").map{|reply|
+              {
+                id: reply.id,
+                text: reply.text,
+                updated_at: reply.updated_at,
+                user: reply.user
+              }
+            }
           }
         }
 

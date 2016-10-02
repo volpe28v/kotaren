@@ -7,6 +7,7 @@ var UserID= <%= @user.id %>;
   <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
     <ons-page>
       <ons-list>
+        <ons-list-header>Main Menu</ons-list-header>
         <ons-list-item onclick="fn.load('tunes.html')" tappable>
           Tunes 
         </ons-list-item>
@@ -172,7 +173,10 @@ var UserID= <%= @user.id %>;
       <ons-list-item modifier="longdivider">
         <div class="center">
           <span class="list__item__title" data-bind="text: text"></span>
-          <span class="list__item__subtitle" data-bind="text: $parent.date_format(updated_at())"></span>
+          <span class="list__item__subtitle">
+            <span data-bind="text: $parent.date_format(updated_at())"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>
+          </span>
         </div>
       </ons-list-item>
     </ons-list>

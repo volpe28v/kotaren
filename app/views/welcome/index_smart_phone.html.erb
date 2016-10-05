@@ -1,18 +1,20 @@
-<div data-role="header" data-position="fixed">
-  <h1>コタれん for mobile</h1>
-</div>
+<ons-page>
+  <ons-toolbar>
+    <div class="center">コタれん</div>
+  </ons-toolbar>
 
-<div data-role="content" data-theme="a">
-  <p>
+  <section style="padding: 8px">
+    <div>
   「コタれん」は押尾コータローさんの楽曲練習記録アプリです。
-  </p>
+    </div>
 
-  <p>
-    <%= link_to 'ユーザー登録', [ :new, :user_registration ] ,'data-role' => 'button' , 'data-inline' => 'true' %>
-    <%= link_to 'ログイン', [ :new, :user_session ], 'data-role' => 'button' , 'data-inline' => 'true' %>
-  </p>
-
-  <p><%= link_to raw('<span class="sign-in-link-with-service">Facebook でログイン</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button", 'data-inline' => "true", 'data-theme' => "b" %></p>
+    <div>
+      <ons-button data-bind="click: sign_up">ユーザ登録</ons-button>
+      <ons-button data-bind="click: sign_in">ログイン</ons-button>
+    </div>
+    <div style="padding-top: 5px">
+      <ons-button data-bind="click: fb_sign_in">Facebookでログイン</ons-button>
+    </div>
 
   <p>
     <h3>制限事項</h3>
@@ -23,5 +25,8 @@
   <p>
     〜 登録ユーザ <%= @user_count %> 人 〜
   </p>
-</div>
 
+  </section>
+</ons-page>
+
+<%= javascript_include_tag "index_smart_phone" %>

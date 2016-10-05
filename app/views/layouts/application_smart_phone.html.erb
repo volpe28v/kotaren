@@ -12,16 +12,16 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body>
-  <%= yield %>
+  <body>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/OnsenUI/OnsenUI-dist/2.0.0-rc.18/js/onsenui.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/locale/ja.js" %>
+    <%= javascript_include_tag "application_smart_phone" %>
+    <%= javascript_include_tag "http://d3js.org/d3.v3.min.js" %>
+    <%= javascript_include_tag "http://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js" %>
 
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" %>
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js" %>
-  <%= javascript_include_tag "https://cdn.rawgit.com/OnsenUI/OnsenUI-dist/2.0.0-rc.18/js/onsenui.js" %>
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js" %>
-  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/locale/ja.js" %>
-  <%= javascript_include_tag "application_smart_phone" %>
-  <%= javascript_include_tag "http://d3js.org/d3.v3.min.js" %>
-  <%= javascript_include_tag "http://cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js" %>
-</body>
+    <%= yield %>
+  </body>
 </html>

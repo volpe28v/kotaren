@@ -2,9 +2,13 @@ ons.ready(function(){
   document.querySelector('ons-navigator').pushPage('tunes.html');
 });
 
+var viewModelFactory = {};
+viewModelFactory['tunes.html'] = function() { return new TunesViewModel(); }
+viewModelFactory['albums.html'] = function() { return new AlbumsViewModel(); }
+
 window.ons.NavigatorElement.rewritables.link = function(element, target, options, callback) {
   if (!options.viewModel) {
-    options.viewModel = new ListViewModel();
+    options.viewModel = viewModelFactory[options.page]();
   }
   ko.applyBindings(options.viewModel, target);
   callback(target);
@@ -22,8 +26,7 @@ window.fn.load = function(page) {
   document.querySelector('ons-navigator').resetToPage(page);
 };
 
-// List page view model
-function ListViewModel() {
+function TunesViewModel() {
   var self = this;
 
   self.items = ko.observableArray([]);
@@ -215,3 +218,50 @@ function DetailsCommentViewModel(tune, comment, comments) {
     return moment(date).format('YYYY/MM/DD HH:mm');
   }
 }
+
+function AlbumsViewModel() {
+  var self = this;
+
+  self.items = ko.observableArray([]);
+  self.tunes = ko.observableArray([]);
+  loadItems();
+
+  function loadItems(){
+    self.items([]);
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/tunes",
+      data: { user_id: UserID },
+      success: function (data) {
+        console.log(data);
+        var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
+        self.tunes(mapped_data);
+        self.tunes().forEach(function(tune){
+          tune.albums().forEach(function(album){
+            if (self.items().filter(function(elem){ return elem.id() == album.id() }).length == 0){
+              self.items.push(album);
+            }
+          });
+        });
+        sortItems();
+      }
+    });
+  }
+
+  function sortItems(){
+    self.items.sort(function(l,r){
+      return l.id() < r.id() ? 1 : -1;
+    });
+  }
+
+  self.refresh = function(){
+    loadItems();
+  }
+
+  self.detailsItem = function() {
+    document.querySelector('ons-navigator').pushPage('details.html', {viewModel: new DetailsViewModel(this)});
+  }
+}
+
+

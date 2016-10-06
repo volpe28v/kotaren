@@ -37,6 +37,7 @@ function TunesViewModel(tunes) {
   }else{
     self.items(tunes);
     self.isTop(false);
+    sortItems();
   }
 
   function loadItems(){

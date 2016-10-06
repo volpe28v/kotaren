@@ -26,11 +26,18 @@ window.fn.load = function(page) {
   document.querySelector('ons-navigator').resetToPage(page);
 };
 
-function TunesViewModel() {
+function TunesViewModel(tunes) {
   var self = this;
 
   self.items = ko.observableArray([]);
-  loadItems();
+  self.isTop = ko.observable(true);
+
+  if (tunes == null){
+    loadItems();
+  }else{
+    self.items(tunes);
+    self.isTop(false);
+  }
 
   function loadItems(){
     self.items([]);
@@ -255,12 +262,14 @@ function AlbumsViewModel() {
     });
   }
 
-  self.refresh = function(){
-    loadItems();
-  }
-
-  self.detailsItem = function() {
-    document.querySelector('ons-navigator').pushPage('details.html', {viewModel: new DetailsViewModel(this)});
+  self.tunesList = function() {
+    var album_id = this.id();
+    var tunes = self.tunes().filter(function(tune){
+      return tune.albums().filter(function(album){
+        return album.id() == album_id;
+      }).length > 0;
+    });
+    document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
   }
 }
 

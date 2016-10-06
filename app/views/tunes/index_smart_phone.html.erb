@@ -35,11 +35,16 @@ var UserID= <%= @user.id %>;
   <ons-page>
     <ons-toolbar>
       <div class="left">
+        <!-- ko if: isTop() == true -->
         <ons-toolbar-button onclick="fn.open()">
           <ons-icon icon="md-menu"></ons-icon>
         </ons-toolbar-button>
+        <!-- /ko -->
+        <!-- ko if: isTop() != true -->
+        <ons-back-button></ons-back-button>
+        <!-- /ko -->
       </div>
-      <div class="center">Kotaren</div>
+      <div class="center">Tunes</div>
       <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
     </ons-toolbar>
 
@@ -192,7 +197,6 @@ var UserID= <%= @user.id %>;
         </ons-toolbar-button>
       </div>
       <div class="center">Albums</div>
-      <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
     </ons-toolbar>
 
     <div data-bind="if: items().length == 0">
@@ -203,7 +207,7 @@ var UserID= <%= @user.id %>;
     </div>
 
     <ons-list data-bind="foreach: items">
-      <ons-list-item tappable data-bind="click: $parent.detailsItem">
+      <ons-list-item tappable data-bind="click: $parent.tunesList">
         <div class="left">
           <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
         </div>

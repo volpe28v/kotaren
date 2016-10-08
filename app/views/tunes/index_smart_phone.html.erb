@@ -14,10 +14,10 @@ var UserID= <%= @user.id %>;
         <ons-list-item onclick="fn.load('albums.html')" tappable>
           Albums 
         </ons-list-item>
-        <!--
-        <ons-list-item onclick="fn.load('tuning.html')" tappable>
-          Tuning 
+        <ons-list-item onclick="fn.load('tunings.html')" tappable>
+          Tunings
         </ons-list-item>
+        <!--
         <ons-list-item onclick="fn.load('activity.html')" tappable>
           Activity
         </ons-list-item>
@@ -45,7 +45,11 @@ var UserID= <%= @user.id %>;
         <!-- /ko -->
       </div>
       <div class="center">Tunes</div>
-      <div class="right"><ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button></div>
+      <div class="right">
+        <!-- ko if: isTop() == true -->
+        <ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button>
+        <!-- /ko -->
+      </div>
     </ons-toolbar>
 
     <div data-bind="if: items().length == 0">
@@ -199,13 +203,6 @@ var UserID= <%= @user.id %>;
       <div class="center">Albums</div>
     </ons-toolbar>
 
-    <div data-bind="if: items().length == 0">
-      <div class="progress-bar progress-bar--indeterminate">
-        <div class="progress-bar__primary"></div>
-        <div class="progress-bar__secondary"></div>
-      </div>
-    </div>
-
     <ons-list data-bind="foreach: items">
       <ons-list-item tappable data-bind="click: $parent.tunesList">
         <div class="left">
@@ -222,5 +219,37 @@ var UserID= <%= @user.id %>;
   </ons-page>
 </ons-template>
 
+<ons-template id="tunings.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Tunings</div>
+    </ons-toolbar>
+
+    <ons-list data-bind="foreach: items">
+      <ons-list-item tappable data-bind="click: $parent.tunesList">
+        <div class="center">
+          <span class="list__item__title">
+            <span data-bind="text: tuning.name"></span>
+            <!-- ko if: tuning.capo() != 0 -->
+            Capo 
+            <span data-bind="text: tuning.capo"></span>
+            <!-- /ko -->
+          </span>
+          <span class="list__item__subtitle" data-bind="text: tune_name"></span>
+        </div>
+        <div class="right">
+          <span class="list__item__subtitle">
+            <span class="notification" data-bind="text: count"></span>
+          </span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
 
 <%= javascript_include_tag "kotaren_smart_phone" %>

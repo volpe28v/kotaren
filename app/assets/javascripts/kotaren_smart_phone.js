@@ -5,6 +5,7 @@ ons.ready(function(){
 var viewModelFactory = {};
 viewModelFactory['tunes.html'] = function() { return new TunesViewModel(); }
 viewModelFactory['albums.html'] = function() { return new AlbumsViewModel(); }
+viewModelFactory['tunings.html'] = function() { return new TuningsViewModel(); }
 
 window.ons.NavigatorElement.rewritables.link = function(element, target, options, callback) {
   if (!options.viewModel) {
@@ -26,6 +27,8 @@ window.fn.load = function(page) {
   document.querySelector('ons-navigator').resetToPage(page);
 };
 
+var AllTunes = null;
+
 function TunesViewModel(tunes) {
   var self = this;
 
@@ -33,26 +36,38 @@ function TunesViewModel(tunes) {
   self.isTop = ko.observable(true);
 
   if (tunes == null){
-    loadItems();
+    // 全曲リスト
+    if (AllTunes == null){
+      loadItems().then(function(tunes){
+        sortItems();
+        AllTunes = tunes;
+      });
+    }else{
+      self.items = AllTunes;
+      sortItems();
+    }
   }else{
+    // アルバムから遷移
     self.items(tunes);
     self.isTop(false);
     sortItems();
   }
 
   function loadItems(){
-    self.items([]);
-    $.ajax({
-      type: "GET",
-      cache: false,
-      url: "/api/tunes",
-      data: { user_id: UserID },
-      success: function (data) {
-        console.log(data);
-        var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
-        self.items(mapped_data);
-        sortItems();
-      }
+    return new Promise(function(callback){
+      self.items([]);
+      $.ajax({
+        type: "GET",
+        cache: false,
+        url: "/api/tunes",
+        data: { user_id: UserID },
+        success: function (data) {
+          console.log(data);
+          var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
+          self.items(mapped_data);
+          callback(self.items);
+        }
+      });
     });
   }
 
@@ -142,7 +157,6 @@ function DetailsViewModel(item) {
       url: "/users/" + UserID + "/tunes/" + self.item.tune.id() + "/comments",
       data: {"comment[text]": self.inputComment()},
       success: function (data) {
-        console.log(data);
         self.inputComment("");
         self.comments.unshift(ko.mapping.fromJS(data));
       }
@@ -173,7 +187,6 @@ function DetailsViewModel(item) {
         progress_val: valid_parcent
       },
       success: function (data) {
-        console.log(data);
         self.item.progress.updated_at(data.date);
       }
     });
@@ -231,30 +244,18 @@ function AlbumsViewModel() {
   var self = this;
 
   self.items = ko.observableArray([]);
-  self.tunes = ko.observableArray([]);
+  self.tunes = AllTunes;
   loadItems();
 
   function loadItems(){
-    self.items([]);
-    $.ajax({
-      type: "GET",
-      cache: false,
-      url: "/api/tunes",
-      data: { user_id: UserID },
-      success: function (data) {
-        console.log(data);
-        var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
-        self.tunes(mapped_data);
-        self.tunes().forEach(function(tune){
-          tune.albums().forEach(function(album){
-            if (self.items().filter(function(elem){ return elem.id() == album.id() }).length == 0){
-              self.items.push(album);
-            }
-          });
-        });
-        sortItems();
-      }
+    self.tunes().forEach(function(tune){
+      tune.albums().forEach(function(album){
+        if (self.items().filter(function(elem){ return elem.id() == album.id() }).length == 0){
+          self.items.push(album);
+        }
+      });
     });
+    sortItems();
   }
 
   function sortItems(){
@@ -269,6 +270,44 @@ function AlbumsViewModel() {
       return tune.albums().filter(function(album){
         return album.id() == album_id;
       }).length > 0;
+    });
+    document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
+  }
+}
+
+function TuningsViewModel() {
+  var self = this;
+
+  self.items = ko.observableArray([]);
+  self.tunes = AllTunes;
+  loadItems();
+
+  function loadItems(){
+    self.tunes().forEach(function(tune){
+      if (self.items().filter(function(elem){ return elem.tuning.id() == tune.tuning.id(); }).length == 0){
+        var same_tunes = self.tunes().filter(function(t){ return t.tuning.id() == tune.tuning.id(); });
+        self.items.push({tuning: tune.tuning, count: same_tunes.length, tune_name: same_tunes[0].tune.title() });
+      }
+    });
+    sortItems();
+  }
+
+  function sortItems(){
+    self.items.sort(function(l,r){
+      if (l.tuning.name() == r.tuning.name()){
+        return l.tuning.capo() > r.tuning.capo() ? 1 : -1;
+      }else if (l.tuning.name() < r.tuning.name()){
+        return -1;
+      }else{
+        return 1;
+      }
+    });
+  }
+
+  self.tunesList = function() {
+    var tuning_id = this.tuning.id();
+    var tunes = self.tunes().filter(function(tune){
+      return tune.tune.tuning_id() == tuning_id;
     });
     document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
   }

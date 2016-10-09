@@ -35,6 +35,8 @@ function TunesViewModel(tunes) {
   self.items = ko.observableArray([]);
   self.isTop = ko.observable(true);
 
+  loadHeatMap();
+
   if (tunes == null){
     // 全曲リスト
     if (AllTunes == null){
@@ -71,6 +73,37 @@ function TunesViewModel(tunes) {
     });
   }
 
+  function loadHeatMap(){
+    $('#heatmap_tunes').empty();
+    var disp_map_count = 7;
+    if (window.innerWidth < 375){
+      disp_map_count--;
+    }
+
+    var startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - (disp_map_count - 1));
+    var parser = function(data) {
+      return eval("(" + data + ")");
+    };
+    var cal = new CalHeatMap();
+    cal.init({
+      itemSelector: "#heatmap_tunes",
+      data: "/api/activities?user_id=" + UserID + "&start={{d:start}}&stop={{d:end}}",
+      afterLoadData: parser,
+      cellSize: 7,
+      domain: "month",
+      subDomain: "day",
+      subDomainDateFormat: "%m/%d %Y",
+      range: disp_map_count,
+      tooltip: true,
+      start: startDate,
+      domainLabelFormat: "%b",
+      itemName: ["activity", "activities"],
+      legend: [1,3,7,10],
+      displayLegend: false
+    });
+  }
+
   function sortItems(){
     self.items.sort(function(l,r){
       var l_date = l.progress.updated_at ? l.progress.updated_at() : new Date(-8640000000000000);
@@ -80,7 +113,10 @@ function TunesViewModel(tunes) {
   }
 
   self.refresh = function(){
-    loadItems();
+    loadItems().then(function(tunes){
+      sortItems();
+    });
+    loadHeatMap();
   }
 
   self.detailsItem = function() {
@@ -180,9 +216,8 @@ function DetailsViewModel(item) {
     $.ajax({
       type: "POST",
       cache: false,
-      url: "/api/progresses",
+      url: "/users/" + UserID + "/tunes/update_progress",
       data: {
-        user_id: UserID,
         tune_id: self.item.tune.id,
         progress_val: valid_parcent
       },

@@ -94,7 +94,7 @@ var progress_controller = {
       progress_val: val
     };
     $.ajax({
-      type: "GET",
+      type: "POST",
       cache: false,
       url: "/users/" + user_id + "/tunes/update_progress",
       data: data

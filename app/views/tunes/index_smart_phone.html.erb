@@ -1,5 +1,6 @@
 <script>
-var UserID= <%= @user.id %>;
+var UserID = <%= @user.id %>;
+var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 
 </script>
 
@@ -23,6 +24,15 @@ var UserID= <%= @user.id %>;
         </ons-list-item>
         -->
       </ons-list>
+
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <% if current_user %>
+        Login as <%= current_user.name %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        <% else %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
+        <% end %>
+      </ons-row>
     </ons-page>
   </ons-splitter-side>
   <ons-splitter-content>
@@ -58,6 +68,10 @@ var UserID= <%= @user.id %>;
         <div class="progress-bar__secondary"></div>
       </div>
     </div>
+
+    <ons-row style="padding: 10px 10px 0px 10px">
+      <div id="heatmap_tunes"></div>
+    </ons-row>
 
     <ons-list data-bind="foreach: items">
       <ons-list-item tappable data-bind="click: $parent.detailsItem">
@@ -115,6 +129,8 @@ var UserID= <%= @user.id %>;
         <ons-progress-bar data-bind="value: item.progress.percent"></ons-progress-bar>
       </ons-col>
     </ons-row>
+
+    <% if current_user == @user %>
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col style="margin: 5px">
         <ons-button modifier="large" data-bind="click: do_minus10"><ons-icon icon="fa-minus"></ons-icon> 10</ons-button>
@@ -137,6 +153,7 @@ var UserID= <%= @user.id %>;
       <ons-col style="margin: 5px"></ons-col>
       <ons-col style="margin: 5px"></ons-col>
     </ons-row>
+    <% end %>
 
     <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
@@ -164,6 +181,7 @@ var UserID= <%= @user.id %>;
       <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
     </ons-row>
 
+    <% if current_user %>
     <ons-row style="padding: 10px 5px 0px 5px">
       <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
     </ons-row>
@@ -177,6 +195,7 @@ var UserID= <%= @user.id %>;
         <ons-button modifier="large--quiet" data-bind="click: delete_comment">削除</ons-button>
       </ons-col>
     </ons-row>
+    <% end %>
 
     <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: replies">
       <ons-list-item modifier="longdivider">

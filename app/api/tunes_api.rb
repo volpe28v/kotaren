@@ -33,20 +33,6 @@ module Api
       end
     end
 
-    resource :progresses do
-      post do
-        @user = User.find(params[:user_id])
-        @tune = Tune.find(params[:tune_id])
-        @tune.update_progress(@user,params[:progress_val])
-        @user.add_activity
-
-        {
-          id:  @tune.id,
-          date: @tune.progress_updated_at(@user)
-        }
-      end
-    end
-
     resource :comments do
       get do
         @tune = Tune.find(params[:tune_id])

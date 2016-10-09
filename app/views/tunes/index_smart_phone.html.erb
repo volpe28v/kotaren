@@ -60,6 +60,10 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       </div>
     </div>
 
+    <ons-row style="padding: 10px 10px 0px 10px">
+      <div id="heatmap_tunes"></div>
+    </ons-row>
+
     <ons-list data-bind="foreach: items">
       <ons-list-item tappable data-bind="click: $parent.detailsItem">
         <div class="left">

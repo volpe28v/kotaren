@@ -35,6 +35,8 @@ function TunesViewModel(tunes) {
   self.items = ko.observableArray([]);
   self.isTop = ko.observable(true);
 
+  loadHeatMap();
+
   if (tunes == null){
     // 全曲リスト
     if (AllTunes == null){
@@ -68,6 +70,36 @@ function TunesViewModel(tunes) {
           callback(self.items);
         }
       });
+    });
+  }
+
+  function loadHeatMap(){
+    var disp_map_count = 7;
+    if (window.innerWidth < 375){
+      disp_map_count--;
+    }
+
+    var startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - (disp_map_count - 1));
+    var parser = function(data) {
+      return eval("(" + data + ")");
+    };
+    var cal = new CalHeatMap();
+    cal.init({
+      itemSelector: "#heatmap_tunes",
+      data: "/api/activities?user_id=" + UserID + "&start={{d:start}}&stop={{d:end}}",
+      afterLoadData: parser,
+      cellSize: 7,
+      domain: "month",
+      subDomain: "day",
+      subDomainDateFormat: "%m/%d %Y",
+      range: disp_map_count,
+      tooltip: true,
+      start: startDate,
+      domainLabelFormat: "%b",
+      itemName: ["activity", "activities"],
+      legend: [1,3,7,10],
+      displayLegend: false
     });
   }
 

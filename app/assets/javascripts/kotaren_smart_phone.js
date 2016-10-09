@@ -74,6 +74,7 @@ function TunesViewModel(tunes) {
   }
 
   function loadHeatMap(){
+    $('#heatmap_tunes').empty();
     var disp_map_count = 7;
     if (window.innerWidth < 375){
       disp_map_count--;
@@ -115,6 +116,7 @@ function TunesViewModel(tunes) {
     loadItems().then(function(tunes){
       sortItems();
     });
+    loadHeatMap();
   }
 
   self.detailsItem = function() {

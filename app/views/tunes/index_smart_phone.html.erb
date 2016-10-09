@@ -24,6 +24,15 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         </ons-list-item>
         -->
       </ons-list>
+
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <% if current_user %>
+        Login as <%= current_user.name %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        <% else %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
+        <% end %>
+      </ons-row>
     </ons-page>
   </ons-splitter-side>
   <ons-splitter-content>

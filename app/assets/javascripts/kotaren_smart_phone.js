@@ -182,9 +182,8 @@ function DetailsViewModel(item) {
     $.ajax({
       type: "POST",
       cache: false,
-      url: "/api/progresses",
+      url: "/users/" + UserID + "/tunes/update_progress",
       data: {
-        user_id: UserID,
         tune_id: self.item.tune.id,
         progress_val: valid_parcent
       },

@@ -168,7 +168,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
     </ons-row>
 
-    <% if current_user == @user %>
+    <% if current_user %>
     <ons-row style="padding: 10px 5px 0px 5px">
       <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
     </ons-row>

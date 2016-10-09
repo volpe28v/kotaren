@@ -80,7 +80,9 @@ function TunesViewModel(tunes) {
   }
 
   self.refresh = function(){
-    loadItems();
+    loadItems().then(function(tunes){
+      sortItems();
+    });
   }
 
   self.detailsItem = function() {

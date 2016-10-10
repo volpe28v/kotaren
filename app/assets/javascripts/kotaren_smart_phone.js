@@ -35,9 +35,8 @@ function TunesViewModel(tunes) {
   self.items = ko.observableArray([]);
   self.isTop = ko.observable(true);
 
-  loadHeatMap();
-
   if (tunes == null){
+    loadHeatMap();
     // 全曲リスト
     if (AllTunes == null){
       loadItems().then(function(tunes){

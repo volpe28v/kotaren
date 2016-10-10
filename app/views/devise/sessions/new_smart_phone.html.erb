@@ -1,28 +1,20 @@
-<div data-role="page" id="sign-in" data-theme="a">
-  <div data-role="header"><h1>ログイン</h1></div> 
+<ons-page>
+  <ons-toolbar>
+    <div class="center">コタれん</div>
+  </ons-toolbar>
 
-  <div data-role="content"> 
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
-      <fieldset>
-        <div class="control-group">
-          <div class="controls">
-            <%= f.email_field :email, :placeholder => "Email" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <%= f.password_field :password, :placeholder => "Password" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <%= f.submit "ログイン", :class => "btn btn-primary" %>
-            <%= link_to raw('<span class="sign-in-link-with-service">Facebook でログイン</span>'), user_omniauth_authorize_path(:facebook), 'data-role' => "button", 'data-theme' => "b" %>
-          </div>
-        </div>
-      </fieldset>
+  <div style="text-align: center; margin-top: 30px;">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal", :name => "login_form"}) do |f| %>
+      <p>
+        <ons-input name="user[email]" modifier="underbar" style="width: 250px" placeholder="Email" type="email" float></ons-input>
+      </p>
+      <p>
+        <ons-input name="user[password]" modifier="underbar" style="width: 250px" type="password" placeholder="Password" float></ons-input>
+      </p>
+      <p>
+      <ons-button class="btn btn-primary" name="commit" onclick="document.login_form.submit();">ログイン</ons-button>
+      <ons-button onclick="document.location='/users/auth/facebook';">Facebookでログイン</ons-button>
+      </p>
     <% end %>
   </div>
-</div>
-
+</ons-page>

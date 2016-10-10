@@ -7,13 +7,25 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 <ons-splitter>
   <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
     <ons-page>
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <% if current_user %>
+        Login as <%= current_user.name %>
+        <% if current_user.icon_url.blank? == false %>
+          <%= image_tag(current_user.icon_url, :class => "user-icon-img") %>
+        <% end %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        <% else %>
+        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
+        <% end %>
+      </ons-row>
+
       <ons-list>
         <ons-list-header>Main Menu</ons-list-header>
         <ons-list-item onclick="fn.load('tunes.html')" tappable>
-          Tunes 
+          Tunes
         </ons-list-item>
         <ons-list-item onclick="fn.load('albums.html')" tappable>
-          Albums 
+          Albums
         </ons-list-item>
         <ons-list-item onclick="fn.load('tunings.html')" tappable>
           Tunings
@@ -25,14 +37,6 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         -->
       </ons-list>
 
-      <ons-row style="padding: 10px 10px 0px 10px">
-        <% if current_user %>
-        Login as <%= current_user.name %>
-        <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
-        <% else %>
-        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
-        <% end %>
-      </ons-row>
     </ons-page>
   </ons-splitter-side>
   <ons-splitter-content>

@@ -9,11 +9,12 @@
     </div>
 
     <div>
-      <ons-button data-bind="click: sign_up">ユーザ登録</ons-button>
-      <ons-button data-bind="click: sign_in">ログイン</ons-button>
+      <ons-button onclick="document.location='/users/sign_up';">ユーザ登録</ons-button>
+
+      <ons-button onclick="document.location='/users/sign_in';">ログイン</ons-button>
     </div>
     <div style="padding-top: 5px">
-      <ons-button data-bind="click: fb_sign_in">Facebookでログイン</ons-button>
+      <ons-button onclick="document.location='/users/auth/facebook';">Facebookでログイン</ons-button>
     </div>
 
   <p>
@@ -28,5 +29,3 @@
 
   </section>
 </ons-page>
-
-<%= javascript_include_tag "index_smart_phone" %>

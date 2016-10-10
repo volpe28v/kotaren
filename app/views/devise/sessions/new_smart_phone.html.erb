@@ -1,16 +1,12 @@
 <ons-page>
   <ons-toolbar>
-    <div class="center">コタれん</div>
+    <div class="center">ログイン</div>
   </ons-toolbar>
 
   <div style="text-align: center; margin-top: 30px;">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal", :name => "login_form"}) do |f| %>
-      <p>
-        <ons-input name="user[email]" modifier="underbar" style="width: 250px" placeholder="Email" type="email" float></ons-input>
-      </p>
-      <p>
-        <ons-input name="user[password]" modifier="underbar" style="width: 250px" type="password" placeholder="Password" float></ons-input>
-      </p>
+      <p><ons-input name="user[email]" modifier="underbar" style="width: 250px" placeholder="Email" type="email" float></ons-input></p>
+      <p><ons-input name="user[password]" modifier="underbar" style="width: 250px" type="password" placeholder="Password" float></ons-input></p>
       <p>
       <ons-button class="btn btn-primary" name="commit" onclick="document.login_form.submit();">ログイン</ons-button>
       <ons-button onclick="document.location='/users/auth/facebook';">Facebookでログイン</ons-button>

@@ -1,7 +1,9 @@
-<div data-role="page" id="sign-in" data-theme="a">
-  <div data-role="header"><h1>新規登録</h1></div> 
+<ons-page>
+  <ons-toolbar>
+    <div class="center">新規登録</div>
+  </ons-toolbar>
 
-  <div data-role="content"> 
+  <div style="text-align: center; margin-top: 30px;">
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count,"error") %></h2>
@@ -13,58 +15,19 @@
     </div>
   <% end %>
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-horizontal"}) do |f| %>
-    <fieldset>
-      <h3>必須項目</h3>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :name, :placeholder => "Name" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.email_field :email, :placeholder => "Email" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.password_field :password, :placeholder => "Password" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %>
-        </div>
-      </div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-horizontal", :name => "reg_form"}) do |f| %>
+      <p><ons-input name="user[name]" modifier="underbar" style="width: 250px" placeholder="Name" float></ons-input></p>
+      <p><ons-input name="user[email]" modifier="underbar" type="email" style="width: 250px" placeholder="Email" float></ons-input></p>
+      <p><ons-input name="user[password]" modifier="underbar" type="password" style="width: 250px" placeholder="Password" float></ons-input></p>
+      <p><ons-input name="user[password_confirmation]" modifier="underbar" type="password" style="width: 250px" placeholder="Password Confirmation" float></ons-input></p>
 
-      <h3>オプション項目</h3>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :twitter_name, :placeholder => "Twitter ID" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :youtube_name, :placeholder => "Youtube ID" %>
-        </div>
-      </div>
-       <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :guitar, :placeholder => "Main guitar name" %>
-        </div>
-      </div>
-       <div class="control-group">
-        <div class="controls">
-          <%= f.text_field :tuning, :placeholder => "Favolite tuning" %>
-        </div>
-      </div>
+      <h4>オプション項目</h4>
+      <p><ons-input name="user[twitter_name]" modifier="underbar" style="width: 250px" placeholder="Twitter ID" float></ons-input></p>
+      <p><ons-input name="user[youtube_name]" modifier="underbar" style="width: 250px" placeholder="Youtube ID" float></ons-input></p>
+      <p><ons-input name="user[guiter]" modifier="underbar" style="width: 250px" placeholder="Main guiter name" float></ons-input></p>
+      <p><ons-input name="user[tuning]" modifier="underbar" style="width: 250px" placeholder="Favolite tuning" float></ons-input></p>
 
-      <div class="control-group">
-        <div class="controls">
-          <%= f.submit "登録", :class => "btn btn-primary" %>
-        </div>
-      </div>
-    </fieldset>
+      <ons-button class="btn btn-primary" name="commit" onclick="document.reg_form.submit();">登録</ons-button>
   <% end %>
   </div>
 </div>

@@ -22,13 +22,22 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <ons-list>
         <ons-list-header>Main Menu</ons-list-header>
         <ons-list-item onclick="fn.load('tunes.html')" tappable>
-          Tunes
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-tunes" checked></ons-input>
+          </div>
+          <label class="center" for="r-tunes">Tunes</label>
         </ons-list-item>
         <ons-list-item onclick="fn.load('albums.html')" tappable>
-          Albums
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-albums"></ons-input>
+          </div>
+          <label class="center" for="r-albums">Albums</label>
         </ons-list-item>
         <ons-list-item onclick="fn.load('tunings.html')" tappable>
-          Tunings
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-tuning"></ons-input>
+          </div>
+          <label class="center" for="r-tuning">Tuning</label>
         </ons-list-item>
         <!--
         <ons-list-item onclick="fn.load('activity.html')" tappable>
@@ -183,7 +192,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     </ons-toolbar>
 
     <ons-row style="padding: 10px 10px 0px 10px">
-      <span class="list__item__title" data-bind="text: comment.text"></span>
+      <span class="list__item__title" data-bind="commentHtml: comment.text"></span>
       <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
     </ons-row>
 
@@ -206,7 +215,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: replies">
       <ons-list-item modifier="longdivider">
         <div class="center">
-          <span class="list__item__title" data-bind="text: text"></span>
+          <span class="list__item__title" data-bind="commentHtml: text"></span>
           <span class="list__item__subtitle">
             <span data-bind="text: $parent.date_format(updated_at())"></span>
             <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>

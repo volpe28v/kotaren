@@ -22,13 +22,22 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <ons-list>
         <ons-list-header>Main Menu</ons-list-header>
         <ons-list-item onclick="fn.load('tunes.html')" tappable>
-          Tunes
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-tunes" checked></ons-input>
+          </div>
+          <label class="center" for="r-tunes">Tunes</label>
         </ons-list-item>
         <ons-list-item onclick="fn.load('albums.html')" tappable>
-          Albums
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-albums"></ons-input>
+          </div>
+          <label class="center" for="r-albums">Albums</label>
         </ons-list-item>
         <ons-list-item onclick="fn.load('tunings.html')" tappable>
-          Tunings
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-tuning"></ons-input>
+          </div>
+          <label class="center" for="r-tuning">Tuning</label>
         </ons-list-item>
         <!--
         <ons-list-item onclick="fn.load('activity.html')" tappable>

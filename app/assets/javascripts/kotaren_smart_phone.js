@@ -24,7 +24,7 @@ window.fn.open = function() {
 window.fn.load = function(page) {
   var menu = document.getElementById('menu');
   menu.close();
-  document.querySelector('ons-navigator').resetToPage(page);
+  document.querySelector('ons-navigator').resetToPage(page,{animation: "fade"});
 };
 
 var AllTunes = null;

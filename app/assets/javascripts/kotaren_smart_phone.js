@@ -6,6 +6,7 @@ var viewModelFactory = {};
 viewModelFactory['tunes.html'] = function() { return new TunesViewModel(); }
 viewModelFactory['albums.html'] = function() { return new AlbumsViewModel(); }
 viewModelFactory['tunings.html'] = function() { return new TuningsViewModel(); }
+viewModelFactory['activity.html'] = function() { return new ActivityViewModel(); }
 
 window.ons.NavigatorElement.rewritables.link = function(element, target, options, callback) {
   if (!options.viewModel) {
@@ -347,4 +348,32 @@ function TuningsViewModel() {
   }
 }
 
+function ActivityViewModel() {
+  var self = this;
+
+  self.comments = ko.observableArray([]);
+
+  load_comments();
+
+  function load_comments(){
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/comments",
+      success: function (data) {
+        console.log(data);
+        var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
+        self.comments(mapped_data);
+      }
+    });
+  }
+
+  self.date_format = function(date){
+    return moment(date).format('YYYY/MM/DD HH:mm');
+  }
+
+  self.detailsComment = function() {
+    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(this.tune), this, self.comments)});
+  }
+}
 

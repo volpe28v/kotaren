@@ -189,13 +189,13 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
   <ons-page>
     <ons-toolbar>
       <div class="left"><ons-back-button></ons-back-button></div>
-      <div class="center" data-bind="text: tune.title"></div>
+      <div class="center" data-bind="text: item.tune.title"></div>
     </ons-toolbar>
 
     <ons-row style="padding: 10px 10px 0px 10px">
-      <span class="list__item__title" data-bind="commentHtml: comment.text"></span>
+      <span class="list__item__title" data-bind="commentHtml: item.comment.text"></span>
       <span class="list__item__subtitle">
-        <span data-bind="text: date_format(comment.created_at())"></span>
+        <span data-bind="text: date_format(item.comment.created_at())"></span>
         <span style="float: right; margin: 0 5px 0 0 " data-bind="text: item.user.name"></span>
       </span>
     </ons-row>
@@ -210,13 +210,13 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       </ons-col>
       <ons-col style="margin: 5px"></ons-col>
       <ons-col style="margin: 5px"></ons-col>
-       <ons-col style="margin: 5px">
-        <ons-button modifier="large--quiet" data-bind="click: delete_comment">削除</ons-button>
+      <ons-col style="margin: 5px">
+        <ons-button modifier="large--quiet" data-bind="visible: isShowDelete, click: delete_comment">削除</ons-button>
       </ons-col>
     </ons-row>
     <% end %>
 
-    <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: replies">
+    <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: item.replies">
       <ons-list-item modifier="longdivider">
         <div class="center">
           <span class="list__item__title" data-bind="commentHtml: text"></span>

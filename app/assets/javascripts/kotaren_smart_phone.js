@@ -200,7 +200,7 @@ function DetailsViewModel(item) {
   }
 
   self.detailsComment= function() {
-    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(self.item.tune), this, self.comments)});
+    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(this, self.comments)});
   }
 
   function update_progress(percent){
@@ -228,14 +228,13 @@ function DetailsViewModel(item) {
   }
 }
 
-function DetailsCommentViewModel(tune, comment, comments) {
+function DetailsCommentViewModel(comment, comments) {
   var self = this;
-  self.tune = tune;
   self.item = comment;
   self.comments = comments;
-  self.comment = comment.comment;
-  self.replies = comment.replies;
+
   self.inputReply = ko.observable("");
+  self.isShowDelete = CurrentUserID == self.item.comment.user_id();
 
   self.save_reply = function(){
     if (self.inputReply() == ""){
@@ -245,11 +244,11 @@ function DetailsCommentViewModel(tune, comment, comments) {
     $.ajax({
       type: "POST",
       cache: false,
-      url: "/comments/" + self.comment.id() + "/replies",
+      url: "/comments/" + self.item.comment.id() + "/replies",
       data: { reply: { text: self.inputReply() }},
       success: function(data){
         self.inputReply("");
-        self.replies.unshift(ko.mapping.fromJS(data));
+        self.item.replies.unshift(ko.mapping.fromJS(data));
       }
     });
   }
@@ -260,7 +259,7 @@ function DetailsCommentViewModel(tune, comment, comments) {
         $.ajax({
           type: "DELETE",
           cache: false,
-          url: "/comments/" + self.comment.id(),
+          url: "/comments/" + self.item.comment.id(),
           success: function(data){
             self.comments.remove(self.item);
             document.querySelector('ons-navigator').popPage();
@@ -373,7 +372,7 @@ function ActivityViewModel() {
   }
 
   self.detailsComment = function() {
-    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(ko.mapping.toJS(this.tune), this, self.comments)});
+    document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(this, self.comments)});
   }
 }
 

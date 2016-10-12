@@ -35,13 +35,26 @@ module Api
 
     resource :comments do
       get do
-        @tune = Tune.find(params[:tune_id])
+
+        comments = nil
+
+        tune_id = params[:tune_id]
         user_id = params[:user_id]
 
-        comments = @tune.comments.includes({replies: :user}).where(user_id: user_id).order("updated_at desc")
+        if tune_id != nil && user_id != nil
+          tune = Tune.find(params[:tune_id])
+          user_id = params[:user_id]
+
+          comments = tune.comments.includes({replies: :user}, :tune, :user).where(user_id: user_id).order("updated_at desc")
+        else
+          comments = Comment.includes({replies: :user}, :tune, :user).scoped.order("updated_at DESC").limit(30)
+        end
+
         comments.map{|comment|
           {
             comment: comment,
+            tune: comment.tune,
+            user: comment.user,
             replies: comment.replies.order("updated_at desc").map{|reply|
               {
                 id: reply.id,

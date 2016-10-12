@@ -50,6 +50,7 @@ class CommentsController < ApplicationController
     render :json => { lists: lists },
            :callback => 'showCommentList'
   end
+
   private
   def send_mail_to_other(comment)
     send_users = User.all.select{|u| u.all_notify}

@@ -39,11 +39,12 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
           </div>
           <label class="center" for="r-tuning">Tuning</label>
         </ons-list-item>
-        <!--
         <ons-list-item onclick="fn.load('activity.html')" tappable>
-          Activity
+          <div class="left">
+            <ons-input type="radio" name="categoryGroup" input-id="r-activity"></ons-input>
+          </div>
+          <label class="center" for="r-activity">Activity</label>
         </ons-list-item>
-        -->
       </ons-list>
 
     </ons-page>
@@ -174,7 +175,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
           <span class="list__item__title" data-bind="text: comment.text"></span>
-          <span class="list__item__subtitle" data-bind="text: $parent.date_format(comment.updated_at())"></span>
+          <span class="list__item__subtitle" data-bind="text: $parent.date_format(comment.created_at())"></span>
         </div>
         <div class="right">
           <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
@@ -193,7 +194,10 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 
     <ons-row style="padding: 10px 10px 0px 10px">
       <span class="list__item__title" data-bind="commentHtml: comment.text"></span>
-      <span class="list__item__subtitle" data-bind="text: date_format(comment.updated_at())"></span>
+      <span class="list__item__subtitle">
+        <span data-bind="text: date_format(comment.created_at())"></span>
+        <span style="float: right; margin: 0 5px 0 0 " data-bind="text: item.user.name"></span>
+      </span>
     </ons-row>
 
     <% if current_user %>
@@ -212,7 +216,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     </ons-row>
     <% end %>
 
-    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: replies">
+    <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: replies">
       <ons-list-item modifier="longdivider">
         <div class="center">
           <span class="list__item__title" data-bind="commentHtml: text"></span>
@@ -285,5 +289,39 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     </ons-list>
   </ons-page>
 </ons-template>
+
+<ons-template id="activity.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+      <div class="center">Activity</div>
+    </ons-toolbar>
+
+    <ons-list style="padding: 0px 0px 0px 0px" data-bind="foreach: comments">
+      <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
+        <div class="center">
+          <span class="list__item__title">
+            <span data-bind="text: tune.title"></span>
+          </span>
+          <span class="list__item__subtitle">
+            <span data-bind="text: comment.text"></span>
+          </span>
+          <span class="list__item__subtitle">
+            <span data-bind="text: $parent.date_format(comment.created_at())"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>
+          </span>
+        </div>
+        <div class="right">
+          <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
+
 
 <%= javascript_include_tag "kotaren_smart_phone" %>

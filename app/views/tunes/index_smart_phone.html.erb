@@ -7,17 +7,36 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 <ons-splitter>
   <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
     <ons-page>
+      <% if current_user %>
       <ons-row style="padding: 10px 10px 0px 10px">
-        <% if current_user %>
         Login as <%= current_user.name %>
+      </ons-row>
+      <% end %>
+
+      <% if current_user %>
         <% if current_user.icon_url.blank? == false %>
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <ons-col>
           <%= image_tag(current_user.icon_url, :class => "user-icon-img") %>
-        <% end %>
-        <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        </ons-col>
+        <ons-col>
+          <ons-button modifier="quiet" onclick="location='/users/sign_out'">Edit</ons-button>
+          <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        </ons-col>
+      </ons-row>
         <% else %>
-        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <span>
+          <ons-button modifier="quiet" onclick="location='/users/sign_out'">Edit</ons-button>
+          <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
+        </span>
         <% end %>
       </ons-row>
+      <% else %>
+      <ons-row style="padding: 10px 10px 0px 10px">
+        <ons-button modifier="quiet" onclick="location='/users/sign_in'">Login</ons-button>
+      </ons-row>
+      <% end %>
 
       <ons-list>
         <ons-list-header>Main Menu</ons-list-header>
@@ -304,19 +323,20 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     <ons-list style="padding: 0px 0px 0px 0px" data-bind="foreach: comments">
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
-          <span class="list__item__title">
-            <span data-bind="text: tune.title"></span>
+          <span class="list__item__title" style="margin-bottom: 5px">
+            <span data-bind="text: user.name"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: tune.title"></span>
           </span>
           <span class="list__item__subtitle">
             <span data-bind="text: comment.text"></span>
           </span>
           <span class="list__item__subtitle">
             <span data-bind="text: $parent.date_format(comment.created_at())"></span>
-            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>
+            <!-- ko if: replies().length > 0 -->
+            <span style="float: right" class="notification" data-bind="text: replies().length"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: $parent.date_format(comment.updated_at())"></span>
+            <!-- /ko -->
           </span>
-        </div>
-        <div class="right">
-          <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
         </div>
       </ons-list-item>
     </ons-list>

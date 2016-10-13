@@ -1,4 +1,5 @@
 ons.ready(function(){
+  ons.disableAutoStyling();
   document.querySelector('ons-navigator').pushPage('tunes.html');
 });
 
@@ -368,7 +369,7 @@ function ActivityViewModel() {
   }
 
   self.date_format = function(date){
-    return moment(date).format('YYYY/MM/DD HH:mm');
+    return moment(date).format('YYYY/MM/DD');
   }
 
   self.detailsComment = function() {

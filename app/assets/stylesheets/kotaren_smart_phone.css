@@ -145,3 +145,13 @@
   margin-top: 5px;
 }
 
+.user-icon-img {
+    height: 70px;
+    width: 70px;
+    vertical-align: middle;
+    position: relative;
+    margin: 6px;
+    box-shadow: 0 0 7px #000;
+    -moz-box-shadow: 0 0 7px #000;
+    -webkit-box-shadow: 0 0 7px #000;
+}

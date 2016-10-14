@@ -1,28 +1,67 @@
-<div data-role="page" id="activity_list" data-theme="a">
-  <%= render "header_smart_phone" %>
-
-  <div data-role="content">
-    <div id="comment_list_area">
-      <%= render "comment_body_smart_phone", {:c => @comment } %>
-    </div>
-  </div>
-</div>
 <script>
-$(document).delegate('#activity_list','pageinit',function(){
-  showCommentBody();
-});
+var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
+var CommentID = <%= @comment.id %>;
 </script>
 
-<div data-role="page" id="remove_reply_dialog" data-theme="a">
-  <div data-role="header" data-position="fixed">
-    <h3>リプライを削除</h3>
-  </div>
 
-  <div data-role="content">
-    <p id="remove_reply_target" class="progress-word"></p>
-    <p>リプライを削除しますか？</p>
-    <a id="remove_reply_ok" data-role="button">OK</a>
-    <a data-role="button" data-rel="back">Cancel</a>
-  </div>
-</div>
- 
+<ons-navigator></ons-navigator>
+
+<ons-template id="detailsComment.html">
+  <!-- ko if: item() == null -->
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Loading ...</div>
+    </ons-toolbar>
+    <div class="progress-bar progress-bar--indeterminate">
+      <div class="progress-bar__primary"></div>
+      <div class="progress-bar__secondary"></div>
+    </div>
+  </ons-page>
+  <!-- /ko -->
+
+  <!-- ko if: item() != null -->
+  <ons-page>
+    <ons-toolbar>
+      <div class="center" data-bind="text: item().tune.title"></div>
+    </ons-toolbar>
+
+    <ons-row style="padding: 10px 10px 0px 10px">
+      <span class="list__item__title" data-bind="commentHtml: item().comment.text"></span>
+      <span class="list__item__subtitle">
+        <span data-bind="text: date_format(item().comment.created_at())"></span>
+        <span style="float: right; margin: 0 5px 0 0 " data-bind="text: item().user.name"></span>
+      </span>
+    </ons-row>
+
+    <% if current_user %>
+      <ons-row style="padding: 10px 5px 0px 5px">
+        <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
+      </ons-row>
+      <ons-row style="padding: 5px 5px 0px 5px">
+        <ons-col style="margin: 5px">
+          <ons-button modifier="large" data-bind="click: save_reply">リプライ</ons-button>
+        </ons-col>
+        <ons-col style="margin: 5px"></ons-col>
+        <ons-col style="margin: 5px"></ons-col>
+        <ons-col style="margin: 5px">
+          <ons-button modifier="large--quiet" data-bind="visible: isShowDelete, click: delete_comment">削除</ons-button>
+        </ons-col>
+      </ons-row>
+    <% end %>
+
+    <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: item().replies">
+      <ons-list-item modifier="longdivider">
+        <div class="center">
+          <span class="list__item__title" data-bind="commentHtml: text"></span>
+          <span class="list__item__subtitle">
+            <span data-bind="text: $parent.date_format(updated_at())"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>
+          </span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+  <!-- /ko -->
+</ons-template>
+
+<%= javascript_include_tag "comments_smart_phone" %>

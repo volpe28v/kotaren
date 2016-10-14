@@ -35,7 +35,6 @@ module Api
 
     resource :comments do
       get do
-
         comments = nil
 
         tune_id = params[:tune_id]
@@ -65,7 +64,25 @@ module Api
             }
           }
         }
+      end
 
+      get ':id' do
+        comment_id = params[:id]
+        comment = Comment.includes({replies: :user}, :tune, :user).find(comment_id)
+
+        {
+          comment: comment,
+          tune: comment.tune,
+          user: comment.user,
+          replies: comment.replies.order("updated_at desc").map{|reply|
+            {
+              id: reply.id,
+              text: reply.text,
+              updated_at: reply.updated_at,
+              user: reply.user
+            }
+          }
+        }
       end
     end
 

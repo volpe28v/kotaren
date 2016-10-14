@@ -29,7 +29,9 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         <% else %>
       <ons-row style="padding: 10px 10px 0px 10px">
         <span>
+          <!--
           <ons-button modifier="quiet" onclick="location='/users/sign_out'">Edit</ons-button>
+          -->
           <ons-button modifier="quiet" onclick="location='/users/sign_out'">Logout</ons-button>
         </span>
         <% end %>

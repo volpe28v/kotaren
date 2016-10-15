@@ -123,6 +123,11 @@ function TunesViewModel(tunes) {
   self.detailsItem = function() {
     document.querySelector('ons-navigator').pushPage('details.html', {viewModel: new DetailsViewModel(this)});
   }
+
+  self.date_format = function(date){
+    if (date == null){ return ""; }
+    return moment(date()).format('YYYY/MM/DD');
+  };
 }
 
 function DetailsViewModel(item) {

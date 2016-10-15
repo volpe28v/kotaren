@@ -118,11 +118,14 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
           <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
         </div>
         <div class="center">
-          <span class="list__item__title" data-bind="text: tune.title"></span>
-          <span class="list__item__subtitle" data-bind="text: tuning.name"></span>
-        </div>
-        <div class="right">
-          <span class="list__item__subtitle" data-bind="text: progress.percent() + '%'"></span>
+          <span class="list__item__title">
+            <span data-bind="text: tune.title"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: progress.percent() + '%'"></span>
+          </span>
+          <span class="list__item__subtitle">
+            <span  data-bind="text: tuning.name"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: $parent.date_format(progress.updated_at)"></span>
+          </span>
         </div>
       </ons-list-item>
     </ons-list>

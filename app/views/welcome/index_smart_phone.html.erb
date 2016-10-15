@@ -1,31 +1,42 @@
-<ons-page>
-  <ons-toolbar>
-    <div class="center">コタれん</div>
-  </ons-toolbar>
+<ons-navigator></ons-navigator>
 
-  <section style="padding: 8px">
-    <div>
-  「コタれん」は押尾コータローさんの楽曲練習記録アプリです。
-    </div>
+<ons-template id="welcome.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">コタれん</div>
+    </ons-toolbar>
 
-    <div>
-      <ons-button onclick="document.location='/users/sign_up';">ユーザ登録</ons-button>
+    <section style="padding: 8px">
+      <div>
+        「コタれん」は押尾コータローさんの楽曲練習記録アプリです。
+      </div>
 
-      <ons-button onclick="document.location='/users/sign_in';">ログイン</ons-button>
-    </div>
-    <div style="padding-top: 5px">
-      <ons-button onclick="document.location='/users/auth/facebook';">Facebookでログイン</ons-button>
-    </div>
+      <div>
+        <ons-button onclick="document.location='/users/sign_up';">ユーザ登録</ons-button>
 
-  <p>
-    <h3>制限事項</h3>
-    <ul>
-      <li>この mobile用サイトは現在開発中ですので使える機能が限られています。</li>
-      <li>全ての機能を使用したい場合はPCのブラウザからアクセスしてくださいませ。</li>
-    </ul>
-  <p>
-    〜 登録ユーザ <%= @user_count %> 人 〜
-  </p>
+        <ons-button onclick="document.location='/users/sign_in';">ログイン</ons-button>
+      </div>
+      <div style="padding-top: 5px">
+        <ons-button onclick="document.location='/users/auth/facebook';">Facebookでログイン</ons-button>
+      </div>
 
-  </section>
-</ons-page>
+      <p>
+      <h3>制限事項</h3>
+      <ul>
+        <li>この モバイル用サイトは現在開発中ですので使える機能が限られています。</li>
+        <li>全ての機能を使用したい場合はPCのブラウザからアクセスしてくださいませ。</li>
+      </ul>
+      <p>
+      〜 登録ユーザ <%= @user_count %> 人 〜
+      </p>
+
+    </section>
+  </ons-page>
+</ons-template>
+
+<script>
+ons.ready(function(){
+  ons.disableAutoStyling();
+  document.querySelector('ons-navigator').pushPage('welcome.html');
+});
+</script>

@@ -1,34 +1,44 @@
-<ons-page>
-  <ons-toolbar>
-    <div class="center">新規登録</div>
-  </ons-toolbar>
+<ons-navigator></ons-navigator>
 
-  <div style="text-align: center; margin-top: 30px;">
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count,"error") %></h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<ons-template id="registrations.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">新規登録</div>
+    </ons-toolbar>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count,"error") %></h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-horizontal", :name => "reg_form"}) do |f| %>
+        <p><ons-input name="user[name]" modifier="underbar" style="width: 250px" placeholder="Name" float></ons-input></p>
+        <p><ons-input name="user[email]" modifier="underbar" type="email" style="width: 250px" placeholder="Email" float></ons-input></p>
+        <p><ons-input name="user[password]" modifier="underbar" type="password" style="width: 250px" placeholder="Password" float></ons-input></p>
+        <p><ons-input name="user[password_confirmation]" modifier="underbar" type="password" style="width: 250px" placeholder="Password Confirmation" float></ons-input></p>
+
+        <h4>オプション項目</h4>
+        <p><ons-input name="user[twitter_name]" modifier="underbar" style="width: 250px" placeholder="Twitter ID" float></ons-input></p>
+        <p><ons-input name="user[youtube_name]" modifier="underbar" style="width: 250px" placeholder="Youtube ID" float></ons-input></p>
+        <p><ons-input name="user[guiter]" modifier="underbar" style="width: 250px" placeholder="Main guiter name" float></ons-input></p>
+        <p><ons-input name="user[tuning]" modifier="underbar" style="width: 250px" placeholder="Favolite tuning" float></ons-input></p>
+
+        <ons-button class="btn btn-primary" name="commit" onclick="document.reg_form.submit();">登録</ons-button>
+      <% end %>
     </div>
-  <% end %>
+  </ons-page>
+</ons-template>
 
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => { :class => "form-horizontal", :name => "reg_form"}) do |f| %>
-      <p><ons-input name="user[name]" modifier="underbar" style="width: 250px" placeholder="Name" float></ons-input></p>
-      <p><ons-input name="user[email]" modifier="underbar" type="email" style="width: 250px" placeholder="Email" float></ons-input></p>
-      <p><ons-input name="user[password]" modifier="underbar" type="password" style="width: 250px" placeholder="Password" float></ons-input></p>
-      <p><ons-input name="user[password_confirmation]" modifier="underbar" type="password" style="width: 250px" placeholder="Password Confirmation" float></ons-input></p>
-
-      <h4>オプション項目</h4>
-      <p><ons-input name="user[twitter_name]" modifier="underbar" style="width: 250px" placeholder="Twitter ID" float></ons-input></p>
-      <p><ons-input name="user[youtube_name]" modifier="underbar" style="width: 250px" placeholder="Youtube ID" float></ons-input></p>
-      <p><ons-input name="user[guiter]" modifier="underbar" style="width: 250px" placeholder="Main guiter name" float></ons-input></p>
-      <p><ons-input name="user[tuning]" modifier="underbar" style="width: 250px" placeholder="Favolite tuning" float></ons-input></p>
-
-      <ons-button class="btn btn-primary" name="commit" onclick="document.reg_form.submit();">登録</ons-button>
-  <% end %>
-  </div>
-</div>
-
+<script>
+ons.ready(function(){
+  ons.disableAutoStyling();
+  document.querySelector('ons-navigator').pushPage('registrations.html');
+});
+</script>

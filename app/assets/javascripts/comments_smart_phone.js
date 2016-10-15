@@ -73,6 +73,14 @@ function DetailsCommentViewModel(comment_id) {
   self.date_format = function(date){
     return moment(date).format('YYYY/MM/DD HH:mm');
   }
+
+  self.go_to_home = function(){
+    if (CurrentUserID != -1){
+      document.location = "/users/" + CurrentUserID + "/tunes";
+    }else{
+      document.location = "/";
+    }
+  }
 }
 
 

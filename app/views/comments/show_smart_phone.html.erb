@@ -22,6 +22,12 @@ var CommentID = <%= @comment.id %>;
   <!-- ko if: item() != null -->
   <ons-page>
     <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button data-bind="click: go_to_home">
+          <ons-icon icon="md-home"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+
       <div class="center" data-bind="text: item().tune.title"></div>
     </ons-toolbar>
 

@@ -124,6 +124,10 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
           </span>
           <span class="list__item__subtitle">
             <span  data-bind="text: tuning.name"></span>
+            <!-- ko if: tuning.capo() != 0 -->
+            Capo <span data-bind="text: tuning.capo"></span>
+            <!-- /ko -->
+
             <span style="float: right; margin: 0 5px 0 0 " data-bind="text: $parent.date_format(progress.updated_at)"></span>
           </span>
         </div>
@@ -153,7 +157,12 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         <!-- ko foreach: item.albums -->
           <div data-bind="text: title"></div>
         <!-- /ko -->
-        <div data-bind="text: item.tuning.name"></div>
+        <div style="margin-top: 5px; color: rgba(38,100,171,0.81); font-weight: bold" data-bind="click: tunesListByTuning">
+          <span data-bind="text: item.tuning.name"></span>
+          <!-- ko if: item.tuning.capo() != 0 -->
+          Capo <span data-bind="text: item.tuning.capo"></span>
+          <!-- /ko -->
+        </div>
       </ons-col>
     </ons-row>
     <ons-row style="padding: 10px 5px 0px 5px">

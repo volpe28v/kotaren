@@ -56,6 +56,8 @@ function TunesViewModel(tunes) {
     sortItems();
   }
 
+  console.log(self.items());
+
   function loadItems(){
     return new Promise(function(callback){
       self.items([]);
@@ -107,10 +109,15 @@ function TunesViewModel(tunes) {
 
   function sortItems(){
     self.items.sort(function(l,r){
-      var l_date = l.progress.updated_at ? l.progress.updated_at() : new Date(-8640000000000000);
-      var r_date = r.progress.updated_at ? r.progress.updated_at() : new Date(-8640000000000000);
+      var l_date = getValidDate(l.progress.updated_at);
+      var r_date = getValidDate(r.progress.updated_at);
       return moment(l_date) < moment(r_date) ? 1 : -1;
     });
+  }
+
+  function getValidDate(date){
+    if (date && date()){ return date(); }
+    return new Date(-8640000000000000);
   }
 
   self.refresh = function(){
@@ -125,7 +132,7 @@ function TunesViewModel(tunes) {
   }
 
   self.date_format = function(date){
-    if (date == null){ return ""; }
+    if (date == null || date() == null){ return ""; }
     return moment(date()).format('YYYY/MM/DD');
   };
 }
@@ -133,6 +140,7 @@ function TunesViewModel(tunes) {
 function DetailsViewModel(item) {
   var self = this;
   self.item = item;
+  self.tunes = AllTunes;
 
   self.inputComment = ko.observable("");
   self.comments = ko.observableArray([]);
@@ -231,6 +239,14 @@ function DetailsViewModel(item) {
         self.item.progress.updated_at(data.date);
       }
     });
+  }
+
+  self.tunesListByTuning = function() {
+    var tuning_id = self.item.tuning.id();
+    var tunes = self.tunes().filter(function(tune){
+      return tune.tune.tuning_id() == tuning_id;
+    });
+    document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
   }
 }
 

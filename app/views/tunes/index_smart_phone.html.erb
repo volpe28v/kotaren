@@ -141,6 +141,9 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     <ons-toolbar>
       <div class="left"><ons-back-button></ons-back-button></div>
       <div class="center" data-bind="text: item.tune.title"></div>
+      <div class="right">
+        <ons-toolbar-button data-bind="click: youtube"><ons-icon icon="fa-youtube"></ons-icon></ons-toolbar-button>
+      </div>
     </ons-toolbar>
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col>
@@ -336,6 +339,13 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <div class="center">Activity</div>
     </ons-toolbar>
 
+    <div data-bind="if: comments().length == 0">
+      <div class="progress-bar progress-bar--indeterminate">
+        <div class="progress-bar__primary"></div>
+        <div class="progress-bar__secondary"></div>
+      </div>
+    </div>
+
     <ons-list style="padding: 0px 0px 0px 0px" data-bind="foreach: comments">
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
@@ -352,6 +362,36 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
             <span style="float: right" class="notification" data-bind="text: replies().length"></span>
             <span style="float: right; margin: 0 5px 0 0 " data-bind="text: $parent.date_format(comment.updated_at())"></span>
             <!-- /ko -->
+          </span>
+        </div>
+      </ons-list-item>
+    </ons-list>
+  </ons-page>
+</ons-template>
+
+<ons-template id="youtube.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center" data-bind="text: item.tune.title"></div>
+    </ons-toolbar>
+
+    <div data-bind="if: youtubeList().length == 0">
+      <div class="progress-bar progress-bar--indeterminate">
+        <div class="progress-bar__primary"></div>
+        <div class="progress-bar__secondary"></div>
+      </div>
+    </div>
+
+    <ons-list style="padding: 0px 0px 0px 0px" data-bind="foreach: youtubeList">
+      <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsYoutube">
+        <div class="left">
+          <img class="" data-bind="attr: {src: snippet.thumbnails.default.url}"/>
+        </div>
+        <div class="center">
+          <span class="list__item__subtitle" style="margin-bottom: 5px">
+            <div data-bind="text: snippet.title"></div>
+            <div style="margin-top: 5px" data-bind="text: snippet.channelTitle"></div>
           </span>
         </div>
       </ons-list-item>

@@ -56,8 +56,6 @@ function TunesViewModel(tunes) {
     sortItems();
   }
 
-  console.log(self.items());
-
   function loadItems(){
     return new Promise(function(callback){
       self.items([]);
@@ -241,6 +239,10 @@ function DetailsViewModel(item) {
     });
   }
 
+  self.youtube = function(){
+    document.querySelector('ons-navigator').pushPage('youtube.html', {viewModel: new YoutubeListViewModel(self.item)});
+  }
+
   self.tunesListByTuning = function() {
     var tuning_id = self.item.tuning.id();
     var tunes = self.tunes().filter(function(tune){
@@ -395,6 +397,46 @@ function ActivityViewModel() {
 
   self.detailsComment = function() {
     document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(this, self.comments)});
+  }
+}
+
+function YoutubeListViewModel(tune) {
+  var self = this;
+  self.item = tune;
+
+  self.youtubeList = ko.observableArray([]);
+
+  load_youtube();
+
+  function load_youtube(){
+    var baseUrl = "https://www.googleapis.com/youtube/v3/search";
+    var params = {
+      "part": "snippet",
+      "key": "AIzaSyASm1rVlmLTo7ojvP5FegeUc0gIXW9_zr4",
+      "type":"video",
+      "q": "押尾コータロー " + self.item.tune.title(),
+      "maxResults": 30,
+    }
+
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: baseUrl,
+      data: params,
+      success: function (data) {
+        console.log(data);
+        self.youtubeList(data.items);
+      }
+    });
+  }
+
+  self.detailsYoutube = function(){
+    var baseUrl = 'https://www.youtube.com/watch?v=';
+    window.open( baseUrl + this.id.videoId, "_blank" ) ;
+  }
+
+  self.date_format = function(date){
+    return moment(date).format('YYYY/MM/DD');
   }
 }
 

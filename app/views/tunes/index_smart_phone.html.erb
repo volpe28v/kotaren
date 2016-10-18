@@ -399,5 +399,36 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
   </ons-page>
 </ons-template>
 
+<ons-template id="youtubePlayer.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center">Youtube</div>
+    </ons-toolbar>
+
+    <div class="video">
+      <iframe width="560" height="315" data-bind="attr: {src: 'https://www.youtube.com/embed/' + item.id.videoId + '?autoplay=1&rel=0&showinfo=0&autohide=1'}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <ons-row style="padding: 5px 10px">
+      <span class="list__item__title" data-bind="text: item.snippet.title"></span>
+    </ons-row>
+    <ons-row style="padding: 3px 20px">
+      <span class="list__item__subtitle">
+        <span style="float: right" data-bind="text: item.snippet.channelTitle"></span>
+      </span>
+    </ons-row>
+    <ons-row style="padding: 10px 20px">
+      <span class="list__item__subtitle">
+        <span data-bind="text: item.snippet.description"></span>
+      </span>
+    </ons-row>
+    <ons-row style="padding: 10px 20px">
+      <a data-bind="attr: {href: 'https://www.youtube.com/watch?v=' + item.id.videoId}" target="_blank">Go to YouTube site</a>
+    </ons-row>
+
+  </ons-page>
+</ons-template>
+
 
 <%= javascript_include_tag "kotaren_smart_phone" %>

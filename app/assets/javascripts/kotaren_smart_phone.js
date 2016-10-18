@@ -431,12 +431,16 @@ function YoutubeListViewModel(tune) {
   }
 
   self.detailsYoutube = function(){
-    var baseUrl = 'https://www.youtube.com/watch?v=';
-    window.open( baseUrl + this.id.videoId, "_blank" ) ;
+    document.querySelector('ons-navigator').pushPage('youtubePlayer.html', {viewModel: new YoutubePlayerViewModel(this)});
   }
 
   self.date_format = function(date){
     return moment(date).format('YYYY/MM/DD');
   }
+}
+
+function YoutubePlayerViewModel(video){
+  var self = this;
+  self.item = video;
 }
 

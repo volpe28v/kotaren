@@ -213,7 +213,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
           <span class="list__item__title" data-bind="text: comment.text"></span>
-          <span class="list__item__subtitle" data-bind="text: $parent.date_format(comment.created_at())"></span>
+          <span class="list__item__subtitle" style="margin-top: 3px" data-bind="text: $parent.date_format(comment.created_at())"></span>
         </div>
         <div class="right">
           <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
@@ -232,7 +232,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 
     <ons-row style="padding: 10px 10px 0px 10px">
       <span class="list__item__title" data-bind="commentHtml: item.comment.text"></span>
-      <span class="list__item__subtitle">
+      <span class="list__item__subtitle" style="margin-top: 3px">
         <span data-bind="text: date_format(item.comment.created_at())"></span>
         <span style="float: right; margin: 0 5px 0 0 " data-bind="text: item.user.name"></span>
       </span>
@@ -258,7 +258,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       <ons-list-item modifier="longdivider">
         <div class="center">
           <span class="list__item__title" data-bind="commentHtml: text"></span>
-          <span class="list__item__subtitle">
+          <span class="list__item__subtitle" style="margin-top: 3px">
             <span data-bind="text: $parent.date_format(updated_at())"></span>
             <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>
           </span>
@@ -356,7 +356,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
           <span class="list__item__subtitle">
             <span data-bind="text: comment.text"></span>
           </span>
-          <span class="list__item__subtitle">
+          <span class="list__item__subtitle" style="margin-top: 3px">
             <span data-bind="text: $parent.date_format(comment.created_at())"></span>
             <!-- ko if: replies().length > 0 -->
             <span style="float: right" class="notification" data-bind="text: replies().length"></span>

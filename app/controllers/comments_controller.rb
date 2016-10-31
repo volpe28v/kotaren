@@ -14,6 +14,8 @@ class CommentsController < ApplicationController
     if request.smart_phone?
       render :json => {
         comment: @comment,
+        tune: tune,
+        user: @user,
         replies: []
       }
     else

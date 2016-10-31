@@ -65,7 +65,6 @@ function TunesViewModel(tunes) {
         url: "/api/tunes",
         data: { user_id: UserID },
         success: function (data) {
-          console.log(data);
           var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
           self.items(mapped_data);
           callback(self.items);
@@ -165,7 +164,6 @@ function DetailsViewModel(item) {
         tune_id: item.tune.id
       },
       success: function (data) {
-        console.log(data);
         var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
         self.comments(mapped_data);
       }
@@ -384,7 +382,6 @@ function ActivityViewModel() {
       cache: false,
       url: "/api/comments",
       success: function (data) {
-        console.log(data);
         var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
         self.comments(mapped_data);
       }
@@ -424,7 +421,6 @@ function YoutubeListViewModel(tune) {
       url: baseUrl,
       data: params,
       success: function (data) {
-        console.log(data);
         self.youtubeList(data.items);
       }
     });

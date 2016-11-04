@@ -33,6 +33,20 @@ function _decorate_link_tag( text ){
         var spotify_embed = '<iframe src="https://embed.spotify.com/?uri=spotify' + spotify_uri  +'" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>';
 				var spotify_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
         return spotify_embed + '<br>' + spotify_link;
+      }else if ( matched_link.match(/https:\/\/www\.youtube\.com\/watch\?v=/)){
+        var youtube_id = matched_link.replace(/https:\/\/www\.youtube\.com\/watch\?v=([0-9a-zA-Z]+).*/, function(){
+          return arguments[1];
+        });
+        var youtube_embed = '<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtube_id + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
+				var youtube_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
+        return youtube_embed + '<br>' + youtube_link;
+      }else if ( matched_link.match(/https:\/\/youtu\.be/)){
+        var youtube_id = matched_link.replace(/https:\/\/youtu\.be\/([0-9a-zA-Z]+).*/, function(){
+          return arguments[1];
+        });
+        var youtube_embed = '<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtube_id + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
+				var youtube_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
+        return youtube_embed + '<br>' + youtube_link;
       }else{
 				var title_text = arguments[2] ? arguments[2] : matched_link;
 				return '<a href="' + matched_link + '" target="_blank" >' + title_text + '</a>';

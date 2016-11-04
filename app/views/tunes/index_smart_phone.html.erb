@@ -209,14 +209,23 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     </ons-row>
     <% end %>
 
-    <ons-list style="padding: 10px 0px 0px 0px" data-bind="foreach: comments">
+    <ons-list style="padding: 0px 0px 0px 0px" data-bind="foreach: comments">
       <ons-list-item modifier="longdivider" tappable data-bind="click: $parent.detailsComment">
         <div class="center">
-          <span class="list__item__title" style="word-break:break-all" data-bind="text: comment.text"></span>
-          <span class="list__item__subtitle" style="margin-top: 3px" data-bind="text: $parent.date_format(comment.created_at())"></span>
-        </div>
-        <div class="right">
-          <span class="notification" data-bind="visible: replies().length > 0, text: replies().length"></span>
+          <span class="list__item__title" style="margin-bottom: 5px">
+            <span data-bind="text: user.name"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: tune.title"></span>
+          </span>
+          <span class="list__item__subtitle">
+            <span style="word-break:break-all" data-bind="text: comment.text"></span>
+          </span>
+          <span class="list__item__subtitle" style="margin-top: 3px">
+            <span data-bind="text: $parent.date_format(comment.created_at())"></span>
+            <!-- ko if: replies().length > 0 -->
+            <span style="float: right" class="notification" data-bind="text: replies().length"></span>
+            <span style="float: right; margin: 0 5px 0 0 " data-bind="text: $parent.date_format(comment.updated_at())"></span>
+            <!-- /ko -->
+          </span>
         </div>
       </ons-list-item>
     </ons-list>

@@ -171,7 +171,7 @@ function DetailsViewModel(item) {
   }
 
   self.date_format = function(date){
-    return moment(date).format('YYYY/MM/DD HH:mm');
+    return moment(date).format('YYYY/MM/DD');
   }
 
   self.do_plus = function(){

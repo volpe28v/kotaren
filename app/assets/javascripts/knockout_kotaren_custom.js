@@ -27,7 +27,13 @@ function _decorate_link_tag( text ){
 			var matched_link = arguments[3];
 			if ( matched_link.match(/(\.jpg|\.jpeg|\.gif|\.png|\.bmp)[?]?/i)){
 				return matched_link;
-			}else{
+			}else if ( matched_link.match(/https:\/\/open\.spotify\.com/)){
+        var spotify_uri = matched_link.replace(/https:\/\/open\.spotify\.com/,'');
+        spotify_uri = spotify_uri.replace(/\//g,'%3A');
+        var spotify_embed = '<iframe src="https://embed.spotify.com/?uri=spotify' + spotify_uri  +'" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>';
+				var spotify_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
+        return spotify_embed + '<br>' + spotify_link;
+      }else{
 				var title_text = arguments[2] ? arguments[2] : matched_link;
 				return '<a href="' + matched_link + '" target="_blank" >' + title_text + '</a>';
 			}

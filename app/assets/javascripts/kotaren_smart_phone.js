@@ -36,6 +36,7 @@ function TunesViewModel(tunes) {
 
   self.items = ko.observableArray([]);
   self.isTop = ko.observable(true);
+  self.practiceDays = ko.observable(0);
 
   if (tunes == null){
     loadHeatMap();
@@ -102,6 +103,16 @@ function TunesViewModel(tunes) {
       legend: [1,3,7,10],
       displayLegend: false
     });
+
+    $.ajax({
+      type: "GET",
+      cache: false,
+      url: "/api/activity_counts?user_id=" + UserID,
+      success: function (data) {
+        self.practiceDays(data.count);
+      }
+    });
+
   }
 
   function sortItems(){

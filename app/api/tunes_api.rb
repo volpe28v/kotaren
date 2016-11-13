@@ -103,6 +103,22 @@ module Api
         }.to_json
       end
     end
+
+    resource :activity_counts do
+      get do
+        user = User.find_by_id(params[:user_id])
+        to = DateTime.now
+        from = to.ago(1.years)
+
+        activities = user.activities.where(date: from.to_date..to.to_date)
+        act_count = activities.inject(Hash.new(0)){|h, act| h[act.date.to_time.to_datetime.to_i] = act.count; h}
+
+        {
+          count: act_count.size
+        }
+      end
+    end
+
   end
 end
 

@@ -17,7 +17,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         <% if current_user.icon_url.blank? == false %>
       <ons-row style="padding: 10px 10px 0px 10px">
         <ons-col>
-          <%= image_tag(current_user.icon_url, :class => "user-icon-img") %>
+          <%= link_to image_tag(current_user.icon_url, :class => "user-icon-img"), user_tunes_path(current_user) %>
         </ons-col>
         <ons-col>
           <!--
@@ -107,7 +107,8 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
     </div>
 
     <!-- ko if: isTop() == true -->
-    <ons-row style="padding: 10px 10px 0px 10px">
+    <ons-row style="padding: 5px 10px 0px 10px">
+      <div style="margin-bottom: 5px"><span data-bind="text: practiceDays"></span> days practice in the last year.</div>
       <div id="heatmap_tunes"></div>
     </ons-row>
     <!-- /ko -->

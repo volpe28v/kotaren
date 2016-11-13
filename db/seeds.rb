@@ -343,6 +343,27 @@ register_album [
   ["The Last Emperor", "BEDGBE"],
   ["Calling You", "BF#DEAD"],
   ["Ben", "C#G#EF#BE"],
-  ["The Godfather Medley", "CGDGBbD"],
+  ["The Godfather Medley", "CGDGB♭D"],
   ["Smile", "DADGBE"],
 ]
+
+register_album [
+  "KTRxGTR",
+  ["Creativetime Ragtime","Standard"],
+  ["Together!!!","AAEF#AE"],
+  ["同級生 〜Innocent Days〜","Standard"],
+  ["my best season","BEADF#B"],
+  ["空と風のワルツ","Standard"],
+  ["えんぴつと五線譜","Standard"],
+  ["蜃気楼","CGDGB♭D"],
+  ["茜色のブランコ","Standard"],
+  ["Moment","AEEF#BE"],
+  ["JOKER","BEADF#B"],
+  ["勿忘草","Standard"],
+  ["Birthday","C#G#EF#BE"],
+  ["Plastic Love","Standard"],
+  ["BE UP!","GGDGAD"],
+  ["Magical Beautiful Seasons","Standard"],
+  ["同級生 with Yuuki Ozaki","Standard"],
+]
+

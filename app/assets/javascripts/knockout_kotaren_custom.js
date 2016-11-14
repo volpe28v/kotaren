@@ -28,12 +28,14 @@ function _decorate_link_tag( text ){
       if ( matched_link.match(/(\.jpg|\.jpeg|\.gif|\.png|\.bmp)[?]?/i)){
         return matched_link;
       }else if ( matched_link.match(/https?:\/\/open\.spotify\.com/)){
+        // Spotify
         var spotify_uri = matched_link.replace(/https:\/\/open\.spotify\.com/,'');
         spotify_uri = spotify_uri.replace(/\//g,'%3A');
         var spotify_embed = '<iframe src="https://embed.spotify.com/?uri=spotify' + spotify_uri  +'" width="100%" height="380" frameborder="0" allowtransparency="true"></iframe>';
 				var spotify_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
         return spotify_embed + '<br>' + spotify_link;
       }else if ( matched_link.match(/https?:\/\/www\.youtube\.com\/watch\?v=/)){
+        // Youtube
         var youtube_id = matched_link.replace(/https?:\/\/www\.youtube\.com\/watch\?v=([-0-9a-zA-Z]+).*/, function(){
           return arguments[1];
         });
@@ -41,12 +43,21 @@ function _decorate_link_tag( text ){
 				var youtube_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
         return youtube_embed + '<br>' + youtube_link;
       }else if ( matched_link.match(/https?:\/\/youtu\.be/)){
+        // Youtube
         var youtube_id = matched_link.replace(/https?:\/\/youtu\.be\/([-0-9a-zA-Z]+).*/, function(){
           return arguments[1];
         });
         var youtube_embed = '<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtube_id + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
 				var youtube_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
         return youtube_embed + '<br>' + youtube_link;
+      }else if ( matched_link.match(/https?:\/\/instagram.com\/p/)){
+        // Instagram
+        var instagram_id = matched_link.replace(/https?:\/\/instagram.com\/p\/([-0-9a-zA-Z]+).*/, function(){
+          return arguments[1];
+        });
+        var instagram_embed = '<iframe width="100%" height="100%" src="https://instagram.com/p/' + instagram_id + '/embed" frameborder="0" allowfullscreen></iframe>';
+				var instagram_link = '<a href="' + matched_link + '" target="_blank" >' + matched_link + '</a>';
+        return instagram_embed + '<br>' + instagram_link;
       }else{
         var title_text = arguments[2] ? arguments[2] : matched_link;
         return '<a href="' + matched_link + '" target="_blank" >' + title_text + '</a>';

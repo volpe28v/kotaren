@@ -354,7 +354,7 @@ register_album [
   ["同級生 〜Innocent Days〜","Standard"],
   ["my best season","BEADF#B"],
   ["空と風のワルツ","Standard"],
-  ["えんぴつと五線譜","Standard"],
+  ["えんぴつと五線譜","Standard",5],
   ["蜃気楼","CGDGB♭D"],
   ["茜色のブランコ","Standard"],
   ["Moment","AEEF#BE"],

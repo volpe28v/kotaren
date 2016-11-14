@@ -32,7 +32,9 @@ var CommentID = <%= @comment.id %>;
     </ons-toolbar>
 
     <ons-row style="padding: 10px 10px 0px 10px">
-      <span class="list__item__title" data-bind="commentHtml: item().comment.text"></span>
+      <span class="list__item__title">
+        <span style="word-break:break-all" data-bind="commentHtml: item().comment.text"></span>
+      </span>
       <span class="list__item__subtitle">
         <span data-bind="text: date_format(item().comment.created_at())"></span>
         <span style="float: right; margin: 0 5px 0 0 " data-bind="text: item().user.name"></span>
@@ -58,7 +60,9 @@ var CommentID = <%= @comment.id %>;
     <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: item().replies">
       <ons-list-item modifier="longdivider">
         <div class="center">
-          <span class="list__item__title" data-bind="commentHtml: text"></span>
+          <span class="list__item__title">
+            <span style="word-break:break-all" data-bind="commentHtml: text"></span>
+          </span>
           <span class="list__item__subtitle">
             <span data-bind="text: $parent.date_format(updated_at())"></span>
             <span style="float: right; margin: 0 5px 0 0 " data-bind="text: user.name"></span>

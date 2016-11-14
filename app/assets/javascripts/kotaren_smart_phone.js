@@ -43,6 +43,7 @@ function TunesViewModel(tunes) {
     // 全曲リスト
     if (AllTunes == null){
       loadItems().then(function(tunes){
+        console.log(tunes());
         sortItems();
         AllTunes = tunes;
       });
@@ -116,10 +117,15 @@ function TunesViewModel(tunes) {
   }
 
   function sortItems(){
+    // 更新順、曲ID順
     self.items.sort(function(l,r){
-      var l_date = getValidDate(l.progress.updated_at);
-      var r_date = getValidDate(r.progress.updated_at);
-      return moment(l_date) < moment(r_date) ? 1 : -1;
+      var l_date = moment(getValidDate(l.progress.updated_at));
+      var r_date = moment(getValidDate(r.progress.updated_at));
+      if (l_date != r_date){
+        return l_date < r_date ? 1 : -1;
+      }else {
+        return l.tune.id() < r.tune.id() ? 1 : -1;
+      }
     });
   }
 

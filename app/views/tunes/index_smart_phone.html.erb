@@ -91,7 +91,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
         <ons-back-button></ons-back-button>
         <!-- /ko -->
       </div>
-      <div class="center">Tunes</div>
+      <div class="center">Tunes - <%= @user.name %></div>
       <div class="right">
         <!-- ko if: isTop() == true -->
         <ons-toolbar-button data-bind="click: refresh"><ons-icon icon="fa-refresh"></ons-icon></ons-toolbar-button>
@@ -108,7 +108,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 
     <!-- ko if: isTop() == true -->
     <ons-row style="padding: 5px 10px 0px 10px">
-      <div style="margin-bottom: 5px"><span data-bind="text: practiceDays"></span> days practice in the last year.</div>
+      <div style="margin-bottom: 5px"><span data-bind="text: practiceDays"></span> days practice in the last year</div>
       <div id="heatmap_tunes"></div>
     </ons-row>
     <!-- /ko -->

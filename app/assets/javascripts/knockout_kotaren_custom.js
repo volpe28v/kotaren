@@ -52,7 +52,7 @@ function _decorate_link_tag( text ){
         return youtube_embed + '<br>' + youtube_link;
       }else if ( matched_link.match(/https?:\/\/instagram.com\/p/)){
         // Instagram
-        var instagram_id = matched_link.replace(/https?:\/\/instagram.com\/p\/([-0-9a-zA-Z]+).*/, function(){
+        var instagram_id = matched_link.replace(/https?:\/\/instagram.com\/p\/([_\-0-9a-zA-Z]+).*/, function(){
           return arguments[1];
         });
         var instagram_embed = '<iframe width="100%" height="100%" src="https://instagram.com/p/' + instagram_id + '/embed" frameborder="0" allowfullscreen></iframe>';

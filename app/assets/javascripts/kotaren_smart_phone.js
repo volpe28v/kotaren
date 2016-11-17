@@ -43,7 +43,6 @@ function TunesViewModel(tunes) {
     // 全曲リスト
     if (AllTunes == null){
       loadItems().then(function(tunes){
-        console.log(tunes());
         sortItems();
         AllTunes = tunes;
       });

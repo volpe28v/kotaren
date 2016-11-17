@@ -53,13 +53,22 @@ module Api
           {
             comment: comment,
             tune: comment.tune,
-            user: comment.user,
+            user: {
+              id: comment.user.id,
+              name: comment.user.name,
+              icon_url: comment.user.icon_url
+            },
             replies: comment.replies.order("updated_at desc").map{|reply|
               {
                 id: reply.id,
                 text: reply.text,
                 updated_at: reply.updated_at,
-                user: reply.user
+                #user: reply.user
+                user: {
+                  id: reply.user ? reply.user.id: 0,
+                  name: reply.user ? reply.user.name : 'unknown',
+                  icon_url: reply.user ? reply.user.icon_url: '',
+                }
               }
             }
           }

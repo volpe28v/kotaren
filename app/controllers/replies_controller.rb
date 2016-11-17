@@ -12,13 +12,16 @@ class RepliesController < ApplicationController
     end
 
     if request.smart_phone?
-      render :json => 
-              {
-                id: new_reply.id,
-                text: new_reply.text,
-                updated_at: new_reply.updated_at,
-                user: new_reply.user
-              }
+      render :json => {
+        id: new_reply.id,
+        text: new_reply.text,
+        updated_at: new_reply.updated_at,
+        user: {
+          id: new_reply.user.id,
+          name: new_reply.user.name,
+          icon_url: new_reply.user.icon_url
+        }
+      }
     else
       render :json => {
         id: new_reply.id,

@@ -15,7 +15,11 @@ class CommentsController < ApplicationController
       render :json => {
         comment: @comment,
         tune: tune,
-        user: @user,
+        user: {
+          id: @user.id,
+          name: @user.name,
+          icon_url: @user.icon_url
+        },
         replies: []
       }
     else

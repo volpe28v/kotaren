@@ -36,7 +36,7 @@ function _decorate_link_tag( text ){
         return spotify_embed + '<br>' + spotify_link;
       }else if ( matched_link.match(/https?:\/\/www\.youtube\.com\/watch\?v=/)){
         // Youtube
-        var youtube_id = matched_link.replace(/https?:\/\/www\.youtube\.com\/watch\?v=([-0-9a-zA-Z]+).*/, function(){
+        var youtube_id = matched_link.replace(/https?:\/\/www\.youtube\.com\/watch\?v=([_\-0-9a-zA-Z]+).*/, function(){
           return arguments[1];
         });
         var youtube_embed = '<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtube_id + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
@@ -44,7 +44,7 @@ function _decorate_link_tag( text ){
         return youtube_embed + '<br>' + youtube_link;
       }else if ( matched_link.match(/https?:\/\/youtu\.be/)){
         // Youtube
-        var youtube_id = matched_link.replace(/https?:\/\/youtu\.be\/([-0-9a-zA-Z]+).*/, function(){
+        var youtube_id = matched_link.replace(/https?:\/\/youtu\.be\/([_\-0-9a-zA-Z]+).*/, function(){
           return arguments[1];
         });
         var youtube_embed = '<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' + youtube_id + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';

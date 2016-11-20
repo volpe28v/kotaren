@@ -12,6 +12,19 @@ ko.bindingHandlers.commentHtml = {
   }
 }
 
+// autofit カスタムバインディング(true の場合に有効)
+ko.bindingHandlers.autofit = {
+  init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+    $(element).autofit({min_height: 60});
+  },
+  update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+    if (ko.unwrap(valueAccessor()) == ""){
+      setTimeout(function(){
+        $(element).trigger('keyup');
+      }, 1);
+    }
+  }
+}
 
 function _decorate_br_tag( text ){
 	var br_text = text.replace(/\n/g,

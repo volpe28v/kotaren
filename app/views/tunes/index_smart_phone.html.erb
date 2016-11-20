@@ -198,7 +198,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
       </ons-col>
     </ons-row>
     <ons-row style="padding: 10px 5px 0px 5px">
-      <textarea class="textarea" data-bind="textInput: inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
+      <textarea id="comment_form" class="textarea" data-bind="autofit: inputComment, textInput: inputComment" style="width:100%;height:50px;margin-top:4px;" placeholder="練習メモ"></textarea>
     </ons-row>
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col style="margin: 5px">
@@ -255,7 +255,7 @@ var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
 
     <% if current_user %>
     <ons-row style="padding: 10px 5px 0px 5px">
-      <textarea class="textarea" data-bind="textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
+      <textarea id="reply_form" class="textarea" data-bind="autofit: inputReply, textInput: inputReply" style="width:100%;height:50px;margin-top:4px;" placeholder="リプライ"></textarea>
     </ons-row>
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col style="margin: 5px">

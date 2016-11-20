@@ -80,4 +80,8 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def self.blacklist_keys
+    super - %w(id)
+  end
 end

@@ -63,12 +63,7 @@ module Api
                 id: reply.id,
                 text: reply.text,
                 updated_at: reply.updated_at,
-                #user: reply.user
-                user: {
-                  id: reply.user ? reply.user.id: 0,
-                  name: reply.user ? reply.user.name : 'unknown',
-                  icon_url: reply.user ? reply.user.icon_url: '',
-                }
+                user: reply.user
               }
             }
           }

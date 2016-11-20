@@ -16,11 +16,7 @@ class RepliesController < ApplicationController
         id: new_reply.id,
         text: new_reply.text,
         updated_at: new_reply.updated_at,
-        user: {
-          id: new_reply.user.id,
-          name: new_reply.user.name,
-          icon_url: new_reply.user.icon_url
-        }
+        user: new_reply.user
       }
     else
       render :json => {

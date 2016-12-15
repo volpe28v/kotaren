@@ -24,15 +24,21 @@ class Tune < ActiveRecord::Base
   has_many :comments
   has_many :progresses
 
-  scope :doing, includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
-  scope :done, includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
-  scope :touched, includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
-  scope :play_history, includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
-
+  scope :doing, lambda {
+    includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
+  }
+  scope :done, lambda {
+    includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
+  }
+  scope :touched, lambda {
+    includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
+  }
+  scope :play_history, lambda {
+    includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
+  }
   scope :progress_by_user, lambda {|user|
     includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
   }
-
   scope :by_status_and_user, lambda {|status, user|
     case status
     when "doing"
@@ -45,7 +51,9 @@ class Tune < ActiveRecord::Base
       play_history.progress_by_user(user)
     end
   }
-  scope :with_albums, includes(:recordings)
+  scope :with_albums, lambda {
+    includes(:recordings)
+  }
 
   def progress_val_and_updated_at(user)
     progress = self.active_progress_by_user(user)

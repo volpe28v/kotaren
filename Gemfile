@@ -7,7 +7,6 @@ gem 'omniauth-facebook'
 gem 'oa-core'
 
 gem 'jpmobile'
-gem 'eventmachine'
 gem 'grape'
 
 group :assets do
@@ -34,17 +33,4 @@ end
 
 group :production do
   gem 'pg'
-  gem 'execjs'
-  gem 'therubyracer'
 end
-
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-

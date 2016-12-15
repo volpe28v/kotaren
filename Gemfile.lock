@@ -62,11 +62,11 @@ GEM
       railties (>= 3, < 5.1)
     cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
-    devise (2.2.8)
+    devise (3.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (~> 3.1)
-      warden (~> 1.2.1)
+      railties (>= 3.2.6, < 5)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
@@ -210,7 +210,7 @@ DEPENDENCIES
   ci_reporter
   cucumber-rails
   database_cleaner
-  devise (~> 2.0)
+  devise (~> 3.0.0)
   eventmachine
   factory_girl
   factory_girl_rails

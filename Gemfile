@@ -17,7 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise', '~> 2.0'
+gem 'devise', '~> 3.0.0'
 gem 'rails_autolink'
 
 group :development, :test do

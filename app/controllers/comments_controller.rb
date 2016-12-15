@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
   end
 
   def load_comment_list
-    @comments = Comment.scoped.order("updated_at DESC").limit(30)
+    @comments = Comment.order("updated_at DESC").limit(30)
 
     lists = render_to_string :partial => 'comment_list_smart_phone'
     render :json => { lists: lists },

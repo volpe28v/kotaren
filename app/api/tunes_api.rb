@@ -46,7 +46,7 @@ module Api
 
           comments = tune.comments.includes({replies: :user}, :tune, :user).where(user_id: user_id).order("updated_at desc")
         else
-          comments = Comment.includes({replies: :user}, :tune, :user).scoped.order("updated_at DESC").limit(50)
+          comments = Comment.includes({replies: :user}, :tune, :user).order("updated_at DESC").limit(50)
         end
 
         comments.map{|comment|

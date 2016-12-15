@@ -14,7 +14,7 @@ class TunesController < ApplicationController
       @tunes = Tune.all_play_history(@user)
       @other_comment = Comment.other_by(@user,30).sample
     else
-      @albums = Album.scoped.order("id ASC")
+      @albums = Album.order("id ASC")
       @statuses = @@statuses_def
 
       @current_album = selected_album_title
@@ -24,7 +24,7 @@ class TunesController < ApplicationController
       @latest_comments = @user.comments.latest.order("updated_at DESC")
       @other_comments = Comment.other_by(@user).order("updated_at DESC")
 
-      @tunes = Tune.scoped
+      @tunes = Tune.all
 
       set_tune_counts(@user)
     end
@@ -41,7 +41,7 @@ class TunesController < ApplicationController
 
   #TODO: 未使用かも
   def all
-    @albums = Album.scoped.order("id ASC")
+    @albums = Album.order("id ASC")
   end
 
   def get_tunes_list

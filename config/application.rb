@@ -31,13 +31,11 @@ module Kotaren
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.1'
-
-    config.assets.initialize_on_precompile = false
-
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
 
     config.paths.add "app/api", :glob => "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app"]

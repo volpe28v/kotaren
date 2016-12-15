@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :expect => [:edit, :update]
+  before_action :authenticate_user!, :expect => [:edit, :update]
 
   def index
     redirect_to user_tunes_path(current_user)

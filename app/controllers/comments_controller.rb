@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     tune = Tune.find(params[:tune_id])
 
-    @comment = @user.comments.build(params[:comment])
+    @comment = @user.comments.build(comment_params)
     @comment.tune = tune
     if @comment.save == false
       render :nothing => true
@@ -63,5 +63,9 @@ class CommentsController < ApplicationController
     }
   end
 
-
+  def comment_params
+    params.require(:comment).permit(
+      :text
+    )
+  end
 end

@@ -1,5 +1,7 @@
 module Api
   class TunesApi < Grape::API
+    format :json
+
     resource :tunes do
       get do
         user_id = params[:user_id]

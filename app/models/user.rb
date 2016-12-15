@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def add_activity
-    activity = self.activities.find_or_create_by_date(Date.current)
+    activity = self.activities.find_or_create_by(date: Date.current)
     activity.count += 1
     activity.save
   end

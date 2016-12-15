@@ -82,13 +82,13 @@ class Tune < ActiveRecord::Base
   def update_progress(user, val)
     raise ArgumentError if !user
 
-    progress = self.progresses.find_or_initialize_by_user_id(user.id)
+    progress = self.progresses.find_or_initialize_by(user_id: user.id)
     #TODO: どんな値でも updated_at を更新したいので一旦 0 で保存している
     #      もっと良い方法があれば変更する。
     progress.percent = 0
-    progress.save
+    progress.save!
     progress.percent = val
-    progress.save
+    progress.save!
   end
 
   def touched_progresses

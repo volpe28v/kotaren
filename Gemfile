@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.10'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2'
 gem 'omniauth-facebook'
 gem 'oa-core'
 
@@ -19,7 +19,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'devise', '~> 3.0.0'
+gem 'devise', '~> 3.0'
 gem 'rails_autolink'
 
 group :development, :test do

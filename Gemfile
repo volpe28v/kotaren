@@ -8,6 +8,7 @@ gem 'oa-core'
 gem 'rake', '< 11' # XXX Rails 3 のためのワークアラウンド: http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
 
 gem 'jpmobile'
+gem 'eventmachine'
 gem 'grape'
 
 group :assets do

@@ -221,3 +221,9 @@ DEPENDENCIES
   simplecov
   sqlite3
   uglifier
+
+RUBY VERSION
+   ruby 2.1.10p492
+
+BUNDLED WITH
+   1.13.6

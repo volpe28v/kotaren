@@ -58,24 +58,24 @@ class Tune < ActiveRecord::Base
   def progress_val_and_updated_at(user)
     progress = self.active_progress_by_user(user)
     {
-      val: progress ? progress.percent : 0,
-      updated_at: progress ? progress.updated_at : "-"
+      val: progress.try!(:percent) || 0,
+      updated_at: progress.try!(:updated_at ) || "-"
     }
   end
 
   def progress_val(user)
     progress = self.progresses.by_user(user).first
-    progress ? progress.percent : 0
+    progress.try!(:percent) || 0
   end
 
   def progress_updated_at(user)
     progress = self.active_progress_by_user(user)
-    progress ? progress.updated_at : "-"
+    progress.try!(:updated_at) || "-"
   end
 
   def progress_created_at(user)
     progress = self.active_progress_by_user(user)
-    progress ? progress.created_at : "-"
+    progress.try!(:created_at) || "-"
   end
 
   def active_progress_by_user(user)

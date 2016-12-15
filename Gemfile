@@ -2,14 +2,16 @@ source 'https://rubygems.org'
 
 ruby '2.1.10'
 
-gem 'rails', '3.2.16'
+gem 'rails', '~> 4.0.0'
 gem 'omniauth-facebook'
 gem 'oa-core'
-gem 'rake', '< 11' # XXX Rails 3 のためのワークアラウンド: http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
 
 gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
+
+gem 'rake', '< 11' # XXX Rails 3 のためのワークアラウンド: http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
+gem 'protected_attributes'
 
 group :assets do
   gem 'sass-rails'

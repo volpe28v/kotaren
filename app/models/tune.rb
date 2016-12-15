@@ -1,12 +1,12 @@
 class Tune < ActiveRecord::Base
   def self.all_or_filter_by_tuning(tuning)
     return self.order("tunes.id ASC") if Tuning.find_by_name(tuning) == nil
-    self.includes(:tuning).where("tunings.name = ?", tuning).order("tunes.id ASC")
+    self.includes(:tuning).where("tunings.name = ?", tuning).references(:tuning).order("tunes.id ASC")
   end
 
   def self.all_or_filter_by_tuning_id(tuning_id)
     return self.order("tunes.id ASC") if Tuning.find_by_id(tuning_id) == nil
-    self.includes(:tuning).where("tunings.id = ?", tuning_id).order("tunes.id ASC")
+    self.includes(:tuning).where("tunings.id = ?", tuning_id).references(:tuning).order("tunes.id ASC")
   end
 
   def self.get_tune_ranking
@@ -25,19 +25,19 @@ class Tune < ActiveRecord::Base
   has_many :progresses
 
   scope :doing, lambda {
-    includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").order("tunes.id ASC")
+    includes(:progresses).where("progresses.percent > 0 and progresses.percent < 100").references(:progresses).order("tunes.id ASC")
   }
   scope :done, lambda {
-    includes(:progresses).where("progresses.percent = 100").order("tunes.id ASC")
+    includes(:progresses).where("progresses.percent = 100").references(:progresses).order("tunes.id ASC")
   }
   scope :touched, lambda {
-    includes(:progresses).where("progresses.percent > 0").order("tunes.id ASC")
+    includes(:progresses).where("progresses.percent > 0").references(:progresses).order("tunes.id ASC")
   }
   scope :play_history, lambda {
-    includes(:progresses).where("progresses.percent > 0").order("progresses.updated_at DESC")
+    includes(:progresses).where("progresses.percent > 0").references(:progresses).order("progresses.updated_at DESC")
   }
   scope :progress_by_user, lambda {|user|
-    includes(:progresses).where("progresses.user_id = ?", user.id).order("tunes.id ASC")
+    includes(:progresses).where("progresses.user_id = ?", user.id).references(:progresses).order("tunes.id ASC")
   }
   scope :by_status_and_user, lambda {|status, user|
     case status

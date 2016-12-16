@@ -1,6 +1,6 @@
 <script>
 var UserID = <%= @user.id %>;
-var CurrentUserID = <%= current_user ? current_user.id : -1  %>;
+var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
 
 </script>
 

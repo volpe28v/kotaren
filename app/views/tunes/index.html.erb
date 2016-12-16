@@ -27,11 +27,11 @@
 
             <div class="album-list">
               <a href="#" data-name="All Albums">
-                <img src="/assets/albums/mini/ALL.png" class="album-img" alt="All Albums" title="All Albums">
+                <%= image_tag "albums/mini/ALL.png", :class => "album-img", :alt => "All Albums", :title => "All Albums" %>
               </a>
               <% Album.all.each do |a| %>
                 <a href="#" data-name="<%= a.title %>">
-                  <img src="/assets/albums/mini/<%= a.title %>_s.jpg" class="album-img" alt="<%= a.title %>" title="<%= a.title %>">
+                  <%= image_tag "albums/mini/#{a.title}_s.jpg", :class => "album-img", :alt => a.title, :title => a.title %>
                 </a>
               <% end %>
             </div>
@@ -95,7 +95,7 @@
         </div>
         <center>
           <div id="loading">
-            <img src="<%= image_path 'ajax-loader_kotaren.gif' %> ">
+            <%= image_tag 'ajax-loader_kotaren.gif' %>
           </div>
         </center>
       </div>

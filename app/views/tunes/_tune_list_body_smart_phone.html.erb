@@ -1,7 +1,7 @@
     <% @tunes.each do |t| %>
       <li id="id_<%= t.id %>" class="tune_li <%= t.recordings.inject(""){|album_classes, r| album_classes << "album_#{r.album.id} "} %> <%= "tuning_#{t.tuning.id}" %>" >
         <a href="#tune_<%= t.id %>" data-transition="slidefade">
-          <img src="/assets/albums/mini/<%= t.recordings[0].album.title %>_s.jpg" class="album-img">
+          <%= image_tag "albums/mini/#{t.recordings[0].album.title}_s.jpg", :class => "album-img" %>
           <h3 class="tune-title"><%= t.title %></h3>
           <p>
             <span class="tuning-name"><%= t.tuning.name %>

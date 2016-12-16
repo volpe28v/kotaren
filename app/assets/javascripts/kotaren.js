@@ -1,3 +1,5 @@
+//= require ./image_urls
+
 $(function($){
   $('#tunes_list_form')
     .bind("ajax:success", function(xhr, data){
@@ -38,12 +40,12 @@ var progress_default_option = {
     width           : 120,
     height          : 12, 
     callback        : null,
-    boxImage        : '/assets/progress/progressbar.gif',
+    boxImage        : ImageURLs.imagePath('progress/progressbar.gif'),
     barImage        : { 
-        0:   '/assets/progress/progressbg_red.gif',
-        30:  '/assets/progress/progressbg_orange.gif',
-        60:  '/assets/progress/progressbg_yellow.gif',
-        100: '/assets/progress/progressbg_green.gif'
+        0:   ImageURLs.imagePath('progress/progressbg_red.gif'),
+        30:  ImageURLs.imagePath('progress/progressbg_orange.gif'),
+        60:  ImageURLs.imagePath('progress/progressbg_yellow.gif'),
+        100: ImageURLs.imagePath('progress/progressbg_green.gif')
     } 
 }
 

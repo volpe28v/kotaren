@@ -11,7 +11,7 @@
             <div class="album-contents">
               <div class="thumbnail ui-widget-content">
                 <a href="<%= "#album_#{al.id}" %>">
-                  <%= image_tag "albums/#{al.title}.jpg", :class => "album-img" %>
+                  <%= image_tag al.thumbnail_url, :class => "album-img" %>
                   <div class="album-caption">
                     <h5><%= al.title %></h5>
                     <span id="progress_average_<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></span>
@@ -33,7 +33,7 @@
           <div class="album-tag" id="album_<%= al.id %>"></div>
           <%= al.title %>
           <table class="ui-widget-content table table-bordered album-contents"><tr><td style="text-align: center">
-                <%= image_tag "albums/#{al.title}.jpg", :class => "album-img" %>
+                <%= image_tag al.thumbnail_url, :class => "album-img" %>
                 <div id="progress_average_list<%= "#{al.id}" %>" class="progress-bar"><%= al.progress_average(@user) %></div>
                 <table>
                   <tr><td>All: </td><td style="text-align: right"><span id="all_num" class="tune_s_num" ><%= al.tunes.size %></span></td><td> tunes.</td></tr>

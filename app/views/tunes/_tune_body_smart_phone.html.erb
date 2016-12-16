@@ -6,9 +6,9 @@
       <% @tune.recordings.each do |r| %>
         <a href="#tune_list" data-id="<%= r.album.id %>" data-transition="slidefade" class="tune-album-img" >
           <% if count == 1 %>
-            <%= image_tag "albums/#{r.album.title}.jpg", :class => "album-img album-img-large" %>
+            <%= image_tag r.album.thumbnail_url, :class => "album-img album-img-large" %>
           <% else %>
-            <%= image_tag "albums/mini/#{r.album.title}_s.jpg", :class => "album-img" %>
+            <%= image_tag r.album.mini_thumbnail_url, :class => "album-img" %>
           <% end %>
         </a>
       <% end %>

@@ -12,7 +12,7 @@ module Api
         touched_tunes = touched_tunes.map{|tune|
           {
             tune: tune,
-            albums: tune.recordings.map{|rec| rec.album},
+            albums: tune.recordings.map{|rec| rec.album.as_json(methods: %i(thumbnail_url mini_thumbnail_url))},
             progress: tune.progresses.first,
             tuning: tune.tuning
           }
@@ -21,7 +21,7 @@ module Api
         untouched_tunes = untouched_tunes.map{|tune|
           {
             tune: tune,
-            albums: tune.recordings.map{|rec| rec.album},
+            albums: tune.recordings.map{|rec| rec.album.as_json(methods: %i(thumbnail_url mini_thumbnail_url))},
             progress: { percent: 0 },
             tuning: tune.tuning
           }

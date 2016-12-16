@@ -116,7 +116,7 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     <ons-list data-bind="foreach: items">
       <ons-list-item tappable data-bind="click: $parent.detailsItem">
         <div class="left">
-          <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + albums()[0].title() + '_s.jpg'}">
+          <img class="list__item__thumbnail" data-bind="attr: {src: albums()[0].mini_thumbnail_url()}">
         </div>
         <div class="center">
           <span class="list__item__title">
@@ -149,11 +149,11 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col>
         <!-- ko if: item.albums().length == 1 -->
-        <img width="90%" data-bind="attr: {src: '/assets/albums/' + item.albums()[0].title() + '.jpg'}">
+        <img width="90%" data-bind="attr: {src: item.albums()[0].thumbnail_url()}">
         <!-- /ko -->
         <!-- ko if: item.albums().length != 1 -->
           <!-- ko foreach: item.albums -->
-            <img width="40%" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
+            <img width="40%" data-bind="attr: {src: mini_thumbnail_url()}">
           <!-- /ko -->
         <!-- /ko -->
       </ons-col>
@@ -302,7 +302,7 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     <ons-list data-bind="foreach: items">
       <ons-list-item tappable data-bind="click: $parent.tunesList">
         <div class="left">
-          <img class="list__item__thumbnail" data-bind="attr: {src: '/assets/albums/mini/' + title() + '_s.jpg'}">
+          <img class="list__item__thumbnail" data-bind="attr: {src: mini_thumbnail_url()}">
         </div>
         <div class="center">
           <span class="list__item__title" data-bind="text: title"></span>

@@ -31,7 +31,7 @@
               </a>
               <% Album.all.each do |a| %>
                 <a href="#" data-name="<%= a.title %>">
-                  <%= image_tag "albums/mini/#{a.title}_s.jpg", :class => "album-img", :alt => a.title, :title => a.title %>
+                  <%= image_tag a.mini_thumbnail_url, :class => "album-img", :alt => a.title, :title => a.title %>
                 </a>
               <% end %>
             </div>

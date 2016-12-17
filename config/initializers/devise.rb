@@ -9,7 +9,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'cb10bec64b2497c5189f4c1ffa6fdb3ab4b5e629c965a077c0cb911b034dc1c47a3339cf5937ce755a7ec9be0bcdb7e23bc5fec5b556f22fd1849fce96372f8c'
+  # config.secret_key = '37696ec07bfc04df3c815248081a915964e59160b1ad42ca301c0a1e46a4276985a26931d81133ca86372283691c4007456a62982c5faca65e4ba57eb84729ab'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -93,6 +93,12 @@ Devise.setup do |config|
   # from the server. You can disable this option at your own risk.
   # config.clean_up_csrf_token_on_authentication = true
 
+  # When false, Devise will not attempt to reload routes on eager load.
+  # This can reduce the time taken to boot the app but if your application
+  # requires the Devise mappings to be loaded during boot time the application
+  # won't boot properly.
+  # config.reload_routes = true
+
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 11. If
   # using other algorithms, it sets how many times you want the password to be hashed.
@@ -105,7 +111,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '014e3ddc3b58cbc886f32ea5859bf31f27658fb2cf46bd0b8e9224af42ceed6bb1eb871bc5f65e4feae8ba08876de7c78ce8ae248a9665b6c3a3800bd8e04898'
+  # config.pepper = 'b2636d3da62910e12c47cb6bbd80d822500adced8a132d8dc613e5fdee809cc04fa115cdbb74206fc907f19d59cee4d3dd5f379cd134533995e7ee36f9d28453'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -156,7 +162,7 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
-  # config.email_regexp = /\A[^@]+@[^@]+\z/
+  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

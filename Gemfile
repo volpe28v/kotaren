@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0.0'
 gem 'omniauth-facebook'
 gem 'oa-core'
 
 gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
+gem 'puma'
 
 group :assets do
   gem 'sass-rails'

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe CommentsController do
+describe CommentsController, type: :controller do
 
 end

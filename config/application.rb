@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -33,9 +33,6 @@ module Kotaren
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     config.paths.add "app/api", :glob => "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app"]

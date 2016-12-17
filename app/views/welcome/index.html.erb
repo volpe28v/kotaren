@@ -63,7 +63,7 @@
   </dl>
   <button id="login" class="btn" onclick="submit();">ログイン</button>
   or
-  <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_omniauth_authorize_path(:facebook), :class => "btn btn-info"  %><br/>
+  <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_facebook_omniauth_authorize_path, :class => "btn btn-info"  %><br/>
   <br/>
   <p>
    〜 登録ユーザ <%= @user_count %> 人 〜

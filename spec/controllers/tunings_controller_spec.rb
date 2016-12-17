@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe TuningsController do
+describe TuningsController, type: :controller do
 
 end

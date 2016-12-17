@@ -1,4 +1,4 @@
-Kotaren::Application.routes.draw do
+Rails.application.routes.draw do
   mount Api::TunesApi => '/api'
 
   get "albums/index"

@@ -11,20 +11,20 @@
     <th class="ranking-title">平均進捗</th>
   </tr>
 
-<% @tune_ranking.each do |tr| %>
+<% @tune_ranking.each do |tune| %>
   <tr>
-    <td class="tune-player-num-title"><span class='tune_s_num'><%= tr[1].to_s %></span> 人</td>
+    <td class="tune-player-num-title"><span class='tune_s_num'><%= tune.active_count %></span> 人</td>
     <td class="tune-ranking-title">
       <% if current_user %>
-        <%= link_to tr[0].title, user_tune_path(current_user,tr[0]) %></td>
+        <%= link_to tune.title, user_tune_path(current_user, tune) %></td>
       <% else %>
-        <%= tr[0].title %></td>
+        <%= tune.title %></td>
       <% end %>
-    <td><%= tr[0].tuning.name %></td>
+    <td><%= tune.tuning.name %></td>
     <% if current_user %>
-      <td><span id="progress_<%= tr[0].id %>" class="progress-bar"><%= tr[0].progress_val(current_user) %></span></td>
+      <td><span id="progress_<%= tune.id %>" class="progress-bar"><%= tune.progress_val(current_user) %></span></td>
     <% end %>
-    <td><span class="progress-bar"><%= tr[0].progresses.inject(0){|sum,p| sum += (p ? p.percent.to_i : 0) } / (tr[1] > 0 ? tr[1] : 1) %></span></td>
+    <td><span class="progress-bar"><%= tune.progresses.inject(0){|sum,p| sum += (p ? p.percent.to_i : 0) } / (tune.active_count > 0 ? tune.active_count : 1) %></span></td>
   </tr>
 <% end %>
 </table>

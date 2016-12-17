@@ -10,7 +10,11 @@ class Tune < ActiveRecord::Base
   end
 
   def self.get_tune_ranking
-    self.all.inject([]){|touch, tune| touch << [tune, tune.progresses.active.count] }.sort{|a,b| b[1] <=> a[1]}
+    self
+      .left_outer_joins(:progresses)
+      .group(:id)
+      .select('tunes.*, COUNT(progresses.percent > 0) AS active_count')
+      .order('active_count DESC')
   end
 
   def self.all_play_history(user)

@@ -77,12 +77,11 @@ GEM
     database_cleaner (1.5.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (3.5.10)
+    devise (4.0.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
+      railties (>= 4.1.0, < 5.1)
       responders
-      thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -257,7 +256,7 @@ DEPENDENCIES
   ci_reporter
   cucumber-rails
   database_cleaner
-  devise (~> 3.0)
+  devise (~> 4.0.0)
   eventmachine
   factory_girl
   factory_girl_rails

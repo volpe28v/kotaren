@@ -10,8 +10,6 @@ gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
 
-gem 'protected_attributes'
-
 group :assets do
   gem 'sass-rails'
   gem 'uglifier'

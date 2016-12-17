@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   def create
     @user = User.find(params[:user_id])

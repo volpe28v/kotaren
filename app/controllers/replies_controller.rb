@@ -3,7 +3,7 @@ class RepliesController < ApplicationController
     comment = Comment.find(params[:comment_id])
     user = current_user
 
-    new_reply = Reply.new(params[:reply])
+    new_reply = Reply.new(reply_params)
     new_reply.user = user
     new_reply.comment = comment
     if new_reply.save == false
@@ -74,5 +74,11 @@ class RepliesController < ApplicationController
       sleep 10
       CommentMailer.to_other(u, comment, reply).deliver
     }
+  end
+
+  def reply_params
+    params.require(:reply).permit(
+      :text
+    )
   end
 end

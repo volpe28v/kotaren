@@ -8,12 +8,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name, :youtube_name, :twitter_name, :icon_url
-  attr_accessible :guitar, :tuning
-  attr_accessible :notify, :all_notify
-
   validates :name,
     :presence => true,
     :uniqueness => true
@@ -51,9 +45,9 @@ class User < ActiveRecord::Base
   end
 
   def add_activity
-    activity = self.activities.find_or_create_by(date: Date.current)
+    activity = self.activities.find_or_create_by!(date: Date.current)
     activity.count += 1
-    activity.save
+    activity.save!
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource = nil)

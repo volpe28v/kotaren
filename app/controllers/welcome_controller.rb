@@ -3,5 +3,4 @@ class WelcomeController < ApplicationController
     @user_count = User.count
     @tune_ranking = Tune.get_tune_ranking
   end
-
 end

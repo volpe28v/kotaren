@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def edit
     @user = current_user;
     @user.name ||= @user.default_name
-
   end
 
   def update

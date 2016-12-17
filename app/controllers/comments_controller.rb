@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
     @comment = @user.comments.build(comment_params)
     @comment.tune = tune
-    if @comment.save == false
+    unless @comment.save
       render :nothing => true
       return
     end

@@ -6,7 +6,7 @@ class RepliesController < ApplicationController
     new_reply = Reply.new(reply_params)
     new_reply.user = user
     new_reply.comment = comment
-    if new_reply.save == false
+    unless new_reply.save
       render :nothing => true
       return
     end

@@ -9,8 +9,6 @@ Rails.application.config.assets.version = '1.1'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w(
-  onsenui.js
-  onsenui.css
   comments_smart_phone.js
   albums.css
   application_smart_phone.js

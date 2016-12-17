@@ -24,7 +24,7 @@ class TunesController < ApplicationController
       @latest_comments = @user.comments.latest.order("updated_at DESC")
       @other_comments = Comment.other_by(@user).order("updated_at DESC")
 
-      @tunes = Tune.all
+      @tunes = Tune.preload(:tuning)
 
       set_tune_counts(@user)
     end

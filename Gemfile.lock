@@ -93,7 +93,7 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    libv8 (3.16.14.3)
+    libv8 (3.16.14.17)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -230,3 +230,9 @@ DEPENDENCIES
   sqlite3
   therubyracer
   uglifier
+
+RUBY VERSION
+   ruby 2.1.2p95
+
+BUNDLED WITH
+   1.13.6

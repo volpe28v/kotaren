@@ -9,11 +9,11 @@
 
 User
   .find_or_create_by!(:email => "sample@sample.kotaren")
-  .update(:name => "サンプルアカウント",
-          :password => "sample",
-          :password_confirmation => "sample",
-          :guiter => "Martin D-28",
-          :tuning => "GGDGGD")
+  .update!(:name => "サンプルアカウント",
+           :password => "sample",
+           :password_confirmation => "sample",
+           :guitar => "Martin D-28",
+           :tuning => "GGDGGD")
 puts "registered sample account"
 def register_album(tune_info)
   album_title = tune_info.shift

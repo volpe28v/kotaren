@@ -60,7 +60,7 @@ module Api
               name: comment.user.name,
               icon_url: comment.user.icon_url
             },
-            replies: comment.replies.order("updated_at desc").map{|reply|
+            replies: comment.replies.sort_by(&:updated_at).reverse.map{|reply|
               {
                 id: reply.id,
                 text: reply.text,
@@ -80,7 +80,7 @@ module Api
           comment: comment,
           tune: comment.tune,
           user: comment.user,
-          replies: comment.replies.order("updated_at desc").map{|reply|
+          replies: comment.replies.sort_by(&:updated_at).reverse.map{|reply|
             {
               id: reply.id,
               text: reply.text,

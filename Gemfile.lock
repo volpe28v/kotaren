@@ -58,7 +58,7 @@ GEM
       builder (>= 2.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.3)
     cucumber (2.4.0)
       builder (>= 2.1.2)
       cucumber-core (~> 1.5.0)
@@ -101,7 +101,7 @@ GEM
     gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    grape (0.18.0)
+    grape (0.19.0)
       activesupport
       builder
       hashie (>= 2.1.0)

@@ -7,7 +7,6 @@ module Api
         user_id = params[:user_id]
         touched_tunes = Tune.includes({recordings: :album}, :progresses, :tuning).where(progresses: {user_id: user_id})
         untouched_tunes = Tune.includes({recordings: :album}, :tuning).order("id ASC") - touched_tunes
-        all_tunes = touched_tunes + untouched_tunes
 
         touched_tunes = touched_tunes.map{|tune|
           {

@@ -13,4 +13,3 @@
 //= require jquery.autofit
 //= require purl
 //= require kotaren
-

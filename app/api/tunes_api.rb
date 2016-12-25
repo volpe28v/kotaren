@@ -1,16 +1,17 @@
 module Api
   class TunesApi < Grape::API
+    format :json
+
     resource :tunes do
       get do
         user_id = params[:user_id]
         touched_tunes = Tune.includes({recordings: :album}, :progresses, :tuning).where(progresses: {user_id: user_id})
         untouched_tunes = Tune.includes({recordings: :album}, :tuning).order("id ASC") - touched_tunes
-        all_tunes = touched_tunes + untouched_tunes
 
         touched_tunes = touched_tunes.map{|tune|
           {
             tune: tune,
-            albums: tune.recordings.map{|rec| rec.album},
+            albums: tune.recordings.map{|rec| rec.album.as_json(methods: %i(thumbnail_url mini_thumbnail_url))},
             progress: tune.progresses.first,
             tuning: tune.tuning
           }
@@ -19,7 +20,7 @@ module Api
         untouched_tunes = untouched_tunes.map{|tune|
           {
             tune: tune,
-            albums: tune.recordings.map{|rec| rec.album},
+            albums: tune.recordings.map{|rec| rec.album.as_json(methods: %i(thumbnail_url mini_thumbnail_url))},
             progress: { percent: 0 },
             tuning: tune.tuning
           }
@@ -46,7 +47,7 @@ module Api
 
           comments = tune.comments.includes({replies: :user}, :tune, :user).where(user_id: user_id).order("updated_at desc")
         else
-          comments = Comment.includes({replies: :user}, :tune, :user).scoped.order("updated_at DESC").limit(50)
+          comments = Comment.includes({replies: :user}, :tune, :user).order("updated_at DESC").limit(50)
         end
 
         comments.map{|comment|
@@ -58,7 +59,7 @@ module Api
               name: comment.user.name,
               icon_url: comment.user.icon_url
             },
-            replies: comment.replies.order("updated_at desc").map{|reply|
+            replies: comment.replies.sort_by(&:updated_at).reverse.map{|reply|
               {
                 id: reply.id,
                 text: reply.text,
@@ -78,7 +79,7 @@ module Api
           comment: comment,
           tune: comment.tune,
           user: comment.user,
-          replies: comment.replies.order("updated_at desc").map{|reply|
+          replies: comment.replies.sort_by(&:updated_at).reverse.map{|reply|
             {
               id: reply.id,
               text: reply.text,

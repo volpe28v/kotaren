@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe AlbumsController do
+describe AlbumsController, type: :controller do
 
 end

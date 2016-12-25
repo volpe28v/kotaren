@@ -1,0 +1,25 @@
+<%
+  image_root = Rails.root.join('app/assets/images')
+
+  image_names = Dir[image_root.join('**/*.{jpg,png,gif}')].map {|path|
+    Pathname(path).relative_path_from(image_root)
+  }
+
+  image_names.each {|image_name|
+    depend_on(image_name)
+  }
+
+  image_map = image_names.map {|image_name|
+    [image_name, image_path(image_name)]
+  }.to_h
+%>
+
+ImageURLs = {};
+ImageURLs.map = <%= image_map.to_json %>
+ImageURLs.imagePath = function imagePath(name) {
+  var path = this.map[name];
+  if (!path) {
+    throw('Missing image: "' + name + '"');
+  }
+  return path;
+};

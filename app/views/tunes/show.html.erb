@@ -13,9 +13,9 @@
                 <% @tune.recordings.each do |r| %>
                   <a href="<%= user_albums_path(@user) %>#album_<%= r.album.id %>">
                     <% if count == 1 %>
-                      <img src="/assets/albums/<%= r.album.title %>.jpg" class="album-img album-img-large">
+                      <%= image_tag r.album.thumbnail_url, :class => "album-img album-img-large" %>
                     <% else %>
-                      <img src="/assets/albums/mini/<%= r.album.title %>_s.jpg" class="album-img">
+                      <%= image_tag r.album.mini_thumbnail_url, :class => "album-img" %>
                     <% end %>
                   </a>
                 <% end %>

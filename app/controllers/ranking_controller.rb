@@ -1,6 +1,6 @@
 class RankingController < ApplicationController
   def index
-    @tune_ranking = Tune.get_tune_ranking
+    @tune_ranking = Tune.get_tune_ranking.preload(:progresses, :tuning)
   end
 
   def latest_played

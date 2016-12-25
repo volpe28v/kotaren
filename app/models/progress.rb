@@ -10,7 +10,11 @@ class Progress < ActiveRecord::Base
     where(user_id: user)
   }
 
-  scope :active, where("percent > 0")
+  scope :active, lambda {
+    where("percent > 0")
+  }
 
-  scope :order_by_progress_degrees, order('percent DESC')
+  scope :order_by_progress_degrees, lambda {
+    order('percent DESC')
+  }
 end

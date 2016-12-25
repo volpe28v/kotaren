@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe RepliesController do
+describe RepliesController, type: :controller do
 
 end

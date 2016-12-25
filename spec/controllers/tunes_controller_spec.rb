@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe TunesController do
+describe TunesController, type: :controller do
 
 end

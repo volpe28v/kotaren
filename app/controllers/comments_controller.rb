@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 class CommentsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     tune = Tune.find(params[:tune_id])
 
-    @comment = @user.comments.build(params[:comment])
+    @comment = @user.comments.build(comment_params)
     @comment.tune = tune
-    if @comment.save == false
+    unless @comment.save
       render :nothing => true
       return
     end
@@ -46,7 +45,7 @@ class CommentsController < ApplicationController
   end
 
   def load_comment_list
-    @comments = Comment.scoped.order("updated_at DESC").limit(30)
+    @comments = Comment.order("updated_at DESC").limit(30)
 
     lists = render_to_string :partial => 'comment_list_smart_phone'
     render :json => { lists: lists },
@@ -63,5 +62,9 @@ class CommentsController < ApplicationController
     }
   end
 
-
+  def comment_params
+    params.require(:comment).permit(
+      :text
+    )
+  end
 end

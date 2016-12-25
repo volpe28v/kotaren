@@ -1,4 +1,4 @@
-class CreateProgresses < ActiveRecord::Migration
+class CreateProgresses < ActiveRecord::Migration[4.2]
   def change
     create_table :progresses do |t|
       t.string :status
@@ -6,7 +6,7 @@ class CreateProgresses < ActiveRecord::Migration
       t.integer :tune_id
       t.integer :user_id
 
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 end

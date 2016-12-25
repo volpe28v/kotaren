@@ -1,23 +1,19 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.3.3'
 
-gem 'rails', '3.2.16'
+gem 'rails', '~> 5.0.0'
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'puma'
+
 gem 'omniauth-facebook'
 gem 'oa-core'
-
 gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
-
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
-
-gem 'jquery-rails'
-gem 'devise', "1.5"
+gem 'devise'
 gem 'rails_autolink'
 
 group :development, :test do
@@ -34,17 +30,4 @@ end
 
 group :production do
   gem 'pg'
-  gem 'execjs'
-  gem 'therubyracer'
 end
-
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-

@@ -7,3 +7,4 @@ tmp/
 *.swo
 .DS_Store
 .versions.conf
+.ruby-version

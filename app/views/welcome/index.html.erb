@@ -1,115 +1,119 @@
 <div class="container">
-<div class="row">
-  <div class="span7">
-    <div id="content" class="ui-widget ui-widget-content ui-corner-all">
-    <center>
-      <%= image_tag ("guitar.jpg") %>
-    </center>
-<p>
-押尾コータローさんの音楽って素晴らしいですね。押尾さんの楽曲に憧れて日々コピーライフを楽しんでいますが、いろいろ手を広げ過ぎ一度弾けていた曲も弾けなくなったりと心配が尽きません。「コタれん」はそんなおっちょこちょいな押尾弾きのための練習支援アプリです。
+  <div class="row">
+    <div class="span7">
+      <div id="content" class="ui-widget ui-widget-content ui-corner-all">
+        <center>
+          <%= image_tag ("guitar.jpg") %>
+        </center>
+        <p>
+        押尾コータローさんの音楽って素晴らしいですね。押尾さんの楽曲に憧れて日々コピーライフを楽しんでいますが、いろいろ手を広げ過ぎ一度弾けていた曲も弾けなくなったりと心配が尽きません。「コタれん」はそんなおっちょこちょいな押尾弾きのための練習支援アプリです。
+        <%= fb_like("http://kotaren.herokuapp.com/") %>
+        <!-- コタれん2 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:468px;height:60px"
+             data-ad-client="ca-pub-6418724748487365"
+             data-ad-slot="9495714337"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
-  <%= fb_like("http://kotaren.herokuapp.com/") %>
+        <h1>コタれんって</h1>
+        <ul>
+          <li>練習曲の進捗を管理できます。</li>
+          <li>チューニングで曲の検索を行えます。</li>
+          <li>練習の参考になる YouTube の関連動画を自動検索できます。</li>
+        </ul>
 
-  <h1>コタれんって</h1>
-  <ul>
-    <li>練習曲の進捗を管理できます。</li>
-    <li>チューニングで曲の検索を行えます。</li>
-    <li>練習の参考になる YouTube の関連動画を自動検索できます。</li>
-  </ul>
+        <h1>例えばこんな使い方</h1>
+        <ul>
+          <li>日々の練習の進捗をコツコツ記録！</li>
+          <li>同一チューニングの練習曲を検索して一気に練習！</li>
+          <li>練習中に YouTube の関連動画に簡単アクセス！</li>
+          <li>最近弾いてない曲を探して最練習！</li>
+          <li>曲ごとに練習時のコメント記録</li>
+          <li>他ユーザの練習帳を参考に</li>
+          <li><i class="icon-star"></i>スマホからも練習記録を残せる！</li>
+        </ul>
 
-  <h1>例えばこんな使い方</h1>
-  <ul>
-    <li>日々の練習の進捗をコツコツ記録！</li>
-    <li>同一チューニングの練習曲を検索して一気に練習！</li>
-    <li>練習中に YouTube の関連動画に簡単アクセス！</li>
-    <li>最近弾いてない曲を探して最練習！</li>
-    <li>曲ごとに練習時のコメント記録</li>
-    <li>他ユーザの練習帳を参考に</li>
-    <li><i class="icon-star"></i>スマホからも練習記録を残せる！</li>
-  </ul>
+        <hr>
+        <h1>みんなが弾いている曲</h1>
+        <table>
+          <tr>
+            <th class="welcome-number-title">弾いている人数</th>
+            <th class="welcome-tune-title">曲名</th>
+            <th class="welcome-tuning-title">チューニング</th>
+          </tr>
+          <% @tune_ranking.each do |tune| %>
+            <tr>
+              <td class="tune-count"><span class='tune_s_num'><%= tune.active_count %></span> 人</td>
+              <td class="tune-title"><%= tune.title %></td>
+              <td><%= tune.tuning.name %></td>
+            </tr>
+          <% end %>
+        </table>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      </div>
 
-  <hr>
-  <h1>みんなが弾いている曲</h1>
-  <table>
-    <tr>
-      <th class="welcome-number-title">弾いている人数</th>
-      <th class="welcome-tune-title">曲名</th>
-      <th class="welcome-tuning-title">チューニング</th>
-    </tr>
+      <div class="span5">
+        <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
+          <h2>ログイン</h2>
+          <%= form_tag('/users/sign_in') do %>
+            <dl>
+              <dt>Email</dt>
+              <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
+            </dl>
+            <dl>
+              <dt>Password</dt>
+              <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
+            </dl>
+            <button id="login" class="btn" onclick="submit();">ログイン</button>
+            or
+            <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_facebook_omniauth_authorize_path, :class => "btn btn-info"  %><br/>
+            <br/>
+            <p>
+            〜 登録ユーザ <%= @user_count %> 人 〜
+            </p>
+          <% end %>
+          <hr>
+          <h2>お試し利用</h2>
+          新規登録する前に雰囲気を試してみたい場合は以下のサンプルアカウントでいじってみてください。
+          <%#サンプルログインフォーム%>
+          <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
+            <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
+            <%= hidden_field_tag "user[password]", "sample" %>
+            <button id="sample-login" class="btn" onclick="submit();">サンプルアカウントでログイン</button>
+          <% end -%>
 
-  <% @tune_ranking.each do |tune| %>
-    <tr>
-      <td class="tune-count"><span class='tune_s_num'><%= tune.active_count %></span> 人</td>
-      <td class="tune-title"><%= tune.title %></td>
-      <td><%= tune.tuning.name %></td>
-    </tr>
-  <% end %>
-  </table>
+          <hr>
+          <h2>使ってみる</h2>
+          メアドとパスワードで簡単登録できます。
+
+          <p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "btn" %></p>
+
+          <hr>
+
+          <h2>作っている人</h2>
+          <ul>
+            <li>Twitter: <%= link_to '@volpe_hd28v', "http://twitter.com/#!/volpe_hd28v" %>
+              <li>github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
+                <li>Blog: <%= link_to 'アコギのある風景',"http://d.hatena.ne.jp/volpe0104/" %>
+          </ul>
+          ご意見ご要望などあれば twitter でお願いします。
+
+          <hr>
+          <h2>更新履歴(github)</h2>
+          <div id="divRss"></div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="span5">
-    <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
-    <h2>ログイン</h2>
-    <%= form_tag('/users/sign_in') do %>
-      <dl>
-        <dt>Email</dt>
-        <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
-     </dl>
-
-  <dl>
-    <dt>Password</dt>
-    <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
-  </dl>
-  <button id="login" class="btn" onclick="submit();">ログイン</button>
-  or
-  <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_facebook_omniauth_authorize_path, :class => "btn btn-info"  %><br/>
-  <br/>
-  <p>
-   〜 登録ユーザ <%= @user_count %> 人 〜
-  </p>
-<% end %>
-
-<hr>
-<h2>お試し利用</h2>
-新規登録する前に雰囲気を試してみたい場合は以下のサンプルアカウントでいじってみてください。
-<%#サンプルログインフォーム%>
-<%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
-  <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
-  <%= hidden_field_tag "user[password]", "sample" %>
-  <button id="sample-login" class="btn" onclick="submit();">サンプルアカウントでログイン</button>
-<% end -%>
-
-<hr>
-<h2>使ってみる</h2>
-メアドとパスワードで簡単登録できます。
-
-<p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "btn" %></p>
-
-<hr>
-
-<h2>作っている人</h2>
-<ul>
-  <li>Twitter: <%= link_to '@volpe_hd28v', "http://twitter.com/#!/volpe_hd28v" %>
-  <li>github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
-  <li>Blog: <%= link_to 'アコギのある風景',"http://d.hatena.ne.jp/volpe0104/" %>
-</ul>
-ご意見ご要望などあれば twitter でお願いします。
-
-<hr>
-<h2>更新履歴(github)</h2>
-<div id="divRss"></div>
-    </div>
-  </div>
-</div>
-</div>
-
-<script>
- $('#divRss').FeedEk({
-   FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
-   MaxCount : 8,
-   ShowDesc : false,
-   ShowPubDate:true
+  <script>
+  $('#divRss').FeedEk({
+    FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
+    MaxCount : 8,
+    ShowDesc : false,
+    ShowPubDate:true
   });
-</script>
+  </script>
 

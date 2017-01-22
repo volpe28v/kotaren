@@ -7,6 +7,7 @@
         </center>
         <p>
         押尾コータローさんの音楽って素晴らしいですね。押尾さんの楽曲に憧れて日々コピーライフを楽しんでいますが、いろいろ手を広げ過ぎ一度弾けていた曲も弾けなくなったりと心配が尽きません。「コタれん」はそんなおっちょこちょいな押尾弾きのための練習支援アプリです。
+        </p>
         <%= fb_like("http://kotaren.herokuapp.com/") %>
         <!-- コタれん2 -->
         <ins class="adsbygoogle"
@@ -53,67 +54,68 @@
         </table>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       </div>
+    </div>
 
-      <div class="span5">
-        <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
-          <h2>ログイン</h2>
-          <%= form_tag('/users/sign_in') do %>
-            <dl>
-              <dt>Email</dt>
-              <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
-            </dl>
-            <dl>
-              <dt>Password</dt>
-              <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
-            </dl>
-            <button id="login" class="btn" onclick="submit();">ログイン</button>
-            or
-            <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_facebook_omniauth_authorize_path, :class => "btn btn-info"  %><br/>
-            <br/>
-            <p>
-            〜 登録ユーザ <%= @user_count %> 人 〜
-            </p>
-          <% end %>
-          <hr>
-          <h2>お試し利用</h2>
-          新規登録する前に雰囲気を試してみたい場合は以下のサンプルアカウントでいじってみてください。
-          <%#サンプルログインフォーム%>
-          <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
-            <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
-            <%= hidden_field_tag "user[password]", "sample" %>
-            <button id="sample-login" class="btn" onclick="submit();">サンプルアカウントでログイン</button>
-          <% end -%>
+    <div class="span5">
+      <div id="sidebar" class="ui-widget ui-widget-content ui-corner-all">
+        <h2>ログイン</h2>
+        <%= form_tag('/users/sign_in') do %>
+          <dl>
+            <dt>Email</dt>
+            <dd><%= text_field_tag "user[email]",'', :size => 34 %></dd>
+          </dl>
+          <dl>
+            <dt>Password</dt>
+            <dd><%= password_field_tag "user[password]",'', :size => 34 %></dd>
+          </dl>
+          <button id="login" class="btn" onclick="submit();">ログイン</button>
+          or
+          <%= link_to raw('<span class="sign-in-link-with-service">Sign in with Facebook</span>'), user_facebook_omniauth_authorize_path, :class => "btn btn-info"  %><br/>
+          <br/>
+          <p>
+          〜 登録ユーザ <%= @user_count %> 人 〜
+          </p>
+        <% end %>
+        <hr>
+        <h2>お試し利用</h2>
+        新規登録する前に雰囲気を試してみたい場合は以下のサンプルアカウントでいじってみてください。
+        <%#サンプルログインフォーム%>
+        <%= form_tag('/users/sign_in',  :type => "hidden" ) do -%>
+          <%= hidden_field_tag "user[email]", "sample@sample.kotaren" %>
+          <%= hidden_field_tag "user[password]", "sample" %>
+          <button id="sample-login" class="btn" onclick="submit();">サンプルアカウントでログイン</button>
+        <% end -%>
 
-          <hr>
-          <h2>使ってみる</h2>
-          メアドとパスワードで簡単登録できます。
+        <hr>
+        <h2>使ってみる</h2>
+        メアドとパスワードで簡単登録できます。
 
-          <p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "btn" %></p>
+        <p><%= link_to raw('<span>新規登録して使ってみる</span>'), new_user_registration_path, :class => "btn" %></p>
 
-          <hr>
+        <hr>
 
-          <h2>作っている人</h2>
-          <ul>
-            <li>Twitter: <%= link_to '@volpe_hd28v', "http://twitter.com/#!/volpe_hd28v" %>
-              <li>github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
-                <li>Blog: <%= link_to 'アコギのある風景',"http://d.hatena.ne.jp/volpe0104/" %>
-          </ul>
-          ご意見ご要望などあれば twitter でお願いします。
+        <h2>作っている人</h2>
+        <ul>
+          <li>Twitter: <%= link_to '@volpe_hd28v', "http://twitter.com/#!/volpe_hd28v" %>
+          <li>github: <%= link_to 'volpe28v/kotaren',"https://github.com/volpe28v/kotaren" %>
+          <li>Blog: <%= link_to 'アコギのある風景',"http://d.hatena.ne.jp/volpe0104/" %>
+      </ul>
+      ご意見ご要望などあれば twitter でお願いします。
 
-          <hr>
-          <h2>更新履歴(github)</h2>
-          <div id="divRss"></div>
-        </div>
+      <hr>
+      <h2>更新履歴(github)</h2>
+      <div id="divRss"></div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-  $('#divRss').FeedEk({
-    FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
-    MaxCount : 8,
-    ShowDesc : false,
-    ShowPubDate:true
-  });
-  </script>
+<script>
+$('#divRss').FeedEk({
+  FeedUrl : 'https://github.com/volpe28v/kotaren/commits/master.atom',
+  MaxCount : 8,
+  ShowDesc : false,
+  ShowPubDate:true
+});
+</script>
 

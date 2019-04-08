@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.5.3'
 
 gem 'rails', '~> 5.0.0'
 gem 'jquery-rails'
@@ -17,7 +17,7 @@ gem 'devise'
 gem 'rails_autolink'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3','1.3.13'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'

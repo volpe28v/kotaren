@@ -10,7 +10,7 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'oa-core'
-gem 'jpmobile'
+gem 'jpmobile', '5.0.0'
 gem 'eventmachine'
 gem 'grape'
 gem 'devise', '4.6.2'

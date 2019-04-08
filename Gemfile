@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.3'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -10,7 +10,7 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'oa-core'
-gem 'jpmobile', '5.0.0'
+gem 'jpmobile', '~> 5.1.0'
 gem 'eventmachine'
 gem 'grape'
 gem 'devise', '4.6.2'

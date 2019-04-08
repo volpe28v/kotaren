@@ -13,7 +13,7 @@ gem 'oa-core'
 gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
-gem 'devise'
+gem 'devise', '4.6.2'
 gem 'rails_autolink'
 
 group :development, :test do

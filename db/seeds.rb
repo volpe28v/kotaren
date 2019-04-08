@@ -7,24 +7,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User
-  .find_or_create_by!(:email => "sample@sample.kotaren")
-  .update!(:name => "サンプルアカウント",
-           :password => "sample",
-           :password_confirmation => "sample",
-           :guitar => "Martin D-28",
-           :tuning => "GGDGGD")
+User.find_or_create_by!(:email => "sample@sample.kotaren") do |user|
+  user.name = "サンプルアカウント"
+  user.password = "sample"
+  user.password_confirmation = "sample"
+  user.guitar = "Martin D-28"
+  user.tuning = "GGDGGD"
+end
 puts "registered sample account"
+
 def register_album(tune_info)
   album_title = tune_info.shift
   al = Album.find_or_create_by!(:title => album_title)
   tune_info.each do |t|
-    tune   = Tune.find_or_create_by!(:title => t[0])
-    tuning = Tuning.find_or_create_by!(:name => t[1], :capo => t[2].presence || 0)
+    tune   = Tune.find_or_initialize_by(:title => t[0])
+    tuning = Tuning.find_or_initialize_by(:name => t[1], :capo => t[2].presence || 0)
     tuning.tunes << tune
+    tune.save!
 
     Recording.find_or_create_by!(:tune_id => tune.id, :album_id => al.id)
-    tune.save!
   end
   puts "registered album: #{album_title}"
 end

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.5.3'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.2.0'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -10,14 +10,14 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'oa-core'
-gem 'jpmobile'
+gem 'jpmobile', '5.2.2' # 5.2.5 で修正されていそう
 gem 'eventmachine'
 gem 'grape'
-gem 'devise'
+gem 'devise', '4.6.2'
 gem 'rails_autolink'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'sqlite3','1.3.13'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'

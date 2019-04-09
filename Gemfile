@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-
-ruby '2.5.3'
+ruby '2.6.2'
 
 gem 'rails', '~> 5.2.0'
 gem 'jquery-rails'
@@ -13,11 +12,11 @@ gem 'oa-core'
 gem 'jpmobile', '5.2.2' # 5.2.5 で修正されていそう
 gem 'eventmachine'
 gem 'grape'
-gem 'devise', '4.6.2'
+gem 'devise'
 gem 'rails_autolink'
 
 group :development, :test do
-  gem 'sqlite3','1.3.13'
+  gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'

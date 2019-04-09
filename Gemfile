@@ -17,7 +17,7 @@ gem 'devise'
 gem 'rails_autolink'
 
 group :development, :test do
-  gem 'sqlite3','1.3.13'
+  gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'factory_girl'

@@ -209,26 +209,9 @@ function loadSpecificYoutube(url, $target)
 {
   var videoID = $.url(url).param().v;
   if ( videoID == undefined || videoID == ""){
-    videoID = url.replace("http://youtu.be/","");
+    videoID = url.replace(/https?:\/\/youtu.be\//,"");
   }
 
-  $.ajax({
-    dataType: "jsonp",
-    cache: false,
-    url: "https://gdata.youtube.com/feeds/api/videos/" + videoID,
-    success: function (data) {
-      var json = $.xml2json(data);
-      var item = json;
-      var group = item.group;
-
-      var youtube_link_a = $("<a/>").attr("href",group.player.url).attr("title","").addClass("prettyPhoto").prettyPhoto();
-      var thumb_div = $("<div/>").addClass("thumbnail-video-comment ui-widget-content ui-corner-all")
-        .append($("<img/>").attr("src", group.thumbnail[0].url)).append("<br/")
-        .append(item.title).append("<br/>") 
-        .append(item.author.name).append("<br/>") 
-        .append($("<span/>").addClass("info").text("再生回数：" + ((item.statistics == null) ? "0" : item.statistics.viewCount)));
-        
-      $target.before(youtube_link_a.append(thumb_div));
-    }
-  });
+  var youtube_embed = '<div class="video"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
+  $target.before(youtube_embed);
 }

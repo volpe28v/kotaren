@@ -215,7 +215,7 @@ function loadSpecificYoutube(url, $target)
   $.ajax({
     dataType: "jsonp",
     cache: false,
-    url: "http://gdata.youtube.com/feeds/api/videos/" + videoID,
+    url: "https://gdata.youtube.com/feeds/api/videos/" + videoID,
     success: function (data) {
       var json = $.xml2json(data);
       var item = json;

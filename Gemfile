@@ -13,7 +13,7 @@ gem 'oa-core'
 gem 'jpmobile', '5.2.2' # 5.2.5 で修正されていそう
 gem 'eventmachine'
 gem 'grape'
-gem 'devise', '4.6.2'
+gem 'devise'
 gem 'rails_autolink'
 
 group :development, :test do

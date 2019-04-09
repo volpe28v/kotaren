@@ -288,7 +288,7 @@ DEPENDENCIES
   ci_reporter
   cucumber-rails
   database_cleaner
-  devise (= 4.6.2)
+  devise
   eventmachine
   factory_girl
   factory_girl_rails

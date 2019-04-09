@@ -63,7 +63,7 @@ function TunesViewModel(tunes) {
       $.ajax({
         type: "GET",
         cache: false,
-        url: "/api/tunes",
+        url: "/api/tunes?key=+Math.random()",
         data: { user_id: UserID },
         success: function (data) {
           var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
@@ -174,7 +174,7 @@ function DetailsViewModel(item) {
     $.ajax({
       type: "GET",
       cache: false,
-      url: "/api/comments",
+      url: "/api/comments?key=+Math.random()",
       data: {
         user_id: UserID,
         tune_id: item.tune.id
@@ -396,7 +396,7 @@ function ActivityViewModel() {
     $.ajax({
       type: "GET",
       cache: false,
-      url: "/api/comments",
+      url: "/api/comments?key=+Math.random()",
       success: function (data) {
         var mapped_data = data.map(function(d){ return ko.mapping.fromJS(d); });
         self.comments(mapped_data);

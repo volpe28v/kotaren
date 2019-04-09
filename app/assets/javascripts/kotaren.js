@@ -172,33 +172,35 @@ function showCommentOnTune(){
   });
 }
 
-function loadYoutube(tune_name)
-{
-  $.ajax({
-    dataType: "jsonp",
-    data: {
-      "vq": "押尾コータロー " + tune_name,
-      "orderby": "relevance",
-      "start-index": 1,
-      "max-results": 12,
-      "alt":"json-in-script"
-    },
-    cache: false,
-    url: "http://gdata.youtube.com/feeds/api/videos",
-    success: function (data) {
-      $.each(data.feed.entry, function(i,item){
-        var group = item.media$group;
+function loadYoutube(tune_name){
+  var baseUrl = "https://www.googleapis.com/youtube/v3/search";
+  var params = {
+    "part": "snippet",
+    "key": "AIzaSyASm1rVlmLTo7ojvP5FegeUc0gIXW9_zr4",
+    "type":"video",
+    "q": "押尾コータロー " + tune_name,
+    "maxResults": 30,
+  }
 
-         var youtube_link_a = $("<a/>").attr("href",group.media$player[0].url).attr("title","").addClass("prettyPhoto").prettyPhoto();
-         var thumb_div = $("<div/>").addClass("thumbnail-video ui-widget-content ui-corner-all")
-           .append($("<img/>").attr("src", group.media$thumbnail[0].url)).append("<br/")
-           .append(item.title.$t).append("<br/>") 
-           .append(item.author[0].name.$t).append("<br/>") 
-           .append($("<span/>").addClass("info").text("再生回数：" + ((item.yt$statistics == null) ? "0" : item.yt$statistics.viewCount)));
-         
-         youtube_link_a.append(thumb_div).appendTo("#ref-videos");
-        
-      });
+  $.ajax({
+    type: "GET",
+    cache: false,
+    url: baseUrl,
+    data: params,
+    success: function (data) {
+      console.log(data.items);
+
+      data.items.forEach(function(item){
+        var youtube_link_a = $("<a/>").attr("href",'https://youtu.be/' + item.id.videoId + "?rel=0&width=100%&height=100%").attr("title","").addClass("prettyPhoto").prettyPhoto();
+        var thumb_div = $("<div/>").addClass("thumbnail-video ui-widget-content ui-corner-all")
+          .append($("<img/>").attr("src", item.snippet.thumbnails.medium.url)).append("<br/>")
+          .append(item.snippet.title).append("<br/>")
+          .append(item.snippet.channelTitle).append("<br/>")
+          .append(item.snippet.publishedAt.split('T')[0]).append("<br/>");
+        youtube_link_a.append(thumb_div);
+        $("<div/>").addClass("video-content")
+          .append(youtube_link_a).appendTo("#ref-videos");
+      })
     }
   });
 }

@@ -310,6 +310,10 @@ function DetailsCommentViewModel(comment, comments) {
   self.date_format = function(date){
     return moment(date).format('YYYY/MM/DD HH:mm');
   }
+
+  self.youtube = function(){
+    document.querySelector('ons-navigator').pushPage('youtube.html', {viewModel: new YoutubeListViewModel(self.item)});
+  }
 }
 
 function AlbumsViewModel() {

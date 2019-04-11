@@ -238,6 +238,9 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     <ons-toolbar>
       <div class="left"><ons-back-button></ons-back-button></div>
       <div class="center" data-bind="text: item.tune.title"></div>
+      <div class="right">
+        <ons-toolbar-button data-bind="click: youtube"><ons-icon icon="fa-youtube"></ons-icon></ons-toolbar-button>
+      </div>
     </ons-toolbar>
 
     <ons-row style="padding: 10px 10px 0px 10px">

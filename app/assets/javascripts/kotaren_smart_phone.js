@@ -225,7 +225,7 @@ function DetailsViewModel(item) {
     });
   }
 
-  self.detailsComment= function() {
+  self.detailsComment = function() {
     document.querySelector('ons-navigator').pushPage('detailsComment.html', {viewModel: new DetailsCommentViewModel(this, self.comments)});
   }
 

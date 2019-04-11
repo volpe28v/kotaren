@@ -269,6 +269,7 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     </ons-row>
     <% end %>
 
+    <!-- ko if: item.replies().length > 0 -->
     <ons-list modifier="inset" style="margin: 5px" data-bind="foreach: item.replies">
       <ons-list-item modifier="longdivider">
         <div class="center">
@@ -285,6 +286,11 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
         </div>
       </ons-list-item>
     </ons-list>
+    <!-- /ko -->
+    <!-- ko if: item.replies().length == 0 -->
+    <span style="margin-left: 10px">no replies</span>
+    <!-- /ko -->
+    <span style="float: right; margin-right: 10px" data-bind="text: item.replies().length"></span>
   </ons-page>
 </ons-template>
 

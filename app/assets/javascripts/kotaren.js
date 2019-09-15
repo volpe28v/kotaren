@@ -38,15 +38,15 @@ var progress_default_option = {
     showText        : true,
     textFormat      : 'percentage',
     width           : 120,
-    height          : 12, 
+    height          : 12,
     callback        : null,
     boxImage        : ImageURLs.imagePath('progress/progressbar.gif'),
-    barImage        : { 
+    barImage        : {
         0:   ImageURLs.imagePath('progress/progressbg_red.gif'),
         30:  ImageURLs.imagePath('progress/progressbg_orange.gif'),
         60:  ImageURLs.imagePath('progress/progressbg_yellow.gif'),
         100: ImageURLs.imagePath('progress/progressbg_green.gif')
-    } 
+    }
 }
 
 var progress_controller = {
@@ -212,6 +212,6 @@ function loadSpecificYoutube(url, $target)
     videoID = url.replace(/https?:\/\/youtu.be\//,"");
   }
 
-  var youtube_embed = '<div class="video"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
+  var youtube_embed = '<div class="video"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoID + '?autoplay=0&rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe></div>';
   $target.before(youtube_embed);
 }

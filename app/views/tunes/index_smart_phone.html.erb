@@ -436,7 +436,7 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     </ons-toolbar>
 
     <div class="video">
-      <iframe width="560" height="315" data-bind="attr: {src: 'https://www.youtube.com/embed/' + item.id.videoId + '?autoplay=1&rel=0&showinfo=0&autohide=1'}" frameborder="0" allowfullscreen></iframe>
+      <iframe width="560" height="315" data-bind="attr: {src: 'https://www.youtube.com/embed/' + item.id.videoId + '?autoplay=0&rel=0&showinfo=0&autohide=1'}" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <ons-row style="padding: 5px 10px">

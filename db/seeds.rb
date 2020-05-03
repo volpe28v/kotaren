@@ -369,3 +369,21 @@ register_album [
   ["同級生 with Yuuki Ozaki","Standard"],
 ]
 
+register_album [
+  "Encounter",
+  ["大航海","AEEF#GE"],
+  ["FLOWER","DADGBD"],
+  ["Horizon","GGDGAD"],
+  ["久音-KUON- feat. 梁邦彦～ジョンソンアリラン変奏曲～","GGDGAD"],
+  ["ガール・フレンド","Standard"],
+  ["Pushing Tail","Standard"],
+  ["Cyborg","DADGAD"],
+  ["碧い夢","Standard"],
+  ["シネマ","Standard"],
+  ["Harmonia","Standard"],
+  ["夕凪","Standard"],
+  ["teardrop","A#A#FGA#F"],
+  ["Message","Standard"],
+  ["ナユタ feat. William Ackerman","C#G#D#G#CD#"],
+]
+

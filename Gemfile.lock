@@ -156,7 +156,7 @@ GEM
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
     nio4r (2.3.1)
-    nokogiri (1.10.5)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     oa-core (0.3.2)
     oauth2 (1.4.1)

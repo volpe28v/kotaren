@@ -1,3 +1,5 @@
+gem 'grape'
+
 Rails.application.routes.draw do
   mount Api::TunesApi => '/api'
 

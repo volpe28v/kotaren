@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.0'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -9,11 +9,12 @@ gem 'puma'
 
 gem 'omniauth-facebook'
 gem 'oa-core'
-gem 'jpmobile', '5.2.2' # 5.2.5 で修正されていそう
+gem 'jpmobile'
 gem 'eventmachine'
 gem 'grape'
 gem 'devise'
 gem 'rails_autolink'
+gem 'world-flags', github: 'kristianmandrup/world-flags', branch: 'master'
 
 group :development, :test do
   gem 'sqlite3'
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'ci_reporter'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'listen'
 end
 
 group :production do

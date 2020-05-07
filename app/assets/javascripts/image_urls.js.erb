@@ -2,7 +2,7 @@
   image_root = Rails.root.join('app/assets/images')
 
   image_names = Dir[image_root.join('**/*.{jpg,png,gif}')].map {|path|
-    Pathname(path).relative_path_from(image_root)
+    Pathname(path).relative_path_from(image_root).to_s
   }
 
   image_names.each {|image_name|

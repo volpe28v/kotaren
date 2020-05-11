@@ -149,17 +149,17 @@ var CurrentUserID = <%= current_user.try!(:id).presence || -1  %>;
     <ons-row style="padding: 5px 5px 0px 5px">
       <ons-col>
         <!-- ko if: item.albums().length == 1 -->
-        <img width="90%" data-bind="attr: {src: item.albums()[0].thumbnail_url()}">
+        <img width="90%" data-bind="attr: {src: item.albums()[0].thumbnail_url()}, click: tunesListByAlbum(item.albums()[0].id())">
         <!-- /ko -->
         <!-- ko if: item.albums().length != 1 -->
           <!-- ko foreach: item.albums -->
-            <img width="40%" data-bind="attr: {src: mini_thumbnail_url()}">
+            <img width="40%" data-bind="attr: {src: mini_thumbnail_url()}, click: $parent.tunesListByAlbum(id())">
           <!-- /ko -->
         <!-- /ko -->
       </ons-col>
       <ons-col>
         <!-- ko foreach: item.albums -->
-          <div data-bind="text: title"></div>
+          <div data-bind="text: title, click: $parent.tunesListByAlbum(id())"></div>
         <!-- /ko -->
         <div style="margin-top: 5px; color: rgba(38,100,171,0.81); font-weight: bold" data-bind="click: tunesListByTuning">
           <span data-bind="text: item.tuning.name"></span>

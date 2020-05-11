@@ -264,6 +264,15 @@ function DetailsViewModel(item) {
     });
     document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
   }
+
+  self.tunesListByAlbum = function(album_id) {
+    var tunes = self.tunes().filter(function(tune){
+      return tune.albums().filter(function(album){
+        return album.id() == album_id;
+      }).length > 0;
+    });
+    document.querySelector('ons-navigator').pushPage('tunes.html', {viewModel: new TunesViewModel(tunes)});
+  }
 }
 
 function DetailsCommentViewModel(comment, comments) {

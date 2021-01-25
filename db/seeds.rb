@@ -387,3 +387,21 @@ register_album [
   ["ナユタ feat. William Ackerman","C#G#D#G#CD#"],
 ]
 
+register_album [
+  "PASSENGER",
+  ["GOLD RUSH", "DADGBD"],
+  ["フォトグラフ", "Standard", 3],
+  ["韋駄天", "GGDGAD"],
+  ["EDEN", "Standard"],
+  ["星夜のパヴァーヌ", "Standard"],
+  ["Shanghai Lover","DADF#BD"],
+  ["Smoky Slider", "Standard"],
+  ["週末旅行", "Standard"],
+  ["Liberty", "DADGAD"],
+  ["Heart Break Cats", "Standard"],
+  ["Congratulations", "AEEF#BE"],
+  ["少年の僕", "CGDGBD"],
+  ["アサガオ", "BEADF#B"],
+  ["Love Letter", "Standard"],
+  ["冬の晴レルヤ", "CGE♭FB♭E♭"],
+]
